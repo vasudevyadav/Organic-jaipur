@@ -1,0 +1,68 @@
+export const MAKING_PROCESSES = [
+  {
+    slug: "bilona-ghee",
+    label: "Bilona Ghee",
+    category: "GHEE",
+    eyebrow: "Traditional bilona method",
+    title: "From fresh milk to golden ghee.",
+    intro: "A slow, four-stage process built around cultured curd, patient churning and careful heat—not cream separation shortcuts.",
+    strip: "/images/process/ghee-process-strip.png",
+    accent: "Milk · Curd · Bilona · Ghee",
+    steps: [
+      { title: "Fresh milk from our own cows", detail: "Milk comes from our own Gir cows on the Organic Jaipur farm and is checked for freshness before the batch begins.", note: "Because the cows are ours, we control the journey from milk onward." },
+      { title: "Curd is set naturally", detail: "The milk is cultured and rested in suitable conditions until it becomes curd with the right body and aroma.", note: "This cultured-curd stage gives bilona ghee its traditional character." },
+      { title: "Hand-churned with bilona", detail: "The curd is churned slowly to separate makkhan. This is fundamentally different from making ghee directly from separated cream.", note: "Slow churning separates the butter without rushing the process." },
+      { title: "Slow-cooked and filtered", detail: "Makkhan is heated gradually until moisture leaves and clear aromatic ghee forms, then it is filtered and packed.", note: "Colour, aroma and clarity are reviewed before packing." },
+    ],
+  },
+  {
+    slug: "cold-pressed-oil",
+    label: "Cold-Pressed Oil",
+    category: "MUSTARD_OIL",
+    eyebrow: "Wooden ghani extraction",
+    title: "Seed to bottle, without refining shortcuts.",
+    intro: "Clean seeds, slow wooden pressing, natural settling and careful filtration preserve the oil's natural aroma and character.",
+    strip: "/images/process/oil-process-strip.png",
+    accent: "Seed · Ghani · Settle · Bottle",
+    steps: [
+      { title: "Our farm-grown seeds are sorted", detail: "Mustard grown on our own farm is harvested, inspected and cleaned to remove dust, damaged seeds and foreign matter before pressing.", note: "We know the field the seed came from because we grow it ourselves." },
+      { title: "Slow wooden-ghani pressing", detail: "Seeds are pressed gradually in a traditional wooden ghani without chemical solvents or high-speed industrial refining.", note: "Controlled extraction helps retain the seed's distinctive aroma." },
+      { title: "Oil rests naturally", detail: "Freshly pressed oil is allowed to settle so heavier natural particles can separate without aggressive processing.", note: "Settling reduces the need for harsh clarification." },
+      { title: "Filtered and hygienically packed", detail: "The settled oil is filtered, checked for expected colour and aroma, then filled into clean food-safe bottles.", note: "Each packed batch remains linked to its production details." },
+    ],
+  },
+  {
+    slug: "raw-honey",
+    label: "Raw Honey",
+    category: "HONEY",
+    eyebrow: "Minimal handling",
+    title: "From the hive, handled with restraint.",
+    intro: "Our own managed beehives and gentle filtration keep unnecessary processing away from honey's natural taste, aroma and texture.",
+    strip: "/images/process/honey-process-strip.png",
+    accent: "Hive · Inspect · Filter · Fill",
+    steps: [
+      { title: "Honey from our managed beehives", detail: "The beehives are installed and managed on our own farm, giving us direct visibility into hive care and each collected batch.", note: "There is no anonymous honey supply chain between the hive and us." },
+      { title: "Incoming batch inspection", detail: "Each lot is reviewed for expected appearance, aroma, consistency and visible cleanliness before further handling.", note: "Unusual batches are held back for review." },
+      { title: "Gentle physical filtration", detail: "Honey passes through a fine filter to remove wax and physical impurities without unnecessary refining steps.", note: "The purpose is cleanliness, not stripping character." },
+      { title: "Clean filling and sealing", detail: "Approved honey is filled into sanitised jars, sealed and labelled so the packed product can be traced to its batch.", note: "Pack integrity is checked before dispatch." },
+    ],
+  },
+  {
+    slug: "traditional-pickles",
+    label: "Traditional Pickles",
+    category: "PICKLES",
+    eyebrow: "Small-batch maturation",
+    title: "Ingredients, spice and time in balance.",
+    intro: "Traditional pickle flavour develops through ingredient selection, measured mixing and patient maturation—not instant flavouring.",
+    strip: "/images/process/pickle-process-strip.png",
+    accent: "Select · Mix · Mature · Seal",
+    steps: [
+      { title: "Ingredients from our own farm", detail: "Mango, lemon, chilli and other seasonal pickle ingredients grown on our farm are cleaned, sorted and prepared for each small batch.", note: "We grow the main produce ourselves and select it at the right stage for pickling." },
+      { title: "Spices and oil are measured", detail: "Prepared ingredients are mixed with the recipe's spices, salt and oil in controlled proportions.", note: "Measured recipes keep flavour and preservation consistent." },
+      { title: "The batch matures naturally", detail: "The mixed pickle is rested so salt, spice and oil can penetrate while its full flavour develops over time.", note: "Maturation is observed rather than hurried." },
+      { title: "Final review and sealing", detail: "Taste, aroma, texture and jar hygiene are checked before the matured pickle is filled and securely sealed.", note: "Only approved jars move to customer orders." },
+    ],
+  },
+] as const;
+
+export type MakingProcess = (typeof MAKING_PROCESSES)[number];

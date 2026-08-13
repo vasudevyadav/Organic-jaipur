@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Organic Jaipur
+
+A full-stack Next.js (App Router + TypeScript + Tailwind CSS) website for Organic Jaipur, an organic
+grocery store in Jaipur selling vegetables, fruits, ghee, mustard oil, and honey.
+
+## Stack
+
+- **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS v4**
+- **Prisma** + **SQLite** for data storage
+- **Framer Motion** for scroll/hover animations
+- Cookie-based password protection (via `proxy.ts`, Next's middleware convention) for `/admin`
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.example .env   # then edit ADMIN_PASSWORD if desired
+npx prisma migrate dev
+npm run db:seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable         | Description                                   |
+| ---------------- | ---------------------------------------------- |
+| `DATABASE_URL`   | SQLite connection string (default `file:./dev.db`) |
+| `ADMIN_PASSWORD` | Password required to log into `/admin`         |
 
-## Learn More
+### Admin panel
 
-To learn more about Next.js, take a look at the following resources:
+Visit [http://localhost:3000/admin/login](http://localhost:3000/admin/login) and sign in with the
+`ADMIN_PASSWORD` from your `.env` file to add, edit, or delete products and view contact form
+submissions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Data model
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `Product` — id, name, slug, category, price, unit, description, imageUrl, inStock, featured
+- `ContactSubmission` — id, name, email, phone, message, createdAt
 
-## Deploy on Vercel
+### API routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GET /api/products` — list products (`?category=` filter)
+- `POST /api/products` — create product (admin only)
+- `GET /api/products/:id` — get a single product
+- `PATCH /api/products/:id` — update a product (admin only)
+- `DELETE /api/products/:id` — delete a product (admin only)
+- `POST /api/contact` — submit the contact form
+- `GET /api/contact` — list contact submissions (admin only)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+- `npm run dev` — start the dev server
+- `npm run build` — production build
+- `npm run lint` — run ESLint
+- `npm run db:seed` — seed the database with placeholder products

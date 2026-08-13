@@ -1,0 +1,14 @@
+import { chromium } from "@playwright/test";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("https://unsplash.com/s/photos/ghee-jar", { waitUntil: "domcontentloaded", timeout: 45000 });
+await page.waitForTimeout(3000);
+console.log("title:", await page.title());
+const bodyText = await page.evaluate(() => document.body.innerText.slice(0, 500));
+console.log("body text:", bodyText);
+const imgCount = await page.evaluate(() => document.querySelectorAll("img").length);
+console.log("img count:", imgCount);
+const allImgSrcs = await page.evaluate(() => Array.from(document.querySelectorAll("img")).slice(0,10).map(i => i.src));
+console.log("sample srcs:", allImgSrcs);
+await page.screenshot({ path: "/private/tmp/claude-501/-Users-rohit-Downloads-organic-jaipur/268b6188-2bb2-4691-92a1-38ce71985ab9/scratchpad/unsplash-debug.png" });
+await browser.close();

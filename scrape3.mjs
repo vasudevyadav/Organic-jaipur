@@ -1,0 +1,11 @@
+import { chromium } from "@playwright/test";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await page.goto("https://www.pexels.com/search/ghee%20jar/", { waitUntil: "domcontentloaded", timeout: 45000 });
+await page.waitForTimeout(3000);
+console.log("title:", await page.title());
+const imgCount = await page.evaluate(() => document.querySelectorAll("img").length);
+console.log("img count:", imgCount);
+const srcs = await page.$$eval("img", (imgs) => imgs.map((img) => img.src).filter(s => s && s.includes("pexels")).slice(0, 10));
+console.log("srcs:", srcs);
+await browser.close();
