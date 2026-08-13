@@ -1,6 +1,7 @@
 import { PrismaClient, Category } from "@prisma/client";
+import { getDatabaseUrl } from "../src/lib/database-url";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ datasourceUrl: getDatabaseUrl() });
 
 function slugify(text: string): string {
   return text
