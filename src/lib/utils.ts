@@ -7,7 +7,15 @@ export function formatPrice(price: number): string {
 /** Encode each public-file path segment without encoding the `/` separators. */
 export function safeImageUrl(url: string): string {
   if (!url.startsWith("/")) return url;
-  return url
+  const optimizedUrl =
+    url.startsWith("/product/") &&
+    !url.startsWith("/product/optimized/") &&
+    !url.endsWith("/download.png") &&
+    url.toLowerCase().endsWith(".png")
+      ? `/product/optimized/${url.slice("/product/".length, -4)}.jpg`
+      : url;
+
+  return optimizedUrl
     .split("/")
     .map((segment) => {
       try {

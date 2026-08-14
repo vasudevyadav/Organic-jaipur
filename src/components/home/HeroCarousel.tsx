@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export type HeroSlide = {
   image: string;
@@ -17,35 +17,22 @@ export type HeroSlide = {
 
 export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   const [active, setActive] = useState(0);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    timer.current = setInterval(() => {
-      setActive((i) => (i + 1) % slides.length);
-    }, 6500);
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, [slides.length]);
 
   function goTo(index: number) {
     setActive(index);
-    if (timer.current) clearInterval(timer.current);
-    timer.current = setInterval(() => {
-      setActive((i) => (i + 1) % slides.length);
-    }, 6500);
   }
 
   const slide = slides[active];
 
   return (
     <section className="hero-grain relative overflow-hidden bg-[#172117] sm:min-h-[620px] lg:min-h-[680px]">
-      <div key={active} className="absolute inset-x-0 top-0 h-[330px] animate-[hero-reveal_700ms_ease-out] sm:inset-0 sm:h-auto">
+      <div key={active} className={`absolute inset-x-0 top-0 h-[330px] sm:inset-0 sm:h-auto ${active === 0 ? "" : "animate-[hero-reveal_700ms_ease-out]"}`}>
           <Image
             src={slide.image}
             alt={slide.alt}
             fill
             priority={active === 0}
+            quality={65}
             sizes="100vw"
             className={`object-cover ${slide.focal ?? "object-center"}`}
           />
@@ -54,7 +41,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       </div>
 
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-center px-6 pb-10 pt-[366px] text-cream sm:min-h-[620px] sm:px-8 sm:pb-32 sm:pt-16 lg:min-h-[680px] lg:pb-36">
-          <div key={active} className="max-w-2xl animate-[hero-copy-reveal_450ms_ease-out]">
+          <div key={active} className={`max-w-2xl ${active === 0 ? "" : "animate-[hero-copy-reveal_450ms_ease-out]"}`}>
             <p className="mb-4 flex items-center gap-3 text-[10px] font-bold tracking-[.28em] text-honey-400 uppercase sm:mb-6 sm:text-xs">
               <span className="h-px w-10 bg-honey-400" /> {slide.eyebrow}
             </p>
