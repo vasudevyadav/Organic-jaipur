@@ -45,7 +45,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {activeTab.items.length === 0 && (
-          <p className="col-span-full text-center text-sm text-forest-900/50">More products coming soon in this category.</p>
+          <p className="col-span-full text-center text-sm text-forest-900/70">More products coming soon in this category.</p>
         )}
         {activeTab.items.map((item) => {
           const hasDiscount = Boolean(item.originalPrice && item.originalPrice > item.price);
@@ -78,12 +78,12 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
               <div className="p-4">
                 <Link href={`/products/${item.slug}`}>
                   <h3 className="font-display text-base leading-tight text-forest-900">{item.name}</h3>
-                  <p className="mt-1 text-xs text-forest-900/45">{item.unit}</p>
+                  <p className="mt-1 text-xs text-forest-900/70">{item.unit}</p>
                 </Link>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-base font-bold text-forest-900">{formatPrice(item.price)}</span>
-                  {hasDiscount && <span className="text-xs text-forest-900/35 line-through">{formatPrice(item.originalPrice!)}</span>}
-                  {hasDiscount && <span className="text-xs font-bold text-terracotta-500">{discount}% off</span>}
+                  {hasDiscount && <span className="text-xs text-forest-900/65 line-through">{formatPrice(item.originalPrice!)}</span>}
+                  {hasDiscount && <span className="text-xs font-bold text-terracotta-600">{discount}% off</span>}
                 </div>
                 <div className="mt-3">
                   <QuickAddButton fullWidth product={{ id: item.id, slug: item.slug, name: item.name, price: item.price, unit: item.unit, imageUrl: item.imageUrl, inStock: item.inStock }} />

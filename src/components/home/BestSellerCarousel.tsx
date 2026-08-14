@@ -38,13 +38,13 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
             <div className="p-5">
               <Link href={`/products/${item.slug}`}>
                 <h3 className="font-display text-lg leading-tight text-forest-900">{item.name}</h3>
-                <p className="mt-1 text-xs font-semibold text-forest-900/45">{item.unit}</p>
+                <p className="mt-1 text-xs font-semibold text-forest-900/70">{item.unit}</p>
               </Link>
 
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-baseline gap-2">
                   <span className="text-lg font-bold text-forest-900">{formatPrice(item.price)}</span>
-                  {hasDiscount && <span className="text-xs text-forest-900/35 line-through">{formatPrice(item.originalPrice!)}</span>}
+                  {hasDiscount && <span className="text-xs text-forest-900/65 line-through">{formatPrice(item.originalPrice!)}</span>}
                 </div>
                 {hasDiscount && <span className="rounded-full bg-honey-400/25 px-2.5 py-1 text-[11px] font-bold text-honey-600">{discount}% off</span>}
               </div>

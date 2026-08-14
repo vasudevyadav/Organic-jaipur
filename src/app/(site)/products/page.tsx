@@ -56,7 +56,9 @@ export default async function ProductsPage({ searchParams }: Props) {
     ? (category as Category)
     : undefined;
 
-  const where: Prisma.ProductWhereInput = { category: { in: STOREFRONT_CATEGORY_VALUES } };
+  const where: Prisma.ProductWhereInput = {
+    category: { in: STOREFRONT_CATEGORY_VALUES },
+  };
   if (activeCategory) where.category = activeCategory;
   if (inStock === "true") where.inStock = true;
   if (minPrice || maxPrice) {
@@ -78,7 +80,7 @@ export default async function ProductsPage({ searchParams }: Props) {
   const products = await prisma.product.findMany({ where, orderBy });
   const activeLabel = CATEGORIES.find((c) => c.value === activeCategory)?.label;
   const faqItems = activeCategory
-    ? FAQS_BY_CATEGORY[activeCategory] ?? FAQS_PRODUCTS_ALL
+    ? (FAQS_BY_CATEGORY[activeCategory] ?? FAQS_PRODUCTS_ALL)
     : FAQS_PRODUCTS_ALL;
 
   return (
@@ -88,12 +90,21 @@ export default async function ProductsPage({ searchParams }: Props) {
           { name: "Home", href: "/" },
           { name: "Shop", href: "/products" },
           ...(activeCategory
-            ? [{ name: activeLabel!, href: `/products?category=${activeCategory}` }]
+            ? [
+                {
+                  name: activeLabel!,
+                  href: `/products?category=${activeCategory}`,
+                },
+              ]
             : []),
         ]}
       />
       <section className="hero-grain relative isolate min-h-[420px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[480px]">
-        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur ghee, oil, honey and pickle at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <img
+          src="/images/generated/banner-shop-farm-v3.jpg"
+          alt="Organic Jaipur ghee, oil, honey and pickle at a Rajasthan farm"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.72)_0%,rgba(8,29,20,.3)_48%,rgba(8,29,20,.04)_82%)]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(8,29,20,.72)_0%,transparent_55%)]" />
         <AnimatedSection className="mx-auto flex min-h-[420px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[480px] sm:px-8">
@@ -103,22 +114,38 @@ export default async function ProductsPage({ searchParams }: Props) {
           <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[.95] tracking-[-.04em] sm:text-6xl lg:text-7xl">
             {activeLabel ? (
               <>
-                {activeLabel} Sirf Product Nahi, <em className="font-normal text-honey-400">Parampara Ka Swaad Hai.</em>
+                {activeLabel} Sirf Product Nahi,{" "}
+                <em className="font-normal text-honey-400">
+                  Parampara Ka Swaad Hai.
+                </em>
               </>
             ) : (
               <>
                 Har Jar Mein Shuddhta,{" "}
-                <em className="font-normal text-honey-400">Har Niwale Mein Bharosa.</em>
+                <em className="font-normal text-honey-400">
+                  Har Niwale Mein Bharosa.
+                </em>
               </>
             )}
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
-            Compare pack size, flavour, ingredients and use. Prices include all taxes. Get free delivery in Jaipur, Cash on Delivery and courier shipping across Rajasthan.
+            Compare pack size, flavour, ingredients and use. Prices include all
+            taxes. Get free delivery in Jaipur, Cash on Delivery and courier
+            shipping across Rajasthan.
           </p>
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-bold uppercase tracking-[.12em] text-white/70 sm:text-xs">
-            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Prices Include Tax</span>
-            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Cash on Delivery</span>
-            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Free Jaipur Delivery</span>
+            <span className="flex items-center gap-2">
+              <i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Prices
+              Include Tax
+            </span>
+            <span className="flex items-center gap-2">
+              <i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Cash on
+              Delivery
+            </span>
+            <span className="flex items-center gap-2">
+              <i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Free
+              Jaipur Delivery
+            </span>
           </div>
           <Link
             href="/organic-products-jaipur"
@@ -148,8 +175,12 @@ export default async function ProductsPage({ searchParams }: Props) {
             )}
             <div className="flex items-end justify-between border-b border-forest-900/10 pb-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-terracotta-500">Available to Order</p>
-                <h2 className="mt-1 font-display text-2xl text-forest-900">{activeLabel ?? "All Products"}</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-terracotta-500">
+                  Available to Order
+                </p>
+                <h2 className="mt-1 font-display text-2xl text-forest-900">
+                  {activeLabel ?? "All Products"}
+                </h2>
               </div>
               <p className="rounded-full bg-brand-50 px-3 py-1.5 text-xs font-bold text-brand-800">
                 {products.length} item{products.length === 1 ? "" : "s"}
@@ -178,7 +209,9 @@ export default async function ProductsPage({ searchParams }: Props) {
           Common Questions
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          {activeLabel ? `${activeLabel} Ke Sawaal, Hamare Jawaab` : "Sawaal Aapke, Jawaab Hamare"}
+          {activeLabel
+            ? `${activeLabel} Ke Sawaal, Hamare Jawaab`
+            : "Sawaal Aapke, Jawaab Hamare"}
         </h2>
         <div className="mt-8 max-w-3xl">
           <FaqAccordion items={faqItems} />

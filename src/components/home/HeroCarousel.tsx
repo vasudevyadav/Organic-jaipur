@@ -77,7 +77,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
               <span className="hidden font-display text-sm text-honey-400 sm:block">{number}</span>
               <div>
                 <p className="text-[11px] font-bold text-white sm:text-sm">{title}</p>
-                <p className="mt-1 hidden text-xs text-white/50 sm:block">{copy}</p>
+                <p className="mt-1 hidden text-xs text-white/75 sm:block">{copy}</p>
               </div>
             </div>
           ))}

@@ -276,40 +276,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </AnimatedSection>
         </div>
 
-        {(product.ingredients || product.benefits || product.storageInfo) && (
-          <section className="mt-8 grid overflow-hidden rounded-[1.75rem] border border-forest-900/8 bg-white shadow-sm md:grid-cols-3">
-            {product.ingredients && (
-              <div className="p-6 md:border-r md:border-forest-900/8">
-                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-terracotta-500">
-                  What&apos;s Inside
-                </p>
-                <p className="mt-3 text-sm leading-6 text-forest-900/60">
-                  {product.ingredients}
-                </p>
-              </div>
-            )}
-            {product.benefits && (
-              <div className="p-6 md:border-r md:border-forest-900/8">
-                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-terracotta-500">
-                  Why Choose It
-                </p>
-                <p className="mt-3 text-sm leading-6 text-forest-900/60">
-                  {product.benefits}
-                </p>
-              </div>
-            )}
-            {product.storageInfo && (
-              <div className="p-6">
-                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-terracotta-500">
-                  Storage and Shelf Life
-                </p>
-                <p className="mt-3 text-sm leading-6 text-forest-900/60">
-                  {product.storageInfo}
-                </p>
-              </div>
-            )}
-          </section>
-        )}
+       
       </div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">

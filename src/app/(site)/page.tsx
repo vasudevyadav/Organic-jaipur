@@ -355,7 +355,7 @@ export default async function HomePage() {
       {/* Shop by category */}
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:py-14">
         <AnimatedSection className="text-center">
-          <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+          <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
             Apni Rasoi Ke Liye
           </p>
           <h2 className="mt-3 font-display text-4xl leading-[1.05] text-forest-900 sm:text-5xl">
@@ -364,7 +364,7 @@ export default async function HomePage() {
               Rasoi Ki Parampara Hai.
             </em>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl leading-7 text-forest-900/55">
+          <p className="mx-auto mt-4 max-w-xl leading-7 text-forest-900/75">
             Ghee, kachi ghani oil, raw honey aur ghar-jaisa Rajasthani achar—
             swaad, pack size aur istemaal ke hisaab se apna product chuniye.
           </p>
@@ -400,7 +400,7 @@ export default async function HomePage() {
                 Sabki Pasand,{" "}
                 <em className="font-normal text-honey-400">Ghar Ka Swaad.</em>
               </h2>
-              <p className="mt-4 max-w-lg leading-7 text-white/60">
+              <p className="mt-4 max-w-lg leading-7 text-white/75">
                 Roz ke tadke, garam parathe, subah ki mithaas aur ghar ke khaane
                 ke liye customers ke sabse zyada chune gaye products.
               </p>
@@ -422,7 +422,7 @@ export default async function HomePage() {
       <section className="bg-[#fbf7ea] px-5 py-10 sm:px-8 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+            <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
               Khet Se Rasoi Tak
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
@@ -482,7 +482,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 lg:pb-16">
         <AnimatedSection className="flex items-end justify-between gap-5">
           <div>
-            <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+            <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
               Rasoi Ka Bhandaar
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
@@ -512,7 +512,7 @@ export default async function HomePage() {
                   <h3 className="mt-4 font-display text-lg text-forest-900">
                     {item.name}
                   </h3>
-                  <p className="mt-1 text-sm text-forest-900/50">
+                  <p className="mt-1 text-sm text-forest-900/70">
                     {item.unit} · {formatPrice(item.price)}
                   </p>
                 </Link>
@@ -575,10 +575,10 @@ export default async function HomePage() {
               Apni Mitti,{" "}
               <em className="font-normal text-honey-400">Apni Zimmedari.</em>
             </h2>
-            <p className="mt-2 font-display text-lg italic text-white/50">
+            <p className="mt-2 font-display text-lg italic text-white/75">
               शुद्धता की एक सच्ची यात्रा
             </p>
-            <p className="mt-5 leading-7 text-white/60">
+            <p className="mt-5 leading-7 text-white/75">
               Product, batch ya delivery time jaan-na ho? Order se pehle hamari
               Jaipur team se WhatsApp par seedhi baat kijiye.
             </p>
@@ -611,7 +611,7 @@ export default async function HomePage() {
                 <h3 className="mt-8 flex min-h-[3.75rem] items-start font-display text-2xl">
                   {title}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-white/55">{copy}</p>
+                <p className="mt-3 text-sm leading-6 text-white/75">{copy}</p>
               </AnimatedSection>
             ))}
           </div>
@@ -632,7 +632,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl">
           <AnimatedSection className="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
             <div>
-              <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+              <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
                 Rajasthan Bhar Ka Bharosa
               </p>
               <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
@@ -646,7 +646,7 @@ export default async function HomePage() {
               </div>
               <div className="text-left">
                 <StarRow rating={5} />
-                <p className="mt-1 text-xs font-semibold text-forest-900/50">
+                <p className="mt-1 text-xs font-semibold text-forest-900/70">
                   Customer Feedback
                 </p>
               </div>
@@ -689,7 +689,7 @@ export default async function HomePage() {
                         <p className="text-sm font-bold text-forest-900">
                           {t.name}
                         </p>
-                        <p className="text-xs text-forest-900/45">
+                        <p className="text-xs text-forest-900/70">
                           {t.location} · {t.product}
                         </p>
                       </div>
@@ -712,7 +712,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 sm:pb-16">
         <AnimatedSection className="flex items-end justify-between gap-5">
           <div>
-            <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+            <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
               Samajhkar Chuniye
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
@@ -743,13 +743,13 @@ export default async function HomePage() {
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
                 </Link>
-                <p className="mt-5 text-xs font-semibold text-forest-900/40">
+                <p className="mt-5 text-xs font-semibold text-forest-900/65">
                   {blog.date}
                 </p>
                 <h3 className="mt-2 font-display text-2xl leading-tight text-forest-900">
                   <Link href={blog.href}>{blog.title}</Link>
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-forest-900/55">
+                <p className="mt-3 text-sm leading-6 text-forest-900/75">
                   {blog.copy}
                 </p>
               </article>
@@ -762,7 +762,7 @@ export default async function HomePage() {
       <section className="bg-[#fbf7e9] px-5 py-8 sm:px-8 sm:py-16">
         <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <AnimatedSection>
-            <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+            <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
               Aapke Sawaal
             </p>
             <h2 className="mt-3 font-display text-5xl text-[#425c22] sm:text-6xl">
@@ -792,7 +792,7 @@ export default async function HomePage() {
       {/* Also available on */}
       <section className="bg-[#fffdf8] px-5 py-8 sm:px-8 sm:py-16">
         <AnimatedSection className="mx-auto max-w-5xl text-center">
-          <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
+          <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
             Jahan Se Chahein, Wahan Se Kharidein
           </p>
           <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-5xl">
@@ -804,7 +804,7 @@ export default async function HomePage() {
               <p className="text-3xl font-black tracking-tight text-[#2874f0]">
                 Flipkart
               </p>
-              <p className="mt-2 text-sm text-forest-900/50">
+              <p className="mt-2 text-sm text-forest-900/70">
                 Find selected Organic Jaipur products
               </p>
             </div>
@@ -812,7 +812,7 @@ export default async function HomePage() {
               <p className="text-3xl font-black tracking-tight text-[#1f4d2d]">
                 blink<span className="text-[#f5b900]">it</span>
               </p>
-              <p className="mt-2 text-sm text-forest-900/50">
+              <p className="mt-2 text-sm text-forest-900/70">
                 Quick delivery on selected essentials
               </p>
             </div>
