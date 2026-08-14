@@ -29,7 +29,7 @@ export default function WishlistPage() {
             <span className="h-px w-8 bg-honey-400" /> Saved for Later
           </p>
           <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl">
-            Your <em className="font-normal text-honey-400">Wishlist.</em>
+            Pasand Aapki, <em className="font-normal text-honey-400">Sambhaal Hamari.</em>
           </h1>
         </AnimatedSection>
       </section>

@@ -9,7 +9,7 @@ import { RAJASTHAN_CITIES } from "@/lib/rajasthan-cities";
 
 const TITLE = "Organic Products in Rajasthan | Ghee, Oil, Honey & Pickles";
 const DESCRIPTION =
-  "A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles — grown and made on our own farm in Jaipur, shipped across Rajasthan including Jodhpur, Udaipur, Kota and Ajmer.";
+  "A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles, grown and made on our own farm in Jaipur, shipped across Rajasthan including Jodhpur, Udaipur, Kota and Ajmer.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/organic-products-rajasthan`,
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: "/images/organic-jaipur-hero-v2.png" }],
+    images: [{ url: "/images/generated/banner-shop-farm-v3.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -49,7 +49,7 @@ export default function OrganicProductsRajasthanPage() {
 
       <section className="hero-grain relative isolate min-h-[380px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[440px]">
         <img
-          src="/images/organic-jaipur-hero-v2.png"
+          src="/images/generated/banner-shop-farm-v3.jpg"
           alt="Organic Jaipur products shipped across Rajasthan"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[66%_center]"
         />
@@ -59,10 +59,10 @@ export default function OrganicProductsRajasthanPage() {
             <span className="h-px w-8 bg-honey-400" /> Rajasthan-wide shipping
           </p>
           <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[.95] tracking-[-.04em] sm:text-6xl lg:text-7xl">
-            Organic products <em className="font-normal text-honey-400">across Rajasthan.</em>
+            Rajasthan Ka Swaad, <em className="font-normal text-honey-400">Har Shehar Ke Naam.</em>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
-            A2 Bilona ghee, cold-pressed mustard oil, raw honey and traditional Rajasthani pickles —
+            A2 Bilona ghee, cold-pressed mustard oil, raw honey and traditional Rajasthani pickles,
             grown and made on our own farm in Jaipur, and shipped via courier to homes across
             Rajasthan.
           </p>
@@ -74,7 +74,7 @@ export default function OrganicProductsRajasthanPage() {
           Shop by category
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Shipped fresh, anywhere in Rajasthan.
+          Jaipur Se Taiyaar, <em className="font-normal text-brand-700">Rajasthan Bhar Mein Pyaar.</em>
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {CATEGORIES.map((category) => (
@@ -94,7 +94,7 @@ export default function OrganicProductsRajasthanPage() {
           Cities we ship to
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Rajasthan cities we serve.
+          Shehar Chahe Koi Bhi, <em className="font-normal text-brand-700">Shuddhta Wahi.</em>
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-forest-900/60">
           Beyond free doorstep delivery in Jaipur, we ship across Rajasthan via courier, including
@@ -128,7 +128,7 @@ export default function OrganicProductsRajasthanPage() {
           Common questions
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Buying organic in Rajasthan, answered.
+          Sawaal Rajasthan Ke, <em className="font-normal text-brand-700">Jawaab Hamare.</em>
         </h2>
         <div className="mt-8 max-w-3xl">
           <FaqAccordion items={FAQS_PRODUCTS_ALL} />

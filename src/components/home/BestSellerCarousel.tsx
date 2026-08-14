@@ -14,7 +14,6 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
       {items.map((item, index) => {
         const hasDiscount = Boolean(item.originalPrice && item.originalPrice > item.price);
         const discount = hasDiscount ? Math.round((1 - item.price / item.originalPrice!) * 100) : 0;
-        const popularity = Math.max(58, 98 - index * 9);
         return (
           <article
             key={item.id}
@@ -40,15 +39,6 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
                 <h3 className="font-display text-lg leading-tight text-forest-900">{item.name}</h3>
                 <p className="mt-1 text-xs font-semibold text-forest-900/45">{item.unit}</p>
               </Link>
-
-              <div className="mt-4">
-                <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wide text-forest-900/40">
-                  <span>Popularity</span>
-                </div>
-                <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-forest-900/10">
-                  <div className="h-full rounded-full bg-terracotta-500" style={{ width: `${popularity}%` }} />
-                </div>
-              </div>
 
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-baseline gap-2">

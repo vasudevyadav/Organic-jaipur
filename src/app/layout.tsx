@@ -18,11 +18,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Organic Jaipur | A2 Ghee, Cold-Pressed Oil, Honey & Pickles in Jaipur",
+    default: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
     template: "%s | Organic Jaipur",
   },
   description:
-    "Organic Jaipur brings you A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles — grown and made on our own farm in Jaipur, Rajasthan. 100% organic, chemical-free, and lab-tested.",
+    "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles. Free delivery in Jaipur, Cash on Delivery, shipped across Rajasthan.",
   keywords: [
     "organic Jaipur",
     "organic Rajasthan",
@@ -45,16 +45,16 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "Organic Jaipur",
-    title: "Organic Jaipur | A2 Ghee, Cold-Pressed Oil, Honey & Pickles in Jaipur",
+    title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
     description:
-      "A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles — grown and made on our own farm in Jaipur, Rajasthan.",
+      "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
     images: [{ url: "/images/organic-jaipur-hero-v2.png" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Organic Jaipur | A2 Ghee, Cold-Pressed Oil, Honey & Pickles in Jaipur",
+    title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
     description:
-      "A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles — grown and made on our own farm in Jaipur, Rajasthan.",
+      "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
   },
   robots: { index: true, follow: true },
 };

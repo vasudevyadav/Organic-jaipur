@@ -3,7 +3,7 @@ import { BUSINESS, CATEGORIES, SOCIAL_LINKS } from "@/lib/constants";
 import NewsletterBar from "@/components/NewsletterBar";
 import { ICONS } from "@/components/icons";
 
-const CERTIFICATIONS = ["🌿 100% Natural", "🧪 Lab Tested", "🚜 Farm Direct"];
+const CERTIFICATIONS = ["📦 Free Jaipur Delivery", "💵 Cash on Delivery", "💬 WhatsApp Order Support"];
 
 const POLICY_LINKS = [
   { href: "/shipping-policy", label: "Shipping Policy" },
@@ -31,13 +31,16 @@ export default function Footer() {
             className="h-14 w-[240px] object-contain object-left mix-blend-multiply"
           />
           <p className="mt-5 max-w-xs font-display text-2xl leading-snug">
-            Pure roots. Honest food.
+            Jaipur-Made Pantry Essentials.
             <br />
-            Tradition in every spoon.
+            Delivered to Your Door.
+          </p>
+          <p className="mt-2 max-w-xs font-display text-sm italic text-forest-900/50">
+            Rajasthan Ki Paramparik Rasoi, Seedha Aapke Ghar
           </p>
           <p className="mt-4 max-w-xs text-sm leading-6 text-forest-900/60">
-            From our own Jaipur farm to your family, food made with patience and
-            delivered with care.
+            Shop bilona ghee, cold-pressed oils, raw honey and pickles with
+            clear ingredients, pack sizes and storage details.
           </p>
         </div>
 
@@ -127,7 +130,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="mt-5 block rounded-xl bg-[#e7ad42] px-5 py-4 text-center text-sm font-bold text-forest-900 transition hover:bg-terracotta-500 hover:text-white"
           >
-            Chat with us on WhatsApp
+            Order on WhatsApp: Get a Reply in Minutes
           </a>
           <ul className="mt-5 space-y-2.5 text-sm leading-6 text-forest-900/60">
             <li>{BUSINESS.address}</li>

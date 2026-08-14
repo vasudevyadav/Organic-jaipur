@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Product Not Found" };
 
   const category = categoryLabel(product.category);
-  const title = `${product.name} | Buy Online in Jaipur`;
-  const description = `${product.description} Grown and made on our own farm in Jaipur, Rajasthan — order ${product.name} online with doorstep delivery in Jaipur and courier shipping across Rajasthan.`;
+  const title = `Buy ${product.name} Online, ${product.unit}`;
+  const description = `${product.description} Free Jaipur delivery, Cash on Delivery, shipped across Rajasthan.`;
 
   return {
     title,
@@ -158,10 +158,10 @@ export default async function ProductDetailPage({ params }: Props) {
               />
               <div className="absolute inset-x-5 bottom-5 text-white">
                 <p className="text-[9px] font-bold uppercase tracking-[.2em] text-honey-400">
-                  Organic Jaipur promise
+                  Jaipur Farm-Made Pantry Essential
                 </p>
                 <p className="mt-1 font-display text-xl">
-                  Traditionally made. Honestly sourced.
+                  Packed for safe doorstep delivery.
                 </p>
               </div>
             </div>
@@ -178,15 +178,15 @@ export default async function ProductDetailPage({ params }: Props) {
               <span className="flex items-center gap-2 text-xs font-bold text-brand-700">
                 <i className="h-2 w-2 rounded-full bg-brand-500" />{" "}
                 {product.inStock
-                  ? "Fresh batch available"
-                  : "Currently unavailable"}
+                  ? "Fresh Batch Available"
+                  : "Currently Unavailable"}
               </span>
             </div>
             <h1 className="mt-5 font-display text-4xl leading-[.98] tracking-[-.035em] text-forest-900 sm:text-5xl lg:text-[2.5rem]">
               {product.name}
             </h1>
             <p className="mt-3 text-sm font-semibold text-forest-700">
-              Net quantity · {product.unit}
+              Net Quantity · {product.unit}
             </p>
 
             {reviewCount > 0 && (
@@ -217,6 +217,12 @@ export default async function ProductDetailPage({ params }: Props) {
               )}
               <p className="w-full text-[10px] font-semibold text-forest-900/40">
                 Inclusive of all taxes
+              </p>
+              <p className="w-full text-xs font-bold text-brand-700">
+                Cash on Delivery Available
+              </p>
+              <p className="w-full text-[11px] font-semibold text-forest-900/45">
+                Free Jaipur Delivery · Rajasthan Courier Shipping
               </p>
             </div>
 
@@ -274,7 +280,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {product.ingredients && (
               <div className="p-6 md:border-r md:border-forest-900/8">
                 <p className="text-[10px] font-bold uppercase tracking-[.18em] text-terracotta-500">
-                  Ingredients
+                  What&apos;s Inside
                 </p>
                 <p className="mt-3 text-sm leading-6 text-forest-900/60">
                   {product.ingredients}
@@ -284,7 +290,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {product.benefits && (
               <div className="p-6 md:border-r md:border-forest-900/8">
                 <p className="text-[10px] font-bold uppercase tracking-[.18em] text-terracotta-500">
-                  Benefits
+                  Why Choose It
                 </p>
                 <p className="mt-3 text-sm leading-6 text-forest-900/60">
                   {product.benefits}
@@ -294,7 +300,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {product.storageInfo && (
               <div className="p-6">
                 <p className="text-[10px] font-bold uppercase tracking-[.18em] text-terracotta-500">
-                  Storage
+                  Storage and Shelf Life
                 </p>
                 <p className="mt-3 text-sm leading-6 text-forest-900/60">
                   {product.storageInfo}
@@ -316,10 +322,10 @@ export default async function ProductDetailPage({ params }: Props) {
       {FAQS_BY_CATEGORY[product.category] && (
         <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-            Common questions
+            Common Questions
           </p>
           <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-            {categoryLabel(product.category)} from Jaipur, answered.
+            Sawaal Aapke, <em className="font-normal text-brand-700">Jawaab Hamare.</em>
           </h2>
           <div className="mt-8 max-w-3xl">
             <FaqAccordion items={FAQS_BY_CATEGORY[product.category]} />
@@ -331,10 +337,10 @@ export default async function ProductDetailPage({ params }: Props) {
       <section className="bg-[#fbf7ea] px-5 py-6 sm:px-8 lg:py-12">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-            Customer feedback
+            Customer Feedback
           </p>
           <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-            Ratings &amp; Reviews
+            Unke Shabd, <em className="font-normal text-brand-700">Aapka Bharosa.</em>
           </h2>
           <div className="mt-8">
             <ProductReviews productId={product.id} />
@@ -345,10 +351,10 @@ export default async function ProductDetailPage({ params }: Props) {
       {relatedProducts.length > 0 && (
         <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-14">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-            Explore more
+            Explore More
           </p>
           <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-            You might also like
+            Ek Pasand Aayi, <em className="font-normal text-brand-700">Yeh Bhi Bhaayegi.</em>
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {relatedProducts.map((p) => (

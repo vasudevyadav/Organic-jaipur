@@ -25,9 +25,9 @@ import { STATS, FAQS_HOME } from "@/lib/constants";
 import { formatPrice } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles from Our Own Jaipur Farm",
+  title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
   description:
-    "Organic Jaipur grows and makes A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles on our own farm in Jaipur, Rajasthan — 100% organic, chemical-free and delivered fresh to your door.",
+    "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles. Free delivery in Jaipur, Cash on Delivery, shipped across Rajasthan.",
   alternates: { canonical: "/" },
   keywords: [
     "organic Jaipur",
@@ -52,77 +52,107 @@ const SHOP_CATEGORIES: CategoryType[] = [
 
 const heroSlides: HeroSlide[] = [
   {
-    image: "/images/generated/hero-farm-gir-cow.webp",
-    alt: "Gir cow and Rajasthani farmer in an organic mustard field near Jaipur",
-    focal: "object-center",
-    eyebrow: "Shuddhata, rooted in Rajasthan",
+    image: "/images/generated/banner-ghee-farm-v3.jpg",
+    alt: "Traditional wooden bilona used to make A2 Gir Cow Ghee in Jaipur",
+    focal: "object-right sm:object-center",
+    eyebrow: "A2 Gir Cow Bilona Ghee",
     title: (
       <>
-        Tradition you can <em className="font-normal text-honey-400">taste.</em>
+        Ye Ghee Nahi,{" "}
+        <em className="font-normal text-honey-400">Bharosa Hai.</em>
       </>
     ),
-    copy: "Pure ghee, traditionally pressed oils and wild honey — from trusted sources to your family's table.",
-    primaryCta: { label: "Shop products", href: "/products" },
-    secondaryCta: { label: "Our story", href: "/about" },
+    copy: "Curd-churned in a wooden bilona and slow-cooked for a grainy texture and deep aroma. Choose 500 g, 1 kg or 2 kg.",
+    primaryCta: { label: "Shop A2 Ghee", href: "/products?category=GHEE" },
+    secondaryCta: { label: "See How It’s Made", href: "/farm-to-home" },
   },
   {
-    image: "/images/generated/hero-bilona.webp",
-    alt: "Rajasthani artisan hand-churning curd with a traditional wooden bilona",
-    focal: "object-center",
-    eyebrow: "Hand-churned, small batch",
+    image: "/images/generated/banner-mustard-ghani-v3.jpg",
+    alt: "Traditional wooden ghani pressing mustard oil in Rajasthan",
+    focal: "object-right sm:object-center",
+    eyebrow: "Kachi Ghani Mustard Oil",
     title: (
       <>
-        Ye ghee nahi,{" "}
-        <em className="font-normal text-honey-400">virasat hai.</em>
+        Rajasthan Ka Swaad,{" "}
+        <em className="font-normal text-honey-400">Har Boond Mein.</em>
       </>
     ),
-    copy: "Our A2 Gir Cow Ghee is made the bilona way — curd, churned by hand, then slow-cooked to gold.",
-    primaryCta: { label: "Shop ghee", href: "/products?category=GHEE" },
-    secondaryCta: { label: "See the process", href: "/farm-to-home" },
-  },
-  {
-    image: "/images/generated/hero-kachi-ghani.webp",
-    alt: "Traditional wooden ghani pressing mustard oil on a Rajasthan farm",
-    focal: "object-center",
-    eyebrow: "Nothing refined, nothing hidden",
-    title: <>Stone-pressed oils. Wild-harvested honey.</>,
-    copy: "Cold-pressed on traditional wooden ghanis and never over-processed — real pantry staples, made the way Rajasthan always has.",
+    copy: "Wood-pressed and unrefined. Choose sharp black mustard oil for bold cooking or milder yellow mustard oil for daily use.",
     primaryCta: {
-      label: "Shop oils & honey",
+      label: "Shop Cold-Pressed Oils",
       href: "/products?category=MUSTARD_OIL",
     },
-    secondaryCta: { label: "Our quality promise", href: "/quality-promise" },
+    secondaryCta: {
+      label: "See the Pressing Process",
+      href: "/making-process/cold-pressed-oil",
+    },
+  },
+  {
+    image: "/images/generated/banner-honey-apiary-v3.jpg",
+    alt: "Raw wild forest honey available for delivery in Jaipur",
+    focal: "object-right sm:object-center",
+    eyebrow: "Raw Wild Forest Honey",
+    title: (
+      <>
+        Mithaas Wahi,{" "}
+        <em className="font-normal text-honey-400">Jo Kudrat Ne Banayi.</em>
+      </>
+    ),
+    copy: "Raw, unheated and lightly filtered, with no added sugar or syrup. Order a 500 g jar for breakfast, tea and everyday use.",
+    primaryCta: { label: "Shop Raw Honey", href: "/products?category=HONEY" },
+    secondaryCta: {
+      label: "See the Honey Process",
+      href: "/making-process/raw-honey",
+    },
+  },
+  {
+    image: "/images/generated/banner-pickle-courtyard-v3.jpg",
+    alt: "Traditional Rajasthani green chilli pickle made in small batches",
+    focal: "object-right sm:object-center",
+    eyebrow: "Rajasthani Pickles and Chutneys",
+    title: (
+      <>
+        Har Niwale Mein,{" "}
+        <em className="font-normal text-honey-400">Ghar Ka Swaad.</em>
+      </>
+    ),
+    copy: "Choose green chilli pickle or bold laal mirch-garlic chutney. Small-batch flavour that completes dal, paratha and everyday meals.",
+    primaryCta: { label: "Shop Pickles", href: "/products?category=PICKLES" },
+    secondaryCta: {
+      label: "See How It’s Made",
+      href: "/making-process/traditional-pickles",
+    },
   },
 ];
 
 const journeySteps = [
   {
-    title: "Raised on our own farm",
-    copy: "Milk comes from our own indigenous Gir cows, cared for on the Organic Jaipur farm.",
+    title: "Apni Gaushala Se Shuruaat",
+    copy: "A2 milk hamari apni Gir cows se aata hai, jinhe Organic Jaipur farm par dekhbhaal ke saath paala jaata hai.",
     image: "/images/generated/founder-gir-cow-care.webp",
     alt: "Organic Jaipur founder caring for an indigenous Gir cow",
   },
   {
-    title: "Set into curd, the slow way",
-    copy: "Fresh A2 milk is heated and set into curd overnight in earthen pots, exactly as it always has been.",
+    title: "Mitti Ke Bartan Mein Jama Dahi",
+    copy: "Taaza A2 milk ko raat bhar mitti ke bartanon mein dahi banne diya jaata hai—bilkul purane gharon ki tarah.",
     image: "/images/generated/journey-curd.webp",
     alt: "Fresh A2 milk set into curd overnight in earthen pots",
   },
   {
-    title: "Hand-churned in wooden bilona",
-    copy: "The curd is churned by hand in a wooden bilona to slowly draw out the butter — no shortcuts, no machines.",
-    image: "/images/generated/founder-wife-bilona.webp",
-    alt: "Organic Jaipur co-founder hand-churning curd in a wooden bilona",
+    title: "Lakdi Ke Bilona Se Manthan",
+    copy: "Dahi ko lakdi ke bilona se mathkar makkhan nikala jaata hai. Na machine ki jaldi, na process mein shortcut.",
+    image: "/images/bilona-story-v2.png",
+    alt: "Traditional wooden bilona hand-churning curd in an earthen pot",
   },
   {
-    title: "Slow-cooked to golden ghee",
-    copy: "That butter is simmered gently until it turns into rich, aromatic ghee, then cooled and jarred.",
+    title: "Dheemi Aanch Par Sunehra Ghee",
+    copy: "Makkhan ko dheemi aanch par pakaya jaata hai, jab tak woh daanedaar, khushbudaar ghee na ban jaaye.",
     image: "/images/generated/journey-slow-ghee.webp",
     alt: "Butter slowly simmering into golden ghee in a brass kadai",
   },
   {
-    title: "Farm-grown. Carefully handled.",
-    copy: "Mustard from our fields is wooden-ghani pressed, while honey comes from beehives managed on our own farm.",
+    title: "Khet Se, Sambhaal Ke",
+    copy: "Sarson hamare kheton se lakdi ki ghani tak jaati hai, aur raw honey apne farm par sambhale gaye beehives se aata hai.",
     image: "/images/generated/journey-mustard-apiary.webp",
     alt: "Rajasthan farmers harvesting mustard beside managed beehives",
   },
@@ -130,23 +160,23 @@ const journeySteps = [
 
 const experienceReasons = [
   {
-    title: "Our Farm to Table",
-    copy: "Our own cows, crops and managed beehives mean no anonymous ingredient supply chain in between.",
+    title: "Jiska Source Aap Pooch Sakein",
+    copy: "Gir cows, sarson ke khet aur managed beehives—sab hamari Jaipur farm team sambhalti hai.",
     icon: HandshakeIcon,
   },
   {
-    title: "Time-Honoured Techniques",
-    copy: "Bilona churning, wooden ghani pressing and raw honey harvesting — the same methods for generations.",
+    title: "Har Cheez Ka Sahi Tareeka",
+    copy: "Bilona-churned ghee, wooden-ghani oils aur sirf lightly filtered raw honey.",
     icon: LeafIcon,
   },
   {
-    title: "Unwavering Purity",
-    copy: "No refined oils, no additives, no shortcuts — every batch is checked before it reaches you.",
+    title: "Har Batch Ka Seedha Jawaab",
+    copy: "Order se pehle latest available batch details ya report ke baare mein WhatsApp par pooch sakte hain.",
     icon: FlaskIcon,
   },
   {
-    title: "Doorstep Trust",
-    copy: "Carefully packed and delivered straight to your family, with real support on WhatsApp.",
+    title: "Jaipur Mein Aasaan Delivery",
+    copy: "Free local delivery, Cash on Delivery aur order ke liye seedha WhatsApp support.",
     icon: TruckIcon,
   },
 ];
@@ -154,7 +184,7 @@ const experienceReasons = [
 const testimonials = [
   {
     quote:
-      "It tastes like the ghee our family used to make at home — rich, aromatic and honest.",
+      "It tastes like the ghee our family used to make at home, rich, aromatic and honest.",
     name: "Verified Organic Jaipur family",
     location: "Jaipur",
     product: "A2 Gir Cow Ghee",
@@ -177,7 +207,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    quote: "Raw, thick and clearly unheated — this is the real thing.",
+    quote: "Raw, thick and clearly unheated. This is the real thing.",
     name: "Anjali T.",
     location: "Jodhpur",
     product: "Raw Farm Honey",
@@ -185,7 +215,7 @@ const testimonials = [
   },
   {
     quote:
-      "Such a strong, authentic mustard punch — exactly like my grandmother's kitchen.",
+      "Such a strong, authentic mustard punch, exactly like my grandmother's kitchen.",
     name: "Meena K.",
     location: "Kota",
     product: "Kachi Ghani Mustard Oil",
@@ -196,22 +226,22 @@ const testimonials = [
 const blogs = [
   {
     date: "August 5, 2026",
-    title: "What makes Bilona ghee different?",
+    title: "What Makes Bilona Ghee Different?",
     copy: "A simple guide to curd churning, slow cooking and the flavour it creates.",
-    image: "/images/generated/founder-wife-bilona.webp",
+    image: "/images/bilona-story-v2.png",
     href: "/farm-to-home",
   },
   {
     date: "August 2, 2026",
-    title: "Why owning the source matters",
+    title: "Why Owning the Source Matters",
     copy: "How our own cows, crops and beehives create a more accountable pantry journey.",
     image: "/images/generated/journey-mustard-apiary.webp",
     href: "/about",
   },
   {
     date: "July 28, 2026",
-    title: "A closer look at indigenous Gir cows",
-    copy: "Care, nourishment and patience — the beginning of traditionally made ghee.",
+    title: "A Closer Look at Indigenous Gir Cows",
+    copy: "Care, nourishment and patience: the beginning of traditionally made ghee.",
     image: "/images/generated/hero-farm-gir-cow.webp",
     href: "/quality-promise",
   },
@@ -226,6 +256,43 @@ function StarRow({ rating }: { rating: number }) {
   );
 }
 
+function pickByVariety<T extends { name: string }>(
+  items: T[],
+  take: number,
+): T[] {
+  const seenBaseNames = new Set<string>();
+  const picked: T[] = [];
+  const leftovers: T[] = [];
+  for (const item of items) {
+    const baseName = item.name.split(",")[0].trim();
+    if (seenBaseNames.has(baseName)) {
+      leftovers.push(item);
+    } else {
+      seenBaseNames.add(baseName);
+      picked.push(item);
+    }
+  }
+  return [...picked, ...leftovers].slice(0, take);
+}
+
+function pickDiverseByCategory<T extends { category: string }>(
+  items: T[],
+  take: number,
+): T[] {
+  const seenCategories = new Set<string>();
+  const picked: T[] = [];
+  const leftovers: T[] = [];
+  for (const item of items) {
+    if (seenCategories.has(item.category)) {
+      leftovers.push(item);
+    } else {
+      seenCategories.add(item.category);
+      picked.push(item);
+    }
+  }
+  return [...picked, ...leftovers].slice(0, take);
+}
+
 function Avatar({ name }: { name: string }) {
   return (
     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-100 font-display text-sm font-bold text-brand-800">
@@ -235,32 +302,36 @@ function Avatar({ name }: { name: string }) {
 }
 
 export default async function HomePage() {
-  const bestSellers = await prisma.product.findMany({
-    where: { featured: true, category: { in: SHOP_CATEGORIES } },
-    orderBy: { createdAt: "asc" },
-    take: 5,
+  const bestSellerCandidates = await prisma.product.findMany({
+    where: { category: { in: SHOP_CATEGORIES } },
+    orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
   });
+  const bestSellers = pickDiverseByCategory(bestSellerCandidates, 5);
   const bestSellerIds = new Set(bestSellers.map((p) => p.id));
 
   const [
-    gheeProducts,
-    oilProducts,
-    honeyProducts,
-    pickleProducts,
+    gheeCandidates,
+    oilCandidates,
+    honeyCandidates,
+    pickleCandidates,
     shelfExtras,
   ] = await Promise.all([
     prisma.product.findMany({
       where: { category: "GHEE" },
       orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
-      take: 4,
     }),
     prisma.product.findMany({
       where: { category: "MUSTARD_OIL" },
       orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
-      take: 4,
     }),
-    prisma.product.findMany({ where: { category: "HONEY" }, take: 4 }),
-    prisma.product.findMany({ where: { category: "PICKLES" }, take: 4 }),
+    prisma.product.findMany({
+      where: { category: "HONEY" },
+      orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
+    }),
+    prisma.product.findMany({
+      where: { category: "PICKLES" },
+      orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
+    }),
     prisma.product.findMany({
       where: {
         category: { in: SHOP_CATEGORIES },
@@ -270,6 +341,13 @@ export default async function HomePage() {
       take: 8,
     }),
   ]);
+
+  const gheeProducts = pickByVariety(gheeCandidates, 4);
+  const oilProducts = pickByVariety(oilCandidates, 4);
+  const moreProducts = pickByVariety(
+    [...pickleCandidates, ...honeyCandidates],
+    4,
+  );
 
   const categoryTabs: ShowcaseTab[] = [
     {
@@ -284,7 +362,7 @@ export default async function HomePage() {
       key: "more",
       label: "Pickles & More",
       icon: "🌶️",
-      items: [...pickleProducts, ...honeyProducts].slice(0, 4),
+      items: moreProducts,
     },
   ];
 
@@ -298,16 +376,17 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:py-14">
         <AnimatedSection className="text-center">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-            Shop by category
+            Apni Rasoi Ke Liye
           </p>
           <h2 className="mt-3 font-display text-4xl leading-[1.05] text-forest-900 sm:text-5xl">
-            The favourites families{" "}
-            <em className="font-normal">come back for.</em>
+            Sirf Samaan Nahi,{" "}
+            <em className="font-normal text-brand-700">
+              Rasoi Ki Parampara Hai.
+            </em>
           </h2>
           <p className="mx-auto mt-4 max-w-xl leading-7 text-forest-900/55">
-            Pick a category and add it straight to your cart — no need to leave
-            this page. Every jar is grown and made on our own farm in Jaipur,
-            Rajasthan, so you always know exactly where it came from.
+            Ghee, kachi ghani oil, raw honey aur ghar-jaisa Rajasthani achar—
+            swaad, pack size aur istemaal ke hisaab se apna product chuniye.
           </p>
           <Link
             href="/organic-products-jaipur"
@@ -324,7 +403,7 @@ export default async function HomePage() {
             href="/products"
             className="inline-flex rounded-full border border-forest-900/15 px-7 py-3 text-sm font-bold text-forest-900 transition hover:border-forest-900 hover:bg-forest-900 hover:text-white"
           >
-            Shop all products →
+            Shop All Products →
           </Link>
         </div>
       </section>
@@ -335,20 +414,22 @@ export default async function HomePage() {
           <AnimatedSection className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <p className="text-xs font-bold tracking-[.2em] text-honey-400 uppercase">
-                Most loved
+                Sabse Zyada Pasand
               </p>
               <h2 className="mt-3 font-display text-4xl leading-[1.05] sm:text-6xl">
-                Our Best Sellers
+                Sabki Pasand,{" "}
+                <em className="font-normal text-honey-400">Ghar Ka Swaad.</em>
               </h2>
               <p className="mt-4 max-w-lg leading-7 text-white/60">
-                Loved by thousands of families across Rajasthan and beyond.
+                Roz ke tadke, garam parathe, subah ki mithaas aur ghar ke khaane
+                ke liye customers ke sabse zyada chune gaye products.
               </p>
             </div>
             <Link
               href="/products"
               className="w-fit border-b border-honey-400 pb-1 text-sm font-bold text-honey-400"
             >
-              View all →
+              View All →
             </Link>
           </AnimatedSection>
           <AnimatedSection delay={0.1} className="mt-12">
@@ -357,15 +438,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Farm to jar — zigzag journey */}
+      {/* Farm to jar: zigzag journey */}
       <section className="bg-[#fbf7ea] px-5 py-10 sm:px-8 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-              Farm to jar
+              Khet Se Rasoi Tak
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
-              The traditional journey of our ghee &amp; oils
+              Khet Se Shuruaat,{" "}
+              <em className="font-normal text-brand-700">Rasoi Tak Bharosa.</em>
             </h2>
           </AnimatedSection>
 
@@ -421,10 +503,11 @@ export default async function HomePage() {
         <AnimatedSection className="flex items-end justify-between gap-5">
           <div>
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-              Loved across generations
+              Rasoi Ka Bhandaar
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
-              More from our shelf
+              Har Jar Mein,{" "}
+              <em className="font-normal text-brand-700">Ghar Ka Swaad.</em>
             </h2>
           </div>
         </AnimatedSection>
@@ -476,13 +559,13 @@ export default async function HomePage() {
       <section className="bg-[#0f281c] py-10 text-cream sm:py-16">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <AnimatedSection className="relative overflow-hidden rounded-[2rem]">
-            <div className="relative aspect-[16/7] w-full">
+            <div className="relative aspect-[16/5] w-full">
               <Image
-                src="/images/generated/founders-farm-story.webp"
-                alt="Organic Jaipur founders inspecting mustard crops with their farm team"
+                src="/images/gir-cow-story-v2.png"
+                alt="Gir cows at the Organic Jaipur farm in Rajasthan"
                 fill
                 sizes="100vw"
-                className="object-cover"
+                className="object-cover object-bottom"
               />
               <div className="absolute inset-0 bg-linear-to-t from-forest-900/90 via-forest-900/25 to-forest-900/10" />
             </div>
@@ -505,17 +588,18 @@ export default async function HomePage() {
             className="mx-auto mt-16 max-w-2xl text-center"
           >
             <p className="text-xs font-bold tracking-[.2em] text-honey-400 uppercase">
-              Why Organic Jaipur?
+              Kyun Organic Jaipur?
             </p>
             <h2 className="mt-4 font-display text-4xl leading-[1.1] sm:text-5xl">
-              The Organic Jaipur Experience
+              Apni Mitti,{" "}
+              <em className="font-normal text-honey-400">Apni Zimmedari.</em>
             </h2>
             <p className="mt-2 font-display text-lg italic text-white/50">
               शुद्धता की एक सच्ची यात्रा
             </p>
             <p className="mt-5 leading-7 text-white/60">
-              Because what goes in your kitchen should never be a compromise —
-              every jar is a promise of purity, made the way it always has been.
+              Product, batch ya delivery time jaan-na ho? Order se pehle hamari
+              Jaipur team se WhatsApp par seedhi baat kijiye.
             </p>
           </AnimatedSection>
 
@@ -556,7 +640,7 @@ export default async function HomePage() {
               href="/farm-to-home"
               className="inline-flex rounded-full bg-honey-400 px-8 py-3.5 text-sm font-bold text-forest-900 transition hover:-translate-y-0.5 hover:bg-white"
             >
-              Explore our heritage →
+              See Our Farm →
             </Link>
           </AnimatedSection>
         </div>
@@ -568,10 +652,11 @@ export default async function HomePage() {
           <AnimatedSection className="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
             <div>
               <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-                Trusted across Rajasthan
+                Rajasthan Bhar Ka Bharosa
               </p>
               <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
-                What our customers say
+                Unke Shabd,{" "}
+                <em className="font-normal text-brand-700">Hamara Bharosa.</em>
               </h2>
             </div>
             <div className="flex items-center gap-4 rounded-[1.4rem] border border-forest-900/8 bg-white px-6 py-4 shadow-sm">
@@ -581,7 +666,7 @@ export default async function HomePage() {
               <div className="text-left">
                 <StarRow rating={5} />
                 <p className="mt-1 text-xs font-semibold text-forest-900/50">
-                  1,000+ verified reviews
+                  Customer Feedback
                 </p>
               </div>
             </div>
@@ -624,7 +709,7 @@ export default async function HomePage() {
                           {t.name}
                         </p>
                         <p className="text-xs text-forest-900/45">
-                          {t.location} · Verified Buyer
+                          {t.location} · {t.product}
                         </p>
                       </div>
                     </div>
@@ -642,22 +727,23 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* From the journal */}
+      {/* Product guides */}
       <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 sm:pb-16">
         <AnimatedSection className="flex items-end justify-between gap-5">
           <div>
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-              From the journal
+              Samajhkar Chuniye
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
-              Stories worth sharing
+              Sahi Jaankari,{" "}
+              <em className="font-normal text-brand-700">Sahi Chunav.</em>
             </h2>
           </div>
           <Link
             href="/about"
             className="hidden border-b border-forest-900 pb-1 text-sm font-bold sm:block"
           >
-            Read more →
+            View Our Farm →
           </Link>
         </AnimatedSection>
         <div className="mt-12 grid gap-7 md:grid-cols-3">
@@ -696,10 +782,11 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <AnimatedSection>
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-              Everything you need to know
+              Aapke Sawaal
             </p>
             <h2 className="mt-3 font-display text-5xl text-[#425c22] sm:text-6xl">
-              FAQ&apos;s
+              Sawaal Aapke,{" "}
+              <em className="font-normal text-brand-700">Jawaab Hamare.</em>
             </h2>
             <div className="mt-9">
               <FaqAccordion />
@@ -725,10 +812,11 @@ export default async function HomePage() {
       <section className="bg-[#fffdf8] px-5 py-8 sm:px-8 sm:py-16">
         <AnimatedSection className="mx-auto max-w-5xl text-center">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-            Shop wherever you prefer
+            Jahan Se Chahein, Wahan Se Kharidein
           </p>
           <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-5xl">
-            Also available on
+            Jahan Se Kharidein,{" "}
+            <em className="font-normal text-brand-700">Shuddhta Wahi.</em>
           </h2>
           <div className="mt-9 grid gap-5 sm:grid-cols-2">
             <div className="rounded-[1.4rem] border border-[#2874f0]/15 bg-white px-8 py-7 shadow-sm">

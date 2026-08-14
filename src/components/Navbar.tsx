@@ -9,9 +9,9 @@ import { MAKING_PROCESSES } from "@/lib/making-process";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/products", label: "Shop All" },
+  { href: "/products", label: "Products" },
   { href: "/farm-to-home", label: "Farm to Home" },
-  { href: "/about", label: "Our Story" },
+  { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -19,11 +19,15 @@ type NavUser = { name: string; email: string } | null;
 
 export default function Navbar({ user = null }: { user?: NavUser }) {
   const [open, setOpen] = useState(false);
+  const [processOpen, setProcessOpen] = useState(false);
   const pathname = usePathname();
   const { itemCount } = useCart();
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setOpen(false), 0);
+    const timeout = window.setTimeout(() => {
+      setOpen(false);
+      setProcessOpen(false);
+    }, 0);
     return () => window.clearTimeout(timeout);
   }, [pathname]);
 
@@ -44,15 +48,24 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!processOpen) return;
+    const closeProcessOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setProcessOpen(false);
+    };
+    window.addEventListener("keydown", closeProcessOnEscape);
+    return () => window.removeEventListener("keydown", closeProcessOnEscape);
+  }, [processOpen]);
+
   return (
     <header className="sticky top-0 z-50 bg-[#fffdf8]/95 backdrop-blur-md">
       <div className="hidden bg-forest-900 text-cream sm:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[10px] font-bold uppercase tracking-[.16em] lg:px-8">
-          <span>Rooted in Rajasthan · Made in small batches</span>
+          <span>Free Jaipur Delivery · Cash on Delivery · Prices Include All Taxes</span>
           <div className="flex items-center gap-6 text-cream/70">
-            <span>Lab tested</span>
-            <span>Farm direct</span>
-            <span>Pan-India delivery</span>
+            <span>500 g to Family Packs</span>
+            <span>WhatsApp Support</span>
+            <span>Rajasthan Shipping</span>
           </div>
         </div>
       </div>
@@ -89,25 +102,38 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
               </li>
             );
           })}
-          <li className="group relative">
+          <li
+            className="relative"
+            onMouseEnter={() => setProcessOpen(true)}
+            onMouseLeave={() => setProcessOpen(false)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setProcessOpen(false);
+              }
+            }}
+          >
             <button
               type="button"
-              className={`flex items-center gap-1.5 whitespace-nowrap py-2 text-[12px] font-semibold uppercase transition-colors xl:text-[13px] ${pathname.startsWith("/making-process") ? "text-terracotta-600" : "text-brand-800 group-hover:text-terracotta-500"}`}
+              aria-expanded={processOpen}
+              aria-haspopup="menu"
+              onClick={() => setProcessOpen((current) => !current)}
+              className={`flex items-center gap-1.5 whitespace-nowrap py-2 text-[12px] font-semibold uppercase transition-colors xl:text-[13px] ${pathname.startsWith("/making-process") || processOpen ? "text-terracotta-600" : "text-brand-800 hover:text-terracotta-500"}`}
             >
               Making Process{" "}
-              <span className="text-[9px] transition-transform group-hover:rotate-180">
+              <span className={`text-[9px] transition-transform ${processOpen ? "rotate-180" : ""}`}>
                 ▾
               </span>
             </button>
-            <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+            <div className={`absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 transition-all ${processOpen ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"}`}>
               <div className="overflow-hidden rounded-2xl border border-forest-900/10 bg-white p-2 shadow-[0_22px_60px_rgba(15,40,28,.18)]">
                 <p className="px-4 pb-2 pt-3 text-[9px] font-extrabold uppercase tracking-[.18em] text-terracotta-500">
-                  See how we make
+                  See How We Make
                 </p>
                 {MAKING_PROCESSES.map((process, index) => (
                   <Link
                     key={process.slug}
                     href={`/making-process/${process.slug}`}
+                    onClick={() => setProcessOpen(false)}
                     className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-forest-900 transition hover:bg-[#faf7ee] hover:text-brand-700"
                   >
                     <span>
@@ -272,7 +298,7 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
           </ul>
           <div className="mt-5">
             <p className="mb-2 text-[10px] font-bold uppercase tracking-[.22em] text-terracotta-500">
-              Making process
+              Making Process
             </p>
             <div className="grid grid-cols-2 gap-2">
               {MAKING_PROCESSES.map((process) => (
@@ -311,7 +337,7 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
             onClick={() => setOpen(false)}
             className="mb-3 flex items-center justify-between rounded-full border border-honey-400 bg-[#fff8e8] px-5 py-3 text-sm font-bold text-forest-900"
           >
-            <span>View cart</span>
+            <span>View Cart</span>
             <span className="rounded-full bg-honey-400 px-2.5 py-1 text-xs">
               {itemCount} item{itemCount === 1 ? "" : "s"}
             </span>
@@ -321,10 +347,10 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
             onClick={() => setOpen(false)}
             className="flex items-center justify-center rounded-full bg-forest-900 px-5 py-3.5 text-sm font-bold text-cream shadow-lg shadow-forest-900/15"
           >
-            Shop all products →
+            Shop All Products →
           </Link>
           <p className="mt-4 text-center text-[10px] font-bold uppercase tracking-[.14em] text-forest-900/45">
-            Pure roots · Honest food · Rajasthan
+            Own Farm · Cash on Delivery · Rajasthan
           </p>
         </div>
       </aside>

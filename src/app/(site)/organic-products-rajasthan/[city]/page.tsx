@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!city) return { title: "Organic Products in Rajasthan" };
 
   const title = `Organic Products in ${city.name}, Rajasthan`;
-  const description = `A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles shipped to ${city.name}, Rajasthan — grown and made on our own farm in Jaipur.`;
+  const description = `A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles shipped to ${city.name}, Rajasthan, grown and made on our own farm in Jaipur.`;
 
   return {
     title,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `${SITE_URL}/organic-products-rajasthan/${city.slug}`,
       title,
       description,
-      images: [{ url: "/images/organic-jaipur-hero-v2.png" }],
+      images: [{ url: "/images/generated/banner-shop-farm-v3.jpg" }],
     },
     twitter: {
       card: "summary_large_image",
@@ -68,18 +68,19 @@ export default async function RajasthanCityPage({ params }: Props) {
       />
 
       <section className="relative min-h-[380px] overflow-hidden bg-forest-900 text-white sm:min-h-[420px]">
-        <div className="absolute -right-24 -top-32 h-[420px] w-[420px] rounded-full border border-white/5" />
+        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products shipped across Rajasthan" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.9)_0%,rgba(8,29,20,.58)_48%,rgba(8,29,20,.06)_82%)]" />
         <AnimatedSection className="relative mx-auto flex min-h-[380px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[420px] sm:px-8">
           <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400">
             <span className="h-px w-10 bg-honey-400" /> Rajasthan-wide shipping
           </p>
           <h1 className="mt-6 max-w-3xl font-display text-4xl leading-[.98] tracking-[-.03em] sm:text-6xl">
-            Organic products in{" "}
-            <em className="font-normal text-honey-400">{city.name}.</em>
+            Jaipur Ki Parampara,{" "}
+            <em className="font-normal text-honey-400">Ab {city.name} Ke Naam.</em>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
             {city.name} is {city.blurb} We ship A2 Bilona ghee, cold-pressed mustard oil, raw honey
-            and traditional Rajasthani pickles to {city.name} via courier — grown and made on our
+            and traditional Rajasthani pickles to {city.name} via courier, grown and made on our
             own farm in Jaipur, Rajasthan.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -104,7 +105,7 @@ export default async function RajasthanCityPage({ params }: Props) {
           Shop by category
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Shipped fresh to {city.name}.
+          Farm Se Taiyaar, <em className="font-normal text-brand-700">{city.name} Tak Pyaar.</em>
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {CATEGORIES.map((category) => (
@@ -147,7 +148,7 @@ export default async function RajasthanCityPage({ params }: Props) {
           Common questions
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Ordering in {city.name}, answered.
+          Sawaal {city.name} Ke, <em className="font-normal text-brand-700">Jawaab Hamare.</em>
         </h2>
         <div className="mt-8 max-w-3xl">
           <FaqAccordion items={faqs} />

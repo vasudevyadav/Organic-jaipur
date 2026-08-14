@@ -9,24 +9,32 @@ const responsibilities = [
     title: "Farm & crop management",
     eyebrow: "From our soil",
     copy: "Mustard, mango, lemon, chilli and other seasonal produce are grown and looked after on our own farm by our team.",
+    image: "/images/process/oil-traditional-strip-v2.jpg",
+    imagePosition: "0% center",
   },
   {
     number: "02",
     title: "Gir cow care & dairy",
     eyebrow: "From our cows",
     copy: "We manage the daily care of our own Gir cows and the milk journey that leads to curd, hand churning and traditional bilona ghee.",
+    image: "/images/process/ghee-traditional-strip-v2.jpg",
+    imagePosition: "66.666% center",
   },
   {
     number: "03",
     title: "Pickle making & maturation",
     eyebrow: "From our harvest",
     copy: "Our farm-grown mango, lemon and chilli are sorted, prepared, mixed with spices and patiently matured in small, carefully watched batches.",
+    image: "/images/process/pickle-traditional-strip-v2.jpg",
+    imagePosition: "66.666% center",
   },
   {
     number: "04",
     title: "Beehives, packing & dispatch",
     eyebrow: "From hive to home",
     copy: "We maintain our beehives, handle the honey gently, and personally oversee packing and dispatch before an order leaves for your home.",
+    image: "/images/process/honey-traditional-strip-v2.jpg",
+    imagePosition: "100% center",
   },
 ];
 
@@ -39,13 +47,13 @@ export default function AboutTeamAccordion() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-11 grid gap-5 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
           <div>
-            <p className="text-[10px] font-extrabold uppercase tracking-[.22em] text-terracotta-500">The people behind every batch</p>
+            <p className="text-[10px] font-extrabold uppercase tracking-[.22em] text-terracotta-500">The People Behind Every Batch</p>
             <h2 className="mt-4 max-w-3xl font-display text-4xl leading-[1.03] text-forest-900 sm:text-6xl">
               Our farm. Our hands. <em className="font-normal text-brand-700">Our responsibility.</em>
             </h2>
           </div>
           <p className="max-w-xl text-sm leading-7 text-forest-900/60 lg:justify-self-end">
-            We are the people who manage Organic Jaipur day to day. The work is shared across our family and team—from caring for the farm to packing your order.
+            We are the people who manage Organic Jaipur day to day. The work is shared across our family and team, from caring for the farm to packing your order.
           </p>
         </div>
 
@@ -60,9 +68,9 @@ export default function AboutTeamAccordion() {
                 transition={{ duration: 0.45, ease: "easeOut" }}
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: "url('/images/about/organic-jaipur-team-vector.png')",
-                  backgroundSize: "400% 100%",
-                  backgroundPosition: `${active * 33.333}% center`,
+                  backgroundImage: `url('${selected.image}')`,
+                  backgroundSize: "400% auto",
+                  backgroundPosition: selected.imagePosition,
                 }}
               />
             </AnimatePresence>
@@ -76,7 +84,7 @@ export default function AboutTeamAccordion() {
           <div className="p-6 sm:p-9 lg:p-11">
             <div className="mb-7 flex items-center justify-between border-b border-forest-900/10 pb-6">
               <div>
-                <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-brand-700">What we manage ourselves</p>
+                <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-brand-700">What We Manage Ourselves</p>
                 <p className="mt-2 text-sm text-forest-900/50">Choose a stage to see our team and responsibility.</p>
               </div>
               <span className="hidden rounded-full bg-[#f4efe0] px-4 py-2 font-mono text-xs font-bold text-forest-900/55 sm:block">{active + 1} / 4</span>
@@ -116,9 +124,9 @@ export default function AboutTeamAccordion() {
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-2 border-t border-forest-900/10 pt-6 text-center text-[9px] font-extrabold uppercase tracking-[.12em] text-forest-900/45">
-              <span>Own farm</span>
-              <span>Shared hands</span>
-              <span>Direct control</span>
+              <span>Own Farm</span>
+              <span>Shared Hands</span>
+              <span>Direct Control</span>
             </div>
           </div>
         </div>

@@ -26,9 +26,28 @@ type Props = {
 };
 
 export const metadata = {
-  title: "Shop A2 Ghee, Cold-Pressed Oil, Honey & Pickles Online in Jaipur",
+  title: "Shop A2 Ghee, Oils, Honey & Pickles Online",
   description:
-    "Shop A2 bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles online — grown and made on our own farm in Jaipur, Rajasthan, and delivered fresh across the city.",
+    "Order A2 Gir cow ghee, kachi ghani mustard oil, raw honey and Rajasthani pickles online. Own farm, lab-tested, free Jaipur delivery.",
+};
+
+const CATEGORY_INTROS: Record<string, { title: string; copy: string }> = {
+  GHEE: {
+    title: "Choose Bilona Ghee by Milk Type and Pack Size",
+    copy: "Pick Gir cow ghee for a distinctive aroma, desi cow ghee for daily use or richer buffalo ghee for frying and sweets. Available from 500 g to 2 kg.",
+  },
+  MUSTARD_OIL: {
+    title: "Choose Cold-Pressed Oil by Flavour and Use",
+    copy: "Black mustard oil is sharp and pungent; yellow mustard oil is milder. Groundnut, sunflower and coconut oils suit different everyday cooking needs.",
+  },
+  HONEY: {
+    title: "Raw Wild Forest Honey, 500 g",
+    copy: "Lightly filtered and unheated, with no added sugar or syrup. Natural crystallisation can occur and does not affect quality.",
+  },
+  PICKLES: {
+    title: "Rajasthani Pickles and Chutneys, 500 g",
+    copy: "Choose green chilli pickle or bold laal mirch-garlic chutney. Refrigerate after opening and always use a dry spoon.",
+  },
 };
 
 export default async function ProductsPage({ searchParams }: Props) {
@@ -74,8 +93,8 @@ export default async function ProductsPage({ searchParams }: Props) {
         ]}
       />
       <section className="hero-grain relative isolate min-h-[420px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[480px]">
-        <img src="/images/organic-jaipur-hero-v2.png" alt="Organic Jaipur traditional pantry products" className="absolute inset-0 -z-20 h-full w-full object-cover object-[66%_center]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.94)_0%,rgba(8,29,20,.78)_42%,rgba(8,29,20,.18)_82%)]" />
+        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur ghee, oil, honey and pickle at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.72)_0%,rgba(8,29,20,.3)_48%,rgba(8,29,20,.04)_82%)]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(8,29,20,.72)_0%,transparent_55%)]" />
         <AnimatedSection className="mx-auto flex min-h-[420px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[480px] sm:px-8">
           <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.28em] text-honey-400 uppercase sm:text-xs">
@@ -84,27 +103,28 @@ export default async function ProductsPage({ searchParams }: Props) {
           <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[.95] tracking-[-.04em] sm:text-6xl lg:text-7xl">
             {activeLabel ? (
               <>
-                {activeLabel} <em className="font-normal text-honey-400">from Organic Jaipur.</em>
+                {activeLabel} Sirf Product Nahi, <em className="font-normal text-honey-400">Parampara Ka Swaad Hai.</em>
               </>
             ) : (
               <>
-                Our full range, <em className="font-normal text-honey-400">made the traditional way.</em>
+                Har Jar Mein Shuddhta,{" "}
+                <em className="font-normal text-honey-400">Har Niwale Mein Bharosa.</em>
               </>
             )}
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
-            Hand-churned ghee, stone-pressed oils, raw honey and traditional pickles — sourced directly, checked for purity, delivered fresh. Every one of our A2 ghee, cold-pressed oil, honey and pickle jars is grown and made on our own farm in Jaipur, and delivered fresh across Jaipur and Rajasthan.
+            Compare pack size, flavour, ingredients and use. Prices include all taxes. Get free delivery in Jaipur, Cash on Delivery and courier shipping across Rajasthan.
           </p>
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[11px] font-bold uppercase tracking-[.12em] text-white/70 sm:text-xs">
-            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Lab tested</span>
-            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Small batch</span>
-            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Farm direct</span>
+            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Prices Include Tax</span>
+            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Cash on Delivery</span>
+            <span className="flex items-center gap-2"><i className="h-1.5 w-1.5 rounded-full bg-honey-400" /> Free Jaipur Delivery</span>
           </div>
           <Link
             href="/organic-products-jaipur"
             className="mt-6 inline-flex w-fit items-center gap-2 text-xs font-bold text-honey-400 underline underline-offset-4 hover:text-honey-300"
           >
-            Delivering across Jaipur — see all areas we cover →
+            Delivering across Jaipur: see all areas we cover →
           </Link>
         </AnimatedSection>
       </section>
@@ -116,10 +136,20 @@ export default async function ProductsPage({ searchParams }: Props) {
           </Suspense>
 
           <div className="min-w-0 flex-1">
+            {activeCategory && CATEGORY_INTROS[activeCategory] && (
+              <div className="mb-6 rounded-2xl border border-forest-900/8 bg-[#faf7ee] p-5 sm:p-6">
+                <h2 className="font-display text-xl text-forest-900 sm:text-2xl">
+                  {CATEGORY_INTROS[activeCategory].title}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-forest-900/60">
+                  {CATEGORY_INTROS[activeCategory].copy}
+                </p>
+              </div>
+            )}
             <div className="flex items-end justify-between border-b border-forest-900/10 pb-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-terracotta-500">Curated pantry</p>
-                <h2 className="mt-1 font-display text-2xl text-forest-900">{activeLabel ?? "All products"}</h2>
+                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-terracotta-500">Available to Order</p>
+                <h2 className="mt-1 font-display text-2xl text-forest-900">{activeLabel ?? "All Products"}</h2>
               </div>
               <p className="rounded-full bg-brand-50 px-3 py-1.5 text-xs font-bold text-brand-800">
                 {products.length} item{products.length === 1 ? "" : "s"}
@@ -145,10 +175,10 @@ export default async function ProductsPage({ searchParams }: Props) {
 
       <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-          Common questions
+          Common Questions
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          {activeLabel ? `${activeLabel} from Jaipur, answered.` : "Buying organic in Jaipur, answered."}
+          {activeLabel ? `${activeLabel} Ke Sawaal, Hamare Jawaab` : "Sawaal Aapke, Jawaab Hamare"}
         </h2>
         <div className="mt-8 max-w-3xl">
           <FaqAccordion items={faqItems} />

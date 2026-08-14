@@ -34,7 +34,7 @@ type TrackedOrder = {
   items: OrderItem[];
 };
 
-// Linear delivery journey — CANCELLED is a distinct end-state handled separately below.
+// Linear delivery journey. CANCELLED is a distinct end-state handled separately below.
 const TIMELINE_STATUSES = ORDER_STATUSES.filter((s) => s !== "CANCELLED");
 
 export default function TrackOrderForm() {

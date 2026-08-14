@@ -62,10 +62,10 @@ const TESTS = [
 ];
 
 const PROCESS_STRIPS: Record<Category, string> = {
-  GHEE: "/images/process/ghee-process-strip.png",
-  MUSTARD_OIL: "/images/process/oil-process-strip.png",
-  HONEY: "/images/process/honey-process-strip.png",
-  PICKLES: "/images/process/pickle-process-strip.png",
+  GHEE: "/images/process/ghee-traditional-strip-v2.jpg",
+  MUSTARD_OIL: "/images/process/oil-traditional-strip-v2.jpg",
+  HONEY: "/images/process/honey-traditional-strip-v2.jpg",
+  PICKLES: "/images/process/pickle-traditional-strip-v2.jpg",
   VEGETABLES: "/images/products/vegetables.jpg",
   FRUITS: "/images/products/fruits.jpg",
 };
@@ -176,7 +176,7 @@ export default function ProductQualityTabs({ productName, category, imageUrl }: 
                   <div className="mt-7 h-2 rounded-full bg-forest-900/6"><div className="h-full w-2/3 rounded-full bg-honey-400" /></div>
                   <p className="mt-2 text-[9px] text-forest-900/35">The authenticated report will replace this preview after upload.</p>
                 </div>
-                <div><p className="text-[10px] font-extrabold uppercase tracking-[.18em] text-terracotta-500">Batch-level transparency</p><h3 className="mt-3 font-display text-3xl leading-tight text-forest-900">Your pack.<br />Its matching report.</h3><p className="mt-4 text-sm leading-7 text-forest-900/55">Reports are batch-specific. Use the number printed on your pack so our team can share the correct document—not a generic certificate.</p><a href={`https://wa.me/${BUSINESS.whatsappNumber}?text=${reportMessage}`} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-full bg-forest-900 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-brand-700">Request matching report →</a></div>
+                <div><p className="text-[10px] font-extrabold uppercase tracking-[.18em] text-terracotta-500">Batch-level transparency</p><h3 className="mt-3 font-display text-3xl leading-tight text-forest-900">Your pack.<br />Its matching report.</h3><p className="mt-4 text-sm leading-7 text-forest-900/55">Reports are batch-specific. Use the number printed on your pack so our team can share the correct document, not a generic certificate.</p><a href={`https://wa.me/${BUSINESS.whatsappNumber}?text=${reportMessage}`} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-full bg-forest-900 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-brand-700">Request matching report →</a></div>
               </div>
             )}
           </motion.div>

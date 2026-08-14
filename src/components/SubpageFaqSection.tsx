@@ -4,6 +4,17 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
+import {
+  FAQS_ABOUT,
+  FAQS_CONTACT,
+  FAQS_FARM_TO_HOME,
+  FAQS_GHEE,
+  FAQS_HONEY,
+  FAQS_OILS,
+  FAQS_PICKLES,
+  FAQS_QUALITY,
+  FAQS_TRACK_ORDER,
+} from "@/lib/constants";
 
 type Faq = { question: string; answer: string };
 
@@ -15,14 +26,40 @@ type Props = {
 
 export default function SubpageFaqSection({
   items,
-  heading = "FAQ's",
-  eyebrow = "Everything you need to know",
+  heading = "Sawaal Aapke, Jawaab Hamare.",
+  eyebrow = "Har baat, seedhe aur saaf tareeke se",
 }: Props) {
   const pathname = usePathname();
+
+  const routeFaqs: Record<string, readonly Faq[]> = {
+    "/about": FAQS_ABOUT,
+    "/contact": FAQS_CONTACT,
+    "/farm-to-home": FAQS_FARM_TO_HOME,
+    "/quality-promise": FAQS_QUALITY,
+    "/track-order": FAQS_TRACK_ORDER,
+    "/making-process/bilona-ghee": FAQS_GHEE,
+    "/making-process/cold-pressed-oil": FAQS_OILS,
+    "/making-process/raw-honey": FAQS_HONEY,
+    "/making-process/traditional-pickles": FAQS_PICKLES,
+  };
+  const resolvedItems = items ?? routeFaqs[pathname];
 
   if (pathname === "/" || pathname === "/faq") return null;
   if (pathname === "/products" || pathname?.startsWith("/products/")) return null;
   if (pathname === "/organic-products-jaipur" || pathname?.startsWith("/organic-products-jaipur/")) {
+    return null;
+  }
+  if (pathname === "/organic-products-rajasthan" || pathname?.startsWith("/organic-products-rajasthan/")) {
+    return null;
+  }
+  if (
+    pathname === "/search" ||
+    pathname === "/wishlist" ||
+    pathname === "/cart" ||
+    pathname === "/checkout" ||
+    pathname?.startsWith("/account") ||
+    pathname?.startsWith("/order-confirmation")
+  ) {
     return null;
   }
   if (
@@ -45,7 +82,7 @@ export default function SubpageFaqSection({
             {heading}
           </h2>
           <div className="mt-9">
-            <FaqAccordion items={items} />
+            <FaqAccordion items={resolvedItems} />
           </div>
         </AnimatedSection>
         <AnimatedSection delay={0.1} className="relative mx-auto min-h-[500px] w-full max-w-[560px]">

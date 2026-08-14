@@ -9,7 +9,7 @@ import { JAIPUR_LOCALITIES } from "@/lib/jaipur-localities";
 
 const TITLE = "Organic Products in Jaipur | A2 Ghee, Oil, Honey & Pickles";
 const DESCRIPTION =
-  "A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles — grown and made on our own farm, delivered fresh across Jaipur.";
+  "A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles, grown and made on our own farm, delivered fresh across Jaipur.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/organic-products-jaipur`,
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: "/images/organic-jaipur-hero-v2.png" }],
+    images: [{ url: "/images/generated/banner-shop-farm-v3.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -50,7 +50,7 @@ export default function OrganicProductsJaipurPage() {
 
       <section className="hero-grain relative isolate min-h-[380px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[440px]">
         <img
-          src="/images/organic-jaipur-hero-v2.png"
+          src="/images/generated/banner-shop-farm-v3.jpg"
           alt="Organic Jaipur traditional pantry products"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[66%_center]"
         />
@@ -60,10 +60,10 @@ export default function OrganicProductsJaipurPage() {
             <span className="h-px w-8 bg-honey-400" /> Jaipur delivery
           </p>
           <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[.95] tracking-[-.04em] sm:text-6xl lg:text-7xl">
-            Organic products <em className="font-normal text-honey-400">in Jaipur.</em>
+            Jaipur Ki Mitti, <em className="font-normal text-honey-400">Aapki Rasoi Ka Bharosa.</em>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
-            A2 Bilona ghee, cold-pressed mustard oil, raw honey and traditional Rajasthani pickles —
+            A2 Bilona ghee, cold-pressed mustard oil, raw honey and traditional Rajasthani pickles,
             grown and made on our own farm, delivered fresh to homes across Jaipur.
           </p>
         </AnimatedSection>
@@ -74,7 +74,7 @@ export default function OrganicProductsJaipurPage() {
           Shop by category
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Delivered fresh, anywhere in Jaipur.
+          Har Zaroorat Ka Swaad, <em className="font-normal text-brand-700">Seedha Aapke Ghar.</em>
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {CATEGORIES.map((category) => (
@@ -94,7 +94,7 @@ export default function OrganicProductsJaipurPage() {
           Areas we deliver to
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Jaipur localities we serve.
+          Jaipur Ke Har Kone Mein, <em className="font-normal text-brand-700">Wahi Shuddhta.</em>
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-forest-900/60">
           We deliver across Jaipur, including these localities. Message us on WhatsApp with your
@@ -127,7 +127,7 @@ export default function OrganicProductsJaipurPage() {
           Common questions
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Buying organic in Jaipur, answered.
+          Sawaal Jaipur Ke, <em className="font-normal text-brand-700">Jawaab Hamare.</em>
         </h2>
         <div className="mt-8 max-w-3xl">
           <FaqAccordion items={FAQS_PRODUCTS_ALL} />

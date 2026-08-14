@@ -43,50 +43,55 @@ export const CATEGORY_IMAGES: Record<CategoryValue, string> = {
 };
 
 export const STATS = [
-  { value: "500+", label: "Happy Families" },
+  { value: "Jaipur", label: "Local Delivery" },
   { value: "Own", label: "Farm & Cows" },
-  { value: "100%", label: "Chemical-Free" },
-  { value: "24 Hr", label: "Fresh Delivery" },
+  { value: "COD", label: "Pay on Delivery" },
+  { value: "4", label: "Pantry Categories" },
 ] as const;
 
 export const FAQS_PRICE = [
   {
-    question: "Why does your price look higher than ghee or oil sold in the local market?",
+    question: "What Am I Paying for Compared With a Regular Market Product?",
     answer:
-      "Loose or mass-market ghee and oil sold in Jaipur's local market is often blended, adulterated, or made from milk and seeds of unknown origin to keep costs low. Every product we sell is 100% organic and pure, grown and made on our own farm in Jaipur, Rajasthan — no blending, no adulteration, no shortcuts. That traceability and purity is what you're paying for.",
+      "The price reflects the ingredient, small-batch method, pack size and direct handling by our Jaipur team. Compare the ingredients, net quantity and process shown on each product page before choosing.",
   },
 ] as const;
 
 export const FAQS_HOME = [
   {
-    question: "Do the main ingredients come from your own farm?",
+    question: "Do your ingredients come from your own farm?",
     answer:
-      "Yes. Our Gir cows, mustard crop and managed beehives are on our own farm in Jaipur, Rajasthan. Mango, lemon, chilli and other seasonal produce used in our pickles are also grown there — every product is 100% organic and pure.",
+      "Yes. Our Gir cows, mustard crop and managed beehives are all on our own farm in Jaipur, Rajasthan. Seasonal produce for our pickles, mango, lemon and chilli, is grown there too, so every product is 100% traceable.",
   },
   {
     question: "Is your mustard oil really cold-pressed?",
     answer:
-      "Yes. Our mustard oil is extracted using the traditional kachi ghani method on wooden presses, without heat or chemical solvents, which preserves its natural pungency and nutrients.",
+      "Yes. It's extracted using the traditional kachi ghani method on wooden presses, with no heat or chemical solvents, which keeps its natural pungency and nutrients intact.",
   },
   {
     question: "How is your A2 ghee made?",
     answer:
-      "Our A2 ghee is hand-churned from the milk of grass-fed cows using the traditional bilona method — curd is churned to butter, then slow-cooked to ghee. No shortcuts, no additives.",
+      "Our A2 ghee is hand-churned using the traditional bilona method: curd is churned to butter by hand, then slow-cooked into ghee. No cream-separator shortcuts, no additives.",
   },
   {
     question: "Do you deliver across Jaipur and Rajasthan?",
     answer:
-      "Yes, we deliver to homes across Jaipur, and can ship across Rajasthan. Message us on WhatsApp with your location and order, and we'll confirm delivery timing the same day.",
+      "Yes. Free doorstep delivery in Jaipur, and courier shipping across Rajasthan. Message us on WhatsApp with your location and we confirm delivery timing the same day.",
   },
   {
     question: "How do I place an order?",
     answer:
-      "Browse our Products page, then tap \"Order on WhatsApp\" on any product — it opens WhatsApp with a pre-filled message so you can confirm quantity and delivery details directly with us.",
+      "Add products to your cart and check out on the website, or tap \"Order on WhatsApp\" on any product for a pre-filled message to confirm quantity and delivery directly with us.",
   },
   {
-    question: "Are your products lab tested?",
+    question: "What payment methods do you accept?",
     answer:
-      "Every batch is quality-checked for purity and safety before it reaches your doorstep, so you can trust what's on your table.",
+      "Cash on Delivery (COD) only. You pay when your order arrives at your door.",
+  },
+  {
+    question: "Can I Ask for a Batch Test Report?",
+    answer:
+      "Yes. Message us on WhatsApp with the product name and we will share the latest available report or batch information.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -95,12 +100,17 @@ export const FAQS_GHEE = [
   {
     question: "What makes your A2 ghee different from regular ghee?",
     answer:
-      "Our A2 ghee is made from the A2 milk of Gir cows raised on our own farm in Jaipur, using the slow, traditional bilona method — curd is hand-churned to butter, then slow-cooked into ghee. Regular market ghee is often made faster, from mixed-breed milk, with less care for aroma and purity.",
+      "Our A2 ghee starts with milk from Gir cows on our farm. We set the milk into curd, churn it to butter and slow-cook it into ghee. This process creates its grainy texture and deep aroma.",
+  },
+  {
+    question: "What's the difference between A2 Gir Cow Ghee, A2 Desi Cow Ghee and Buffalo Ghee?",
+    answer:
+      "A2 Gir Cow Ghee comes from Gir cow milk and has the most refined aroma. A2 Desi Cow Ghee is a more accessible everyday option. Buffalo Bilona Ghee is richer and creamier, suited to halwai-style cooking.",
   },
   {
     question: "Is bilona ghee worth the extra time and price?",
     answer:
-      "Bilona ghee takes far longer to make than commercial ghee, but the slow churning and cooking preserves its natural aroma, grain, and nutrition. It's a traditional Rajasthani method we've kept exactly as it's always been done, on our own farm.",
+      "Choose bilona ghee if you value a curd-churned process, grainy texture and deep aroma. For a lower upfront cost, start with the 500 g jar.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -109,12 +119,17 @@ export const FAQS_OILS = [
   {
     question: "What is kachi ghani cold-pressed mustard oil?",
     answer:
-      "Kachi ghani is a traditional wooden cold-press method that extracts oil from mustard seeds without heat or chemical solvents, keeping its natural pungency and nutrients intact. Our mustard and other oilseeds are grown on our own farm in Jaipur, Rajasthan.",
+      "It's mustard oil extracted on a traditional wooden press without heat or chemical solvents, keeping its natural pungency and nutrients intact. Our mustard and other oilseeds are grown on our own farm in Jaipur, Rajasthan.",
   },
   {
     question: "Is cold-pressed oil better than refined oil?",
     answer:
-      "Cold-pressed oil is extracted at low temperature with no chemical processing, so it retains more of its natural flavour and nutrients compared to refined oils, which are typically processed with heat and solvents.",
+      "Cold-pressed oil retains more natural flavour and nutrients because it's extracted at low temperature with no chemical processing, unlike refined oils, which are typically processed with heat and solvents.",
+  },
+  {
+    question: "Which mustard oil should I choose, black or yellow?",
+    answer:
+      "Kachi Ghani Black Mustard Oil has a stronger, sharper pungency, traditional for Rajasthani cooking. Pressed Yellow Mustard Oil is milder, suited to those who find black mustard oil too strong.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -123,12 +138,17 @@ export const FAQS_HONEY = [
   {
     question: "Is your honey raw and unprocessed?",
     answer:
-      "Yes. Our honey is collected from beehives managed on our own farm in Jaipur and only lightly filtered to remove physical impurities — no heating, no added sugar, no artificial processing.",
+      "Yes. Collected from beehives managed on our own farm in Jaipur and only lightly filtered to remove physical impurities. No heating, no added sugar, no artificial processing.",
   },
   {
     question: "How can I tell raw honey from adulterated honey?",
     answer:
-      "Raw honey from a known source, like our own managed farm in Rajasthan, is the most reliable way to avoid the sugar-syrup adulteration common in mass-market honey brands.",
+      "Raw honey from a known, traceable source, like our own managed farm in Rajasthan, is the most reliable way to avoid the sugar-syrup adulteration common in mass-market honey brands.",
+  },
+  {
+    question: "Why has my honey turned solid or grainy?",
+    answer:
+      "Crystallisation is a natural sign of raw, unheated honey, not spoilage. Place the jar in warm water to loosen it if you prefer it liquid.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -137,12 +157,12 @@ export const FAQS_PICKLES = [
   {
     question: "Are your pickles made the traditional Rajasthani way?",
     answer:
-      "Yes. Our pickles and chutneys use farm-grown mango, lemon and chilli, mixed with traditional spices and oil, then matured naturally in small batches — the same way they've always been made in Rajasthani households.",
+      "Yes. Farm-grown mango, lemon and chilli, mixed with traditional spices and oil, then matured naturally in small batches, the same way they've always been made in Rajasthani households.",
   },
   {
     question: "Do your pickles contain preservatives?",
     answer:
-      "No artificial preservatives are added. Traditional oil-and-spice based curing, done patiently in small batches, is what keeps our pickles shelf-stable.",
+      "No artificial preservatives are added. Traditional oil-and-spice curing, done patiently in small batches, is what keeps our pickles shelf-stable.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -178,18 +198,114 @@ export function faqsForRajasthanCity(cityName: string) {
   ] as const;
 }
 
+export function faqsForJaipurLocality(localityName: string) {
+  return [
+    {
+      question: `Do you deliver organic products to ${localityName}?`,
+      answer: `Yes. We deliver A2 Bilona ghee, cold-pressed mustard oil, raw honey and traditional Rajasthani pickles to homes in ${localityName}. Share your complete address on WhatsApp and our Jaipur team will confirm the available delivery slot.`,
+    },
+    {
+      question: `Is delivery free in ${localityName}?`,
+      answer: `Yes, doorstep delivery is free within our Jaipur service area, including ${localityName}. The order total shown at checkout is the amount you pay on delivery.`,
+    },
+    {
+      question: `How soon can an order reach ${localityName}?`,
+      answer: `Orders within Jaipur usually arrive the same day or the next day, depending on the time of order and the delivery route. We confirm the exact slot with you before dispatch.`,
+    },
+    FAQS_GHEE[0],
+    FAQS_OILS[0],
+    FAQS_HONEY[0],
+    FAQS_PICKLES[0],
+  ] as const;
+}
+
+export const FAQS_ABOUT = [
+  {
+    question: "Where is the Organic Jaipur farm?",
+    answer: "Our farm and team are based in Jaipur, Rajasthan. You can find our address, map and direct phone and WhatsApp details on the Contact page.",
+  },
+  {
+    question: "Do you make the products yourselves?",
+    answer: "We directly handle the source and traditional process behind our core range: Gir cow milk for Bilona ghee, farm-grown mustard for wooden-ghani oil, managed beehives for raw honey and small-batch preparation for pickles.",
+  },
+  {
+    question: "Can I ask about the source of a specific batch?",
+    answer: "Yes. Send the product name and pack size to our Jaipur team on WhatsApp and ask for the latest available batch or source information before ordering.",
+  },
+] as const;
+
+export const FAQS_FARM_TO_HOME = [
+  {
+    question: "What does farm-to-home mean at Organic Jaipur?",
+    answer: "It means we stay responsible from the ingredient source and traditional preparation through packing and doorstep delivery, instead of buying anonymous finished goods from a market trader.",
+  },
+  {
+    question: "How are products packed before delivery?",
+    answer: "Each finished batch is cooled or settled as required, filled into clean food-grade packs, sealed, labelled and checked before it leaves our Jaipur facility.",
+  },
+  {
+    question: "How fresh will my order be?",
+    answer: "We prepare in controlled batches and dispatch available stock promptly. The product page shows the pack size, and the label on the delivered pack carries the applicable batch and date details.",
+  },
+] as const;
+
+export const FAQS_QUALITY = [
+  {
+    question: "What do you check before a batch is sold?",
+    answer: "We check the incoming ingredient, the method used during preparation, the finished product and the pack before dispatch. You can also ask our team for the latest available batch information.",
+  },
+  {
+    question: "Do you add artificial colours or flavours?",
+    answer: "Our products are built around the natural ingredient and its traditional process. Check the ingredient list on the individual product page and delivered label for the exact product you choose.",
+  },
+  {
+    question: "What should I do if a seal is damaged?",
+    answer: "Do not consume a leaking or unsealed product. Photograph the parcel and contact us within one day of delivery so our team can review it under the return and replacement policy.",
+  },
+] as const;
+
+export const FAQS_CONTACT = [
+  {
+    question: "What is the fastest way to contact Organic Jaipur?",
+    answer: "WhatsApp is the quickest option for product, delivery and order questions. You can also call us during business hours or send the form on the Contact page.",
+  },
+  {
+    question: "What details should I send for a delivery enquiry?",
+    answer: "Send your name, locality or city, PIN code and the products and pack sizes you need. We will confirm availability and the expected delivery window.",
+  },
+  {
+    question: "Can I place my order directly on WhatsApp?",
+    answer: "Yes. Tell us the product, pack size, quantity and complete delivery address. Our team will confirm the order before dispatch.",
+  },
+] as const;
+
+export const FAQS_TRACK_ORDER = [
+  {
+    question: "Where can I find my order number?",
+    answer: "Your order number appears on the order confirmation screen and in the confirmation message sent after checkout.",
+  },
+  {
+    question: "Why is my order status not changing?",
+    answer: "A newly placed order may remain pending until our team confirms stock and the delivery route. If it has not updated as expected, share the order number with us on WhatsApp.",
+  },
+  {
+    question: "Can I change the delivery address after ordering?",
+    answer: "Contact us immediately with your order number. We can update the address only before the parcel is packed or dispatched.",
+  },
+] as const;
+
 export const FAQS_SHIPPING = [
   {
     question: "Which areas do you deliver to?",
-    answer: "We offer free doorstep delivery within Jaipur, Rajasthan, and also ship our A2 ghee, cold-pressed oil, honey and pickles across Rajasthan — to Jodhpur, Udaipur, Kota, Ajmer, Bikaner and other cities — via courier. Message us on WhatsApp with your address and we'll confirm delivery timing and any shipping charges.",
+    answer: "Free doorstep delivery within Jaipur, Rajasthan, and courier shipping across Rajasthan, including Jodhpur, Udaipur, Kota, Ajmer and Bikaner. Message us on WhatsApp with your address and we'll confirm delivery timing and any shipping charges.",
   },
   {
     question: "Is delivery free?",
-    answer: "Yes, delivery is free on all orders within our Jaipur service area. For orders shipped to other cities in Rajasthan via courier, any shipping charge will be shown clearly before you confirm your order.",
+    answer: "Yes, delivery is free on all orders within our Jaipur service area. For orders shipped to other cities in Rajasthan via courier, any shipping charge is shown clearly before you confirm your order.",
   },
   {
     question: "How long does delivery take?",
-    answer: "Ghee, cold-pressed oil, honey and pickles are shelf-stable and are typically dispatched within a day or two of order confirmation. Orders within Jaipur usually arrive the same or next day; orders shipped elsewhere in Rajasthan via courier typically take a few extra days depending on the city. We'll confirm the exact delivery window with you on WhatsApp or by phone.",
+    answer: "Ghee, cold-pressed oil, honey and pickles are shelf-stable and are typically dispatched within a day or two of order confirmation. Orders within Jaipur usually arrive the same or next day. Orders shipped elsewhere in Rajasthan via courier typically take a few extra days depending on the city. We'll confirm the exact delivery window with you on WhatsApp or by phone.",
   },
 ] as const;
 
@@ -211,7 +327,7 @@ export const FAQS_RETURNS = [
 export const FAQS_PRIVACY = [
   {
     question: "Do you sell my personal information?",
-    answer: "No. We do not sell your personal information. We only share it where necessary — with our own delivery staff, our website/database hosting providers, or if required by law.",
+    answer: "No. We do not sell your personal information. We only share it where necessary: with our own delivery staff, our website/database hosting providers, or if required by law.",
   },
   {
     question: "Do you store my payment details?",
@@ -266,23 +382,23 @@ export const ORDER_STATUS_LABELS: Record<OrderStatusValue, string> = {
 
 export const TRUST_BADGES = [
   {
-    title: "Chemical-Free",
-    description: "Grown and processed without synthetic pesticides or chemicals.",
+    title: "Clear Ingredients",
+    description: "See the ingredients, pack size and storage guidance before buying.",
     icon: "leaf",
   },
   {
-    title: "100% Ethically Made",
-    description: "Made from ingredients grown and managed on our own farm.",
+    title: "Farm-Managed Source",
+    description: "Key ingredients are grown or managed by our Jaipur farm team.",
     icon: "handshake",
   },
   {
-    title: "Lab Tested",
-    description: "Every batch is quality-checked for purity and safety.",
+    title: "Batch Information",
+    description: "Request the latest available batch details on WhatsApp.",
     icon: "flask",
   },
   {
-    title: "Doorstep Delivery",
-    description: "Fresh produce delivered straight to your home in Jaipur.",
+    title: "Free Jaipur Delivery",
+    description: "Cash on Delivery in Jaipur and courier shipping across Rajasthan.",
     icon: "truck",
   },
 ] as const;

@@ -20,16 +20,18 @@ export default function TermsAndConditionsPage() {
           { name: "Terms and Conditions", href: "/terms-and-conditions" },
         ]}
       />
-      <section className="bg-[#0f281c] px-5 py-14 text-cream sm:px-8 sm:py-16">
-        <AnimatedSection className="mx-auto max-w-3xl">
-          <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] uppercase">
+      <section className="hero-grain relative isolate min-h-[360px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[400px]">
+        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.93)_0%,rgba(8,29,20,.72)_46%,rgba(8,29,20,.2)_82%)]" />
+        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-3xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
+          <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] text-honey-400 uppercase">
             <span className="h-px w-8 bg-honey-400" /> Legal
           </p>
           <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl">
-            Terms{" "}
-            <em className="font-normal text-honey-400">and Conditions.</em>
+            Niyam Saaf, <em className="font-normal text-honey-400">Vyavahaar Seedha.</em>
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
+          <p className="mt-2 font-display text-base italic text-honey-400/70">Saaf Niyam, Seedha Vyavahaar</p>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
             The terms and conditions that apply when you browse, order from, or
             use the Organic Jaipur website.
           </p>
@@ -83,7 +85,7 @@ export default function TermsAndConditionsPage() {
                     batches is normal and not a defect.
                   </li>
                   <li>
-                    We reserve the right to refuse or cancel an order — for
+                    We reserve the right to refuse or cancel an order, for
                     example, if an item is out of stock, if the delivery address
                     falls outside our current Jaipur delivery area, or in case
                     of a suspected error in pricing or order details.

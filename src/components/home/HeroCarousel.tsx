@@ -40,7 +40,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
   const slide = slides[active];
 
   return (
-    <section className="hero-grain relative min-h-[560px] overflow-hidden bg-[#172117] lg:min-h-[680px]">
+    <section className="hero-grain relative overflow-hidden bg-[#172117] sm:min-h-[620px] lg:min-h-[680px]">
       <AnimatePresence mode="sync">
         <motion.div
           key={active}
@@ -48,7 +48,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.1, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-x-0 top-0 h-[330px] sm:inset-0 sm:h-auto"
         >
           <Image
             src={slide.image}
@@ -58,12 +58,12 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             sizes="100vw"
             className={`object-cover ${slide.focal ?? "object-center"}`}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.92)_0%,rgba(8,29,20,.68)_42%,rgba(8,29,20,.15)_78%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,29,20,.82)_0%,transparent_42%)]" />
+          <div className="absolute inset-0 bg-linear-to-t from-forest-900/25 to-transparent sm:bg-[linear-gradient(90deg,rgba(8,29,20,.92)_0%,rgba(8,29,20,.68)_42%,rgba(8,29,20,.15)_78%)]" />
+          <div className="absolute inset-0 hidden bg-[linear-gradient(0deg,rgba(8,29,20,.82)_0%,transparent_42%)] sm:block" />
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 mx-auto flex min-h-[560px] max-w-7xl flex-col justify-center px-6 pb-32 pt-16 text-cream sm:px-8 lg:min-h-[680px] lg:pb-36">
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-center px-6 pb-10 pt-[366px] text-cream sm:min-h-[620px] sm:px-8 sm:pb-32 sm:pt-16 lg:min-h-[680px] lg:pb-36">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -73,14 +73,14 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             transition={{ duration: 0.55, ease: "easeOut" }}
             className="max-w-2xl"
           >
-            <p className="mb-6 flex items-center gap-3 text-[10px] font-bold tracking-[.28em] text-honey-400 uppercase sm:text-xs">
+            <p className="mb-4 flex items-center gap-3 text-[10px] font-bold tracking-[.28em] text-honey-400 uppercase sm:mb-6 sm:text-xs">
               <span className="h-px w-10 bg-honey-400" /> {slide.eyebrow}
             </p>
-            <h1 className="font-display text-[3.15rem] leading-[.92] tracking-[-.045em] text-balance sm:text-6xl lg:text-[5.25rem]">
+            <h1 className="font-display text-[2.65rem] leading-[.94] tracking-[-.04em] text-balance sm:text-6xl lg:text-[5.25rem]">
               {slide.title}
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-cream/72 sm:text-lg">{slide.copy}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <p className="mt-4 max-w-xl text-sm leading-6 text-cream/72 sm:mt-6 sm:text-lg sm:leading-7">{slide.copy}</p>
+            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
               <Link
                 href={slide.primaryCta.href}
                 className="rounded-full bg-honey-400 px-7 py-3.5 text-sm font-bold text-forest-900 shadow-[0_12px_35px_rgba(240,184,77,.2)] transition hover:-translate-y-0.5 hover:bg-white"
@@ -98,14 +98,14 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 border-t border-white/15 bg-forest-900/50 backdrop-blur-md">
+      <div className="relative z-10 border-t border-white/15 bg-forest-900/80 sm:absolute sm:inset-x-0 sm:bottom-0 sm:bg-forest-900/50 sm:backdrop-blur-md">
         <div className="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-white/15 px-4 sm:px-8">
           {[
-            ["01", "Traditionally made", "Bilona & wooden ghani"],
-            ["02", "Purity first", "Nothing refined or hidden"],
-            ["03", "Our own farm", "Grown with accountability"],
+            ["01", "Choose Your Pack", "500 g to Family Sizes"],
+            ["02", "Pay on Delivery", "Cash on Delivery Available"],
+            ["03", "Free Jaipur Delivery", "Rajasthan Courier Shipping"],
           ].map(([number, title, copy]) => (
-            <div key={number} className="flex items-start gap-3 px-3 py-4 sm:px-6 sm:py-5">
+            <div key={number} className="flex items-start justify-center gap-3 px-2 py-4 text-center sm:justify-start sm:px-6 sm:py-5 sm:text-left">
               <span className="hidden font-display text-sm text-honey-400 sm:block">{number}</span>
               <div>
                 <p className="text-[11px] font-bold text-white sm:text-sm">{title}</p>

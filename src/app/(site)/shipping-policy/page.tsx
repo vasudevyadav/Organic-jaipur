@@ -8,7 +8,7 @@ import { BUSINESS, FAQS_SHIPPING } from "@/lib/constants";
 export const metadata = {
   title: "Shipping & Delivery Policy",
   description:
-    "Delivery areas, timelines, and charges for Organic Jaipur orders — free doorstep delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee, cold-pressed oil, honey, and pickles.",
+    "Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee, cold-pressed oil, honey, and pickles.",
 };
 
 export default function ShippingPolicyPage() {
@@ -20,16 +20,19 @@ export default function ShippingPolicyPage() {
           { name: "Shipping & Delivery Policy", href: "/shipping-policy" },
         ]}
       />
-      <section className="bg-[#0f281c] px-5 py-14 text-cream sm:px-8 sm:py-16">
-        <AnimatedSection className="mx-auto max-w-3xl">
-          <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] uppercase">
+      <section className="hero-grain relative isolate min-h-[360px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[400px]">
+        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.93)_0%,rgba(8,29,20,.72)_46%,rgba(8,29,20,.2)_82%)]" />
+        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-3xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
+          <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] text-honey-400 uppercase">
             <span className="h-px w-8 bg-honey-400" /> Legal
           </p>
           <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl">
-            Shipping &amp; <em className="font-normal text-honey-400">Delivery Policy.</em>
+            Vaada Samay Ka, <em className="font-normal text-honey-400">Delivery Bharose Ki.</em>
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
-            Delivery areas, timelines, and charges for Organic Jaipur orders — free doorstep
+          <p className="mt-2 font-display text-base italic text-honey-400/70">Vaada Nibhaate Hain, Har Baar</p>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
+            Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep
             delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee,
             cold-pressed oil, honey, and pickles.
           </p>
@@ -48,7 +51,7 @@ export default function ShippingPolicyPage() {
             <div className="space-y-8 text-base leading-7 text-forest-900/70">
               <p>
                 This policy explains how we deliver orders placed with Organic Jaipur. It applies to
-                all our products — A2 ghee, cold-pressed oil, honey, and pickles.
+                all our products: A2 ghee, cold-pressed oil, honey, and pickles.
               </p>
 
               <section className="space-y-3">
@@ -57,7 +60,7 @@ export default function ShippingPolicyPage() {
                 </h2>
                 <p>
                   We offer free doorstep delivery within Jaipur, Rajasthan, and also ship across
-                  Rajasthan — including Jodhpur, Udaipur, Kota, Ajmer, Bikaner and other cities — via
+                  Rajasthan, including Jodhpur, Udaipur, Kota, Ajmer, Bikaner and other cities, via
                   courier. If your address falls outside the areas we currently service, we&apos;ll let
                   you know at the time of order confirmation so you&apos;re not left waiting.
                 </p>
@@ -108,8 +111,8 @@ export default function ShippingPolicyPage() {
                 </h2>
                 <p>
                   After you place an order (via the website or WhatsApp), we confirm availability and
-                  the expected delivery window with you directly. Please keep your phone reachable —
-                  our delivery team may call or message ahead of arrival.
+                  the expected delivery window with you directly. Please keep your phone reachable.
+                  Our delivery team may call or message ahead of arrival.
                 </p>
               </section>
 
@@ -125,7 +128,7 @@ export default function ShippingPolicyPage() {
                   </li>
                   <li>
                     Please inspect your order at the time of delivery. Report any damage or
-                    discrepancy to our delivery person immediately, or contact us the same day — see
+                    discrepancy to our delivery person immediately, or contact us the same day. See
                     our{" "}
                     <Link
                       href="/return-refund-policy"

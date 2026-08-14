@@ -5,7 +5,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import { CATEGORIES, FAQS_PRODUCTS_ALL, SITE_URL } from "@/lib/constants";
+import { CATEGORIES, SITE_URL, faqsForJaipurLocality } from "@/lib/constants";
 import { JAIPUR_LOCALITIES } from "@/lib/jaipur-localities";
 
 type Props = { params: Promise<{ locality: string }> };
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!locality) return { title: "Organic Products in Jaipur" };
 
   const title = `Organic Products in ${locality.name}, Jaipur`;
-  const description = `A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles delivered to ${locality.name}, Jaipur — grown and made on our own farm.`;
+  const description = `A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles delivered to ${locality.name}, Jaipur, grown and made on our own farm.`;
 
   return {
     title,
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `${SITE_URL}/organic-products-jaipur/${locality.slug}`,
       title,
       description,
-      images: [{ url: "/images/organic-jaipur-hero-v2.png" }],
+      images: [{ url: "/images/generated/banner-shop-farm-v3.jpg" }],
     },
     twitter: {
       card: "summary_large_image",
@@ -54,6 +54,7 @@ export default async function JaipurLocalityPage({ params }: Props) {
   if (!locality) notFound();
 
   const otherLocalities = JAIPUR_LOCALITIES.filter((item) => item.slug !== locality.slug);
+  const faqs = faqsForJaipurLocality(locality.name);
 
   return (
     <main className="overflow-hidden bg-[#fbf8ef]">
@@ -66,18 +67,19 @@ export default async function JaipurLocalityPage({ params }: Props) {
       />
 
       <section className="relative min-h-[380px] overflow-hidden bg-forest-900 text-white sm:min-h-[420px]">
-        <div className="absolute -right-24 -top-32 h-[420px] w-[420px] rounded-full border border-white/5" />
+        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products delivered across Jaipur" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.9)_0%,rgba(8,29,20,.58)_48%,rgba(8,29,20,.06)_82%)]" />
         <AnimatedSection className="relative mx-auto flex min-h-[380px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[420px] sm:px-8">
           <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400">
             <span className="h-px w-10 bg-honey-400" /> Jaipur delivery
           </p>
           <h1 className="mt-6 max-w-3xl font-display text-4xl leading-[.98] tracking-[-.03em] sm:text-6xl">
-            Organic products in{" "}
-            <em className="font-normal text-honey-400">{locality.name}.</em>
+            {locality.name} Ka Ghar-Ghar Swaad,{" "}
+            <em className="font-normal text-honey-400">Organic Jaipur Ke Saath.</em>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
             {locality.name} is {locality.blurb} We deliver A2 Bilona ghee, cold-pressed mustard
-            oil, raw honey and traditional Rajasthani pickles to homes in {locality.name} — grown
+            oil, raw honey and traditional Rajasthani pickles to homes in {locality.name}, grown
             and made on our own farm in Jaipur, Rajasthan.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -102,7 +104,7 @@ export default async function JaipurLocalityPage({ params }: Props) {
           Shop by category
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Delivered fresh to {locality.name}.
+          Farm Se Taiyaar, <em className="font-normal text-brand-700">{locality.name} Mein Ghar Tak.</em>
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {CATEGORIES.map((category) => (
@@ -145,14 +147,14 @@ export default async function JaipurLocalityPage({ params }: Props) {
           Common questions
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
-          Ordering in {locality.name}, answered.
+          Sawaal {locality.name} Ke, <em className="font-normal text-brand-700">Jawaab Hamare.</em>
         </h2>
         <div className="mt-8 max-w-3xl">
-          <FaqAccordion items={FAQS_PRODUCTS_ALL} />
+          <FaqAccordion items={faqs} />
         </div>
       </section>
 
-      <FaqJsonLd items={FAQS_PRODUCTS_ALL} />
+      <FaqJsonLd items={faqs} />
     </main>
   );
 }

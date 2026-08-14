@@ -19,15 +19,18 @@ export default function PrivacyPolicyPage() {
           { name: "Privacy Policy", href: "/privacy-policy" },
         ]}
       />
-      <section className="bg-[#0f281c] px-5 py-14 text-cream sm:px-8 sm:py-16">
-        <AnimatedSection className="mx-auto max-w-3xl">
-          <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] uppercase">
+      <section className="hero-grain relative isolate min-h-[360px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[400px]">
+        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.93)_0%,rgba(8,29,20,.72)_46%,rgba(8,29,20,.2)_82%)]" />
+        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-3xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
+          <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] text-honey-400 uppercase">
             <span className="h-px w-8 bg-honey-400" /> Legal
           </p>
           <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl">
-            Privacy <em className="font-normal text-honey-400">Policy.</em>
+            Jaankari Aapki, <em className="font-normal text-honey-400">Hifazat Hamari.</em>
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
+          <p className="mt-2 font-display text-base italic text-honey-400/70">Aapka Bharosa, Hamari Zimmedari</p>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
             How Organic Jaipur collects, uses, and protects the personal information you share with
             us when you browse, order, or contact us.
           </p>
@@ -106,7 +109,7 @@ export default function PrivacyPolicyPage() {
                 </h2>
                 <p>
                   Your information is stored on our order and account database. Passwords are never
-                  stored in plain text — they are hashed before being saved. We take reasonable
+                  stored in plain text. They are hashed before being saved. We take reasonable
                   technical precautions to protect your data from unauthorized access, but no online
                   system can be guaranteed 100% secure, and we cannot promise absolute security.
                 </p>

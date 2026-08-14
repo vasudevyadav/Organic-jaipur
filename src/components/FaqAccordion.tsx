@@ -19,8 +19,8 @@ export default function FaqAccordion({ items = FAQS_HOME }: Props) {
             key={faq.question}
             className={`overflow-hidden rounded-xl border transition-colors duration-300 ${
               isOpen
-                ? "border-[#5e7046] bg-[#f6f0df]"
-                : "border-[#63744d] bg-[#63744d] hover:bg-[#586a43]"
+                ? "border-honey-400 bg-[#fff8e8]"
+                : "border-forest-900/10 bg-white hover:border-forest-900/20 hover:bg-[#faf7ee]"
             }`}
           >
             <button
@@ -29,12 +29,12 @@ export default function FaqAccordion({ items = FAQS_HOME }: Props) {
               aria-expanded={isOpen}
               className="flex w-full items-center justify-between gap-5 px-6 py-2.5 text-left sm:px-8"
             >
-              <span className={`text-base font-semibold leading-6 lg:text-base ${isOpen ? "text-[#42552f]" : "text-white"}`}>
+              <span className={`text-base font-semibold leading-6 lg:text-base ${isOpen ? "text-forest-900" : "text-forest-900/80"}`}>
                 {faq.question}
               </span>
               <span
                 className={`flex h-9 w-9 shrink-0 items-center justify-center text-2xl transition-transform duration-300 ${
-                  isOpen ? "rotate-45 text-[#42552f]" : "text-white"
+                  isOpen ? "rotate-45 text-terracotta-500" : "text-forest-900/40"
                 }`}
               >
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
