@@ -108,3 +108,16 @@ a:focus-visible, button:focus-visible {
     transform: translateX(-50%);
   }
 }
+@keyframes hero-reveal {
+  from { opacity: 0.65; transform: scale(1.025); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hero-copy-reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="hero-reveal"], [class*="hero-copy-reveal"] { animation: none !important; }
+}

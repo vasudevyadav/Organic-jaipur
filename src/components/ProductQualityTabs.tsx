@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { BUSINESS } from "@/lib/constants";
+import { safeImageUrl } from "@/lib/utils";
 
 type Category = "GHEE" | "MUSTARD_OIL" | "HONEY" | "PICKLES" | "VEGETABLES" | "FRUITS";
 
@@ -93,7 +94,7 @@ export default function ProductQualityTabs({ productName, category, imageUrl }: 
           <div className="mt-7 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-wide text-white/70"><span className="rounded-full border border-white/15 px-3 py-2">Small batch</span><span className="rounded-full border border-white/15 px-3 py-2">Traceable</span><span className="rounded-full border border-white/15 px-3 py-2">Quality checked</span></div>
         </div>
         <div className="relative hidden min-h-[340px] overflow-hidden lg:block">
-          <Image src={imageUrl} alt="" fill sizes="40vw" className="object-cover" />
+          <Image src={safeImageUrl(imageUrl)} alt="" unoptimized fill sizes="40vw" className="object-cover" />
           <div className="absolute inset-0 bg-linear-to-r from-forest-900 via-forest-900/25 to-transparent" />
           <div className="absolute bottom-6 right-6 rounded-2xl border border-white/20 bg-white/90 p-4 text-forest-900 shadow-xl backdrop-blur">
             <p className="text-[9px] font-extrabold uppercase tracking-[.16em] text-brand-700">Organic Jaipur standard</p>

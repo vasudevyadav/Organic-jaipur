@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import SearchBar from "@/components/SearchBar";
@@ -15,9 +16,7 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-type NavUser = { name: string; email: string } | null;
-
-export default function Navbar({ user = null }: { user?: NavUser }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [processOpen, setProcessOpen] = useState(false);
   const pathname = usePathname();
@@ -77,9 +76,12 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
           onClick={() => setOpen(false)}
           aria-label="Organic Jaipur home"
         >
-          <img
+          <Image
             src="/product/download.png"
             alt="Organic Jaipur"
+            width={210}
+            height={55}
+            sizes="(min-width: 1280px) 210px, 190px"
             className="w-[190px] object-contain object-left mix-blend-multiply xl:w-[210px]"
           />
         </Link>
@@ -184,7 +186,7 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
           </Link>
 
           <Link
-            href={user ? "/account" : "/account/login"}
+            href="/account"
             className="hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-brand-800 hover:bg-brand-50 sm:inline-flex"
           >
             <svg
@@ -201,7 +203,7 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
                 strokeLinecap="round"
               />
             </svg>
-            {user ? user.name.split(" ")[0] : "Login"}
+            Account
           </Link>
 
           <button
@@ -244,9 +246,12 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
         className={`fixed right-0 top-0 z-[70] flex h-dvh w-[min(88vw,390px)] flex-col bg-[#fffdf8] shadow-[-18px_0_60px_rgba(15,40,28,.24)] transition-transform duration-300 ease-out lg:hidden ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex items-center justify-between border-b border-forest-900/10 px-5 py-4">
-          <img
+          <Image
             src="/product/download.png"
             alt="Organic Jaipur"
+            width={205}
+            height={54}
+            sizes="205px"
             className="w-[205px] object-contain object-left mix-blend-multiply"
           />
           <button
@@ -318,11 +323,11 @@ export default function Navbar({ user = null }: { user?: NavUser }) {
         <div className="border-t border-forest-900/10 bg-[#f7f0df] p-5">
           <div className="mb-4 grid grid-cols-2 gap-3">
             <Link
-              href={user ? "/account" : "/account/login"}
+              href="/account"
               onClick={() => setOpen(false)}
               className="rounded-full border border-forest-900/15 bg-white px-4 py-3 text-center text-sm font-bold text-forest-900"
             >
-              {user ? "My Account" : "Login / Register"}
+              My Account
             </Link>
             <Link
               href="/track-order"

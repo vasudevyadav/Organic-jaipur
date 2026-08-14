@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { formatPrice, whatsappOrderLink } from "@/lib/utils";
+import { formatPrice, safeImageUrl, whatsappOrderLink } from "@/lib/utils";
 import {
   categoryLabel,
   STOREFRONT_CATEGORY_VALUES,
@@ -132,8 +132,9 @@ export default async function ProductDetailPage({ params }: Props) {
           <AnimatedSection className="h-full">
             <div className="relative h-full min-h-[560px] overflow-hidden rounded-[2rem] border border-forest-900/8 bg-[#eee8d8] shadow-[0_18px_50px_rgba(15,40,28,.12)] lg:min-h-0">
               <Image
-                src={product.imageUrl}
+                src={safeImageUrl(product.imageUrl)}
                 alt={product.name}
+                unoptimized
                 fill
                 sizes="(max-width: 1023px) 92vw, 44vw"
                 className="object-cover transition-transform duration-700 hover:scale-[1.02]"

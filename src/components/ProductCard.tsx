@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@prisma/client";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, safeImageUrl } from "@/lib/utils";
 import { categoryLabel } from "@/lib/constants";
 import WishlistButton from "@/components/WishlistButton";
 import QuickAddButton from "@/components/QuickAddButton";
@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <Link href={`/products/${product.slug}`} className="block">
           <div className="relative overflow-hidden">
             <img
-              src={product.imageUrl}
+              src={safeImageUrl(product.imageUrl)}
               alt={product.name}
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

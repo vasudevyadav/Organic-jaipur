@@ -22,10 +22,12 @@ import {
   TruckIcon,
 } from "@/components/icons";
 import { STATS, FAQS_HOME } from "@/lib/constants";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
+  title: {
+    absolute: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
+  },
   description:
     "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles. Free delivery in Jaipur, Cash on Delivery, shipped across Rajasthan.",
   alternates: { canonical: "/" },
@@ -42,6 +44,8 @@ export const metadata: Metadata = {
     "buy A2 ghee online Jaipur",
   ],
 };
+
+export const revalidate = 300;
 
 const SHOP_CATEGORIES: CategoryType[] = [
   "GHEE",
@@ -302,45 +306,21 @@ function Avatar({ name }: { name: string }) {
 }
 
 export default async function HomePage() {
-  const bestSellerCandidates = await prisma.product.findMany({
+  const allProducts = await prisma.product.findMany({
     where: { category: { in: SHOP_CATEGORIES } },
     orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
   });
+  const bestSellerCandidates = allProducts;
   const bestSellers = pickDiverseByCategory(bestSellerCandidates, 5);
   const bestSellerIds = new Set(bestSellers.map((p) => p.id));
-
-  const [
-    gheeCandidates,
-    oilCandidates,
-    honeyCandidates,
-    pickleCandidates,
-    shelfExtras,
-  ] = await Promise.all([
-    prisma.product.findMany({
-      where: { category: "GHEE" },
-      orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
-    }),
-    prisma.product.findMany({
-      where: { category: "MUSTARD_OIL" },
-      orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
-    }),
-    prisma.product.findMany({
-      where: { category: "HONEY" },
-      orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
-    }),
-    prisma.product.findMany({
-      where: { category: "PICKLES" },
-      orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
-    }),
-    prisma.product.findMany({
-      where: {
-        category: { in: SHOP_CATEGORIES },
-        id: { notIn: [...bestSellerIds] },
-      },
-      orderBy: { createdAt: "desc" },
-      take: 8,
-    }),
-  ]);
+  const gheeCandidates = allProducts.filter((p) => p.category === "GHEE");
+  const oilCandidates = allProducts.filter((p) => p.category === "MUSTARD_OIL");
+  const honeyCandidates = allProducts.filter((p) => p.category === "HONEY");
+  const pickleCandidates = allProducts.filter((p) => p.category === "PICKLES");
+  const shelfExtras = allProducts
+    .filter((p) => !bestSellerIds.has(p.id))
+    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+    .slice(0, 8);
 
   const gheeProducts = pickByVariety(gheeCandidates, 4);
   const oilProducts = pickByVariety(oilCandidates, 4);
@@ -520,8 +500,9 @@ export default async function HomePage() {
                   className="relative block aspect-square overflow-hidden rounded-[1.3rem] bg-[#f1ecdd]"
                 >
                   <Image
-                    src={item.imageUrl}
+                    src={safeImageUrl(item.imageUrl)}
                     alt={item.name}
+                    unoptimized
                     fill
                     sizes="(max-width: 639px) 68vw, 280px"
                     className="object-cover transition duration-700 group-hover:scale-105"

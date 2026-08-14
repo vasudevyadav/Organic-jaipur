@@ -4,6 +4,21 @@ export function formatPrice(price: number): string {
   return `₹${price.toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
 }
 
+/** Encode each public-file path segment without encoding the `/` separators. */
+export function safeImageUrl(url: string): string {
+  if (!url.startsWith("/")) return url;
+  return url
+    .split("/")
+    .map((segment) => {
+      try {
+        return encodeURIComponent(decodeURIComponent(segment));
+      } catch {
+        return encodeURIComponent(segment);
+      }
+    })
+    .join("/");
+}
+
 export function slugify(text: string): string {
   return text
     .toLowerCase()

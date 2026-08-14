@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@prisma/client";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, safeImageUrl } from "@/lib/utils";
 import QuickAddButton from "@/components/QuickAddButton";
 
 export type ShowcaseTab = {
@@ -67,8 +67,9 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
                   </span>
                 )}
                 <Image
-                  src={item.imageUrl}
+                  src={safeImageUrl(item.imageUrl)}
                   alt={item.name}
+                  unoptimized
                   fill
                   sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 24vw"
                   className="object-cover transition duration-700 group-hover:scale-[1.06]"

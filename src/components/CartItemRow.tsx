@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export default function CartItemRow({ item }: { item: ReturnType<typeof useCart>["items"][number] }) {
   const { updateQuantity, removeItem } = useCart();
@@ -11,7 +11,7 @@ export default function CartItemRow({ item }: { item: ReturnType<typeof useCart>
     <article className="group grid grid-cols-[82px_minmax(0,1fr)] gap-4 border-b border-forest-900/8 py-5 first:pt-0 last:border-0 last:pb-0 sm:grid-cols-[96px_minmax(0,1fr)_auto] sm:items-center sm:gap-5">
       <Link href={`/products/${item.slug}`} className="relative shrink-0 overflow-hidden rounded-2xl bg-[#f2eddf]">
         <img
-          src={item.imageUrl}
+          src={safeImageUrl(item.imageUrl)}
           alt={item.name}
           className="h-[82px] w-[82px] object-cover transition duration-500 group-hover:scale-105 sm:h-24 sm:w-24"
         />

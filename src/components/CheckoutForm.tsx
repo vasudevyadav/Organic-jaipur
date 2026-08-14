@@ -6,7 +6,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import type { Address } from "@prisma/client";
 import { useCart } from "@/lib/cart";
 import { useHydrated } from "@/lib/useHydrated";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, safeImageUrl } from "@/lib/utils";
 import { FREE_SHIPPING_THRESHOLD, ONLINE_PAYMENT_DISCOUNT_PERCENT, SHIPPING_FEE } from "@/lib/constants";
 
 type RazorpayResponse = {
@@ -411,7 +411,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             {items.map((item) => (
               <div key={item.productId} className="border-b border-forest-900/8 pb-4 last:border-0 last:pb-0">
                 <div className="flex items-center gap-3">
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#f3eee1]"><img src={item.imageUrl} alt={item.name} className="h-full w-full object-cover" /></div>
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#f3eee1]"><img src={safeImageUrl(item.imageUrl)} alt={item.name} className="h-full w-full object-cover" /></div>
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-2 font-display text-sm leading-tight text-forest-900">{item.name}</p>
                     <p className="mt-1 text-[10px] font-semibold text-forest-900/40">{item.unit} · {formatPrice(item.price)} each</p>

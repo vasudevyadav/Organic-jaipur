@@ -6,7 +6,7 @@ import type { Product } from "@prisma/client";
 import ScrollCarousel from "@/components/home/ScrollCarousel";
 import QuickAddButton from "@/components/QuickAddButton";
 import WishlistButton from "@/components/WishlistButton";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export default function BestSellerCarousel({ items }: { items: Product[] }) {
   return (
@@ -27,8 +27,9 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
                 <WishlistButton productId={item.id} />
               </span>
               <Image
-                src={item.imageUrl}
+                src={safeImageUrl(item.imageUrl)}
                 alt={item.name}
+                unoptimized
                 fill
                 sizes="(max-width: 639px) 76vw, 300px"
                 className="object-cover transition duration-700 group-hover:scale-[1.05]"

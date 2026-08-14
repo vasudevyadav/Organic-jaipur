@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 
 export type HeroSlide = {
   image: string;
@@ -41,15 +40,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
 
   return (
     <section className="hero-grain relative overflow-hidden bg-[#172117] sm:min-h-[620px] lg:min-h-[680px]">
-      <AnimatePresence mode="sync">
-        <motion.div
-          key={active}
-          initial={{ opacity: 0, scale: 1.06 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="absolute inset-x-0 top-0 h-[330px] sm:inset-0 sm:h-auto"
-        >
+      <div key={active} className="absolute inset-x-0 top-0 h-[330px] animate-[hero-reveal_700ms_ease-out] sm:inset-0 sm:h-auto">
           <Image
             src={slide.image}
             alt={slide.alt}
@@ -60,19 +51,10 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
           />
           <div className="absolute inset-0 bg-linear-to-t from-forest-900/25 to-transparent sm:bg-[linear-gradient(90deg,rgba(8,29,20,.92)_0%,rgba(8,29,20,.68)_42%,rgba(8,29,20,.15)_78%)]" />
           <div className="absolute inset-0 hidden bg-[linear-gradient(0deg,rgba(8,29,20,.82)_0%,transparent_42%)] sm:block" />
-        </motion.div>
-      </AnimatePresence>
+      </div>
 
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-center px-6 pb-10 pt-[366px] text-cream sm:min-h-[620px] sm:px-8 sm:pb-32 sm:pt-16 lg:min-h-[680px] lg:pb-36">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="max-w-2xl"
-          >
+          <div key={active} className="max-w-2xl animate-[hero-copy-reveal_450ms_ease-out]">
             <p className="mb-4 flex items-center gap-3 text-[10px] font-bold tracking-[.28em] text-honey-400 uppercase sm:mb-6 sm:text-xs">
               <span className="h-px w-10 bg-honey-400" /> {slide.eyebrow}
             </p>
@@ -94,8 +76,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                 {slide.secondaryCta.label}
               </Link>
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </div>
       </div>
 
       <div className="relative z-10 border-t border-white/15 bg-forest-900/80 sm:absolute sm:inset-x-0 sm:bottom-0 sm:bg-forest-900/50 sm:backdrop-blur-md">
