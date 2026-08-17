@@ -14,6 +14,9 @@ export async function POST(request: NextRequest) {
   if (!order?.razorpayOrderId || !secret || order.paymentMethod !== "RAZORPAY") {
     return NextResponse.json({ error: "Payment order not found." }, { status: 404 });
   }
+  if (order.status === "MANUAL_APPROVAL_REQUIRED" || order.status === "REJECTED" || order.status === "CANCELLED") {
+    return NextResponse.json({ error: "This order is not eligible for automatic confirmation." }, { status: 409 });
+  }
 
   const expected = createHmac("sha256", secret).update(`${order.razorpayOrderId}|${razorpayPaymentId}`).digest("hex");
   const expectedBuffer = Buffer.from(expected, "utf8");

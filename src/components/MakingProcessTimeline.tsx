@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 type Step = { title: string; detail: string; note: string };
 
-export default function MakingProcessTimeline({ steps, strip }: { steps: readonly Step[]; strip: string }) {
+export default function MakingProcessTimeline({ steps, images }: { steps: readonly Step[]; images: readonly string[] }) {
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 70%", "end 45%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 26, mass: 0.35 });
@@ -26,7 +26,7 @@ export default function MakingProcessTimeline({ steps, strip }: { steps: readonl
               transition={{ duration: 0.7, ease: "easeOut" }}
               className={`h-[320px] overflow-hidden rounded-[1.8rem] border-4 border-white bg-white shadow-[0_24px_65px_rgba(15,40,28,.16)] sm:h-[430px] ${index % 2 === 0 ? "lg:col-start-1" : "lg:col-start-3"}`}
             >
-              <div role="img" aria-label={step.title} className="h-full w-full bg-no-repeat" style={{ backgroundImage: `url(${strip})`, backgroundSize: "400% auto", backgroundPosition: `${(index / Math.max(steps.length - 1, 1)) * 100}% center` }} />
+              <div role="img" aria-label={step.title} className="h-full w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${images[index]})` }} />
             </motion.div>
           );
 

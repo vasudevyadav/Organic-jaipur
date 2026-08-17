@@ -11,6 +11,7 @@ type Props = {
     name: string;
     price: number;
     unit: string;
+    weight: number;
     imageUrl: string;
     inStock: boolean;
   };
@@ -27,7 +28,7 @@ export default function QuickAddButton({ product, fullWidth = false }: Props) {
       router.push("/cart");
       return;
     }
-    addItem({ productId: product.id, slug: product.slug, name: product.name, price: product.price, unit: product.unit, imageUrl: product.imageUrl });
+    addItem({ productId: product.id, slug: product.slug, name: product.name, price: product.price, unit: product.unit, weight: product.weight, imageUrl: product.imageUrl });
     setAdded(true);
     window.setTimeout(() => setAdded(false), 3000);
   }

@@ -14,6 +14,7 @@ export const productSchema = z.object({
   price: z.coerce.number().positive(),
   originalPrice: z.coerce.number().positive().optional().or(z.literal("").transform(() => undefined)),
   unit: z.string().min(1).max(40),
+  weight: z.coerce.number().int().nonnegative(),
   description: z.string().min(10).max(2000),
   ingredients: z.string().max(1000).optional().or(z.literal("")),
   benefits: z.string().max(1000).optional().or(z.literal("")),
@@ -102,6 +103,10 @@ export const couponSchema = z.object({
   type: z.enum(["PERCENT", "FIXED"]),
   value: z.coerce.number().positive(),
   minOrderValue: z.coerce.number().nonnegative().optional(),
+  maximumDiscount: z.coerce.number().nonnegative().optional(),
+  canStack: z.coerce.boolean().default(false),
+  usageLimit: z.coerce.number().int().positive().optional(),
+  firstOrderOnly: z.coerce.boolean().default(false),
   expiresAt: z.string().optional().or(z.literal("")),
   active: z.coerce.boolean().default(true),
 });

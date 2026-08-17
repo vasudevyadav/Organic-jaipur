@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { contactSchema } from "@/lib/validation";
+import { notifyAdminOfContact } from "@/lib/admin-email";
 
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
@@ -15,6 +16,10 @@ export async function POST(request: NextRequest) {
   const submission = await prisma.contactSubmission.create({
     data: { name, email, phone: phone || null, message },
   });
+
+  await notifyAdminOfContact(submission).catch((error) =>
+    console.error("Contact notification failed", error)
+  );
 
   return NextResponse.json({ submission }, { status: 201 });
 }

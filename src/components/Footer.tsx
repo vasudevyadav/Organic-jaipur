@@ -31,15 +31,15 @@ export default function Footer() {
             className="h-14 w-[240px] object-contain object-left mix-blend-multiply"
           />
           <p className="mt-5 max-w-xs font-display text-2xl leading-snug">
-            Jaipur-Made Pantry Essentials.
+            Sirf Rasoi Ka Samaan Nahi,
             <br />
-            Delivered to Your Door.
+            Jaipur Ka Bharosa Hai.
           </p>
           <p className="mt-2 max-w-xs font-display text-sm italic text-forest-900/50">
             Rajasthan Ki Paramparik Rasoi, Seedha Aapke Ghar
           </p>
           <p className="mt-4 max-w-xs text-sm leading-6 text-forest-900/60">
-            Shop bilona ghee, cold-pressed oils, raw honey and pickles with
+            Shop cow and Buffalo Bilona ghee, cold-pressed oils, raw honey and lal mirch chutney with
             clear ingredients, pack sizes and storage details.
           </p>
         </div>
@@ -140,6 +140,14 @@ export default function Footer() {
                 className="hover:text-[#e7ad42]"
               >
                 {BUSINESS.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${BUSINESS.email}`}
+                className="break-all hover:text-[#e7ad42]"
+              >
+                {BUSINESS.email}
               </a>
             </li>
             <li>

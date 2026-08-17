@@ -14,9 +14,9 @@ export default function NewsletterBar() {
     <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6">
       <div>
         <p className="font-display text-lg font-semibold text-cream">
-          Join the Organic Jaipur Family
+          Rishta Sirf Kharidari Ka Nahi
         </p>
-        <p className="text-sm text-cream/65">Farm-fresh updates, straight to your inbox.</p>
+        <p className="text-sm text-cream/65">Farm ki taaza khabrein, seedha aapke inbox tak.</p>
       </div>
 
       {subscribed ? (

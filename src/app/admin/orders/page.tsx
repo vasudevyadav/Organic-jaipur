@@ -12,7 +12,10 @@ type Props = {
 function statusBadgeClass(status: OrderStatusValue): string {
   switch (status) {
     case "PENDING":
+    case "PAYMENT_PENDING":
       return "bg-honey-400/20 text-honey-600";
+    case "MANUAL_APPROVAL_REQUIRED":
+      return "bg-terracotta-500/15 text-terracotta-600";
     case "CONFIRMED":
     case "PACKED":
     case "OUT_FOR_DELIVERY":
@@ -20,7 +23,10 @@ function statusBadgeClass(status: OrderStatusValue): string {
     case "DELIVERED":
       return "bg-brand-700 text-cream";
     case "CANCELLED":
+    case "REJECTED":
       return "bg-foreground/10 text-foreground/50 line-through";
+    case "REFUNDED":
+      return "bg-blue-100 text-blue-700";
     default:
       return "bg-foreground/10 text-foreground/60";
   }

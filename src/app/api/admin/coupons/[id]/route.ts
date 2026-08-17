@@ -40,6 +40,10 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       ...(data.type !== undefined ? { type: data.type } : {}),
       ...(data.value !== undefined ? { value: data.value } : {}),
       ...(data.minOrderValue !== undefined ? { minOrderValue: data.minOrderValue } : {}),
+      ...(data.maximumDiscount !== undefined ? { maximumDiscount: data.maximumDiscount } : {}),
+      ...(data.canStack !== undefined ? { canStack: data.canStack } : {}),
+      ...(data.usageLimit !== undefined ? { usageLimit: data.usageLimit } : {}),
+      ...(data.firstOrderOnly !== undefined ? { firstOrderOnly: data.firstOrderOnly } : {}),
       ...(data.expiresAt !== undefined
         ? { expiresAt: data.expiresAt ? new Date(data.expiresAt) : null }
         : {}),

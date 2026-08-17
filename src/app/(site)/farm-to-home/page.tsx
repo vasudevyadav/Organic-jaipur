@@ -6,10 +6,10 @@ import { BUSINESS } from "@/lib/constants";
 export const metadata = { title: "From Our Farm to Your Home | Organic Jaipur", description: "See how your order reaches you: grown on our farm, made in small batches, checked, then delivered to your door in Jaipur." };
 
 const STEPS = [
-  { number: "01", title: "Grown or Raised on Our Farm", eyebrow: "Grow", copy: "Our Gir cows, mustard fields and managed beehives are on our farm. Mango, lemon, chilli and other seasonal pickle produce are grown here too.", image: "/images/organic-jaipur-farmer-community-v1.png", note: "Owned and managed by us" },
-  { number: "02", title: "Made in Small Batches", eyebrow: "Process", copy: "Bilona churning, wooden-ghani pressing and minimal honey processing take time. We choose methods that protect character instead of chasing speed.", image: "/images/bilona-story-v2.png", note: "Small, monitored batches" },
-  { number: "03", title: "Checked and Packed", eyebrow: "Quality", copy: "Incoming ingredients, production handling, finished taste and pack integrity are reviewed. Batch information is maintained for traceability.", image: "/images/founder-with-a2-ghee-v1.png", note: "Batch-linked checks" },
-  { number: "04", title: "Delivered to Your Door", eyebrow: "Delivery", copy: "Free delivery in Jaipur; shipped across Rajasthan via courier, with real support available before and after delivery.", image: "/images/organic-jaipur-hero-v2.png", note: "Human support on WhatsApp" },
+  { number: "01", title: "Apne Farm Se Shuruwat", eyebrow: "Ugana", copy: "Gir cows, sarson ke khet aur managed beehives hamare apne farm par hain. Achar ke liye aam, nimbu aur mirch bhi mausam ke saath yahin ugte hain.", image: "/images/organic-jaipur-farmer-community-v1.png", note: "Apna farm, apni dekhbhaal" },
+  { number: "02", title: "Chhote Batch, Poora Dhyaan", eyebrow: "Banana", copy: "Bilona churning, wooden-ghani pressing aur honey filtering waqt lete hain. Hum raftaar se pehle asli character ko chunte hain.", image: "/images/bilona-story-v2.png", note: "Har batch par nazar" },
+  { number: "03", title: "Jaanch Ke Baad Hi Pack", eyebrow: "Shuddhta", copy: "Ingredients, process, final taste aur pack—har cheez dekhi jaati hai. Har batch ki jaankari traceability ke liye sambhali jaati hai.", image: "/images/founder-with-a2-ghee-v1.png", note: "Batch se judi jaanch" },
+  { number: "04", title: "Sambhaal Se Aapke Ghar Tak", eyebrow: "Delivery", copy: "Jaipur mein free delivery aur Rajasthan bhar courier. Delivery se pehle aur baad, WhatsApp par apni team ka seedha support.", image: "/images/organic-jaipur-hero-v2.png", note: "WhatsApp par apni team" },
 ] as const;
 
 export default function FarmToHomePage() {
@@ -21,7 +21,7 @@ export default function FarmToHomePage() {
         <div className="relative mx-auto flex min-h-[560px] max-w-7xl items-center px-5 py-20 sm:px-8">
           <AnimatedSection className="max-w-3xl">
             <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400"><span className="h-px w-10 bg-honey-400" /> The Organic Jaipur Way</p>
-            <h1 className="mt-6 font-display text-5xl leading-[.94] tracking-[-.04em] sm:text-7xl">Khet Se Shuruaat,<br /><em className="font-normal text-honey-400">Aapke Ghar Tak Bharosa.</em></h1>
+            <h1 className="mt-6 font-display text-5xl leading-[.94] tracking-[-.04em] sm:text-7xl">Apne Farm Se Shuruwat,<br /><em className="font-normal text-honey-400">Aapke Ghar Tak Bharosa.</em></h1>
             <p className="mt-2 font-display text-base italic text-honey-400/70">Khet Se Bharosa Tak</p>
             <p className="mt-5 max-w-xl text-base leading-7 text-white/68">How your order actually reaches you. Every step below happens before it ships, not after.</p>
             <div className="mt-8 flex flex-wrap gap-3"><Link href="#journey" className="rounded-full bg-honey-400 px-7 py-3.5 text-sm font-bold text-forest-900">Follow the journey ↓</Link><a href={`https://wa.me/${BUSINESS.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="rounded-full border border-white/25 px-7 py-3.5 text-sm font-bold text-white">Ask about sourcing</a></div>

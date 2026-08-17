@@ -26,10 +26,10 @@ import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
+    absolute: "A2 & Buffalo Ghee, Mustard Oil, Honey & Chutney | Organic Jaipur",
   },
   description:
-    "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles. Free delivery in Jaipur, Cash on Delivery, shipped across Rajasthan.",
+    "Own-farm A2 and Buffalo Bilona ghee, cold-pressed oils, raw honey and Rajasthani lal mirch chutney. Free delivery in Jaipur and Cash on Delivery.",
   alternates: { canonical: "/" },
   keywords: [
     "organic Jaipur",
@@ -56,22 +56,40 @@ const SHOP_CATEGORIES: CategoryType[] = [
 
 const heroSlides: HeroSlide[] = [
   {
-    image: "/images/generated/banner-ghee-farm-v3.jpg",
+    image: "/images/generated/banner-ghee-farm-v4.png",
     alt: "Traditional wooden bilona used to make A2 Gir Cow Ghee in Jaipur",
     focal: "object-right sm:object-center",
-    eyebrow: "A2 Gir Cow Bilona Ghee",
+    eyebrow: "Gir, Desi & Buffalo Bilona Ghee",
     title: (
       <>
         Ye Ghee Nahi,{" "}
         <em className="font-normal text-honey-400">Bharosa Hai.</em>
       </>
     ),
-    copy: "Curd-churned in a wooden bilona and slow-cooked for a grainy texture and deep aroma. Choose 500 g, 1 kg or 2 kg.",
+    copy: "Choose aromatic Gir cow ghee, everyday Desi cow ghee or rich Buffalo Bilona Ghee—available in 500 g, 1 kg and 2 kg packs.",
     primaryCta: { label: "Shop A2 Ghee", href: "/products?category=GHEE" },
     secondaryCta: { label: "See How It’s Made", href: "/farm-to-home" },
   },
   {
-    image: "/images/generated/banner-mustard-ghani-v3.jpg",
+    image: "/images/generated/banner-honey-apiary-v4.png",
+    alt: "Raw wild forest honey available for delivery in Jaipur",
+    focal: "object-right sm:object-center",
+    eyebrow: "Raw Wild Forest Honey",
+    title: (
+      <>
+        Mithaas Wahi,{" "}
+        <em className="font-normal text-honey-400">Jo Kudrat Ne Banayi.</em>
+      </>
+    ),
+    copy: "Raw, unheated and lightly filtered, with no added sugar or syrup. Order a 500 g jar for everyday use.",
+    primaryCta: { label: "Shop Raw Honey", href: "/products?category=HONEY" },
+    secondaryCta: {
+      label: "See the Honey Process",
+      href: "/making-process/raw-honey",
+    },
+  },
+  {
+    image: "/images/generated/banner-mustard-ghani-v4.png",
     alt: "Traditional wooden ghani pressing mustard oil in Rajasthan",
     focal: "object-right sm:object-center",
     eyebrow: "Kachi Ghani Mustard Oil",
@@ -92,25 +110,7 @@ const heroSlides: HeroSlide[] = [
     },
   },
   {
-    image: "/images/generated/banner-honey-apiary-v3.jpg",
-    alt: "Raw wild forest honey available for delivery in Jaipur",
-    focal: "object-right sm:object-center",
-    eyebrow: "Raw Wild Forest Honey",
-    title: (
-      <>
-        Mithaas Wahi,{" "}
-        <em className="font-normal text-honey-400">Jo Kudrat Ne Banayi.</em>
-      </>
-    ),
-    copy: "Raw, unheated and lightly filtered, with no added sugar or syrup. Order a 500 g jar for breakfast, tea and everyday use.",
-    primaryCta: { label: "Shop Raw Honey", href: "/products?category=HONEY" },
-    secondaryCta: {
-      label: "See the Honey Process",
-      href: "/making-process/raw-honey",
-    },
-  },
-  {
-    image: "/images/generated/banner-pickle-courtyard-v3.jpg",
+    image: "/images/generated/banner-pickle-courtyard-v4.png",
     alt: "Traditional Rajasthani green chilli pickle made in small batches",
     focal: "object-right sm:object-center",
     eyebrow: "Rajasthani Pickles and Chutneys",
@@ -131,33 +131,33 @@ const heroSlides: HeroSlide[] = [
 
 const journeySteps = [
   {
-    title: "Apni Gaushala Se Shuruaat",
+    title: "Apne Farm Se Shuruwat",
     copy: "A2 milk hamari apni Gir cows se aata hai, jinhe Organic Jaipur farm par dekhbhaal ke saath paala jaata hai.",
-    image: "/images/generated/founder-gir-cow-care.webp",
+    image: "/images/generated/journey-own-farm-v2.png",
     alt: "Organic Jaipur founder caring for an indigenous Gir cow",
   },
   {
     title: "Mitti Ke Bartan Mein Jama Dahi",
     copy: "Taaza A2 milk ko raat bhar mitti ke bartanon mein dahi banne diya jaata hai—bilkul purane gharon ki tarah.",
-    image: "/images/generated/journey-curd.webp",
+    image: "/images/generated/journey-curd-v2.png",
     alt: "Fresh A2 milk set into curd overnight in earthen pots",
   },
   {
     title: "Lakdi Ke Bilona Se Manthan",
     copy: "Dahi ko lakdi ke bilona se mathkar makkhan nikala jaata hai. Na machine ki jaldi, na process mein shortcut.",
-    image: "/images/bilona-story-v2.png",
+    image: "/images/generated/journey-bilona-v2.png",
     alt: "Traditional wooden bilona hand-churning curd in an earthen pot",
   },
   {
     title: "Dheemi Aanch Par Sunehra Ghee",
     copy: "Makkhan ko dheemi aanch par pakaya jaata hai, jab tak woh daanedaar, khushbudaar ghee na ban jaaye.",
-    image: "/images/generated/journey-slow-ghee.webp",
+    image: "/images/generated/journey-slow-ghee-v2.png",
     alt: "Butter slowly simmering into golden ghee in a brass kadai",
   },
   {
     title: "Khet Se, Sambhaal Ke",
-    copy: "Sarson hamare kheton se lakdi ki ghani tak jaati hai, aur raw honey apne farm par sambhale gaye beehives se aata hai.",
-    image: "/images/generated/journey-mustard-apiary.webp",
+    copy: "Sarson hamare kheton se lakdi ki ghani tak jaati hai, aur lal mirch chutney apne farm ki mirch aur masalon se chhote batches mein banti hai.",
+    image: "/images/generated/journey-source-v2.png",
     alt: "Rajasthan farmers harvesting mustard beside managed beehives",
   },
 ];
@@ -170,7 +170,7 @@ const experienceReasons = [
   },
   {
     title: "Har Cheez Ka Sahi Tareeka",
-    copy: "Bilona-churned ghee, wooden-ghani oils aur sirf lightly filtered raw honey.",
+    copy: "Bilona-churned ghee, wooden-ghani mustard oil aur small-batch lal mirch chutney.",
     icon: LeafIcon,
   },
   {
@@ -317,6 +317,12 @@ export default async function HomePage() {
   const oilCandidates = allProducts.filter((p) => p.category === "MUSTARD_OIL");
   const honeyCandidates = allProducts.filter((p) => p.category === "HONEY");
   const pickleCandidates = allProducts.filter((p) => p.category === "PICKLES");
+  const mainProducts = [
+    gheeCandidates.find((p) => p.name === "A2 Gir Cow Ghee"),
+    gheeCandidates.find((p) => p.name === "Buffalo Bilona Ghee"),
+    oilCandidates.find((p) => p.name === "Kachi Ghani Black Mustard Oil"),
+    pickleCandidates.find((p) => p.name === "Rajasthani Laal Mirch Chutney"),
+  ].filter((product): product is NonNullable<typeof product> => Boolean(product));
   const shelfExtras = allProducts
     .filter((p) => !bestSellerIds.has(p.id))
     .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
@@ -324,31 +330,32 @@ export default async function HomePage() {
 
   const gheeProducts = pickByVariety(gheeCandidates, 4);
   const oilProducts = pickByVariety(oilCandidates, 4);
-  const moreProducts = pickByVariety(
-    [...pickleCandidates, ...honeyCandidates],
-    4,
-  );
+  const chutneyProducts = pickByVariety(pickleCandidates, 4);
+  const honeyProducts = pickByVariety(honeyCandidates, 4);
 
   const categoryTabs: ShowcaseTab[] = [
     {
-      key: "bestseller",
-      label: "Bestseller",
+      key: "main-products",
+      label: "Main Products",
       icon: "⭐",
-      items: bestSellers.slice(0, 4),
+      items: mainProducts,
     },
-    { key: "ghee", label: "Ghee", icon: "🧈", items: gheeProducts },
-    { key: "oils", label: "Cold-Pressed Oils", icon: "🫒", items: oilProducts },
+    { key: "ghee", label: "Ghee incl. Buffalo", icon: "🧈", items: gheeProducts },
+    { key: "oils", label: "Mustard Oil", icon: "🫒", items: oilProducts },
     {
-      key: "more",
-      label: "Pickles & More",
+      key: "chutney",
+      label: "Lal Mirch Chutney",
       icon: "🌶️",
-      items: moreProducts,
+      items: chutneyProducts,
     },
+    { key: "honey", label: "Raw Honey", icon: "🍯", items: honeyProducts },
   ];
 
   return (
     <main className="overflow-hidden">
-      <HeroCarousel slides={heroSlides} />
+      <HeroCarousel
+        slides={[heroSlides[0], heroSlides[2], heroSlides[3], heroSlides[1]]}
+      />
 
       <TrustTicker />
 
@@ -365,7 +372,7 @@ export default async function HomePage() {
             </em>
           </h2>
           <p className="mx-auto mt-4 max-w-xl leading-7 text-forest-900/75">
-            Ghee, kachi ghani oil, raw honey aur ghar-jaisa Rajasthani achar—
+            Gir, Desi aur Buffalo ghee, kachi ghani oil, raw honey aur lal mirch chutney—
             swaad, pack size aur istemaal ke hisaab se apna product chuniye.
           </p>
           <Link
@@ -426,7 +433,7 @@ export default async function HomePage() {
               Khet Se Rasoi Tak
             </p>
             <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
-              Khet Se Shuruaat,{" "}
+              Khet Se Shuruwat,{" "}
               <em className="font-normal text-brand-700">Rasoi Tak Bharosa.</em>
             </h2>
           </AnimatedSection>
@@ -525,6 +532,7 @@ export default async function HomePage() {
                       name: item.name,
                       price: item.price,
                       unit: item.unit,
+                      weight: item.weight,
                       imageUrl: item.imageUrl,
                       inStock: item.inStock,
                     }}

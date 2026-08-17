@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatPrice, formatDate } from "@/lib/utils";
-import { BUSINESS } from "@/lib/constants";
+import { BUSINESS, MANUAL_APPROVAL_CUSTOMER_MESSAGE } from "@/lib/constants";
 import OrderSuccessAnimation from "@/components/OrderSuccessAnimation";
 
 type Props = { params: Promise<{ orderNumber: string }> };
@@ -22,7 +22,8 @@ export default async function OrderConfirmationPage({ params }: Props) {
   if (!order) notFound();
 
   const paidOnline = order.paymentMethod === "RAZORPAY" && order.paymentStatus === "PAID";
-  const paymentLabel = paidOnline ? "Paid online" : "Cash on delivery";
+  const manualApproval = order.status === "MANUAL_APPROVAL_REQUIRED";
+  const paymentLabel = paidOnline ? "Paid online" : order.paymentMethod === "RAZORPAY" ? "Payment after approval" : "Cash on delivery";
 
   return (
     <main className="min-h-[75vh] bg-[#fbf8ef] px-4 py-10 sm:px-6 sm:py-16">
@@ -30,19 +31,19 @@ export default async function OrderConfirmationPage({ params }: Props) {
       <div className="relative overflow-hidden rounded-[2rem] border border-brand-200/70 bg-white px-6 py-10 text-center shadow-[0_24px_70px_rgba(15,40,28,.10)] sm:px-12 sm:py-12">
         <div className="absolute inset-x-0 top-0 h-1.5 bg-linear-to-r from-brand-500 via-honey-400 to-terracotta-500" />
         <OrderSuccessAnimation />
-        <p className="mt-3 text-[10px] font-extrabold uppercase tracking-[.22em] text-brand-700">Order confirmed</p>
+        <p className="mt-3 text-[10px] font-extrabold uppercase tracking-[.22em] text-brand-700">{manualApproval ? "Order received" : "Order confirmed"}</p>
         <h1 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-5xl">
-          Thank you for your order!
+          {manualApproval ? "We’re reviewing your order" : "Thank you for your order!"}
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-forest-900/60 sm:text-base">
-          Hi {order.customerName}, your order has been received. We&apos;ll prepare it carefully and keep you updated as it moves toward your doorstep.
+          {manualApproval ? MANUAL_APPROVAL_CUSTOMER_MESSAGE : <>Hi {order.customerName}, your order has been received. We&apos;ll prepare it carefully and keep you updated as it moves toward your doorstep.</>}
         </p>
         <div className="mx-auto mt-7 flex max-w-md flex-col overflow-hidden rounded-2xl border border-forest-900/10 bg-[#faf7ee] sm:flex-row sm:divide-x sm:divide-forest-900/10">
           <div className="flex-1 px-5 py-3"><p className="text-[9px] font-bold uppercase tracking-wider text-forest-900/40">Order number</p><p className="mt-1 font-mono text-sm font-bold text-forest-900">{order.orderNumber}</p></div>
           <div className="flex-1 border-t border-forest-900/10 px-5 py-3 sm:border-0"><p className="text-[9px] font-bold uppercase tracking-wider text-forest-900/40">Payment</p><p className="mt-1 text-sm font-bold text-brand-700">{paymentLabel}</p></div>
         </div>
 
-        <div className="mx-auto mt-8 flex max-w-xl items-start justify-between text-[10px] font-bold text-forest-900/45">
+        {!manualApproval && <div className="mx-auto mt-8 flex max-w-xl items-start justify-between text-[10px] font-bold text-forest-900/45">
           {["Confirmed", "Preparing", "On the way", "Delivered"].map((step, index) => (
             <div key={step} className="relative flex flex-1 flex-col items-center gap-2">
               {index > 0 && <span className="absolute right-1/2 top-3 h-px w-full bg-forest-900/15" />}
@@ -50,7 +51,7 @@ export default async function OrderConfirmationPage({ params }: Props) {
               <span className={index === 0 ? "text-brand-700" : ""}>{step}</span>
             </div>
           ))}
-        </div>
+        </div>}
       </div>
 
       <div className="mt-7 grid gap-6 lg:grid-cols-[1.2fr_.8fr]">

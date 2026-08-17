@@ -7,7 +7,8 @@ import type { Address } from "@prisma/client";
 import { useCart } from "@/lib/cart";
 import { useHydrated } from "@/lib/useHydrated";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
-import { FREE_SHIPPING_THRESHOLD, ONLINE_PAYMENT_DISCOUNT_PERCENT, SHIPPING_FEE } from "@/lib/constants";
+import { ONLINE_PAYMENT_DISCOUNT_PERCENT } from "@/lib/constants";
+import { calculateShipping } from "@/lib/shipping";
 
 type RazorpayResponse = {
   razorpay_payment_id: string;
@@ -41,16 +42,17 @@ type CheckoutFormProps = {
 
 export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
   const router = useRouter();
-  const { items, subtotal, itemCount, clearCart, removeItem, updateQuantity } = useCart();
+  const { items, subtotal, itemCount, totalWeight, clearCart, removeItem, updateQuantity } = useCart();
   const hydrated = useHydrated();
   const [couponCode, setCouponCode] = useState<string | null>(null);
-  const [couponOffer, setCouponOffer] = useState<{ type: "PERCENT" | "FIXED"; value: number } | null>(null);
+  const [couponOffer, setCouponOffer] = useState<{ type: "PERCENT" | "FIXED"; value: number; canStack: boolean } | null>(null);
   const [couponInput, setCouponInput] = useState("");
   const [couponError, setCouponError] = useState("");
   const [applyingCoupon, setApplyingCoupon] = useState(false);
   const [discount, setDiscount] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState<"RAZORPAY" | "COD">("RAZORPAY");
   const [submitting, setSubmitting] = useState(false);
+  const [orderCompleted, setOrderCompleted] = useState(false);
   const [error, setError] = useState("");
 
   const defaultAddress = addresses.find((a) => a.isDefault) ?? addresses[0];
@@ -87,7 +89,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
     fetch("/api/coupons/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code: couponCode, subtotal }),
+      body: JSON.stringify({ code: couponCode, items: items.map((item) => ({ productId: item.productId, quantity: item.quantity })) }),
       signal: controller.signal,
     })
       .then(async (res) => ({ ok: res.ok, data: await res.json().catch(() => null) }))
@@ -95,7 +97,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
         if (ok) {
           setDiscount(data?.discount ?? 0);
           if ((data?.type === "PERCENT" || data?.type === "FIXED") && typeof data?.value === "number") {
-            setCouponOffer({ type: data.type, value: data.value });
+            setCouponOffer({ type: data.type, value: data.value, canStack: data.canStack === true });
           }
           setCouponError("");
         } else {
@@ -113,7 +115,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
       });
 
     return () => controller.abort();
-  }, [couponCode, subtotal]);
+  }, [couponCode, items, subtotal]);
 
   function selectAddress(address: Address | null) {
     if (!address) {
@@ -132,9 +134,10 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
     }));
   }
 
-  const shippingFee = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+  const shipping = calculateShipping({ city: form.city, state: form.state, orderValue: subtotal, totalWeight });
+  const shippingFee = shipping.shippingCharge;
   const onlinePaymentDiscount =
-    paymentMethod === "RAZORPAY"
+    paymentMethod === "RAZORPAY" && (!couponCode || couponOffer?.canStack)
       ? ((subtotal - discount) * ONLINE_PAYMENT_DISCOUNT_PERCENT) / 100
       : 0;
   const total = Math.max(subtotal - discount - onlinePaymentDiscount + shippingFee, 0);
@@ -152,7 +155,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
       const response = await fetch("/api/coupons/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code, subtotal }),
+        body: JSON.stringify({ code, items: items.map((item) => ({ productId: item.productId, quantity: item.quantity })) }),
       });
       const data = await response.json().catch(() => null);
       if (!response.ok) {
@@ -161,7 +164,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
       }
 
       setCouponCode(data.code);
-      setCouponOffer({ type: data.type, value: data.value });
+      setCouponOffer({ type: data.type, value: data.value, canStack: data.canStack === true });
       setCouponInput(data.code);
       setDiscount(data.discount ?? 0);
       sessionStorage.setItem("oj_coupon", data.code);
@@ -224,7 +227,16 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
       return;
     }
 
+    if (data.requiresManualApproval) {
+      setOrderCompleted(true);
+      sessionStorage.removeItem("oj_coupon");
+      clearCart();
+      router.push(`/order-confirmation/${data.order.orderNumber}?manualApproval=1`);
+      return;
+    }
+
     if (paymentMethod === "COD") {
+      setOrderCompleted(true);
       sessionStorage.removeItem("oj_coupon");
       clearCart();
       router.push(`/order-confirmation/${data.order.orderNumber}`);
@@ -270,6 +282,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
           }
 
           sessionStorage.removeItem("oj_coupon");
+          setOrderCompleted(true);
           clearCart();
           router.push(`/order-confirmation/${data.order.orderNumber}`);
         } catch {
@@ -287,7 +300,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
     razorpay.open();
   }
 
-  if (hydrated && itemCount === 0) {
+  if (hydrated && itemCount === 0 && !orderCompleted) {
     return (
       <main className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
         <h1 className="font-display text-2xl font-semibold text-brand-900">Your cart is empty</h1>
@@ -480,6 +493,12 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
               <span>Delivery</span>
               <span>{shippingFee === 0 ? "Free" : formatPrice(shippingFee)}</span>
             </div>
+            <p className="rounded-xl bg-honey-400/15 px-3 py-2 text-xs font-bold text-forest-900">
+              {shipping.message}
+              {shipping.amountToFreeShipping > 0 && shipping.reason === "Rajasthan Weight Based Shipping"
+                ? ` · ₹${shipping.amountToFreeShipping} aur add karein aur FREE DELIVERY paayein`
+                : ""}
+            </p>
             <div className="flex items-end justify-between border-t border-forest-900/10 pt-4 font-bold text-forest-900">
               <span>Total</span>
               <span className="font-display text-3xl">{formatPrice(total)}</span>

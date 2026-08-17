@@ -6,8 +6,14 @@ export const MAKING_PROCESSES = [
     eyebrow: "Traditional Bilona Method",
     title: "From Fresh Milk to Golden Ghee",
     intro: "Four stages: cultured curd, patient hand-churning and slow cooking, with no cream-separator shortcuts.",
-    banner: "/images/generated/process-bilona-hero-v1.jpg",
+    banner: "/images/generated/process-bilona-hero-v2.png",
     strip: "/images/process/ghee-traditional-strip-v2.jpg",
+    stepImages: [
+      "/images/generated/journey-own-farm-v2.png",
+      "/images/generated/journey-curd-v2.png",
+      "/images/generated/journey-bilona-v2.png",
+      "/images/generated/journey-slow-ghee-v2.png",
+    ],
     accent: "Milk · Curd · Bilona · Ghee",
     steps: [
       { title: "Fresh Milk From Our Own Cows", detail: "Milk comes from our own Gir cows on the Organic Jaipur farm and is checked for freshness before the batch begins.", note: "Because the cows are ours, we control the journey from milk onward." },
@@ -23,8 +29,14 @@ export const MAKING_PROCESSES = [
     eyebrow: "Wooden Ghani Extraction",
     title: "Seed to Bottle, No Refining Shortcuts",
     intro: "Farm-grown seeds, slow wooden-ghani pressing, natural settling and careful filtration. Nothing refined out.",
-    banner: "/images/generated/process-oil-hero-v1.jpg",
+    banner: "/images/generated/process-oil-hero-v2.png",
     strip: "/images/process/oil-traditional-strip-v2.jpg",
+    stepImages: [
+      "/images/process/oil-sort-v3.png",
+      "/images/process/oil-press-v3.png",
+      "/images/process/oil-settle-v3.png",
+      "/images/process/oil-pack-v3.png",
+    ],
     accent: "Seed · Ghani · Settle · Bottle",
     steps: [
       { title: "Our Farm-Grown Seeds Are Sorted", detail: "Mustard grown on our own farm is harvested, inspected and cleaned to remove dust, damaged seeds and foreign matter before pressing.", note: "We know the field the seed came from because we grow it ourselves." },
@@ -40,8 +52,14 @@ export const MAKING_PROCESSES = [
     eyebrow: "Minimal Handling",
     title: "From the Hive, Handled With Restraint",
     intro: "Our own managed beehives and gentle filtration: no heating, no processing beyond what's needed for cleanliness.",
-    banner: "/images/generated/process-honey-hero-v1.jpg",
+    banner: "/images/generated/process-honey-hero-v2.png",
     strip: "/images/process/honey-traditional-strip-v2.jpg",
+    stepImages: [
+      "/images/process/honey-hive-v3.png",
+      "/images/process/honey-inspect-v3.png",
+      "/images/process/honey-filter-v3.png",
+      "/images/process/honey-fill-v3.png",
+    ],
     accent: "Hive · Inspect · Filter · Fill",
     steps: [
       { title: "Honey From Our Managed Beehives", detail: "The beehives are installed and managed on our own farm, giving us direct visibility into hive care and each collected batch.", note: "There is no anonymous honey supply chain between the hive and us." },
@@ -57,8 +75,14 @@ export const MAKING_PROCESSES = [
     eyebrow: "Traditional Pickles & Chutney",
     title: "Ingredients, Spice and Time in Balance",
     intro: "Farm-grown produce, measured spice and natural maturation, not instant flavouring.",
-    banner: "/images/generated/process-pickle-hero-v1.jpg",
+    banner: "/images/generated/process-pickle-hero-v2.png",
     strip: "/images/process/pickle-traditional-strip-v2.jpg",
+    stepImages: [
+      "/images/process/pickle-select-v3.png",
+      "/images/process/pickle-measure-v3.png",
+      "/images/process/pickle-mature-v3.png",
+      "/images/process/pickle-seal-v3.png",
+    ],
     accent: "Select · Mix · Mature · Seal",
     steps: [
       { title: "Ingredients From Our Own Farm", detail: "Mango, lemon, chilli and other seasonal pickle ingredients grown on our farm are cleaned, sorted and prepared for each small batch.", note: "We grow the main produce ourselves and select it at the right stage for pickling." },

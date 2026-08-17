@@ -50,7 +50,7 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
               </div>
 
               <div className="mt-4">
-                <QuickAddButton fullWidth product={{ id: item.id, slug: item.slug, name: item.name, price: item.price, unit: item.unit, imageUrl: item.imageUrl, inStock: item.inStock }} />
+                <QuickAddButton fullWidth product={{ id: item.id, slug: item.slug, name: item.name, price: item.price, unit: item.unit, weight: item.weight, imageUrl: item.imageUrl, inStock: item.inStock }} />
               </div>
             </div>
           </article>

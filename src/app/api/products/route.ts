@@ -8,10 +8,11 @@ export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const category = params.get("category");
 
-  if (params.has("ids")) {
-    const ids = (params.get("ids") ?? "").split(",").filter(Boolean);
-    const products = ids.length > 0
-      ? await prisma.product.findMany({ where: { id: { in: ids } } })
+  if (params.has("ids") || params.has("slugs")) {
+    const ids = (params.get("ids") ?? "").split(",").filter(Boolean).slice(0, 50);
+    const slugs = (params.get("slugs") ?? "").split(",").filter(Boolean).slice(0, 50);
+    const products = ids.length > 0 || slugs.length > 0
+      ? await prisma.product.findMany({ where: { OR: [{ id: { in: ids } }, { slug: { in: slugs } }] } })
       : [];
     return NextResponse.json({ products });
   }

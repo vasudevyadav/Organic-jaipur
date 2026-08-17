@@ -30,6 +30,7 @@ export default function ProductForm({ product }: ProductFormProps) {
       price: Number(formData.get("price") || 0),
       originalPrice: originalPrice ? Number(originalPrice) : undefined,
       unit: String(formData.get("unit") || ""),
+      weight: Number(formData.get("weight") || 0),
       description: String(formData.get("description") || ""),
       ingredients: String(formData.get("ingredients") || ""),
       benefits: String(formData.get("benefits") || ""),
@@ -112,6 +113,11 @@ export default function ProductForm({ product }: ProductFormProps) {
             className="mt-1 w-full rounded-xl border border-brand-200 px-4 py-2.5 text-sm outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
           />
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="weight" className="text-sm font-medium text-foreground/80">Shipping Weight (grams)</label>
+        <input id="weight" name="weight" type="number" required min={0} step={1} defaultValue={product?.weight ?? 0} className="mt-1 w-full rounded-xl border border-brand-200 px-4 py-2.5 text-sm outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">

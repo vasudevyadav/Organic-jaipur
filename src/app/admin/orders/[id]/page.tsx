@@ -27,7 +27,7 @@ export default async function AdminOrderDetailPage({ params }: Props) {
       />
 
       <div className="mt-6 rounded-2xl border border-brand-100 bg-white p-6 sm:p-8">
-        <OrderStatusForm orderId={order.id} status={order.status} />
+        <OrderStatusForm orderId={order.id} status={order.status} approvalReason={order.approvalReason} />
       </div>
 
       <div className="mt-6 grid gap-6 sm:grid-cols-2">

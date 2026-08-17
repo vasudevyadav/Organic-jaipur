@@ -17,12 +17,18 @@ export default function CouponForm() {
     const formData = new FormData(event.currentTarget);
     const minOrderValue = String(formData.get("minOrderValue") || "").trim();
     const expiresAt = String(formData.get("expiresAt") || "").trim();
+    const maximumDiscount = String(formData.get("maximumDiscount") || "").trim();
+    const usageLimit = String(formData.get("usageLimit") || "").trim();
 
     const payload = {
       code: String(formData.get("code") || ""),
       type: String(formData.get("type") || "PERCENT"),
       value: Number(formData.get("value") || 0),
       minOrderValue: minOrderValue ? Number(minOrderValue) : undefined,
+      maximumDiscount: maximumDiscount ? Number(maximumDiscount) : 200,
+      usageLimit: usageLimit ? Number(usageLimit) : undefined,
+      canStack: false,
+      firstOrderOnly: formData.get("firstOrderOnly") === "on",
       expiresAt: expiresAt || undefined,
       active,
     };
@@ -67,6 +73,17 @@ export default function CouponForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
+          <label htmlFor="maximumDiscount" className="text-sm font-medium text-foreground/80">Maximum Discount (₹)</label>
+          <input id="maximumDiscount" name="maximumDiscount" type="number" min={0} step="0.01" defaultValue={200} className="mt-1 w-full rounded-xl border border-brand-200 px-4 py-2.5 text-sm" />
+        </div>
+        <div>
+          <label htmlFor="usageLimit" className="text-sm font-medium text-foreground/80">Total Usage Limit (optional)</label>
+          <input id="usageLimit" name="usageLimit" type="number" min={1} step={1} className="mt-1 w-full rounded-xl border border-brand-200 px-4 py-2.5 text-sm" />
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
           <label htmlFor="type" className="text-sm font-medium text-foreground/80">
             Discount Type
           </label>
@@ -96,6 +113,11 @@ export default function CouponForm() {
           />
         </div>
       </div>
+
+      <label className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+        <input name="firstOrderOnly" type="checkbox" className="h-4 w-4 rounded border-brand-300" /> First-order customers only
+      </label>
+      <p className="text-xs text-foreground/50">Coupons cannot stack by default. The server enforces the global order limit independently.</p>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>

@@ -86,7 +86,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
                   {hasDiscount && <span className="text-xs font-bold text-terracotta-600">{discount}% off</span>}
                 </div>
                 <div className="mt-3">
-                  <QuickAddButton fullWidth product={{ id: item.id, slug: item.slug, name: item.name, price: item.price, unit: item.unit, imageUrl: item.imageUrl, inStock: item.inStock }} />
+                  <QuickAddButton fullWidth product={{ id: item.id, slug: item.slug, name: item.name, price: item.price, unit: item.unit, weight: item.weight, imageUrl: item.imageUrl, inStock: item.inStock }} />
                 </div>
               </div>
             </article>

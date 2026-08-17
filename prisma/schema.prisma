@@ -21,11 +21,15 @@ enum Category {
 
 enum OrderStatus {
   PENDING
+  PAYMENT_PENDING
   CONFIRMED
+  MANUAL_APPROVAL_REQUIRED
+  REJECTED
   PACKED
   OUT_FOR_DELIVERY
   DELIVERED
   CANCELLED
+  REFUNDED
 }
 
 enum PaymentMethod {
@@ -37,6 +41,8 @@ enum PaymentStatus {
   PENDING
   PAID
   FAILED
+  REFUND_PENDING
+  REFUNDED
 }
 
 enum DiscountType {
@@ -52,6 +58,7 @@ model Product {
   price         Float
   originalPrice Float?
   unit          String   @default("1 kg")
+  weight        Int      @default(0) // grams
   description   String
   ingredients   String?
   benefits      String?
@@ -142,6 +149,11 @@ model Order {
   shippingFee   Float         @default(0)
   total         Float
   couponCode    String?
+  approvalReason String?
+  approvedBy     String?
+  approvedAt     DateTime?
+  approvalNote   String?
+  rejectionReason String?
   customerName  String
   customerPhone String
   customerEmail String?
@@ -156,6 +168,7 @@ model Order {
 
   user  User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   items OrderItem[]
+  couponUsage CouponUsage?
 }
 
 model OrderItem {
@@ -165,6 +178,7 @@ model OrderItem {
   productName String
   unitPrice   Float
   unit        String
+  weight      Int
   quantity    Int
 
   order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
@@ -191,7 +205,27 @@ model Coupon {
   type          DiscountType
   value         Float
   minOrderValue Float?
+  maximumDiscount Float?     @default(200)
+  canStack      Boolean      @default(false)
+  usageLimit    Int?
+  firstOrderOnly Boolean     @default(false)
   expiresAt     DateTime?
   active        Boolean      @default(true)
   createdAt     DateTime     @default(now())
+
+  usages CouponUsage[]
+}
+
+model CouponUsage {
+  id         String   @id @default(cuid())
+  couponId   String
+  orderId    String   @unique
+  customerId String
+  createdAt  DateTime @default(now())
+
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([couponId])
+  @@index([couponId, customerId])
 }

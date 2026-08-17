@@ -54,9 +54,9 @@ export default async function MakingProcessPage({ params }: Props) {
 
       <section id="complete-process" className="scroll-mt-28 px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-7xl">
-          <AnimatedSection className="mx-auto max-w-3xl text-center"><p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-terracotta-500">Step-by-Step Production</p><h2 className="mt-4 font-display text-4xl leading-tight text-forest-900 sm:text-6xl">A Process You Can Follow,<br /><em className="font-normal text-brand-700">From Beginning to Pack.</em></h2><p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-forest-900/55">Each stage has a purpose. Follow the timeline to understand what happens and why it matters.</p></AnimatedSection>
+          <AnimatedSection className="mx-auto max-w-3xl text-center"><p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-terracotta-500">Har Kadam Aapke Saamne</p><h2 className="mt-4 font-display text-4xl leading-tight text-forest-900 sm:text-6xl">Shuruwat Se Pack Tak,<br /><em className="font-normal text-brand-700">Koi Chhupi Baat Nahi.</em></h2><p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-forest-900/55">Har stage ka ek maksad hai. Dekhiye kya hota hai, kaise hota hai aur kyun zaroori hai.</p></AnimatedSection>
 
-          <MakingProcessTimeline steps={process.steps} strip={process.strip} />
+          <MakingProcessTimeline steps={process.steps} images={process.stepImages} />
         </div>
       </section>
 

@@ -12,6 +12,7 @@ type Props = {
     name: string;
     price: number;
     unit: string;
+    weight: number;
     imageUrl: string;
     inStock: boolean;
   };
@@ -31,6 +32,7 @@ export default function ProductPurchasePanel({ product }: Props) {
         name: product.name,
         price: product.price,
         unit: product.unit,
+        weight: product.weight,
         imageUrl: product.imageUrl,
       },
       quantity

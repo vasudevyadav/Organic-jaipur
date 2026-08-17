@@ -27,6 +27,13 @@ type SeedProduct = {
   featured?: boolean;
 };
 
+function weightFromUnit(unit: string): number {
+  const match = unit.trim().toLowerCase().match(/^([\d.]+)\s*(kg|g|l|ml)/);
+  if (!match) return 0;
+  const amount = Number(match[1]);
+  return Math.round(amount * (match[2] === "kg" || match[2] === "l" ? 1000 : 1));
+}
+
 const products: SeedProduct[] = [
   // Ghee
   {
@@ -236,6 +243,7 @@ async function main() {
         price: p.price,
         originalPrice: p.originalPrice ?? null,
         unit: p.unit,
+        weight: weightFromUnit(p.unit),
         description: p.description,
         ingredients: p.ingredients ?? null,
         benefits: p.benefits ?? null,
@@ -250,6 +258,7 @@ async function main() {
         price: p.price,
         originalPrice: p.originalPrice ?? null,
         unit: p.unit,
+        weight: weightFromUnit(p.unit),
         description: p.description,
         ingredients: p.ingredients ?? null,
         benefits: p.benefits ?? null,
@@ -259,6 +268,12 @@ async function main() {
       },
     });
   }
+
+  await prisma.coupon.upsert({
+    where: { code: "FESTIVAL10" },
+    update: { type: "PERCENT", value: 10, maximumDiscount: 200, canStack: false, active: true },
+    create: { code: "FESTIVAL10", type: "PERCENT", value: 10, maximumDiscount: 200, canStack: false, active: true },
+  });
 
   console.log(`Seeded ${products.length} products.`);
 }

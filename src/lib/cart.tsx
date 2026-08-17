@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useSyncExternalStore,
   type ReactNode,
@@ -15,6 +16,7 @@ export type CartItem = {
   name: string;
   price: number;
   unit: string;
+  weight: number;
   imageUrl: string;
   quantity: number;
 };
@@ -72,6 +74,7 @@ type CartContextValue = {
   clearCart: () => void;
   subtotal: number;
   itemCount: number;
+  totalWeight: number;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -79,12 +82,42 @@ const CartContext = createContext<CartContextValue | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
   const items = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
+  useEffect(() => {
+    if (items.length === 0) return;
+    const controller = new AbortController();
+    const ids = items.map((item) => item.productId).join(",");
+    const slugs = items.map((item) => item.slug).join(",");
+    fetch(`/api/products?ids=${encodeURIComponent(ids)}&slugs=${encodeURIComponent(slugs)}`, { signal: controller.signal })
+      .then(async (response) => response.ok ? response.json() : null)
+      .then((data) => {
+        if (!Array.isArray(data?.products)) return;
+        const byId = new Map(data.products.map((product: CartItem) => [product.productId ?? (product as unknown as { id: string }).id, product]));
+        const bySlug = new Map(data.products.map((product: CartItem) => [product.slug, product]));
+        const reconciled = items.flatMap((item) => {
+          const product = byId.get(item.productId) ?? bySlug.get(item.slug);
+          if (!product || !(product as unknown as { inStock: boolean }).inStock) return [];
+          const current = product as unknown as { id: string; slug: string; name: string; price: number; unit: string; weight: number; imageUrl: string };
+          return [{ productId: current.id, slug: current.slug, name: current.name, price: current.price, unit: current.unit, weight: current.weight, imageUrl: current.imageUrl, quantity: item.quantity }];
+        });
+        const merged = Array.from(reconciled.reduce((map, item) => {
+          const existing = map.get(item.productId);
+          map.set(item.productId, existing ? { ...item, quantity: Math.min(existing.quantity + item.quantity, 50) } : item);
+          return map;
+        }, new Map<string, CartItem>()).values());
+        if (JSON.stringify(merged) !== JSON.stringify(items)) setCartItems(merged);
+      })
+      .catch((error: unknown) => {
+        if (!(error instanceof Error && error.name === "AbortError")) console.error("Cart refresh failed", error);
+      });
+    return () => controller.abort();
+  }, [items]);
+
   const addItem = useCallback((item: Omit<CartItem, "quantity">, quantity = 1) => {
     ensureInitialized();
     const existing = cartItems.find((i) => i.productId === item.productId);
     const next = existing
       ? cartItems.map((i) =>
-          i.productId === item.productId ? { ...i, quantity: i.quantity + quantity } : i
+          i.productId === item.productId ? { ...i, ...item, quantity: i.quantity + quantity } : i
         )
       : [...cartItems, { ...item, quantity }];
     setCartItems(next);
@@ -108,10 +141,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const subtotal = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items]);
   const itemCount = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
+  const totalWeight = useMemo(() => items.reduce((sum, i) => sum + Math.max(0, i.weight ?? 0) * i.quantity, 0), [items]);
 
   const value = useMemo<CartContextValue>(
-    () => ({ items, addItem, removeItem, updateQuantity, clearCart, subtotal, itemCount }),
-    [items, addItem, removeItem, updateQuantity, clearCart, subtotal, itemCount]
+    () => ({ items, addItem, removeItem, updateQuantity, clearCart, subtotal, itemCount, totalWeight }),
+    [items, addItem, removeItem, updateQuantity, clearCart, subtotal, itemCount, totalWeight]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

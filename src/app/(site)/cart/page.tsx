@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { useHydrated } from "@/lib/useHydrated";
 import { formatPrice } from "@/lib/utils";
-import { FREE_SHIPPING_THRESHOLD, SHIPPING_FEE } from "@/lib/constants";
+import { FREE_SHIPPING_THRESHOLD } from "@/lib/shipping";
 import CartItemRow from "@/components/CartItemRow";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -19,9 +19,8 @@ export default function CartPage() {
   const [couponError, setCouponError] = useState("");
   const [applying, setApplying] = useState(false);
 
-  const shippingFee = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
   const discount = coupon?.discount ?? 0;
-  const total = Math.max(subtotal - discount + shippingFee, 0);
+  const total = Math.max(subtotal - discount, 0);
 
   async function applyCoupon() {
     if (!couponInput.trim()) return;
@@ -31,7 +30,7 @@ export default function CartPage() {
       const res = await fetch("/api/coupons/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: couponInput.trim(), subtotal }),
+        body: JSON.stringify({ code: couponInput.trim(), items: items.map((item) => ({ productId: item.productId, quantity: item.quantity })) }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -166,10 +165,15 @@ export default function CartPage() {
               )}
               <div className="flex justify-between text-forest-900/60">
                 <span>Delivery</span>
-                <span>{shippingFee === 0 ? "Free" : formatPrice(shippingFee)}</span>
+                <span>Calculated at checkout</span>
               </div>
+              {subtotal < FREE_SHIPPING_THRESHOLD && (
+                <p className="rounded-xl bg-honey-400/15 px-3 py-2 text-xs font-bold text-forest-900">
+                  ₹{FREE_SHIPPING_THRESHOLD - subtotal} aur add karein aur Rajasthan mein FREE DELIVERY paayein (up to 3kg)
+                </p>
+              )}
               <div className="flex justify-between border-t border-forest-900/10 pt-2.5 text-base font-bold text-forest-900">
-                <span>Total</span>
+                <span>Items total</span>
                 <span>{formatPrice(total)}</span>
               </div>
             </div>
@@ -179,7 +183,7 @@ export default function CartPage() {
               onClick={proceedToCheckout}
               className="mt-6 w-full rounded-full bg-honey-400 px-7 py-4 text-sm font-bold text-forest-900 shadow-[0_12px_30px_rgba(240,184,77,.3)] transition hover:-translate-y-0.5 hover:bg-honey-500"
             >
-              Secure Checkout · {formatPrice(total)}
+              Continue to Secure Checkout
             </button>
             <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[9px] font-bold uppercase tracking-wide text-forest-900/40"><span>Secure pay</span><span>Pure products</span><span>Real support</span></div>
             </div>

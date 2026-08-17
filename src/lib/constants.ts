@@ -8,10 +8,11 @@ export const BUSINESS = {
   phone: "8955286866",
   phoneDisplay: "+91 89552 86866",
   whatsappNumber: "918955286866",
+  email: "organicjaipurstore@gmail.com",
   mapEmbedSrc:
     "https://www.google.com/maps?q=GOVINDM+RESIDENCY,+P.NO+109,+Mahapura+Rd,+Jaipur,+Rajasthan+302026&output=embed",
   mapLink:
-    "https://www.google.com/maps/search/?api=1&query=GOVINDM+RESIDENCY,+P.NO+109,+Mahapura+Rd,+Jaipur,+Rajasthan+302026",
+    "https://maps.app.goo.gl/eAY8eK4p7EhUxJVD7",
 } as const;
 
 // TODO: replace "#" with the real profile URLs once available.
@@ -20,12 +21,11 @@ export const SOCIAL_LINKS = [
   { label: "Facebook", href: "#", icon: "facebook" },
   { label: "YouTube", href: "#", icon: "youtube" },
 ] as const;
-
 export const CATEGORIES = [
   { value: "GHEE", label: "Ghee" },
   { value: "MUSTARD_OIL", label: "Cold-Pressed Oils" },
   { value: "HONEY", label: "Honey" },
-  { value: "PICKLES", label: "Pickles & Chutneys" },
+  { value: "PICKLES", label: "Lal Mirch Chutney" },
 ] as const;
 
 export type CategoryValue = (typeof CATEGORIES)[number]["value"];
@@ -359,25 +359,36 @@ export const FAQS_TERMS = [
 export const SHIPPING_FEE = 0;
 export const FREE_SHIPPING_THRESHOLD = 0;
 export const ONLINE_PAYMENT_DISCOUNT_PERCENT = 2;
+export const MAX_ORDER_DISCOUNT = 200;
+export const MANUAL_APPROVAL_CUSTOMER_MESSAGE =
+  "Your order requires manual confirmation because the applied offer exceeds the maximum allowed discount. We will confirm your order shortly.";
 
 export const ORDER_STATUSES = [
   "PENDING",
+  "PAYMENT_PENDING",
   "CONFIRMED",
+  "MANUAL_APPROVAL_REQUIRED",
+  "REJECTED",
   "PACKED",
   "OUT_FOR_DELIVERY",
   "DELIVERED",
   "CANCELLED",
+  "REFUNDED",
 ] as const;
 
 export type OrderStatusValue = (typeof ORDER_STATUSES)[number];
 
 export const ORDER_STATUS_LABELS: Record<OrderStatusValue, string> = {
   PENDING: "Order Placed",
+  PAYMENT_PENDING: "Payment Pending",
   CONFIRMED: "Confirmed",
+  MANUAL_APPROVAL_REQUIRED: "Manual Approval Required",
+  REJECTED: "Rejected",
   PACKED: "Packed",
   OUT_FOR_DELIVERY: "Out for Delivery",
   DELIVERED: "Delivered",
   CANCELLED: "Cancelled",
+  REFUNDED: "Refunded",
 };
 
 export const TRUST_BADGES = [

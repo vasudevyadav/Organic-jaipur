@@ -238,6 +238,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 name: product.name,
                 price: product.price,
                 unit: product.unit,
+                weight: product.weight,
                 imageUrl: product.imageUrl,
                 inStock: product.inStock,
               }}

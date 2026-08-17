@@ -26,27 +26,27 @@ type Props = {
 };
 
 export const metadata = {
-  title: "Shop A2 Ghee, Oils, Honey & Pickles Online",
+  title: "Shop Ghee, Oils, Honey & Lal Mirch Chutney Online",
   description:
-    "Order A2 Gir cow ghee, kachi ghani mustard oil, raw honey and Rajasthani pickles online. Own farm, lab-tested, free Jaipur delivery.",
+    "Order Gir, Desi and Buffalo Bilona ghee, kachi ghani oil, raw honey and Rajasthani lal mirch chutney online.",
 };
 
 const CATEGORY_INTROS: Record<string, { title: string; copy: string }> = {
   GHEE: {
-    title: "Choose Bilona Ghee by Milk Type and Pack Size",
+    title: "Har Rasoi Ka Apna Ghee, Har Zaroorat Ka Apna Pack",
     copy: "Pick Gir cow ghee for a distinctive aroma, desi cow ghee for daily use or richer buffalo ghee for frying and sweets. Available from 500 g to 2 kg.",
   },
   MUSTARD_OIL: {
-    title: "Choose Cold-Pressed Oil by Flavour and Use",
+    title: "Har Tadka Alag, Uska Tel Bhi Alag",
     copy: "Black mustard oil is sharp and pungent; yellow mustard oil is milder. Groundnut, sunflower and coconut oils suit different everyday cooking needs.",
   },
   HONEY: {
-    title: "Raw Wild Forest Honey, 500 g",
+    title: "Sirf Mithaas Nahi, Kudrat Ka Asli Swaad",
     copy: "Lightly filtered and unheated, with no added sugar or syrup. Natural crystallisation can occur and does not affect quality.",
   },
   PICKLES: {
-    title: "Rajasthani Pickles and Chutneys, 500 g",
-    copy: "Choose green chilli pickle or bold laal mirch-garlic chutney. Refrigerate after opening and always use a dry spoon.",
+    title: "Har Niwale Mein Lal Mirch Ka Chatpata Swaad",
+    copy: "Bold lal mirch-garlic chutney, chhote batches mein taiyaar. Khulne ke baad refrigerate karein aur hamesha dry spoon use karein.",
   },
 };
 
@@ -68,16 +68,35 @@ export default async function ProductsPage({ searchParams }: Props) {
     };
   }
 
-  const orderBy: Prisma.ProductOrderByWithRelationInput =
+  const orderBy:
+    | Prisma.ProductOrderByWithRelationInput
+    | Prisma.ProductOrderByWithRelationInput[] =
     sort === "price_asc"
       ? { price: "asc" }
       : sort === "price_desc"
         ? { price: "desc" }
         : sort === "name_asc"
           ? { name: "asc" }
-          : { createdAt: "desc" };
+          : [{ featured: "desc" }, { createdAt: "desc" }];
 
   const products = await prisma.product.findMany({ where, orderBy });
+  if (!sort) {
+    const mainProductOrder = [
+      "A2 Gir Cow Ghee",
+      "Buffalo Bilona Ghee",
+      "Kachi Ghani Black Mustard Oil",
+      "Rajasthani Laal Mirch Chutney",
+    ];
+    products.sort((a, b) => {
+      const aIndex = mainProductOrder.indexOf(a.name);
+      const bIndex = mainProductOrder.indexOf(b.name);
+      if (aIndex !== -1 || bIndex !== -1) {
+        return (aIndex === -1 ? mainProductOrder.length : aIndex) -
+          (bIndex === -1 ? mainProductOrder.length : bIndex);
+      }
+      return Number(b.featured) - Number(a.featured);
+    });
+  }
   const activeLabel = CATEGORIES.find((c) => c.value === activeCategory)?.label;
   const faqItems = activeCategory
     ? (FAQS_BY_CATEGORY[activeCategory] ?? FAQS_PRODUCTS_ALL)
@@ -102,7 +121,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       <section className="hero-grain relative isolate min-h-[420px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[480px]">
         <img
           src="/images/generated/banner-shop-farm-v3.jpg"
-          alt="Organic Jaipur ghee, oil, honey and pickle at a Rajasthan farm"
+          alt="Organic Jaipur ghee, oil, honey and lal mirch chutney at a Rajasthan farm"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.72)_0%,rgba(8,29,20,.3)_48%,rgba(8,29,20,.04)_82%)]" />
@@ -176,7 +195,7 @@ export default async function ProductsPage({ searchParams }: Props) {
             <div className="flex items-end justify-between border-b border-forest-900/10 pb-4">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[.2em] text-terracotta-500">
-                  Available to Order
+                  Aapki Rasoi Ke Liye Taiyaar
                 </p>
                 <h2 className="mt-1 font-display text-2xl text-forest-900">
                   {activeLabel ?? "All Products"}
@@ -206,7 +225,7 @@ export default async function ProductsPage({ searchParams }: Props) {
 
       <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-          Common Questions
+          Aapke Sawaal
         </p>
         <h2 className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">
           {activeLabel

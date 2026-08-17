@@ -13,7 +13,7 @@ export default function ContactPage() {
       <div className="relative mx-auto flex min-h-[520px] max-w-7xl items-center px-5 py-16 sm:px-8">
         <AnimatedSection className="max-w-3xl">
           <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400"><span className="h-px w-10 bg-honey-400" /> Talk to Organic Jaipur</p>
-          <h1 className="mt-6 font-display text-5xl leading-[.94] tracking-[-.04em] sm:text-7xl">Get in<br /><em className="font-normal text-honey-400">Touch.</em></h1>
+          <h1 className="mt-6 font-display text-5xl leading-[.94] tracking-[-.04em] sm:text-7xl">Sawaal Aapka,<br /><em className="font-normal text-honey-400">Jawaab Hamara.</em></h1>
           <p className="mt-2 font-display text-base italic text-honey-400/70">Aapka Sawaal, Hamara Jawaab</p>
           <p className="mt-5 max-w-xl text-base leading-7 text-white/65">Order, track, or ask a question. We usually reply within minutes on WhatsApp.</p>
           <div className="mt-8 flex flex-wrap gap-3">
