@@ -145,8 +145,8 @@ const journeySteps = [
   {
     title: "Lakdi Ke Bilona Se Manthan",
     copy: "Dahi ko lakdi ke bilona se mathkar makkhan nikala jaata hai. Na machine ki jaldi, na process mein shortcut.",
-    image: "/images/generated/journey-bilona-v2.png",
-    alt: "Traditional wooden bilona hand-churning curd in an earthen pot",
+    image: "/images/founder/founder-bilona-churning.png",
+    alt: "Organic Jaipur founder hand-churning curd with a traditional wooden bilona",
   },
   {
     title: "Dheemi Aanch Par Sunehra Ghee",
@@ -157,8 +157,8 @@ const journeySteps = [
   {
     title: "Khet Se, Sambhaal Ke",
     copy: "Sarson hamare kheton se lakdi ki ghani tak jaati hai, aur lal mirch chutney apne farm ki mirch aur masalon se chhote batches mein banti hai.",
-    image: "/images/generated/journey-source-v2.png",
-    alt: "Rajasthan farmers harvesting mustard beside managed beehives",
+    image: "/images/founder/founder-mustard-ghani-press.png",
+    alt: "Organic Jaipur founder pressing mustard seeds in a traditional wooden ghani",
   },
 ];
 

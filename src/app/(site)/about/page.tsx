@@ -124,8 +124,8 @@ export default function AboutPage() {
       <section className="px-5 py-8 sm:px-8 sm:py-16">
         <AnimatedSection className="relative mx-auto min-h-[430px] max-w-7xl overflow-hidden rounded-[2rem]">
           <Image
-            src="/images/generated/founder-farm-team-v1.png"
-            alt="Organic Jaipur founder checking mustard seeds with the farm team"
+            src="/images/founder/founder-product-lineup.png"
+            alt="Organic Jaipur founder with farm-made ghee, honey, mustard oil and grains"
             fill
             sizes="90vw"
             className="object-cover object-top"

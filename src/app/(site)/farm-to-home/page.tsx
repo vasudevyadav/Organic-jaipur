@@ -7,7 +7,7 @@ export const metadata = { title: "From Our Farm to Your Home | Organic Jaipur", 
 
 const STEPS = [
   { number: "01", title: "Apne Farm Se Shuruwat", eyebrow: "Ugana", copy: "Gir cows, sarson ke khet aur managed beehives hamare apne farm par hain. Achar ke liye aam, nimbu aur mirch bhi mausam ke saath yahin ugte hain.", image: "/images/organic-jaipur-farmer-community-v1.png", note: "Apna farm, apni dekhbhaal" },
-  { number: "02", title: "Chhote Batch, Poora Dhyaan", eyebrow: "Banana", copy: "Bilona churning, wooden-ghani pressing aur honey filtering waqt lete hain. Hum raftaar se pehle asli character ko chunte hain.", image: "/images/bilona-story-v2.png", note: "Har batch par nazar" },
+  { number: "02", title: "Chhote Batch, Poora Dhyaan", eyebrow: "Banana", copy: "Bilona churning, wooden-ghani pressing aur honey filtering waqt lete hain. Hum raftaar se pehle asli character ko chunte hain.", image: "/images/founder/founder-bilona-churning.png", note: "Har batch par nazar" },
   { number: "03", title: "Jaanch Ke Baad Hi Pack", eyebrow: "Shuddhta", copy: "Ingredients, process, final taste aur pack—har cheez dekhi jaati hai. Har batch ki jaankari traceability ke liye sambhali jaati hai.", image: "/images/founder-with-a2-ghee-v1.png", note: "Batch se judi jaanch" },
   { number: "04", title: "Sambhaal Se Aapke Ghar Tak", eyebrow: "Delivery", copy: "Jaipur mein free delivery aur Rajasthan bhar courier. Delivery se pehle aur baad, WhatsApp par apni team ka seedha support.", image: "/images/organic-jaipur-hero-v2.png", note: "WhatsApp par apni team" },
 ] as const;

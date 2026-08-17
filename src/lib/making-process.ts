@@ -6,7 +6,7 @@ export const MAKING_PROCESSES = [
     eyebrow: "Traditional Bilona Method",
     title: "From Fresh Milk to Golden Ghee",
     intro: "Four stages: cultured curd, patient hand-churning and slow cooking, with no cream-separator shortcuts.",
-    banner: "/images/generated/process-bilona-hero-v2.png",
+    banner: "/images/founder/founder-bilona-churning.png",
     strip: "/images/process/ghee-traditional-strip-v2.jpg",
     stepImages: [
       "/images/generated/journey-own-farm-v2.png",
@@ -29,7 +29,7 @@ export const MAKING_PROCESSES = [
     eyebrow: "Wooden Ghani Extraction",
     title: "Seed to Bottle, No Refining Shortcuts",
     intro: "Farm-grown seeds, slow wooden-ghani pressing, natural settling and careful filtration. Nothing refined out.",
-    banner: "/images/generated/process-oil-hero-v2.png",
+    banner: "/images/founder/founder-mustard-ghani-press.png",
     strip: "/images/process/oil-traditional-strip-v2.jpg",
     stepImages: [
       "/images/process/oil-sort-v3.png",
@@ -52,7 +52,7 @@ export const MAKING_PROCESSES = [
     eyebrow: "Minimal Handling",
     title: "From the Hive, Handled With Restraint",
     intro: "Our own managed beehives and gentle filtration: no heating, no processing beyond what's needed for cleanliness.",
-    banner: "/images/generated/process-honey-hero-v2.png",
+    banner: "/images/founder/founder-apiary-honeycomb.png",
     strip: "/images/process/honey-traditional-strip-v2.jpg",
     stepImages: [
       "/images/process/honey-hive-v3.png",

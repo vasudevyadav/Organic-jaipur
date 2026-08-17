@@ -9,7 +9,7 @@ const responsibilities = [
     title: "Farm & crop management",
     eyebrow: "From our soil",
     copy: "Mustard, mango, lemon, chilli and other seasonal produce are grown and looked after on our own farm by our team.",
-    image: "/images/generated/founder-farm-team-v1.png",
+    image: "/images/founder/founder-mustard-field.png",
     imagePosition: "center",
   },
   {
@@ -17,8 +17,8 @@ const responsibilities = [
     title: "Gir cow care & dairy",
     eyebrow: "From our cows",
     copy: "We manage the daily care of our own Gir cows and the milk journey that leads to curd, hand churning and traditional bilona ghee.",
-    image: "/images/generated/banner-ghee-farm-v4.png",
-    imagePosition: "right center",
+    image: "/images/founder/founder-feeding-gir-cows.png",
+    imagePosition: "center",
   },
   {
     number: "03",
@@ -33,8 +33,8 @@ const responsibilities = [
     title: "Beehives, packing & dispatch",
     eyebrow: "From hive to home",
     copy: "We maintain our beehives, handle the honey gently, and personally oversee packing and dispatch before an order leaves for your home.",
-    image: "/images/generated/banner-honey-apiary-v4.png",
-    imagePosition: "right center",
+    image: "/images/founder/founder-apiary-honeycomb.png",
+    imagePosition: "center",
   },
 ] as const;
 
