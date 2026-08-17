@@ -6,9 +6,11 @@ export function getDatabaseUrl(
   const candidates =
     purpose === "migration"
       ? [
-          process.env.DATABASE_URL,
+          // Migrations need a direct (non-pooled) connection: advisory locks
+          // don't work reliably through a PgBouncer-style pooler.
           process.env.DATABASE_URL_UNPOOLED,
           process.env.POSTGRES_URL_NON_POOLING,
+          process.env.DATABASE_URL,
           process.env.POSTGRES_URL,
           process.env.POSTGRES_PRISMA_URL,
         ]
