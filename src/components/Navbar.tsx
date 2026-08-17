@@ -60,7 +60,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-[#fffdf8]/95 backdrop-blur-md">
       <div className="hidden bg-forest-900 text-cream sm:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[10px] font-bold uppercase tracking-[.16em] lg:px-8">
-          <span>Free Jaipur Delivery · Cash on Delivery · Prices Include All Taxes</span>
+          <span>Free Jaipur Delivery · Cash on Delivery</span>
           <div className="flex items-center gap-6 text-cream/70">
             <span>500 g to Family Packs</span>
             <span>WhatsApp Support</span>
@@ -122,11 +122,15 @@ export default function Navbar() {
               className={`flex items-center gap-1.5 whitespace-nowrap py-2 text-[12px] font-semibold uppercase transition-colors xl:text-[13px] ${pathname.startsWith("/making-process") || processOpen ? "text-terracotta-600" : "text-brand-800 hover:text-terracotta-500"}`}
             >
               Making Process{" "}
-              <span className={`text-[9px] transition-transform ${processOpen ? "rotate-180" : ""}`}>
+              <span
+                className={`text-[9px] transition-transform ${processOpen ? "rotate-180" : ""}`}
+              >
                 ▾
               </span>
             </button>
-            <div className={`absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 transition-all ${processOpen ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"}`}>
+            <div
+              className={`absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 transition-all ${processOpen ? "visible translate-y-0 opacity-100" : "invisible translate-y-2 opacity-0"}`}
+            >
               <div className="overflow-hidden rounded-2xl border border-forest-900/10 bg-white p-2 shadow-[0_22px_60px_rgba(15,40,28,.18)]">
                 <p className="px-4 pb-2 pt-3 text-[9px] font-extrabold uppercase tracking-[.18em] text-terracotta-500">
                   See How We Make

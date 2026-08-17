@@ -48,7 +48,6 @@ export const metadata: Metadata = {
     title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
     description:
       "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
-    images: [{ url: "/images/organic-jaipur-hero-v2.png" }],
   },
   twitter: {
     card: "summary_large_image",
