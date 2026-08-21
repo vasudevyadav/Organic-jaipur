@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -53,7 +54,6 @@ export default async function JaipurLocalityPage({ params }: Props) {
   const locality = JAIPUR_LOCALITIES.find((item) => item.slug === slug);
   if (!locality) notFound();
 
-  const otherLocalities = JAIPUR_LOCALITIES.filter((item) => item.slug !== locality.slug);
   const faqs = faqsForJaipurLocality(locality.name);
 
   return (
@@ -67,7 +67,7 @@ export default async function JaipurLocalityPage({ params }: Props) {
       />
 
       <section className="relative min-h-[380px] overflow-hidden bg-forest-900 text-white sm:min-h-[420px]">
-        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products delivered across Jaipur" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <Image src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products delivered across Jaipur" fill priority sizes="100vw" className="absolute inset-0 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.9)_0%,rgba(8,29,20,.58)_48%,rgba(8,29,20,.06)_82%)]" />
         <AnimatedSection className="relative mx-auto flex min-h-[380px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[420px] sm:px-8">
           <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400">
@@ -99,6 +99,29 @@ export default async function JaipurLocalityPage({ params }: Props) {
         </AnimatedSection>
       </section>
 
+      <section className="border-b border-forest-900/10 bg-white px-5 py-10 sm:px-8 sm:py-14">
+        <article className="mx-auto max-w-4xl">
+          <p className="text-xs font-bold uppercase tracking-[.2em] text-terracotta-500">
+            Direct answer
+          </p>
+          <h2 className="mt-3 font-display text-3xl leading-tight text-forest-900 sm:text-4xl">
+            Does Organic Jaipur deliver to {locality.name}?
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-forest-900/75">
+            <strong className="text-forest-900">Yes.</strong> Organic Jaipur delivers A2 Bilona
+            ghee, cold-pressed mustard oil, raw honey and Rajasthani lal mirch chutney to homes in
+            {" "}{locality.name}. Delivery is free within the current Jaipur service area and payment
+            is Cash on Delivery. Send your complete address and PIN code on WhatsApp so the Jaipur
+            team can confirm stock and the available delivery slot before dispatch.
+          </p>
+          <p className="mt-4 text-sm leading-6 text-forest-900/55">
+            Service information reviewed by the Organic Jaipur fulfilment team on{" "}
+            <time dateTime="2026-08-21">21 August 2026</time>. Delivery timing depends on order
+            time, stock and the day&apos;s route.
+          </p>
+        </article>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
           Shop by category
@@ -121,7 +144,7 @@ export default async function JaipurLocalityPage({ params }: Props) {
 
       <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-10">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-          Also serving nearby
+          Explore Jaipur delivery
         </p>
         <div className="mt-5 flex flex-wrap gap-2.5">
           <Link
@@ -130,15 +153,12 @@ export default async function JaipurLocalityPage({ params }: Props) {
           >
             All Jaipur areas
           </Link>
-          {otherLocalities.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/organic-products-jaipur/${item.slug}`}
-              className="rounded-full border border-forest-900/12 px-5 py-2.5 text-xs font-bold text-forest-900 transition hover:bg-[#faf7ee]"
-            >
-              {item.name}
-            </Link>
-          ))}
+          <Link
+            href="/contact"
+            className="rounded-full border border-forest-900/12 px-5 py-2.5 text-xs font-bold text-forest-900 transition hover:bg-[#faf7ee]"
+          >
+            Confirm my address
+          </Link>
         </div>
       </section>
 

@@ -32,7 +32,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
     url: `${SITE_URL}${route.path}`,
-    lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
@@ -46,21 +45,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const makingProcessEntries: MetadataRoute.Sitemap = MAKING_PROCESSES.map((process) => ({
     url: `${SITE_URL}/making-process/${process.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
   const localityEntries: MetadataRoute.Sitemap = JAIPUR_LOCALITIES.map((locality) => ({
     url: `${SITE_URL}/organic-products-jaipur/${locality.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
   const rajasthanCityEntries: MetadataRoute.Sitemap = RAJASTHAN_CITIES.map((city) => ({
     url: `${SITE_URL}/organic-products-rajasthan/${city.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.7,
   }));

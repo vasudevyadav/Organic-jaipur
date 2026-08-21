@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 
-export const metadata = { title: "Our Quality Promise: What Gets Checked, and When", description: "The ingredient check, process check, finished-batch check and traceability record every Organic Jaipur product goes through before it ships." };
+export const metadata = { title: "Our Quality Promise: What Gets Checked, and When", description: "The ingredient check, process check, finished-batch check and traceability record every Organic Jaipur product goes through before it ships.", alternates: { canonical: "/quality-promise" } };
 
 const PROMISES = [
   ["Saamagri Pehli, Jaanch Pehle", "Milk, seed aur honey ki freshness batch shuru hote hi check hoti hai, baad mein nahi."],

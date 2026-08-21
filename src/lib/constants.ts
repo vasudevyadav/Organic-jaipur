@@ -15,11 +15,11 @@ export const BUSINESS = {
     "https://maps.app.goo.gl/eAY8eK4p7EhUxJVD7",
 } as const;
 
-// TODO: replace "#" with the real profile URLs once available.
+// Replace these platform URLs with Organic Jaipur's profile URLs once available.
 export const SOCIAL_LINKS = [
-  { label: "Instagram", href: "#", icon: "instagram" },
-  { label: "Facebook", href: "#", icon: "facebook" },
-  { label: "YouTube", href: "#", icon: "youtube" },
+  { label: "Instagram", href: "https://www.instagram.com/organic_jaipur/", icon: "instagram" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61578630741169", icon: "facebook" },
+  { label: "YouTube", href: "https://www.youtube.com/channel/UCy9VyjaqMNM74n1pcosIPDA", icon: "youtube" },
 ] as const;
 export const CATEGORIES = [
   { value: "GHEE", label: "Ghee" },
@@ -182,6 +182,39 @@ export const FAQS_PRODUCTS_ALL = [
   FAQS_HONEY[0],
   FAQS_PICKLES[0],
   ...FAQS_PRICE,
+] as const;
+
+export const FAQS_JAIPUR = [
+  {
+    question: "Where can I buy farm-made organic products in Jaipur?",
+    answer:
+      "Organic Jaipur delivers A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani lal mirch chutney directly to homes across Jaipur. You can order on this website or WhatsApp the Jaipur team with your product, pack size and address.",
+  },
+  {
+    question: "Which products does Organic Jaipur deliver in Jaipur?",
+    answer:
+      "The core range includes Gir, Desi and Buffalo Bilona ghee, wooden-ghani cold-pressed oils, lightly filtered raw honey and small-batch Rajasthani lal mirch chutney. Current sizes, ingredients, prices and stock are shown on each product page.",
+  },
+  {
+    question: "Is delivery free across Jaipur?",
+    answer:
+      "Yes. Doorstep delivery is free within the current Jaipur service area. Send your locality and PIN code before ordering if you want the team to confirm coverage and the available delivery slot.",
+  },
+  {
+    question: "How quickly are orders delivered in Jaipur?",
+    answer:
+      "Jaipur orders usually arrive the same day or the next day, depending on stock, order time and the delivery route. The team confirms the expected slot before dispatch.",
+  },
+  {
+    question: "How can I check the source or process before buying?",
+    answer:
+      "Open the relevant product and making-process pages to see the ingredients, pack size and method. For a specific pack, send its product name and size on WhatsApp and request the latest available batch information.",
+  },
+  {
+    question: "How do I choose between the ghee options?",
+    answer:
+      "Choose Gir cow ghee for a distinctive aroma, Desi cow ghee for everyday use, or Buffalo Bilona ghee for a richer texture suited to frying and sweets. Compare the current pack sizes and prices on the product pages before ordering.",
+  },
 ] as const;
 
 export function faqsForRajasthanCity(cityName: string) {

@@ -1,4 +1,5 @@
 import { SITE_URL } from "@/lib/constants";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 type Product = {
   name: string;
@@ -28,6 +29,7 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
     image: absoluteImage,
     url: `${SITE_URL}/products/${product.slug}`,
     brand: { "@type": "Brand", name: "Organic Jaipur" },
+    category: "Organic food",
     offers: {
       "@type": "Offer",
       priceCurrency: "INR",
@@ -36,6 +38,7 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
       url: `${SITE_URL}/products/${product.slug}`,
+      seller: { "@id": `${SITE_URL}/#organization` },
     },
     ...(reviewCount > 0
       ? {
@@ -51,7 +54,7 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(json) }}
     />
   );
 }

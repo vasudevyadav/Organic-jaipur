@@ -94,11 +94,6 @@ export default function Footer() {
                 Track Order
               </Link>
             </li>
-            <li>
-              <Link href="/account" className="hover:text-[#e7ad42]">
-                My Account
-              </Link>
-            </li>
           </ul>
         </div>
 

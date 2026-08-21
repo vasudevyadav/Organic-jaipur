@@ -9,6 +9,7 @@ export const metadata = {
   title: "Terms and Conditions",
   description:
     "The terms and conditions that apply when you browse, order from, or use the Organic Jaipur website.",
+  alternates: { canonical: "/terms-and-conditions" },
 };
 
 export default function TermsAndConditionsPage() {

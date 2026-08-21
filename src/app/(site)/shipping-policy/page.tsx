@@ -9,6 +9,7 @@ export const metadata = {
   title: "Shipping & Delivery Policy",
   description:
     "Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee, cold-pressed oil, honey, and pickles.",
+  alternates: { canonical: "/shipping-policy" },
 };
 
 export default function ShippingPolicyPage() {

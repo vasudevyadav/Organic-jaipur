@@ -5,6 +5,7 @@ export const metadata = {
   title: "Track Your Order",
   description:
     "Track the status of your Organic Jaipur order using your order number and phone number, from order placed to out for delivery.",
+  robots: { index: false, follow: true },
 };
 
 export default function TrackOrderPage() {

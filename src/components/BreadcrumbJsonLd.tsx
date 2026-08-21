@@ -1,4 +1,5 @@
 import { SITE_URL } from "@/lib/constants";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 type Crumb = { name: string; href: string };
 
@@ -17,7 +18,7 @@ export default function BreadcrumbJsonLd({ items }: { items: readonly Crumb[] })
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(json) }}
     />
   );
 }

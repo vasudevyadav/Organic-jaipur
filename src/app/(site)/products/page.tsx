@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Category, Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import ProductCard from "@/components/ProductCard";
@@ -29,6 +30,7 @@ export const metadata = {
   title: "Shop Ghee, Oils, Honey & Lal Mirch Chutney Online",
   description:
     "Order Gir, Desi and Buffalo Bilona ghee, kachi ghani oil, raw honey and Rajasthani lal mirch chutney online.",
+  alternates: { canonical: "/products" },
 };
 
 const CATEGORY_INTROS: Record<string, { title: string; copy: string }> = {
@@ -119,9 +121,12 @@ export default async function ProductsPage({ searchParams }: Props) {
         ]}
       />
       <section className="hero-grain relative isolate min-h-[420px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[480px]">
-        <img
+        <Image
           src="/images/generated/banner-shop-farm-v3.jpg"
           alt="Organic Jaipur ghee, oil, honey and lal mirch chutney at a Rajasthan farm"
+          fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.72)_0%,rgba(8,29,20,.3)_48%,rgba(8,29,20,.04)_82%)]" />

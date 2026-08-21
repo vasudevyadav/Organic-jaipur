@@ -21,7 +21,7 @@ import {
   LeafIcon,
   TruckIcon,
 } from "@/components/icons";
-import { STATS, FAQS_HOME } from "@/lib/constants";
+import { BUSINESS, STATS, FAQS_HOME, SOCIAL_LINKS } from "@/lib/constants";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     absolute: "A2 & Buffalo Ghee, Mustard Oil, Honey & Chutney | Organic Jaipur",
   },
   description:
-    "Own-farm A2 and Buffalo Bilona ghee, cold-pressed oils, raw honey and Rajasthani lal mirch chutney. Free delivery in Jaipur and Cash on Delivery.",
+    "Ye Ghee Nahi, Bharosa Hai. Own-farm A2 and Buffalo Bilona ghee, cold-pressed oils, raw honey and Rajasthani lal mirch chutney, with free Jaipur delivery and Cash on Delivery.",
   alternates: { canonical: "/" },
   keywords: [
     "organic Jaipur",
@@ -59,16 +59,16 @@ const heroSlides: HeroSlide[] = [
     image: "/images/generated/banner-ghee-farm-v4.png",
     alt: "Traditional wooden bilona used to make A2 Gir Cow Ghee in Jaipur",
     focal: "object-right sm:object-center",
-    eyebrow: "Gir, Desi & Buffalo Bilona Ghee",
+    eyebrow: "Jaipur Aur Rajasthan Ki Rasoi Ke Liye",
     title: (
       <>
         Ye Ghee Nahi,{" "}
         <em className="font-normal text-honey-400">Bharosa Hai.</em>
       </>
     ),
-    copy: "Choose aromatic Gir cow ghee, everyday Desi cow ghee or rich Buffalo Bilona Ghee—available in 500 g, 1 kg and 2 kg packs.",
-    primaryCta: { label: "Shop A2 Ghee", href: "/products?category=GHEE" },
-    secondaryCta: { label: "See How It’s Made", href: "/farm-to-home" },
+    copy: "Apni farm ki cows se shuru, dahi se bilona-churned aur dheemi aanch par taiyaar. Gir, Desi ya Buffalo Ghee—apni family ke swaad aur zaroorat ke hisaab se chuniye.",
+    primaryCta: { label: "Ghee Chuniye", href: "/products?category=GHEE" },
+    secondaryCta: { label: "Process Dekhiye", href: "/farm-to-home" },
   },
   {
     image: "/images/generated/banner-honey-apiary-v4.png",
@@ -182,6 +182,24 @@ const experienceReasons = [
     title: "Jaipur Mein Aasaan Delivery",
     copy: "Free local delivery, Cash on Delivery aur order ke liye seedha WhatsApp support.",
     icon: TruckIcon,
+  },
+];
+
+const gheeDecisionChecks = [
+  {
+    number: "01",
+    title: "Doodh Kahan Se Aata Hai?",
+    copy: "Hamare ghee ki shuruwat apni Jaipur farm par paali gayi cows ke doodh se hoti hai.",
+  },
+  {
+    number: "02",
+    title: "Cream Se Ya Dahi Se?",
+    copy: "Doodh ko dahi banakar lakdi ke bilona se matha jaata hai—cream-separator shortcut nahi.",
+  },
+  {
+    number: "03",
+    title: "Batch Ka Jawaab Milega?",
+    copy: "Product aur pack size bhejkar WhatsApp par latest available batch details pooch sakte hain.",
   },
 ];
 
@@ -358,6 +376,58 @@ export default async function HomePage() {
       />
 
       <TrustTicker />
+
+      {/* Research-led comparison hook */}
+      <section className="border-b border-forest-900/10 bg-[#fffdf7] px-5 py-10 sm:px-8 sm:py-14">
+        <div className="mx-auto max-w-7xl">
+          <AnimatedSection className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+            <div>
+              <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
+                Packet Nahi, Process Dekhiye
+              </p>
+              <h2 className="mt-3 font-display text-4xl leading-[1.05] text-forest-900 sm:text-5xl">
+                Phone Lene Se Pehle Compare Karte Hain.{" "}
+                <em className="font-normal text-brand-700">Ghee Kyun Nahi?</em>
+              </h2>
+              <p className="mt-4 max-w-xl leading-7 text-forest-900/70">
+                Label par sirf “pure” likha hona kaafi nahi. Source, method aur batch ke baare mein teen seedhe sawaal poochiye.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {gheeDecisionChecks.map((check) => (
+                <article
+                  key={check.number}
+                  className="rounded-[1.35rem] border border-forest-900/10 bg-white p-5 shadow-sm"
+                >
+                  <span className="font-display text-sm font-bold text-terracotta-600">
+                    {check.number}
+                  </span>
+                  <h3 className="mt-5 font-display text-xl leading-tight text-forest-900">
+                    {check.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-forest-900/65">
+                    {check.copy}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.08} className="mt-7 flex flex-wrap items-center gap-4">
+            <Link
+              href="/farm-to-home"
+              className="rounded-full bg-forest-900 px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-800"
+            >
+              Hamara Process Dekhiye →
+            </Link>
+            <Link
+              href="/products?category=GHEE"
+              className="rounded-full border border-forest-900/20 px-7 py-3.5 text-sm font-bold text-forest-900 transition hover:border-forest-900"
+            >
+              Ghee Shop Karein
+            </Link>
+          </AnimatedSection>
+        </div>
+      </section>
 
       {/* Shop by category */}
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:py-14">
@@ -797,33 +867,73 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Also available on */}
+      {/* Follow us on social media */}
       <section className="bg-[#fffdf8] px-5 py-8 sm:px-8 sm:py-16">
         <AnimatedSection className="mx-auto max-w-5xl text-center">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
-            Jahan Se Chahein, Wahan Se Kharidein
+            Social Par Humse Judiye
           </p>
           <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-5xl">
-            Jahan Se Kharidein,{" "}
-            <em className="font-normal text-brand-700">Shuddhta Wahi.</em>
+            Farm Se Rasoi Tak,{" "}
+            <em className="font-normal text-brand-700">Har Update Yahin.</em>
           </h2>
-          <div className="mt-9 grid gap-5 sm:grid-cols-2">
-            <div className="rounded-[1.4rem] border border-[#2874f0]/15 bg-white px-8 py-7 shadow-sm">
-              <p className="text-3xl font-black tracking-tight text-[#2874f0]">
-                Flipkart
+          <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <a
+              href={SOCIAL_LINKS[0].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Organic Jaipur on Instagram"
+              className="rounded-[1.4rem] border border-[#e4405f]/15 bg-white px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <p className="text-3xl font-black tracking-tight text-[#e4405f]">
+                Instagram
               </p>
               <p className="mt-2 text-sm text-forest-900/70">
-                Find selected Organic Jaipur products
+                Farm stories, products aur daily updates dekhiye
               </p>
-            </div>
-            <div className="rounded-[1.4rem] border border-[#f5cb18]/30 bg-[#fffce7] px-8 py-7 shadow-sm">
-              <p className="text-3xl font-black tracking-tight text-[#1f4d2d]">
-                blink<span className="text-[#f5b900]">it</span>
+            </a>
+            <a
+              href={SOCIAL_LINKS[1].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Organic Jaipur on Facebook"
+              className="rounded-[1.4rem] border border-[#1877f2]/15 bg-[#f5f9ff] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <p className="text-3xl font-black tracking-tight text-[#1877f2]">
+                Facebook
               </p>
               <p className="mt-2 text-sm text-forest-900/70">
-                Quick delivery on selected essentials
+                Organic Jaipur ki news aur community updates paaiye
               </p>
-            </div>
+            </a>
+            <a
+              href={SOCIAL_LINKS[2].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Organic Jaipur on YouTube"
+              className="rounded-[1.4rem] border border-[#ff0000]/15 bg-[#fff8f8] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <p className="text-3xl font-black tracking-tight text-[#ff0000]">
+                YouTube
+              </p>
+              <p className="mt-2 text-sm text-forest-900/70">
+                Farm, process aur product videos dekhiye
+              </p>
+            </a>
+            <a
+              href={`https://wa.me/${BUSINESS.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Chat with Organic Jaipur on WhatsApp at ${BUSINESS.phoneDisplay}`}
+              className="rounded-[1.4rem] border border-[#25d366]/20 bg-[#f3fff7] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <p className="text-3xl font-black tracking-tight text-[#159447]">
+                WhatsApp
+              </p>
+              <p className="mt-2 text-sm text-forest-900/70">
+                {BUSINESS.phoneDisplay} par order ya sawaal bhejiye
+              </p>
+            </a>
           </div>
         </AnimatedSection>
       </section>
