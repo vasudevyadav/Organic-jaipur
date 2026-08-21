@@ -189,27 +189,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <Link
-            href="/account"
-            className="hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-brand-800 hover:bg-brand-50 sm:inline-flex"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
-              <circle cx="12" cy="8" r="3.5" />
-              <path
-                d="M4.5 20c1.5-3.5 4.5-5.5 7.5-5.5s6 2 7.5 5.5"
-                strokeLinecap="round"
-              />
-            </svg>
-            Account
-          </Link>
-
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -325,18 +304,11 @@ export default function Navbar() {
         </div>
 
         <div className="border-t border-forest-900/10 bg-[#f7f0df] p-5">
-          <div className="mb-4 grid grid-cols-2 gap-3">
-            <Link
-              href="/account"
-              onClick={() => setOpen(false)}
-              className="rounded-full border border-forest-900/15 bg-white px-4 py-3 text-center text-sm font-bold text-forest-900"
-            >
-              My Account
-            </Link>
+          <div className="mb-4">
             <Link
               href="/track-order"
               onClick={() => setOpen(false)}
-              className="rounded-full border border-forest-900/15 bg-white px-4 py-3 text-center text-sm font-bold text-forest-900"
+              className="block rounded-full border border-forest-900/15 bg-white px-4 py-3 text-center text-sm font-bold text-forest-900"
             >
               Track Order
             </Link>

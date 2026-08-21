@@ -8,6 +8,7 @@ export const metadata = {
   title: "Privacy Policy",
   description:
     "How Organic Jaipur collects, uses, and protects the personal information you share with us when you browse, order, or contact us.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {

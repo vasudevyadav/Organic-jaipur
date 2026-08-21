@@ -7,6 +7,7 @@ export const metadata = {
   title: "From Our Farm to Your Home | Organic Jaipur",
   description:
     "See how your order reaches you: grown on our farm, made in small batches, checked, then delivered to your door in Jaipur.",
+  alternates: { canonical: "/farm-to-home" },
 };
 
 const STEPS = [

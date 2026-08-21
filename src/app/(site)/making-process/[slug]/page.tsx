@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AnimatedSection from "@/components/AnimatedSection";
 import { MAKING_PROCESSES } from "@/lib/making-process";
 import MakingProcessTimeline from "@/components/MakingProcessTimeline";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { SITE_URL } from "@/lib/constants";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -11,14 +14,19 @@ export function generateStaticParams() {
   return MAKING_PROCESSES.map((process) => ({ slug: process.slug }));
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const process = MAKING_PROCESSES.find((item) => item.slug === slug);
   return process
     ? {
         title: `${process.label} Making Process`,
         description: `${process.intro} Made on our own farm in Jaipur, Rajasthan.`,
-        openGraph: { images: [{ url: process.banner }] },
+        alternates: { canonical: `/making-process/${process.slug}` },
+        openGraph: {
+          type: "article",
+          url: `${SITE_URL}/making-process/${process.slug}`,
+          images: [{ url: process.banner }],
+        },
       }
     : { title: "Making Process" };
 }
@@ -30,6 +38,12 @@ export default async function MakingProcessPage({ params }: Props) {
 
   return (
     <main className="overflow-hidden bg-[#fbf8ef]">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: process.label, href: `/making-process/${process.slug}` },
+        ]}
+      />
       <section className="relative overflow-hidden bg-forest-900 text-white sm:min-h-[590px]">
         <div className="absolute inset-x-0 top-0 h-[310px] sm:inset-0 sm:h-auto">
           <Image src={process.banner} alt={`${process.label} making process at Organic Jaipur`} fill priority sizes="100vw" className="object-cover object-right sm:object-center" />

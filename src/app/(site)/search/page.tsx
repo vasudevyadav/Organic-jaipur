@@ -7,6 +7,7 @@ import { CATEGORIES, STOREFRONT_CATEGORY_VALUES } from "@/lib/constants";
 export const metadata = {
   title: "Search",
   description: "Search Organic Jaipur's A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles, all grown and made on our own farm in Jaipur.",
+  robots: { index: false, follow: true },
 };
 
 type Props = { searchParams: Promise<{ q?: string }> };

@@ -17,7 +17,8 @@ export default function FaqJsonLd({ items }: { items: readonly Faq[] }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(json) }}
     />
   );
 }
+import { serializeJsonLd } from "@/lib/json-ld";

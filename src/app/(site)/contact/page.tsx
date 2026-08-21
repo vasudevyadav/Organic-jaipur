@@ -3,7 +3,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import ContactForm from "@/components/ContactForm";
 import { BUSINESS } from "@/lib/constants";
 
-export const metadata = { title: "Contact Organic Jaipur: Order, Track or Ask", description: "Order on WhatsApp, call us, or visit our farm on Mahapura Road, Jaipur. We reply within minutes." };
+export const metadata = { title: "Contact Organic Jaipur: Order, Track or Ask", description: "Order on WhatsApp, call us, or visit our farm on Mahapura Road, Jaipur. We reply within minutes.", alternates: { canonical: "/contact" } };
 
 export default function ContactPage() {
   return <main className="overflow-hidden bg-[#fbf8ef]">

@@ -13,6 +13,7 @@ export const metadata = {
   title: "Our Own Farm in Jaipur, Rajasthan | Organic Jaipur",
   description:
     "We grow, churn, press and pack everything we sell on one farm in Jaipur. No traders, no anonymous sourcing.",
+  alternates: { canonical: "/about" },
 };
 
 const principles = [

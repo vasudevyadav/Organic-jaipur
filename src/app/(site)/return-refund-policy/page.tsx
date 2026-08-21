@@ -9,6 +9,7 @@ export const metadata = {
   title: "Return & Refund Policy",
   description:
     "How Organic Jaipur handles returns, replacements, and refunds for A2 ghee, cold-pressed oil, honey, and pickles.",
+  alternates: { canonical: "/return-refund-policy" },
 };
 
 export default function ReturnRefundPolicyPage() {

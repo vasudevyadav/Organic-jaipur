@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -54,7 +55,6 @@ export default async function RajasthanCityPage({ params }: Props) {
   const city = RAJASTHAN_CITIES.find((item) => item.slug === slug);
   if (!city) notFound();
 
-  const otherCities = RAJASTHAN_CITIES.filter((item) => item.slug !== city.slug);
   const faqs = faqsForRajasthanCity(city.name);
 
   return (
@@ -68,7 +68,7 @@ export default async function RajasthanCityPage({ params }: Props) {
       />
 
       <section className="relative min-h-[380px] overflow-hidden bg-forest-900 text-white sm:min-h-[420px]">
-        <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products shipped across Rajasthan" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <Image src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products shipped across Rajasthan" fill priority sizes="100vw" className="absolute inset-0 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.9)_0%,rgba(8,29,20,.58)_48%,rgba(8,29,20,.06)_82%)]" />
         <AnimatedSection className="relative mx-auto flex min-h-[380px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[420px] sm:px-8">
           <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400">
@@ -100,6 +100,21 @@ export default async function RajasthanCityPage({ params }: Props) {
         </AnimatedSection>
       </section>
 
+      <section className="border-b border-forest-900/10 bg-white px-5 py-10 sm:px-8 sm:py-14">
+        <article className="mx-auto max-w-4xl">
+          <p className="text-xs font-bold uppercase tracking-[.2em] text-terracotta-500">Direct answer</p>
+          <h2 className="mt-3 font-display text-3xl leading-tight text-forest-900 sm:text-4xl">
+            Does Organic Jaipur ship products to {city.name}?
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-forest-900/75">
+            <strong className="text-forest-900">Yes.</strong> A2 Bilona ghee, cold-pressed oil,
+            raw honey and Rajasthani lal mirch chutney can be shipped from Jaipur to {city.name} by
+            courier. Share your PIN code, chosen pack sizes and quantity on WhatsApp to receive the
+            current stock, shipping charge and expected delivery window before confirming.
+          </p>
+        </article>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
           Shop by category
@@ -122,7 +137,7 @@ export default async function RajasthanCityPage({ params }: Props) {
 
       <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-10">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
-          Also shipping to
+          Explore Rajasthan shipping
         </p>
         <div className="mt-5 flex flex-wrap gap-2.5">
           <Link
@@ -131,15 +146,12 @@ export default async function RajasthanCityPage({ params }: Props) {
           >
             All Rajasthan cities
           </Link>
-          {otherCities.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/organic-products-rajasthan/${item.slug}`}
-              className="rounded-full border border-forest-900/12 px-5 py-2.5 text-xs font-bold text-forest-900 transition hover:bg-[#faf7ee]"
-            >
-              {item.name}
-            </Link>
-          ))}
+          <Link
+            href="/contact"
+            className="rounded-full border border-forest-900/12 px-5 py-2.5 text-xs font-bold text-forest-900 transition hover:bg-[#faf7ee]"
+          >
+            Ask about my PIN code
+          </Link>
         </div>
       </section>
 
