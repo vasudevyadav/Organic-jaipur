@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { forgotPasswordSchema } from "@/lib/validation";
 import { createPasswordResetToken } from "@/lib/auth-customer";
+import { sendPasswordResetEmail } from "@/lib/customer-email";
+import { SITE_URL } from "@/lib/constants";
 
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
@@ -21,9 +23,14 @@ export async function POST(request: NextRequest) {
 
   const { token } = await createPasswordResetToken(user.id);
 
-  // TODO: send this link via a transactional email provider (e.g. Resend) once one is
-  // configured. Until then it is returned directly so the reset flow is testable end to end.
   const resetLink = `/account/reset-password/${token}`;
+  const sent = await sendPasswordResetEmail(user.email, `${SITE_URL}${resetLink}`);
+  if (!sent) console.error("Password reset email could not be sent: email provider is not configured.");
 
-  return NextResponse.json({ success: true, resetLink });
+  // Never expose a password-reset token in production. The direct link remains useful
+  // in local development when an email provider is intentionally not configured.
+  return NextResponse.json({
+    success: true,
+    resetLink: process.env.NODE_ENV === "production" ? null : resetLink,
+  });
 }

@@ -29,7 +29,6 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
               <Image
                 src={safeImageUrl(item.imageUrl)}
                 alt={item.name}
-                unoptimized
                 fill
                 sizes="(max-width: 639px) 76vw, 300px"
                 className="object-cover transition duration-700 group-hover:scale-[1.05]"
@@ -46,7 +45,7 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
                   <span className="text-lg font-bold text-forest-900">{formatPrice(item.price)}</span>
                   {hasDiscount && <span className="text-xs text-forest-900/65 line-through">{formatPrice(item.originalPrice!)}</span>}
                 </div>
-                {hasDiscount && <span className="rounded-full bg-honey-400/25 px-2.5 py-1 text-[11px] font-bold text-honey-600">{discount}% off</span>}
+                {hasDiscount && <span className="rounded-full bg-honey-400/25 px-2.5 py-1 text-[11px] font-bold text-forest-700">{discount}% off</span>}
               </div>
 
               <div className="mt-4">

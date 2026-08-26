@@ -69,7 +69,6 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
                 <Image
                   src={safeImageUrl(item.imageUrl)}
                   alt={item.name}
-                  unoptimized
                   fill
                   sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 24vw"
                   className="object-cover transition duration-700 group-hover:scale-[1.06]"
