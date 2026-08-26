@@ -120,9 +120,10 @@ export default function ReturnRefundPolicyPage() {
                   <li>A refund via bank transfer or UPI to an account/ID you provide.</li>
                 </ul>
                 <p>
-                  The processing time for a refund by bank transfer or UPI is [Add specific refund
-                  processing timeframe here] from when the claim is confirmed. Replacements and store
-                  credit are typically arranged faster since they don&apos;t depend on a bank transfer.
+                  We&apos;ll confirm the expected transfer date when your claim is approved. The time for
+                  the money to appear after transfer can depend on the receiving bank or UPI provider.
+                  Replacements and store credit are typically arranged faster since they don&apos;t depend
+                  on a bank transfer.
                 </p>
               </section>
 

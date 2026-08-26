@@ -190,9 +190,8 @@ export default function PrivacyPolicyPage() {
                   <li>Address: {BUSINESS.address}</li>
                 </ul>
                 <p className="text-forest-900/40">
-                  Registered business/legal entity name: Organic Jaipur. Grievance officer name and
-                  contact (if applicable under local regulations): [Add grievance officer details
-                  here].
+                  Registered business name: Organic Jaipur. Privacy questions and requests are handled
+                  by the Organic Jaipur team using the phone, WhatsApp and postal contact details above.
                 </p>
               </section>
             </div>

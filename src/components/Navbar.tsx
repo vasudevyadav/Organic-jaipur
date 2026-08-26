@@ -226,7 +226,7 @@ export default function Navbar() {
         aria-label="Mobile navigation"
         aria-hidden={!open}
         inert={!open}
-        className={`fixed right-0 top-0 z-[70] flex h-dvh w-[min(88vw,390px)] flex-col bg-[#fffdf8] shadow-[-18px_0_60px_rgba(15,40,28,.24)] transition-transform duration-300 ease-out lg:hidden ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed right-0 top-0 z-[70] h-dvh w-[min(88vw,390px)] flex-col bg-[#fffdf8] shadow-[-18px_0_60px_rgba(15,40,28,.24)] lg:hidden ${open ? "flex" : "hidden"}`}
       >
         <div className="flex items-center justify-between border-b border-forest-900/10 px-5 py-4">
           <Image

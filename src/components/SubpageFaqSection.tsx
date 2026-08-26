@@ -75,7 +75,7 @@ export default function SubpageFaqSection({
     <section className="bg-[#fbf7e9] px-5 py-12 sm:px-8 sm:py-16">
       <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
         <AnimatedSection>
-          <p className="text-xs font-bold uppercase tracking-[.2em] text-terracotta-500">
+          <p className="text-xs font-bold uppercase tracking-[.2em] text-terracotta-600">
             {eyebrow}
           </p>
           <h2 className="mt-3 font-display text-5xl text-[#425c22] sm:text-6xl">

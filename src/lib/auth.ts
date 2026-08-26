@@ -1,5 +1,10 @@
 export const SESSION_COOKIE = "oj_admin_session";
 
+function adminPassword(): string | null {
+  const password = process.env.ADMIN_PASSWORD?.trim();
+  return password ? password : null;
+}
+
 async function sha256(input: string): Promise<string> {
   const data = new TextEncoder().encode(input);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
@@ -8,12 +13,14 @@ async function sha256(input: string): Promise<string> {
     .join("");
 }
 
-export async function adminSessionToken(): Promise<string> {
-  return sha256(`${process.env.ADMIN_PASSWORD ?? ""}:organic-jaipur-admin`);
+export async function adminSessionToken(): Promise<string | null> {
+  const password = adminPassword();
+  if (!password) return null;
+  return sha256(`${password}:organic-jaipur-admin`);
 }
 
 export async function isValidAdminToken(token: string | undefined | null): Promise<boolean> {
   if (!token) return false;
   const expected = await adminSessionToken();
-  return token === expected;
+  return expected !== null && token === expected;
 }

@@ -32,6 +32,8 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             alt={slide.alt}
             fill
             priority={active === 0}
+            fetchPriority={active === 0 ? "high" : "auto"}
+            decoding={active === 0 ? "sync" : "async"}
             quality={65}
             sizes="100vw"
             className={`object-cover ${slide.focal ?? "object-center"}`}
@@ -91,9 +93,15 @@ export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
             type="button"
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => goTo(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-8 bg-honey-400" : "w-2 bg-white/40 hover:bg-white/70"
+            className="flex h-6 min-w-6 items-center justify-center rounded-full"
+          >
+            <span
+              aria-hidden="true"
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === active ? "w-8 bg-honey-400" : "w-2 bg-white/40"
               }`}
-          />
+            />
+          </button>
         ))}
       </div>
 

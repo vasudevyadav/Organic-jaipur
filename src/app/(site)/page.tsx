@@ -543,7 +543,7 @@ export default async function HomePage() {
                       <h3 className="mt-3 font-display text-2xl text-forest-900 sm:text-3xl md:mt-0">
                         {step.title}
                       </h3>
-                      <p className="mx-auto mt-3 max-w-sm leading-6 text-forest-900/60 md:mx-0">
+                      <p className="mx-auto mt-3 max-w-sm leading-6 text-forest-900/70 md:mx-0">
                         {step.copy}
                       </p>
                     </div>
@@ -579,7 +579,6 @@ export default async function HomePage() {
                   <Image
                     src={safeImageUrl(item.imageUrl)}
                     alt={item.name}
-                    unoptimized
                     fill
                     sizes="(max-width: 639px) 68vw, 280px"
                     className="object-cover transition duration-700 group-hover:scale-105"
@@ -664,18 +663,15 @@ export default async function HomePage() {
 
           <AnimatedSection
             delay={0.1}
-            className="mx-auto mt-10 max-w-7xl overflow-hidden rounded-[1.75rem] bg-black/20 shadow-2xl shadow-black/30"
+            className="relative mx-auto mt-10 aspect-video max-w-7xl overflow-hidden rounded-[1.75rem] bg-black/20 shadow-2xl shadow-black/30"
           >
-            <video
-              className="aspect-video h-full w-full object-cover"
-              controls
-              playsInline
-              preload="metadata"
-              poster="/images/generated/hero-bilona.webp"
-            >
-              <source src="/videos/organic-jaipur-story.mp4" type="video/mp4" />
-              Your browser does not support video.
-            </video>
+            <Image
+              src="/images/generated/hero-bilona.webp"
+              alt="Traditional bilona ghee preparation at Organic Jaipur"
+              fill
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="object-cover"
+            />
           </AnimatedSection>
 
           <div className="mt-14 grid gap-px overflow-hidden rounded-[1.75rem] bg-white/15 md:grid-cols-2 lg:grid-cols-4">
@@ -811,6 +807,7 @@ export default async function HomePage() {
               <article className="group">
                 <Link
                   href={blog.href}
+                  aria-label={`Read ${blog.title}`}
                   className="relative block aspect-[4/3] overflow-hidden rounded-[1.4rem]"
                 >
                   <Image
@@ -882,7 +879,6 @@ export default async function HomePage() {
               href={SOCIAL_LINKS[0].href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Organic Jaipur on Instagram"
               className="rounded-[1.4rem] border border-[#e4405f]/15 bg-white px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <p className="text-3xl font-black tracking-tight text-[#e4405f]">
@@ -896,7 +892,6 @@ export default async function HomePage() {
               href={SOCIAL_LINKS[1].href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Organic Jaipur on Facebook"
               className="rounded-[1.4rem] border border-[#1877f2]/15 bg-[#f5f9ff] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <p className="text-3xl font-black tracking-tight text-[#1877f2]">
@@ -910,7 +905,6 @@ export default async function HomePage() {
               href={SOCIAL_LINKS[2].href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Organic Jaipur on YouTube"
               className="rounded-[1.4rem] border border-[#ff0000]/15 bg-[#fff8f8] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <p className="text-3xl font-black tracking-tight text-[#ff0000]">
@@ -924,7 +918,6 @@ export default async function HomePage() {
               href={`https://wa.me/${BUSINESS.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Chat with Organic Jaipur on WhatsApp at ${BUSINESS.phoneDisplay}`}
               className="rounded-[1.4rem] border border-[#25d366]/20 bg-[#f3fff7] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <p className="text-3xl font-black tracking-tight text-[#159447]">

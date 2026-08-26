@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Product } from "@prisma/client";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 import { categoryLabel } from "@/lib/constants";
-import WishlistButton from "@/components/WishlistButton";
 import QuickAddButton from "@/components/QuickAddButton";
 
 export default function ProductCard({ product }: { product: Product }) {

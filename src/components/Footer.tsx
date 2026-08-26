@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS, CATEGORIES, SOCIAL_LINKS } from "@/lib/constants";
 import NewsletterBar from "@/components/NewsletterBar";
@@ -16,18 +17,27 @@ export default function Footer() {
   return (
     <footer className="relative mt-auto overflow-hidden bg-[#fbf3df] text-forest-900">
       <NewsletterBar />
-      <img
+      <Image
         src="/images/illustrated-farm-footer-v2.png"
         alt=""
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-[430px] w-full object-cover object-bottom opacity-95"
+        aria-hidden="true"
+        fill
+        loading="lazy"
+        quality={55}
+        sizes="100vw"
+        className="object-cover object-bottom opacity-95"
       />
       <div className="absolute inset-0 bg-linear-to-b from-[#fbf3df] via-[#fbf3df]/96 to-transparent" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 pb-20 sm:px-8 md:grid-cols-[1.25fr_.75fr_.85fr_1.15fr] lg:pb-24">
         <div>
-          <img
+          <Image
             src="/product/download.png"
             alt="Organic Jaipur"
+            width={240}
+            height={63}
+            loading="lazy"
+            quality={70}
+            sizes="240px"
             className="h-14 w-[240px] object-contain object-left mix-blend-multiply"
           />
           <p className="mt-5 max-w-xs font-display text-2xl leading-snug">
