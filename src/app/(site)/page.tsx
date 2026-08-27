@@ -347,7 +347,7 @@ export default async function HomePage() {
     .slice(0, 8);
 
   const gheeProducts = pickByVariety(gheeCandidates, 4);
-  const oilProducts = pickByVariety(oilCandidates, 4);
+  const oilProducts = pickByVariety(oilCandidates, 6);
   const chutneyProducts = pickByVariety(pickleCandidates, 4);
   const honeyProducts = pickByVariety(honeyCandidates, 4);
 
