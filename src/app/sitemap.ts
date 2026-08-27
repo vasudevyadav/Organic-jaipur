@@ -5,6 +5,8 @@ import { MAKING_PROCESSES } from "@/lib/making-process";
 import { JAIPUR_LOCALITIES } from "@/lib/jaipur-localities";
 import { RAJASTHAN_CITIES } from "@/lib/rajasthan-cities";
 
+const CONTENT_LAST_MODIFIED = new Date("2026-08-26T00:00:00+05:30");
+
 const STATIC_ROUTES: Array<{
   path: string;
   priority: number;
@@ -25,13 +27,22 @@ const STATIC_ROUTES: Array<{
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await prisma.product.findMany({
-    where: { category: { in: STOREFRONT_CATEGORY_VALUES }, inStock: true },
-    select: { slug: true, updatedAt: true },
-  });
+  let products: Array<{ slug: string; updatedAt: Date }> = [];
+
+  try {
+    products = await prisma.product.findMany({
+      where: { category: { in: STOREFRONT_CATEGORY_VALUES }, inStock: true },
+      select: { slug: true, updatedAt: true },
+    });
+  } catch (error) {
+    // Keep all static, Jaipur and Rajasthan URLs discoverable even during a
+    // temporary database outage. Product URLs return on the next regeneration.
+    console.error("Could not load product URLs for sitemap", error);
+  }
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
     url: `${SITE_URL}${route.path}`,
+    lastModified: CONTENT_LAST_MODIFIED,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
@@ -51,12 +62,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const localityEntries: MetadataRoute.Sitemap = JAIPUR_LOCALITIES.map((locality) => ({
     url: `${SITE_URL}/organic-products-jaipur/${locality.slug}`,
+    lastModified: CONTENT_LAST_MODIFIED,
     changeFrequency: "monthly",
-    priority: 0.7,
+    priority: 0.75,
   }));
 
   const rajasthanCityEntries: MetadataRoute.Sitemap = RAJASTHAN_CITIES.map((city) => ({
     url: `${SITE_URL}/organic-products-rajasthan/${city.slug}`,
+    lastModified: CONTENT_LAST_MODIFIED,
     changeFrequency: "monthly",
     priority: 0.7,
   }));

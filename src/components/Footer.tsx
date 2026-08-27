@@ -28,8 +28,8 @@ export default function Footer() {
         className="object-cover object-bottom opacity-95"
       />
       <div className="absolute inset-0 bg-linear-to-b from-[#fbf3df] via-[#fbf3df]/96 to-transparent" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-5 pb-20 sm:px-8 md:grid-cols-[1.25fr_.75fr_.85fr_1.15fr] lg:pb-24">
-        <div>
+      <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-5 pb-16 sm:px-8 md:grid-cols-[1.25fr_.75fr_.85fr_1.15fr] md:gap-10 lg:pb-24">
+        <div className="col-span-2 md:col-span-1">
           <Image
             src="/product/download.png"
             alt="Organic Jaipur"
@@ -125,7 +125,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="col-span-2 md:col-span-1">
           <h3 className="text-xs font-bold uppercase tracking-[.18em] text-terracotta-500">
             Need help?
           </h3>

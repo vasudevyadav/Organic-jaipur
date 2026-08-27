@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import SearchBar from "@/components/SearchBar";
+import HeaderOrderTracker from "@/components/HeaderOrderTracker";
 import { useCart } from "@/lib/cart";
 import { MAKING_PROCESSES } from "@/lib/making-process";
 
@@ -58,7 +59,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#fffdf8]/95 backdrop-blur-md">
-      <div className="hidden bg-forest-900 text-cream sm:block">
+      <div className="hidden bg-forest-900 text-cream md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-[10px] font-bold uppercase tracking-[.16em] lg:px-8">
           <span>Free Jaipur Delivery · Cash on Delivery</span>
           <div className="flex items-center gap-6 text-cream/70">
@@ -69,7 +70,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="mx-auto flex max-w-[1500px] items-center justify-between gap-3 border-b border-forest-900/10 px-4 py-2.5 sm:px-6 lg:px-7">
+      <nav className="mx-auto flex max-w-[1500px] items-center justify-between gap-2 border-b border-forest-900/10 px-3 py-2.5 sm:gap-3 sm:px-6 lg:px-7">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2"
@@ -81,8 +82,8 @@ export default function Navbar() {
             alt="Organic Jaipur"
             width={210}
             height={55}
-            sizes="(min-width: 1280px) 210px, 190px"
-            className="w-[190px] object-contain object-left mix-blend-multiply xl:w-[210px]"
+            sizes="(max-width: 639px) 36vw, (min-width: 1280px) 210px, 190px"
+            className="w-[clamp(120px,36vw,190px)] object-contain object-left mix-blend-multiply sm:w-[190px] xl:w-[210px]"
           />
         </Link>
 
@@ -159,10 +160,12 @@ export default function Navbar() {
         <div className="flex items-center gap-1 sm:gap-2">
           <SearchBar />
 
+          <HeaderOrderTracker />
+
           <Link
             href="/cart"
             aria-label={`Cart with ${itemCount} item${itemCount === 1 ? "" : "s"}`}
-            className="group relative inline-flex h-10 items-center gap-2 rounded-full border border-forest-900/10 bg-white px-3 text-brand-800 shadow-sm transition hover:border-honey-400 hover:bg-[#fff8e8]"
+            className="group relative inline-flex h-10 items-center gap-2 rounded-full border border-forest-900/10 bg-white px-2 text-brand-800 shadow-sm transition hover:border-honey-400 hover:bg-[#fff8e8] sm:px-3"
           >
             <svg
               width="19"

@@ -22,7 +22,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="-mx-5 flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-5 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:flex-wrap md:justify-center md:overflow-visible md:px-0">
         {tabs.map((tab) => {
           const isActive = tab.key === activeTab.key;
           return (
@@ -30,7 +30,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
               key={tab.key}
               type="button"
               onClick={() => setActive(tab.key)}
-              className={`flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition ${
+              className={`flex shrink-0 snap-start items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-bold transition md:px-5 ${
                 isActive
                   ? "border-forest-900 bg-forest-900 text-cream shadow-sm"
                   : "border-forest-900/15 bg-white text-forest-900/70 hover:border-forest-900/30 hover:text-forest-900"
@@ -43,7 +43,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
         })}
       </div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="-mx-5 mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-10 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4">
         {activeTab.items.length === 0 && (
           <p className="col-span-full text-center text-sm text-forest-900/70">More products coming soon in this category.</p>
         )}
@@ -53,7 +53,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
           return (
             <article
               key={item.id}
-              className="group overflow-hidden rounded-[1.4rem] border border-forest-900/8 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group w-[82vw] shrink-0 snap-center overflow-hidden rounded-[1.4rem] border border-forest-900/8 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:w-auto"
             >
               <Link href={`/products/${item.slug}`} className="relative block aspect-square overflow-hidden bg-[#f1ecdd]">
                 {hasDiscount && (

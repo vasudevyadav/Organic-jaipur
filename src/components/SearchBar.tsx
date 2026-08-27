@@ -60,7 +60,7 @@ export default function SearchBar() {
       {open ? (
         <form
           onSubmit={handleSubmit}
-          className="absolute right-0 top-1/2 z-50 flex w-64 -translate-y-1/2 items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1.5 shadow-md sm:w-80"
+          className="fixed inset-x-3 top-2.5 z-50 flex w-auto items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1.5 shadow-md sm:absolute sm:inset-x-auto sm:right-0 sm:top-1/2 sm:w-48 sm:-translate-y-1/2"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-brand-600">
             <circle cx="11" cy="11" r="7" />

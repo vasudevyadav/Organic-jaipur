@@ -393,11 +393,11 @@ export default async function HomePage() {
                 Label par sirf “pure” likha hona kaafi nahi. Source, method aur batch ke baare mein teen seedhe sawaal poochiye.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-3 lg:overflow-visible lg:px-0">
               {gheeDecisionChecks.map((check) => (
                 <article
                   key={check.number}
-                  className="rounded-[1.35rem] border border-forest-900/10 bg-white p-5 shadow-sm"
+                  className="w-[82vw] shrink-0 snap-center rounded-[1.35rem] border border-forest-900/10 bg-white p-5 shadow-sm lg:w-auto"
                 >
                   <span className="font-display text-sm font-bold text-terracotta-600">
                     {check.number}
@@ -452,8 +452,8 @@ export default async function HomePage() {
             See all Jaipur areas we deliver to →
           </Link>
         </AnimatedSection>
-        <AnimatedSection delay={0.1} className="mt-12">
-          <CategoryShowcase tabs={categoryTabs} />
+          <AnimatedSection delay={0.1} className="mt-8 sm:mt-12">
+            <CategoryShowcase tabs={categoryTabs} />
         </AnimatedSection>
         <div className="mt-10 text-center">
           <Link
@@ -508,16 +508,16 @@ export default async function HomePage() {
             </h2>
           </AnimatedSection>
 
-          <div className="relative mt-16">
+          <div className="relative mt-10 md:mt-16">
             <JourneyScrollLine />
-            <div className="space-y-14 md:space-y-20">
+            <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:block md:space-y-20 md:overflow-visible md:px-0">
               {journeySteps.map((step, index) => {
                 const reversed = index % 2 === 1;
                 return (
                   <AnimatedSection
                     key={step.title}
                     delay={index * 0.06}
-                    className={`relative flex flex-col items-center gap-6 md:flex-row md:gap-14 ${reversed ? "md:flex-row-reverse" : ""}`}
+                    className={`relative flex w-[86vw] shrink-0 snap-center flex-col items-center gap-5 rounded-[1.6rem] border border-forest-900/8 bg-white p-3 shadow-sm md:w-auto md:flex-row md:gap-14 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none ${reversed ? "md:flex-row-reverse" : ""}`}
                   >
                     <div className="relative w-full md:w-1/2">
                       <div className="relative aspect-[5/3.4] w-full overflow-hidden rounded-[1.75rem] shadow-lg shadow-forest-900/10">
@@ -536,7 +536,7 @@ export default async function HomePage() {
                       {index + 1}
                     </span>
 
-                    <div className="w-full text-center md:w-1/2 md:text-left">
+                    <div className="w-full px-2 pb-3 text-center md:w-1/2 md:px-0 md:pb-0 md:text-left">
                       <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-forest-900 font-display text-sm text-honey-400 md:hidden">
                         {index + 1}
                       </span>
@@ -617,7 +617,7 @@ export default async function HomePage() {
       <section className="bg-[#0f281c] py-10 text-cream sm:py-16">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <AnimatedSection className="relative overflow-hidden rounded-[2rem]">
-            <div className="relative aspect-[16/5] w-full">
+            <div className="relative aspect-[4/3] w-full md:aspect-[16/5]">
               <Image
                 src="/images/gir-cow-story-v2.png"
                 alt="Gir cows at the Organic Jaipur farm in Rajasthan"
@@ -674,12 +674,12 @@ export default async function HomePage() {
             />
           </AnimatedSection>
 
-          <div className="mt-14 grid gap-px overflow-hidden rounded-[1.75rem] bg-white/15 md:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-14 md:grid md:grid-cols-2 md:gap-px md:overflow-hidden md:rounded-[1.75rem] md:bg-white/15 md:px-0 lg:grid-cols-4">
             {experienceReasons.map(({ title, copy, icon: Icon }, index) => (
               <AnimatedSection
                 key={title}
                 delay={index * 0.06}
-                className="flex h-full flex-col bg-[#1b4937] p-8"
+                className="flex h-full w-[82vw] shrink-0 snap-center flex-col rounded-[1.5rem] bg-[#1b4937] p-7 md:w-auto md:rounded-none md:p-8"
               >
                 <Icon className="h-10 w-10 shrink-0 text-honey-400" />
                 <h3 className="mt-8 flex min-h-[3.75rem] items-start font-display text-2xl">
@@ -748,14 +748,14 @@ export default async function HomePage() {
                 </AnimatedSection>
               ))}
 
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0">
               {testimonials
                 .filter((t) => !t.featured)
                 .map((t, index) => (
                   <AnimatedSection
                     key={t.name}
                     delay={index * 0.06}
-                    className="flex h-full flex-col rounded-[1.5rem] border border-forest-900/8 bg-white p-6 shadow-sm"
+                    className="flex h-full w-[82vw] shrink-0 snap-center flex-col rounded-[1.5rem] border border-forest-900/8 bg-white p-6 shadow-sm md:w-auto"
                   >
                     <div className="flex items-center gap-3">
                       <Avatar name={t.name} />
@@ -801,9 +801,9 @@ export default async function HomePage() {
             View Our Farm →
           </Link>
         </AnimatedSection>
-        <div className="mt-12 grid gap-7 md:grid-cols-3">
+        <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-7 md:overflow-visible md:px-0">
           {blogs.map((blog, index) => (
-            <AnimatedSection key={blog.title} delay={index * 0.06}>
+            <AnimatedSection key={blog.title} delay={index * 0.06} className="w-[84vw] shrink-0 snap-center md:w-auto">
               <article className="group">
                 <Link
                   href={blog.href}
@@ -874,12 +874,12 @@ export default async function HomePage() {
             Farm Se Rasoi Tak,{" "}
             <em className="font-normal text-brand-700">Har Update Yahin.</em>
           </h2>
-          <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="-mx-5 mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 text-left [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-9 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 lg:grid-cols-4">
             <a
               href={SOCIAL_LINKS[0].href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[1.4rem] border border-[#e4405f]/15 bg-white px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="w-[78vw] shrink-0 snap-center rounded-[1.4rem] border border-[#e4405f]/15 bg-white px-7 py-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:w-auto md:px-8 md:py-7"
             >
               <p className="text-3xl font-black tracking-tight text-[#e4405f]">
                 Instagram
@@ -892,7 +892,7 @@ export default async function HomePage() {
               href={SOCIAL_LINKS[1].href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[1.4rem] border border-[#1877f2]/15 bg-[#f5f9ff] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="w-[78vw] shrink-0 snap-center rounded-[1.4rem] border border-[#1877f2]/15 bg-[#f5f9ff] px-7 py-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:w-auto md:px-8 md:py-7"
             >
               <p className="text-3xl font-black tracking-tight text-[#1877f2]">
                 Facebook
@@ -905,7 +905,7 @@ export default async function HomePage() {
               href={SOCIAL_LINKS[2].href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[1.4rem] border border-[#ff0000]/15 bg-[#fff8f8] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="w-[78vw] shrink-0 snap-center rounded-[1.4rem] border border-[#ff0000]/15 bg-[#fff8f8] px-7 py-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:w-auto md:px-8 md:py-7"
             >
               <p className="text-3xl font-black tracking-tight text-[#ff0000]">
                 YouTube
@@ -918,7 +918,7 @@ export default async function HomePage() {
               href={`https://wa.me/${BUSINESS.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[1.4rem] border border-[#25d366]/20 bg-[#f3fff7] px-8 py-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="w-[78vw] shrink-0 snap-center rounded-[1.4rem] border border-[#25d366]/20 bg-[#f3fff7] px-7 py-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:w-auto md:px-8 md:py-7"
             >
               <p className="text-3xl font-black tracking-tight text-[#159447]">
                 WhatsApp

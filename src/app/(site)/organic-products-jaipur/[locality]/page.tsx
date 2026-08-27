@@ -6,8 +6,9 @@ import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import { CATEGORIES, SITE_URL, faqsForJaipurLocality } from "@/lib/constants";
+import { CATEGORIES, SITE_NAME, SITE_URL, faqsForJaipurLocality } from "@/lib/constants";
 import { JAIPUR_LOCALITIES } from "@/lib/jaipur-localities";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 type Props = { params: Promise<{ locality: string }> };
 
@@ -27,6 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/organic-products-jaipur/${locality.slug}` },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
     keywords: [
       `organic products ${locality.name}`,
       `A2 ghee ${locality.name} Jaipur`,
@@ -55,6 +61,25 @@ export default async function JaipurLocalityPage({ params }: Props) {
   if (!locality) notFound();
 
   const faqs = faqsForJaipurLocality(locality.name);
+  const localityIndex = JAIPUR_LOCALITIES.findIndex((item) => item.slug === locality.slug);
+  const moreJaipurAreas = Array.from({ length: Math.min(6, JAIPUR_LOCALITIES.length - 1) }, (_, offset) =>
+    JAIPUR_LOCALITIES[(localityIndex + offset + 1) % JAIPUR_LOCALITIES.length],
+  );
+  const canonicalUrl = `${SITE_URL}/organic-products-jaipur/${locality.slug}`;
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${canonicalUrl}#delivery-service`,
+    name: `Organic product delivery in ${locality.name}, Jaipur`,
+    url: canonicalUrl,
+    serviceType: "Farm-made organic food product delivery",
+    provider: { "@id": `${SITE_URL}/#organization`, name: SITE_NAME },
+    areaServed: {
+      "@type": "Place",
+      name: `${locality.name}, Jaipur, Rajasthan`,
+      containedInPlace: { "@type": "City", name: "Jaipur" },
+    },
+  };
 
   return (
     <main className="overflow-hidden bg-[#fbf8ef]">
@@ -64,6 +89,10 @@ export default async function JaipurLocalityPage({ params }: Props) {
           { name: "Organic Products in Jaipur", href: "/organic-products-jaipur" },
           { name: locality.name, href: `/organic-products-jaipur/${locality.slug}` },
         ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceJsonLd) }}
       />
 
       <section className="relative min-h-[380px] overflow-hidden bg-forest-900 text-white sm:min-h-[420px]">
@@ -159,6 +188,15 @@ export default async function JaipurLocalityPage({ params }: Props) {
           >
             Confirm my address
           </Link>
+          {moreJaipurAreas.map((area) => (
+            <Link
+              key={area.slug}
+              href={`/organic-products-jaipur/${area.slug}`}
+              className="rounded-full border border-forest-900/12 px-5 py-2.5 text-xs font-bold text-forest-900 transition hover:bg-[#faf7ee]"
+            >
+              {area.name}
+            </Link>
+          ))}
         </div>
       </section>
 
