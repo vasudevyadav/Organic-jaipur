@@ -16,7 +16,7 @@ export default function ProductCard({ product }: { product: Product }) {
     <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.1rem] border border-[#d8d1bc] bg-[#fffdf7] shadow-[0_10px_35px_rgba(15,40,28,.08)] transition-all duration-500 before:absolute before:inset-x-8 before:top-0 before:z-20 before:h-[3px] before:origin-left before:scale-x-0 before:rounded-full before:bg-honey-400 before:transition-transform before:duration-500 hover:-translate-y-1.5 hover:border-brand-300 hover:shadow-[0_26px_60px_rgba(15,40,28,.16)] hover:before:scale-x-100">
       <div className="relative overflow-hidden bg-[#eee9db]">
         <Link href={`/products/${product.slug}`} className="block">
-          <div className="relative overflow-hidden">
+          <div className="relative aspect-square overflow-hidden">
             <img
               src={safeImageUrl(product.imageUrl)}
               alt={product.name}
