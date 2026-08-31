@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locality = JAIPUR_LOCALITIES.find((item) => item.slug === slug);
   if (!locality) return { title: "Organic Products in Jaipur" };
 
-  const title = `Organic Products in ${locality.name}, Jaipur`;
-  const description = `A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles delivered to ${locality.name}, Jaipur, grown and made on our own farm.`;
+  const title = `A2 Ghee Near ${locality.name}, Jaipur | Organic Jaipur`;
+  const description = `Looking for A2 ghee near ${locality.name}? We deliver A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles, grown and made on our own farm in Jaipur.`;
 
   return {
     title,
@@ -34,8 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       googleBot: { index: true, follow: true },
     },
     keywords: [
-      `organic products ${locality.name}`,
+      `A2 ghee near ${locality.name}`,
       `A2 ghee ${locality.name} Jaipur`,
+      `organic products ${locality.name}`,
       `cold-pressed mustard oil ${locality.name}`,
       `raw honey ${locality.name} Jaipur`,
       `Rajasthani pickles ${locality.name}`,
@@ -107,9 +108,10 @@ export default async function JaipurLocalityPage({ params }: Props) {
             <em className="font-normal text-honey-400">Organic Jaipur Ke Saath.</em>
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-white/68 sm:text-base">
-            {locality.name} is {locality.blurb} We deliver A2 Bilona ghee, cold-pressed mustard
-            oil, raw honey and traditional Rajasthani pickles to homes in {locality.name}, grown
-            and made on our own farm in Jaipur, Rajasthan.
+            {locality.name} is {locality.blurb} Looking for A2 ghee near {locality.name}? We
+            deliver A2 Bilona ghee, cold-pressed mustard oil, raw honey and traditional
+            Rajasthani pickles to homes in {locality.name}, grown and made on our own farm in
+            Jaipur, Rajasthan.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -137,8 +139,9 @@ export default async function JaipurLocalityPage({ params }: Props) {
             Does Organic Jaipur deliver to {locality.name}?
           </h2>
           <p className="mt-5 text-lg leading-8 text-forest-900/75">
-            <strong className="text-forest-900">Yes.</strong> Organic Jaipur delivers A2 Bilona
-            ghee, cold-pressed mustard oil, raw honey and Rajasthani lal mirch chutney to homes in
+            <strong className="text-forest-900">Yes.</strong> If you are searching for A2 ghee
+            near {locality.name}, Organic Jaipur delivers A2 Bilona ghee, cold-pressed mustard
+            oil, raw honey and Rajasthani lal mirch chutney to homes in
             {" "}{locality.name}. Delivery is free within the current Jaipur service area and payment
             is Cash on Delivery. Send your complete address and PIN code on WhatsApp so the Jaipur
             team can confirm stock and the available delivery slot before dispatch.
