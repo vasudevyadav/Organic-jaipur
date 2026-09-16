@@ -16,7 +16,7 @@ export const MAKING_PROCESSES = [
     ],
     accent: "Milk · Curd · Bilona · Ghee",
     steps: [
-      { title: "Fresh Milk From Our Own Cows", detail: "Milk comes from our own Gir cows on the Organic Jaipur farm and is checked for freshness before the batch begins.", note: "Because the cows are ours, we control the journey from milk onward." },
+      { title: "Milk Selected for Each Variety", detail: "Gir cow, Desi cow or buffalo milk is selected according to the ghee being made and checked before processing.", note: "Check the individual product for its milk source and ask about the available batch." },
       { title: "Curd Is Set Naturally", detail: "The milk is cultured and rested in suitable conditions until it becomes curd with the right body and aroma.", note: "This cultured-curd stage gives bilona ghee its traditional character." },
       { title: "Hand-Churned With Bilona", detail: "The curd is churned slowly to separate makkhan. This is fundamentally different from making ghee directly from separated cream.", note: "Slow churning separates the butter without rushing the process." },
       { title: "Slow-Cooked and Filtered", detail: "Makkhan is heated gradually until moisture leaves and clear aromatic ghee forms, then it is filtered and packed.", note: "Colour, aroma and clarity are reviewed before packing." },
@@ -26,9 +26,9 @@ export const MAKING_PROCESSES = [
     slug: "cold-pressed-oil",
     label: "Cold-Pressed Oil",
     category: "MUSTARD_OIL",
-    eyebrow: "Wooden Ghani Extraction",
+    eyebrow: "Traditional Oil Extraction",
     title: "Seed to Bottle, No Refining Shortcuts",
-    intro: "Farm-grown seeds, slow wooden-ghani pressing, natural settling and careful filtration. Nothing refined out.",
+    intro: "Ingredient preparation, gradual pressing, natural settling and filtration. The selected product specifies its ingredient and wood-pressed, stone-pressed or cold-pressed method.",
     banner: "/images/founder/founder-mustard-ghani-press.png",
     strip: "/images/process/oil-traditional-strip-v2.jpg",
     stepImages: [
@@ -39,8 +39,8 @@ export const MAKING_PROCESSES = [
     ],
     accent: "Seed · Ghani · Settle · Bottle",
     steps: [
-      { title: "Our Farm-Grown Seeds Are Sorted", detail: "Mustard grown on our own farm is harvested, inspected and cleaned to remove dust, damaged seeds and foreign matter before pressing.", note: "We know the field the seed came from because we grow it ourselves." },
-      { title: "Slow Wooden-Ghani Pressing", detail: "Seeds are pressed gradually in a traditional wooden ghani without chemical solvents or high-speed industrial refining.", note: "Controlled extraction helps retain the seed's distinctive aroma." },
+      { title: "Ingredients Are Prepared", detail: "The ingredient for the selected oil is cleaned and sorted before pressing. Our range includes mustard, groundnut, sunflower and coconut oils.", note: "Read the product name and ingredient list to choose the oil you need." },
+      { title: "Gradual Pressing", detail: "The selected oil uses its stated wood-pressed, stone-pressed or cold-pressed method without chemical solvents.", note: "Controlled extraction helps retain the seed's distinctive aroma." },
       { title: "Oil Rests Naturally", detail: "Freshly pressed oil is allowed to settle so heavier natural particles can separate without aggressive processing.", note: "Settling reduces the need for harsh clarification." },
       { title: "Filtered and Hygienically Packed", detail: "The settled oil is filtered, checked for expected colour and aroma, then filled into clean food-safe bottles.", note: "Each packed batch remains linked to its production details." },
     ],

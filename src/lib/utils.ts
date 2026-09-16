@@ -61,3 +61,13 @@ export function formatDate(date: Date | string): string {
     year: "numeric",
   });
 }
+
+/** Omit a separate pack label only when the full quantity is already in the name. */
+export function productNameIncludesUnit(name: string, unit: string): boolean {
+  const normalizedName = name.toLowerCase();
+  const normalizedUnit = unit.toLowerCase().replace(/\s+/g, "");
+  if (!normalizedUnit) return false;
+  const escaped = normalizedUnit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const quantityPattern = escaped.replace(/^(\d+(?:\\\.\d+)?)/, "$1\\s*");
+  return new RegExp(`(?:^|[^0-9.])${quantityPattern}(?=$|[^a-z0-9])`).test(normalizedName);
+}

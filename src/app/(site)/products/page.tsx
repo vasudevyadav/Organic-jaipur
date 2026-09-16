@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,17 +27,26 @@ type Props = {
   }>;
 };
 
-export const metadata = {
-  title: "Shop Ghee, Oils, Honey & Lal Mirch Chutney Online",
-  description:
-    "Order Gir, Desi and Buffalo Bilona ghee, kachi ghani oil, raw honey and Rajasthani lal mirch chutney online.",
-  alternates: { canonical: "/products" },
-};
+export async function generateMetadata({ searchParams }: Props) {
+  const { category } = await searchParams;
+  const activeCategory = CATEGORIES.find((item) => item.value === category);
+  const title = activeCategory
+    ? `Buy ${activeCategory.label} Online in Jaipur & Rajasthan`
+    : "Shop Ghee, Oils, Honey, Pickles & Chutneys Online";
+  const description = activeCategory
+    ? `${CATEGORY_INTROS[activeCategory.value].copy} Compare current packs and prices. Free Jaipur delivery and Rajasthan shipping.`
+    : "Order Gir, Desi and Buffalo Bilona ghee, cold-pressed oils, raw honey, pickles and chutneys. Compare ingredients, pack sizes and current prices.";
+  return pageMetadata({
+    title,
+    description,
+    alternates: { canonical: activeCategory ? `/products?category=${activeCategory.value}` : "/products" },
+  });
+}
 
 const CATEGORY_INTROS: Record<string, { title: string; copy: string }> = {
   GHEE: {
     title: "Har Rasoi Ka Apna Ghee, Har Zaroorat Ka Apna Pack",
-    copy: "Pick Gir cow ghee for a distinctive aroma, desi cow ghee for daily use or richer buffalo ghee for frying and sweets. Available from 500 g to 2 kg.",
+    copy: "Pick Gir cow ghee for a distinctive aroma, desi cow ghee for daily use or richer buffalo ghee for frying and sweets. Compare the current pack sizes and prices below.",
   },
   MUSTARD_OIL: {
     title: "Har Tadka Alag, Uska Tel Bhi Alag",
@@ -47,8 +57,8 @@ const CATEGORY_INTROS: Record<string, { title: string; copy: string }> = {
     copy: "Lightly filtered and unheated, with no added sugar or syrup. Natural crystallisation can occur and does not affect quality.",
   },
   PICKLES: {
-    title: "Har Niwale Mein Lal Mirch Ka Chatpata Swaad",
-    copy: "Bold lal mirch-garlic chutney, chhote batches mein taiyaar. Khulne ke baad refrigerate karein aur hamesha dry spoon use karein.",
+    title: "Achar Aur Chutney Ka Chatpata Swaad",
+    copy: "Choose from pickles and chutneys with different chilli, spice and oil combinations. Check each product for its ingredients and storage instructions, and use a clean, dry spoon.",
   },
 };
 
@@ -138,16 +148,16 @@ export default async function ProductsPage({ searchParams }: Props) {
           <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[.95] tracking-[-.04em] sm:text-6xl lg:text-7xl">
             {activeLabel ? (
               <>
-                {activeLabel} Sirf Product Nahi,{" "}
+                {activeLabel} Online,{" "}
                 <em className="font-normal text-honey-400">
-                  Parampara Ka Swaad Hai.
+                  Jaipur Se Aapke Ghar.
                 </em>
               </>
             ) : (
               <>
-                Har Jar Mein Shuddhta,{" "}
+                Ghee, Oils, Honey,{" "}
                 <em className="font-normal text-honey-400">
-                  Har Niwale Mein Bharosa.
+                  Pickles & Chutneys.
                 </em>
               </>
             )}

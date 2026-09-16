@@ -1,3 +1,5 @@
+import { SHIPPING_POLICY_SUMMARY } from "@/lib/shipping";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
@@ -5,12 +7,12 @@ import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { BUSINESS, FAQS_SHIPPING } from "@/lib/constants";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Shipping & Delivery Policy",
   description:
     "Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee, cold-pressed oil, honey, and pickles.",
   alternates: { canonical: "/shipping-policy" },
-};
+});
 
 export default function ShippingPolicyPage() {
   return (
@@ -44,7 +46,7 @@ export default function ShippingPolicyPage() {
         <div className="mx-auto max-w-3xl">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-wide text-forest-900/40">
-              Last updated: 7 August 2026
+              Last updated: 16 September 2026
             </p>
           </AnimatedSection>
 
@@ -72,10 +74,7 @@ export default function ShippingPolicyPage() {
                   2. Delivery Charges
                 </h2>
                 <p>
-                  Delivery is currently free on orders within our Jaipur service area. For orders
-                  shipped to other cities in Rajasthan via courier, any applicable shipping charge will
-                  be clearly shown on the checkout page before you confirm your order, and the amount
-                  stated at checkout always applies over anything mentioned here.
+                  {SHIPPING_POLICY_SUMMARY}
                 </p>
               </section>
 
@@ -124,7 +123,7 @@ export default function ShippingPolicyPage() {
                 <ul className="ml-5 list-disc space-y-1.5">
                   <li>
                     Please ensure someone is available at the delivery address during the confirmed
-                    delivery window, since we accept Cash on Delivery (COD) only and need someone to
+                    delivery window. For Cash on Delivery orders, someone must
                     receive and pay for the order.
                   </li>
                   <li>

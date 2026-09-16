@@ -1,3 +1,4 @@
+import { SHIPPING_POLICY_SUMMARY } from "@/lib/shipping";
 import { BUSINESS, SITE_NAME, SITE_URL } from "@/lib/constants";
 
 const content = `# ${SITE_NAME}
@@ -27,8 +28,10 @@ const content = `# ${SITE_NAME}
 
 ## Service facts
 - Free delivery within the current Jaipur service area
-- Courier shipping across Rajasthan
-- Cash on Delivery is available
+- ${SHIPPING_POLICY_SUMMARY}
+- Cash on Delivery and online payment through Razorpay are offered at checkout; online payment availability is confirmed when the payment window opens
+- For approved refunds, contact the team with the order number and payment method to confirm the resolution and payment route
+- Batch reports are not currently published on product pages; ask the team whether a matching report is available
 - Product, pack-size, stock, price, ingredient, and batch details should be verified on the relevant product page or with the Organic Jaipur team before quoting
 
 ## Contact

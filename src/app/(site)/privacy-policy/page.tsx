@@ -1,15 +1,16 @@
+import { pageMetadata } from "@/lib/metadata";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { BUSINESS, FAQS_PRIVACY } from "@/lib/constants";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "How Organic Jaipur collects, uses, and protects the personal information you share with us when you browse, order, or contact us.",
   alternates: { canonical: "/privacy-policy" },
-};
+});
 
 export default function PrivacyPolicyPage() {
   return (
@@ -42,7 +43,7 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto max-w-3xl">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-wide text-forest-900/40">
-              Last updated: 7 August 2026
+              Last updated: 16 September 2026
             </p>
           </AnimatedSection>
 
@@ -85,8 +86,9 @@ export default function PrivacyPolicyPage() {
                   </li>
                 </ul>
                 <p>
-                  We do not knowingly collect sensitive personal information such as payment card
-                  details, since we currently accept Cash on Delivery (COD) only.
+                  Online payments are processed through Razorpay. We store payment references
+                  and status alongside your order, not your full card details. Razorpay
+                  handles payment information under its own privacy policy.
                 </p>
               </section>
 
@@ -125,11 +127,12 @@ export default function PrivacyPolicyPage() {
                   necessary, for example:
                 </p>
                 <ul className="ml-5 list-disc space-y-1.5">
-                  <li>With our own delivery staff, so they can deliver your order to the correct address.</li>
+                  <li>With delivery staff and courier partners to deliver your order to the correct address.</li>
                   <li>
                     With service providers who host our website and database, solely to operate this
                     service.
                   </li>
+                  <li>With Razorpay to create and verify online payments, including the order and contact information needed for checkout.</li>
                   <li>If required by law, regulation, or a valid legal request from a government authority.</li>
                 </ul>
               </section>

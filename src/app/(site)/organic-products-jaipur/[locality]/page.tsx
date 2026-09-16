@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locality = JAIPUR_LOCALITIES.find((item) => item.slug === slug);
   if (!locality) return { title: "Organic Products in Jaipur" };
 
-  const title = `A2 Ghee Near ${locality.name}, Jaipur | Organic Jaipur`;
+  const title = `A2 Ghee Near ${locality.name}, Jaipur`;
   const description = `Looking for A2 ghee near ${locality.name}? We deliver A2 Bilona ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles, grown and made on our own farm in Jaipur.`;
 
   return {

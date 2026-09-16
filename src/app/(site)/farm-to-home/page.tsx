@@ -1,14 +1,15 @@
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import { BUSINESS } from "@/lib/constants";
 
-export const metadata = {
-  title: "From Our Farm to Your Home | Organic Jaipur",
+export const metadata = pageMetadata({
+  title: "From Our Farm to Your Home",
   description:
     "See how your order reaches you: grown on our farm, made in small batches, checked, then delivered to your door in Jaipur.",
   alternates: { canonical: "/farm-to-home" },
-};
+});
 
 const STEPS = [
   {

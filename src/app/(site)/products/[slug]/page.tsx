@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { formatPrice, safeImageUrl, whatsappOrderLink } from "@/lib/utils";
+import { formatPrice, safeImageUrl, whatsappOrderLink, productNameIncludesUnit } from "@/lib/utils";
 import {
   categoryLabel,
   STOREFRONT_CATEGORY_VALUES,
@@ -31,7 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Product Not Found" };
 
   const category = categoryLabel(product.category);
-  const title = `Buy ${product.name} Online, ${product.unit}`;
+  const nameIncludesUnit = productNameIncludesUnit(product.name, product.unit);
+  const title = nameIncludesUnit
+    ? `Buy ${product.name} Online`
+    : `Buy ${product.name} Online, ${product.unit}`;
   const description = `${product.description} Free Jaipur delivery, Cash on Delivery, shipped across Rajasthan.`;
 
   return {

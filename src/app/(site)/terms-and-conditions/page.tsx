@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
@@ -5,12 +6,12 @@ import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { BUSINESS, FAQS_TERMS } from "@/lib/constants";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Terms and Conditions",
   description:
     "The terms and conditions that apply when you browse, order from, or use the Organic Jaipur website.",
   alternates: { canonical: "/terms-and-conditions" },
-};
+});
 
 export default function TermsAndConditionsPage() {
   return (
@@ -43,7 +44,7 @@ export default function TermsAndConditionsPage() {
         <div className="mx-auto max-w-3xl">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-wide text-forest-900/40">
-              Last updated: 7 August 2026
+              Last updated: 16 September 2026
             </p>
           </AnimatedSection>
 
@@ -88,13 +89,14 @@ export default function TermsAndConditionsPage() {
                   <li>
                     We reserve the right to refuse or cancel an order, for
                     example, if an item is out of stock, if the delivery address
-                    falls outside our current Jaipur delivery area, or in case
+                    falls outside our current service area, or in case
                     of a suspected error in pricing or order details.
                   </li>
                   <li>
-                    Currently, we accept Cash on Delivery (COD) only. Please
-                    ensure someone is available at the delivery address to
-                    receive and pay for the order.
+                    You can choose Cash on Delivery (COD) or online payment through
+                    Razorpay at checkout. Online payment availability is confirmed
+                    when the payment window opens. For COD, please ensure someone
+                    is available to receive and pay for the order.
                   </li>
                 </ul>
               </section>
@@ -119,7 +121,9 @@ export default function TermsAndConditionsPage() {
                   4. Delivery
                 </h2>
                 <p>
-                  We currently deliver only within Jaipur. Please see our{" "}
+                  We offer free delivery within our Jaipur service area and courier
+                  shipping across Rajasthan. Coverage and any shipping charge are
+                  confirmed for your order. Please see our{" "}
                   <Link
                     href="/shipping-policy"
                     className="font-semibold text-terracotta-500 hover:text-terracotta-600"

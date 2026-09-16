@@ -4,6 +4,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
+import FaqJsonLd from "@/components/FaqJsonLd";
 import {
   FAQS_ABOUT,
   FAQS_CONTACT,
@@ -71,8 +72,11 @@ export default function SubpageFaqSection({
     return null;
   }
 
+  if (!resolvedItems?.length) return null;
+
   return (
     <section className="bg-[#fbf7e9] px-5 py-12 sm:px-8 sm:py-16">
+      <FaqJsonLd items={resolvedItems} />
       <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
         <AnimatedSection>
           <p className="text-xs font-bold uppercase tracking-[.2em] text-terracotta-600">

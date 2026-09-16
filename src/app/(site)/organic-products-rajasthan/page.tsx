@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -11,7 +12,7 @@ const TITLE = "Organic Products in Rajasthan | Ghee, Oil, Honey & Pickles";
 const DESCRIPTION =
   "A2 ghee, cold-pressed mustard oil, raw honey and Rajasthani pickles, grown and made on our own farm in Jaipur, shipped across Rajasthan including Jodhpur, Udaipur, Kota and Ajmer.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/organic-products-rajasthan" },
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
   },
-};
+});
 
 export default function OrganicProductsRajasthanPage() {
   return (

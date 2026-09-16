@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
@@ -5,12 +6,12 @@ import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { BUSINESS, FAQS_RETURNS } from "@/lib/constants";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Return & Refund Policy",
   description:
     "How Organic Jaipur handles returns, replacements, and refunds for A2 ghee, cold-pressed oil, honey, and pickles.",
   alternates: { canonical: "/return-refund-policy" },
-};
+});
 
 export default function ReturnRefundPolicyPage() {
   return (
@@ -43,7 +44,7 @@ export default function ReturnRefundPolicyPage() {
         <div className="mx-auto max-w-3xl">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-wide text-forest-900/40">
-              Last updated: 7 August 2026
+              Last updated: 16 September 2026
             </p>
           </AnimatedSection>
 
@@ -110,18 +111,19 @@ export default function ReturnRefundPolicyPage() {
                   3. How Refunds Work
                 </h2>
                 <p>
-                  Since we currently accept Cash on Delivery (COD) only, there is no online payment for
-                  us to reverse automatically. Depending on the situation, a valid claim will be
-                  resolved by one of the following, as agreed with you:
+                  For both Cash on Delivery and online orders, our team reviews the claim
+                  and confirms the resolution with you. Depending on the situation,
+                  an approved claim may be resolved by one of the following:
                 </p>
                 <ul className="ml-5 list-disc space-y-1.5">
                   <li>Free replacement of the item on your next delivery, or</li>
                   <li>Store credit towards a future order, or</li>
-                  <li>A refund via bank transfer or UPI to an account/ID you provide.</li>
+                  <li>A refund using the payment route confirmed with you after review.</li>
                 </ul>
                 <p>
-                  We&apos;ll confirm the expected transfer date when your claim is approved. The time for
-                  the money to appear after transfer can depend on the receiving bank or UPI provider.
+                  Share your order number and payment method when requesting a refund.
+                  We&apos;ll confirm the refund route and expected processing date when your
+                  claim is approved. Completion can depend on the bank or payment provider.
                   Replacements and store credit are typically arranged faster since they don&apos;t depend
                   on a bank transfer.
                 </p>

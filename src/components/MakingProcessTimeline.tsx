@@ -12,6 +12,7 @@ export default function MakingProcessTimeline({ steps, images }: { steps: readon
 
   return (
     <div ref={timelineRef} className="relative mt-16">
+      <p className="mb-8 text-center text-sm text-forest-900/60">Process illustrations explain the method; ask our team for product and batch details.</p>
       <div className="absolute bottom-24 left-5 top-24 w-[3px] rounded-full bg-forest-900/10 lg:left-1/2 lg:-translate-x-1/2">
         <motion.div style={{ scaleY: progress, transformOrigin: "top" }} className="h-full w-full rounded-full bg-linear-to-b from-honey-400 via-brand-500 to-forest-900" />
       </div>
@@ -20,19 +21,19 @@ export default function MakingProcessTimeline({ steps, images }: { steps: readon
         {steps.map((step, index) => {
           const image = (
             <motion.div
-              initial={{ opacity: 0, x: index % 2 === 0 ? -45 : 45 }}
+              initial={false}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
               className={`h-[320px] overflow-hidden rounded-[1.8rem] border-4 border-white bg-white shadow-[0_24px_65px_rgba(15,40,28,.16)] sm:h-[430px] ${index % 2 === 0 ? "lg:col-start-1" : "lg:col-start-3"}`}
             >
-              <div role="img" aria-label={step.title} className="h-full w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${images[index]})` }} />
+              <div role="img" aria-label={`Illustration of ${step.title.toLowerCase()}`} className="h-full w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${images[index]})` }} />
             </motion.div>
           );
 
           const copy = (
             <motion.div
-              initial={{ opacity: 0, x: index % 2 === 0 ? 45 : -45 }}
+              initial={false}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
@@ -48,7 +49,7 @@ export default function MakingProcessTimeline({ steps, images }: { steps: readon
           return (
             <div key={step.title} className="relative grid grid-cols-[42px_minmax(0,1fr)] gap-5 pl-0 lg:grid-cols-[minmax(0,1fr)_80px_minmax(0,1fr)] lg:items-center lg:gap-8">
               <motion.span
-                initial={{ scale: 0.65, opacity: 0 }}
+                initial={false}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true, amount: 0.6 }}
                 className="relative z-10 col-start-1 row-span-2 mt-10 flex h-11 w-11 items-center justify-center rounded-full border-4 border-[#fbf8ef] bg-honey-400 font-mono text-[10px] font-extrabold text-forest-900 shadow-lg lg:col-start-2 lg:row-start-1 lg:mt-0 lg:h-14 lg:w-14 lg:justify-self-center"

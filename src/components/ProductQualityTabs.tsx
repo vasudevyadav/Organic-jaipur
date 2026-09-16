@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useRef, useState } from "react";
+import { useHydrated } from "@/lib/useHydrated";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { BUSINESS } from "@/lib/constants";
 import { safeImageUrl } from "@/lib/utils";
 
@@ -29,8 +30,8 @@ const PROCESS: Record<
       "Traditional bilona preparation, carried out slowly in small batches.",
     steps: [
       {
-        title: "Milk from our cows",
-        text: "Fresh milk from our own Gir cows is checked before processing.",
+        title: "Milk selection",
+        text: "The milk source depends on the selected ghee: Gir cow, Desi cow or buffalo. Milk is checked before processing.",
       },
       {
         title: "Curd setting",
@@ -51,12 +52,12 @@ const PROCESS: Record<
       "A slow, low-heat extraction process designed to retain the seed's natural character.",
     steps: [
       {
-        title: "Our farm-grown mustard",
-        text: "Mustard grown on our farm is cleaned and sorted to remove dust and foreign matter.",
+        title: "Ingredient preparation",
+        text: "The ingredient listed for the selected oil is cleaned and sorted before pressing. Check the product details for the oil variety.",
       },
       {
-        title: "Wood pressing",
-        text: "Seeds are pressed gradually in a traditional wooden ghani without chemical solvents.",
+        title: "Pressing",
+        text: "The ingredient is pressed gradually without chemical solvents. Refer to the selected product for its wood-pressed, stone-pressed or cold-pressed method.",
       },
       {
         title: "Natural settling",
@@ -73,12 +74,12 @@ const PROCESS: Record<
       "Careful sourcing and minimal handling help preserve honey's natural taste and aroma.",
     steps: [
       {
-        title: "Our managed beehives",
-        text: "Honey is collected from beehives installed and managed on our own farm.",
+        title: "Honey sourcing",
+        text: "Check the selected honey for its stated source and variety. Ask our team for source details for the batch you are buying.",
       },
       {
         title: "Batch inspection",
-        text: "Every incoming lot is visually and sensorially checked for consistency.",
+        text: "Incoming honey is checked for appearance and aroma; these checks are not a substitute for laboratory testing.",
       },
       {
         title: "Gentle filtration",
@@ -95,8 +96,8 @@ const PROCESS: Record<
       "Traditional recipes, patient maturation and careful small-batch preparation.",
     steps: [
       {
-        title: "Our farm ingredients",
-        text: "Farm-grown mango, lemon, chilli and other seasonal ingredients are cleaned and sorted batch by batch.",
+        title: "Recipe ingredients",
+        text: "The ingredients listed for the selected pickle or chutney are cleaned and prepared for its recipe.",
       },
       {
         title: "Traditional mixing",
@@ -164,7 +165,22 @@ export default function ProductQualityTabs({
   imageUrl,
 }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("process");
-  const process = PROCESS[category];
+  const instanceId = useId();
+  const hydrated = useHydrated();
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const baseProcess = PROCESS[category];
+  const milkSource = /buffalo/i.test(productName)
+    ? "buffalo milk"
+    : /gir/i.test(productName)
+      ? "Gir cow milk"
+      : /desi/i.test(productName)
+        ? "Desi cow milk"
+        : "the milk specified on the product label";
+  const process = category === "GHEE"
+    ? { ...baseProcess, steps: baseProcess.steps.map((step, index) => index === 0
+        ? { title: "Milk selection", text: `This ghee uses ${milkSource}. Milk is checked before processing.` }
+        : step) }
+    : baseProcess;
   const reportMessage = encodeURIComponent(
     `Hi Organic Jaipur, please share the latest batch lab test report for ${productName}.`,
   );
@@ -174,13 +190,13 @@ export default function ProductQualityTabs({
       <div className="grid bg-forest-900 lg:grid-cols-[1.2fr_.8fr]">
         <div className="flex flex-col justify-center px-6 py-9 text-white sm:px-10 sm:py-12">
           <div className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.22em] text-honey-400">
-            <span className="h-px w-10 bg-honey-400" /> Product quality dossier
+            <span className="h-px w-10 bg-honey-400" /> Product process & batch information
           </div>
           <h2 className="mt-5 max-w-2xl font-display text-4xl leading-[.98] sm:text-5xl">
-            Every step documented.
+            Know the process.
             <br />
             <em className="font-normal text-honey-400">
-              Every batch accountable.
+              Ask about your batch.
             </em>
           </h2>
         </div>
@@ -198,26 +214,42 @@ export default function ProductQualityTabs({
             <p className="text-[9px] font-extrabold uppercase tracking-[.16em] text-brand-700">
               Organic Jaipur standard
             </p>
-            <p className="mt-1 font-display text-lg">Process → Check → Proof</p>
+            <p className="mt-1 font-display text-lg">Process → Checks → Batch enquiry</p>
           </div>
         </div>
       </div>
 
-      <div className="border-b border-forest-900/10 bg-white px-3 py-3 sm:px-6">
+      <div hidden={!hydrated} className="border-b border-forest-900/10 bg-white px-3 py-3 sm:px-6">
         <div
           role="tablist"
           aria-label="Product quality information"
           className="grid grid-cols-3 gap-2"
         >
-          {tabs.map((tab) => (
+          {tabs.map((tab, index) => (
             <button
               key={tab.id}
               type="button"
               role="tab"
+              id={`${instanceId}-quality-tab-${tab.id}`}
               aria-selected={activeTab === tab.id}
-              aria-controls={`quality-panel-${tab.id}`}
+              aria-controls={`${instanceId}-quality-panel-${tab.id}`}
+              tabIndex={activeTab === tab.id ? 0 : -1}
+              ref={(element) => { tabRefs.current[index] = element; }}
+              onKeyDown={(event) => {
+                let nextIndex: number;
+                switch (event.key) {
+                  case "ArrowRight": nextIndex = (index + 1) % tabs.length; break;
+                  case "ArrowLeft": nextIndex = (index + tabs.length - 1) % tabs.length; break;
+                  case "Home": nextIndex = 0; break;
+                  case "End": nextIndex = tabs.length - 1; break;
+                  default: return;
+                }
+                event.preventDefault();
+                setActiveTab(tabs[nextIndex].id);
+                tabRefs.current[nextIndex]?.focus();
+              }}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative overflow-hidden rounded-xl px-3 py-3.5 text-left transition sm:px-5 ${activeTab === tab.id ? "bg-forest-900 text-white shadow-md" : "bg-[#f8f3e7] text-forest-900/55 hover:text-forest-900"}`}
+              className={`relative overflow-hidden rounded-xl px-3 py-3.5 text-left transition focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-honey-500 sm:px-5 ${activeTab === tab.id ? "bg-forest-900 text-white shadow-md" : "bg-[#f8f3e7] text-forest-900/55 hover:text-forest-900"}`}
             >
               <span
                 className={`block text-[8px] font-extrabold tracking-[.18em] ${activeTab === tab.id ? "text-honey-400" : "text-terracotta-500"}`}
@@ -229,7 +261,7 @@ export default function ProductQualityTabs({
               </span>
               {activeTab === tab.id && (
                 <motion.span
-                  layoutId="quality-tab"
+                  layoutId={`${instanceId}-quality-tab`}
                   className="absolute inset-x-0 bottom-0 h-1 bg-honey-400"
                 />
               )}
@@ -239,17 +271,17 @@ export default function ProductQualityTabs({
       </div>
 
       <div className="min-h-[430px] bg-white p-6 sm:p-9 lg:p-11">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.22 }}
-            id={`quality-panel-${activeTab}`}
-            role="tabpanel"
+        {tabs.map((tab) => (
+          <div
+            key={tab.id}
+            hidden={hydrated && activeTab !== tab.id}
+            id={`${instanceId}-quality-panel-${tab.id}`}
+            aria-labelledby={hydrated ? `${instanceId}-quality-tab-${tab.id}` : undefined}
+            role={hydrated ? "tabpanel" : undefined}
+            tabIndex={hydrated ? 0 : undefined}
+            className="mb-10 last:mb-0"
           >
-            {activeTab === "process" && (
+            {tab.id === "process" && (
               <div>
                 <div className="mx-auto max-w-2xl text-center">
                   <p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-terracotta-500">
@@ -261,15 +293,16 @@ export default function ProductQualityTabs({
                   <p className="mt-4 text-sm leading-7 text-forest-900/55">
                     {process.intro}
                   </p>
+                  <p className="mt-2 text-xs text-forest-900/50">Process images are illustrations. Ask our team for information about your product and batch.</p>
                 </div>
 
-                <div className="relative mx-auto mt-10 max-w-4xl before:absolute before:bottom-20 before:left-[59px] before:top-20 before:w-px before:bg-linear-to-b before:from-honey-400 before:via-brand-300 before:to-forest-900/10 sm:before:left-1/2 sm:before:-translate-x-px">
+                <div className="relative mx-auto mt-10 max-w-4xl before:absolute before:bottom-20 before:left-4 before:top-20 before:w-px before:bg-linear-to-b before:from-honey-400 before:via-brand-300 before:to-forest-900/10 sm:before:left-1/2 sm:before:-translate-x-px">
                   {process.steps.map((step, index) => (
                     <div
                       key={step.title}
-                      className={`relative mb-10 grid grid-cols-[140px_minmax(0,1fr)] items-center gap-5 last:mb-0 sm:grid-cols-[1fr_72px_1fr] sm:gap-7 ${index % 2 === 0 ? "" : "sm:[&_.process-copy]:col-start-3 sm:[&_.process-copy]:row-start-1 sm:[&_.process-image]:col-start-1 sm:[&_.process-image]:row-start-1"}`}
+                      className={`relative mb-10 grid grid-cols-[32px_minmax(0,1fr)] items-center gap-4 last:mb-0 sm:grid-cols-[1fr_72px_1fr] sm:gap-7 ${index % 2 === 0 ? "" : "sm:[&_.process-copy]:col-start-3 sm:[&_.process-copy]:row-start-1 sm:[&_.process-image]:col-start-1 sm:[&_.process-image]:row-start-1"}`}
                     >
-                      <div className="process-copy order-2 rounded-2xl border border-forest-900/8 bg-[#faf7ee] p-5 shadow-[0_8px_24px_rgba(15,40,28,.05)] sm:order-none">
+                      <div className="process-copy col-start-2 row-start-2 min-w-0 rounded-2xl border border-forest-900/8 bg-[#faf7ee] p-4 shadow-[0_8px_24px_rgba(15,40,28,.05)] sm:col-start-1 sm:row-start-1 sm:p-5">
                         <p className="text-[9px] font-extrabold uppercase tracking-[.18em] text-terracotta-500">
                           Step {String(index + 1).padStart(2, "0")}
                         </p>
@@ -282,15 +315,15 @@ export default function ProductQualityTabs({
                       </div>
 
                       <div className="relative z-10 col-start-1 row-start-1 flex justify-center sm:col-start-2">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-honey-400 text-[10px] font-extrabold text-forest-900 shadow-md">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full border-4 border-white bg-honey-400 sm:h-10 sm:w-10 text-[10px] font-extrabold text-forest-900 shadow-md">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                       </div>
 
-                      <div className="process-image col-start-1 row-start-1 h-[150px] w-[140px] overflow-hidden rounded-2xl border-4 border-white bg-[#eee7d8] shadow-[0_12px_30px_rgba(15,40,28,.14)] sm:col-start-3 sm:h-56 sm:w-full">
+                      <div className="process-image col-start-2 row-start-1 h-[180px] w-full overflow-hidden rounded-2xl border-4 border-white bg-[#eee7d8] shadow-[0_12px_30px_rgba(15,40,28,.14)] sm:col-start-3 sm:h-56 sm:w-full">
                         <div
                           role="img"
-                          aria-label={`${step.title} process`}
+                          aria-label={`Illustration of ${step.title.toLowerCase()}`}
                           className="h-full w-full bg-no-repeat"
                           style={{
                             backgroundImage: `url(${PROCESS_STRIPS[category]})`,
@@ -305,7 +338,7 @@ export default function ProductQualityTabs({
               </div>
             )}
 
-            {activeTab === "testing" && (
+            {tab.id === "testing" && (
               <div>
                 <div className="flex flex-col justify-between gap-4 border-b border-forest-900/10 pb-6 sm:flex-row sm:items-end">
                   <div>
@@ -345,62 +378,14 @@ export default function ProductQualityTabs({
               </div>
             )}
 
-            {activeTab === "report" && (
+            {tab.id === "report" && (
               <div className="grid gap-8 lg:grid-cols-[1fr_.8fr] lg:items-center">
-                <div className="relative mx-auto w-full max-w-lg rounded-lg border border-forest-900/15 bg-white p-6 shadow-[0_18px_50px_rgba(15,40,28,.12)] sm:p-8">
-                  <div className="flex items-start justify-between border-b-2 border-forest-900 pb-5">
-                    <div>
-                      <p className="text-[9px] font-extrabold uppercase tracking-[.2em] text-brand-700">
-                        Certificate of analysis
-                      </p>
-                      <p className="mt-2 font-display text-2xl text-forest-900">
-                        {productName}
-                      </p>
-                    </div>
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand-600 text-lg font-bold text-brand-700">
-                      OJ
-                    </span>
-                  </div>
-                  <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 text-xs">
-                    <div>
-                      <p className="text-[9px] uppercase tracking-wide text-forest-900/35">
-                        Batch number
-                      </p>
-                      <p className="mt-1 font-mono font-bold text-forest-900">
-                        From product pack
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] uppercase tracking-wide text-forest-900/35">
-                        Report status
-                      </p>
-                      <p className="mt-1 font-bold text-honey-600">
-                        Awaiting upload
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] uppercase tracking-wide text-forest-900/35">
-                        Document type
-                      </p>
-                      <p className="mt-1 font-bold text-forest-900">
-                        Batch-specific report
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-[9px] uppercase tracking-wide text-forest-900/35">
-                        Verification
-                      </p>
-                      <p className="mt-1 font-bold text-forest-900">
-                        Lab issued PDF
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-7 h-2 rounded-full bg-forest-900/6">
-                    <div className="h-full w-2/3 rounded-full bg-honey-400" />
-                  </div>
-                  <p className="mt-2 text-[9px] text-forest-900/35">
-                    The authenticated report will replace this preview after
-                    upload.
+                <div className="rounded-2xl border border-forest-900/10 bg-[#faf7ee] p-6 sm:p-8">
+                  <p className="text-xs font-bold uppercase tracking-wide text-terracotta-500">Report availability</p>
+                  <h3 className="mt-3 font-display text-2xl text-forest-900">No lab report published here</h3>
+                  <p className="mt-4 text-sm leading-7 text-forest-900/70">
+                    This page does not contain a lab certificate for {productName}.
+                    Our team can confirm whether a report is available for your specific batch.
                   </p>
                 </div>
                 <div>
@@ -408,14 +393,12 @@ export default function ProductQualityTabs({
                     Batch-level transparency
                   </p>
                   <h3 className="mt-3 font-display text-3xl leading-tight text-forest-900">
-                    Your pack.
-                    <br />
-                    Its matching report.
+                    Ask about your batch.
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-forest-900/55">
-                    Reports are batch-specific. Use the number printed on your
-                    pack so our team can share the correct document, not a
-                    generic certificate.
+                    Send the product name and batch number printed on your pack.
+                    Before buying, ask which batch is available and whether supporting
+                    source or testing information can be shared.
                   </p>
                   <a
                     href={`https://wa.me/${BUSINESS.whatsappNumber}?text=${reportMessage}`}
@@ -423,13 +406,13 @@ export default function ProductQualityTabs({
                     rel="noopener noreferrer"
                     className="mt-6 inline-flex rounded-full bg-forest-900 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-brand-700"
                   >
-                    Request matching report →
+                    Ask about report availability →
                   </a>
                 </div>
               </div>
             )}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        ))}
       </div>
     </section>
   );

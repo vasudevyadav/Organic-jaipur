@@ -18,7 +18,7 @@ export default function OrganizationJsonLd() {
     telephone: BUSINESS.phoneDisplay,
     email: BUSINESS.email,
     currenciesAccepted: "INR",
-    paymentAccepted: "Cash on Delivery",
+    paymentAccepted: "Cash on Delivery, Online payment through Razorpay",
     hasMap: BUSINESS.mapLink,
     address: {
       "@type": "PostalAddress",
