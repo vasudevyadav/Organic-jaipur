@@ -78,3 +78,6 @@ export function calculateShipping(input: ShippingInput): ShippingResult {
   const shippingCharge = calculateDefaultShipping(input);
   return { shippingCharge, isFreeShipping: shippingCharge === 0, reason: "Default Shipping", message: shippingCharge === 0 ? "Free Delivery" : `Shipping ₹${shippingCharge}`, amountToFreeShipping };
 }
+
+// Shared customer-facing copy follows the same thresholds as checkout.
+export const SHIPPING_POLICY_SUMMARY = `Delivery is free within our Jaipur service area. Elsewhere in Rajasthan, orders below ₹${FREE_SHIPPING_THRESHOLD.toLocaleString("en-IN")} have weight-based shipping from ₹${WEIGHT_SLABS[0].charge} to ₹${WEIGHT_SLABS[WEIGHT_SLABS.length - 1].charge}. Orders of ₹${FREE_SHIPPING_THRESHOLD.toLocaleString("en-IN")} or more ship free up to 3 kg; heavier orders receive 50% off the weight-based shipping charge. The applicable charge is shown at checkout before you place the order.`;

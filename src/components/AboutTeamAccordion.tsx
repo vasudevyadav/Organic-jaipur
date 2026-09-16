@@ -79,7 +79,7 @@ export default function AboutTeamAccordion() {
             {responsibilities.map((item, index) => {
               const image = (
                 <motion.div
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.65, ease: "easeOut" }}
@@ -100,7 +100,7 @@ export default function AboutTeamAccordion() {
 
               const copy = (
                 <motion.div
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 40 : -40 }}
+                  initial={false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
@@ -126,7 +126,7 @@ export default function AboutTeamAccordion() {
                   className="relative grid grid-cols-[42px_minmax(0,1fr)] gap-5 lg:grid-cols-[minmax(0,1fr)_80px_minmax(0,1fr)] lg:items-center lg:gap-8"
                 >
                   <motion.span
-                    initial={{ scale: 0.65, opacity: 0 }}
+                    initial={false}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true, amount: 0.6 }}
                     className="relative z-10 col-start-1 row-span-2 mt-10 flex h-11 w-11 items-center justify-center rounded-full border-4 border-[#fbf8ef] bg-honey-400 font-mono text-[10px] font-extrabold text-forest-900 shadow-lg lg:col-start-2 lg:row-start-1 lg:mt-0 lg:h-14 lg:w-14 lg:justify-self-center"

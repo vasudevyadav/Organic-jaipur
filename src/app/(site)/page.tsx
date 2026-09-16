@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,7 +25,7 @@ import {
 import { BUSINESS, STATS, FAQS_HOME, SOCIAL_LINKS } from "@/lib/constants";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: {
     absolute: "A2 & Buffalo Ghee, Mustard Oil, Honey & Chutney | Organic Jaipur",
   },
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     "organic farm Jaipur Rajasthan",
     "buy A2 ghee online Jaipur",
   ],
-};
+});
 
 export const revalidate = 300;
 
@@ -359,10 +360,10 @@ export default async function HomePage() {
       items: mainProducts,
     },
     { key: "ghee", label: "Ghee incl. Buffalo", icon: "🧈", items: gheeProducts },
-    { key: "oils", label: "Mustard Oil", icon: "🫒", items: oilProducts },
+    { key: "oils", label: "Cold-Pressed Oils", icon: "🫒", items: oilProducts },
     {
       key: "chutney",
-      label: "Lal Mirch Chutney",
+      label: "Pickles & Chutneys",
       icon: "🌶️",
       items: chutneyProducts,
     },

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -9,12 +10,12 @@ import {
   TruckIcon,
 } from "@/components/icons";
 
-export const metadata = {
-  title: "Our Own Farm in Jaipur, Rajasthan | Organic Jaipur",
+export const metadata = pageMetadata({
+  title: "Our Farm & Team in Jaipur, Rajasthan",
   description:
     "We grow, churn, press and pack everything we sell on one farm in Jaipur. No traders, no anonymous sourcing.",
   alternates: { canonical: "/about" },
-};
+});
 
 const principles = [
   {

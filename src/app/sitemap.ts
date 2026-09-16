@@ -1,9 +1,12 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
-import { SITE_URL, STOREFRONT_CATEGORY_VALUES } from "@/lib/constants";
+import { SITE_URL, CATEGORIES, STOREFRONT_CATEGORY_VALUES } from "@/lib/constants";
 import { MAKING_PROCESSES } from "@/lib/making-process";
 import { JAIPUR_LOCALITIES } from "@/lib/jaipur-localities";
 import { RAJASTHAN_CITIES } from "@/lib/rajasthan-cities";
+
+// Refresh database-backed product URLs without requiring a deployment.
+export const revalidate = 3600;
 
 const CONTENT_LAST_MODIFIED = new Date("2026-08-26T00:00:00+05:30");
 
@@ -31,7 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     products = await prisma.product.findMany({
-      where: { category: { in: STOREFRONT_CATEGORY_VALUES }, inStock: true },
+      // Temporarily unavailable products still have useful, indexable pages.
+      where: { category: { in: STOREFRONT_CATEGORY_VALUES } },
       select: { slug: true, updatedAt: true },
     });
   } catch (error) {
@@ -77,6 +81,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...productEntries,
+    ...CATEGORIES.map((category) => ({
+      url: `${SITE_URL}/products?category=${category.value}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...makingProcessEntries,
     ...localityEntries,
     ...rajasthanCityEntries,

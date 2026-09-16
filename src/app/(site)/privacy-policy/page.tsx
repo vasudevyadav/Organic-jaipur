@@ -1,15 +1,16 @@
+import { pageMetadata } from "@/lib/metadata";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { BUSINESS, FAQS_PRIVACY } from "@/lib/constants";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "How Organic Jaipur collects, uses, and protects the personal information you share with us when you browse, order, or contact us.",
   alternates: { canonical: "/privacy-policy" },
-};
+});
 
 export default function PrivacyPolicyPage() {
   return (
@@ -23,7 +24,7 @@ export default function PrivacyPolicyPage() {
       <section className="hero-grain relative isolate min-h-[360px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[400px]">
         <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.93)_0%,rgba(8,29,20,.72)_46%,rgba(8,29,20,.2)_82%)]" />
-        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-3xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
+        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-5xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
           <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] text-honey-400 uppercase">
             <span className="h-px w-8 bg-honey-400" /> Legal
           </p>
@@ -42,7 +43,7 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto max-w-3xl">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-wide text-forest-900/40">
-              Last updated: 7 August 2026
+              Last updated: 16 September 2026
             </p>
           </AnimatedSection>
 
@@ -85,8 +86,9 @@ export default function PrivacyPolicyPage() {
                   </li>
                 </ul>
                 <p>
-                  We do not knowingly collect sensitive personal information such as payment card
-                  details, since we currently accept Cash on Delivery (COD) only.
+                  Online payments are processed through Razorpay. We store payment references
+                  and status alongside your order, not your full card details. Razorpay
+                  handles payment information under its own privacy policy.
                 </p>
               </section>
 
@@ -125,11 +127,12 @@ export default function PrivacyPolicyPage() {
                   necessary, for example:
                 </p>
                 <ul className="ml-5 list-disc space-y-1.5">
-                  <li>With our own delivery staff, so they can deliver your order to the correct address.</li>
+                  <li>With delivery staff and courier partners to deliver your order to the correct address.</li>
                   <li>
                     With service providers who host our website and database, solely to operate this
                     service.
                   </li>
+                  <li>With Razorpay to create and verify online payments, including the order and contact information needed for checkout.</li>
                   <li>If required by law, regulation, or a valid legal request from a government authority.</li>
                 </ul>
               </section>

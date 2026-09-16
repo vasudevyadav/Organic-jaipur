@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@prisma/client";
-import { formatPrice, safeImageUrl } from "@/lib/utils";
+import { formatPrice, safeImageUrl, productNameIncludesUnit } from "@/lib/utils";
 import { categoryLabel } from "@/lib/constants";
 import QuickAddButton from "@/components/QuickAddButton";
 
@@ -55,16 +55,16 @@ export default function ProductCard({ product }: { product: Product }) {
             {categoryLabel(product.category)}
           </p>
           <span className="rounded-full bg-brand-50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide text-brand-700">
-            Purity checked
+            View ingredients
           </span>
         </div>
         <Link href={`/products/${product.slug}`} className="block">
           <h3 className="mt-2 font-display text-[1.5rem] leading-[1.12] text-forest-900 transition-colors group-hover:text-terracotta-500">
             {product.name}
           </h3>
-          <p className="mt-2 text-xs font-semibold text-foreground/40">
-            {product.unit}
-          </p>
+          {!productNameIncludesUnit(product.name, product.unit) && (
+            <p className="mt-2 text-xs font-semibold text-foreground/40">{product.unit}</p>
+          )}
         </Link>
         <div className="mt-auto flex items-end justify-between gap-3 pt-2">
           <span className="flex items-center gap-2">

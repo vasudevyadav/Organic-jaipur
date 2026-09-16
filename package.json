@@ -9,7 +9,8 @@
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "test:accordions": "node scripts/test-accordions.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

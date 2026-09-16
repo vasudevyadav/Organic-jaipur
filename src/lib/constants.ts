@@ -1,3 +1,5 @@
+import { SHIPPING_POLICY_SUMMARY } from "@/lib/shipping";
+
 export const SITE_NAME = "Organic Jaipur";
 
 export const SITE_URL = "https://organicjaipur.store";
@@ -25,7 +27,7 @@ export const CATEGORIES = [
   { value: "GHEE", label: "Ghee" },
   { value: "MUSTARD_OIL", label: "Cold-Pressed Oils" },
   { value: "HONEY", label: "Honey" },
-  { value: "PICKLES", label: "Lal Mirch Chutney" },
+  { value: "PICKLES", label: "Pickles & Chutneys" },
 ] as const;
 
 export type CategoryValue = (typeof CATEGORIES)[number]["value"];
@@ -61,7 +63,7 @@ export const FAQS_HOME = [
   {
     question: "Do your ingredients come from your own farm?",
     answer:
-      "Yes. Our Gir cows, mustard crop and managed beehives are all on our own farm in Jaipur, Rajasthan. Seasonal produce for our pickles, mango, lemon and chilli, is grown there too, so every product is 100% traceable.",
+      "Yes. Our Gir cows, mustard crop and managed beehives are all on our own farm in Jaipur, Rajasthan. Seasonal produce for our pickles, mango, lemon and chilli, is grown there too, and you can ask our team for source details for the product and batch you choose.",
   },
   {
     question: "Is your mustard oil really cold-pressed?",
@@ -86,21 +88,21 @@ export const FAQS_HOME = [
   {
     question: "What payment methods do you accept?",
     answer:
-      "Cash on Delivery (COD) only. You pay when your order arrives at your door.",
+      "Choose Cash on Delivery or online payment through Razorpay at checkout. Online payment availability is confirmed when the payment window opens.",
   },
   {
     question: "Can I Ask for a Batch Test Report?",
     answer:
-      "Yes. Message us on WhatsApp with the product name and we will share the latest available report or batch information.",
+      "Message us on WhatsApp with the product name and batch number. Our team will confirm whether a matching lab report or other batch information is available. A report is not currently published on the product page.",
   },
   ...FAQS_PRICE,
 ] as const;
 
 export const FAQS_GHEE = [
   {
-    question: "What makes your A2 ghee different from regular ghee?",
+    question: "How are your Bilona ghee varieties made?",
     answer:
-      "Our A2 ghee starts with milk from Gir cows on our farm. We set the milk into curd, churn it to butter and slow-cook it into ghee. This process creates its grainy texture and deep aroma.",
+      "Our Bilona range includes Gir cow, Desi cow and buffalo ghee. The milk specified for each product is set into curd, churned to butter and slow-cooked into ghee. Check the selected product for its milk source and pack size.",
   },
   {
     question: "What's the difference between A2 Gir Cow Ghee, A2 Desi Cow Ghee and Buffalo Ghee?",
@@ -138,17 +140,17 @@ export const FAQS_HONEY = [
   {
     question: "Is your honey raw and unprocessed?",
     answer:
-      "Yes. Collected from beehives managed on our own farm in Jaipur and only lightly filtered to remove physical impurities. No heating, no added sugar, no artificial processing.",
+      "Our raw honey is lightly filtered to remove physical impurities, with no added sugar. Check the product for its stated variety and ask our team about the source of the batch you are buying.",
   },
   {
     question: "How can I tell raw honey from adulterated honey?",
     answer:
-      "Raw honey from a known, traceable source, like our own managed farm in Rajasthan, is the most reliable way to avoid the sugar-syrup adulteration common in mass-market honey brands.",
+      "Appearance, taste and home tests do not establish purity. Ask about the source and a matching batch test report before buying; our team can confirm what documentation is available.",
   },
   {
     question: "Why has my honey turned solid or grainy?",
     answer:
-      "Crystallisation is a natural sign of raw, unheated honey, not spoilage. Place the jar in warm water to loosen it if you prefer it liquid.",
+      "Honey can naturally crystallise during storage. Crystallisation alone does not prove that honey is raw or pure. Follow the storage instructions on your pack.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -162,7 +164,7 @@ export const FAQS_PICKLES = [
   {
     question: "Do your pickles contain preservatives?",
     answer:
-      "No artificial preservatives are added. Traditional oil-and-spice curing, done patiently in small batches, is what keeps our pickles shelf-stable.",
+      "Check the ingredient list for the selected pickle or chutney and follow its storage instructions. Recipes differ, so ask our team about any ingredient you need to avoid before ordering.",
   },
   ...FAQS_PRICE,
 ] as const;
@@ -334,7 +336,7 @@ export const FAQS_SHIPPING = [
   },
   {
     question: "Is delivery free?",
-    answer: "Yes, delivery is free on all orders within our Jaipur service area. For orders shipped to other cities in Rajasthan via courier, any shipping charge is shown clearly before you confirm your order.",
+    answer: SHIPPING_POLICY_SUMMARY,
   },
   {
     question: "How long does delivery take?",
@@ -348,8 +350,8 @@ export const FAQS_RETURNS = [
     answer: "We don't accept returns of opened products for reasons of personal taste, since these are consumable food items. If a product is unopened, or arrives defective, contaminated, leaking, or not as described, you can request a return or replacement within 1 day of delivery.",
   },
   {
-    question: "How do refunds work since you're Cash on Delivery only?",
-    answer: "Since we accept Cash on Delivery (COD) only, a valid claim is resolved as a free replacement on your next delivery, store credit, or a refund via bank transfer/UPI, as agreed with you.",
+    question: "How are refunds and replacements handled?",
+    answer: "For an approved claim, our team confirms the available replacement, store credit or refund arrangement with you. Share your order number and payment method; we confirm the refund route and expected date before processing.",
   },
   {
     question: "Can I cancel my order?",
@@ -360,11 +362,11 @@ export const FAQS_RETURNS = [
 export const FAQS_PRIVACY = [
   {
     question: "Do you sell my personal information?",
-    answer: "No. We do not sell your personal information. We only share it where necessary: with our own delivery staff, our website/database hosting providers, or if required by law.",
+    answer: "No. We do not sell your personal information. We only share it where necessary: with delivery staff and courier partners, our website/database hosting providers, our payment processor for online payments, or if required by law.",
   },
   {
     question: "Do you store my payment details?",
-    answer: "No. We do not knowingly collect sensitive information such as payment card details, since we currently accept Cash on Delivery (COD) only.",
+    answer: "Online payments are processed through Razorpay. We store order and payment references and payment status, not your full card details. Cash on Delivery is also available.",
   },
   {
     question: "Can I ask you to delete my account and data?",
@@ -375,7 +377,7 @@ export const FAQS_PRIVACY = [
 export const FAQS_TERMS = [
   {
     question: "What payment methods do you accept?",
-    answer: "Currently, we accept Cash on Delivery (COD) only. Please ensure someone is available at the delivery address to receive and pay for the order.",
+    answer: "Choose Cash on Delivery or online payment through Razorpay at checkout. For COD orders, please ensure someone is available to receive and pay for the order.",
   },
   {
     question: "Can prices change after I've viewed a product?",
