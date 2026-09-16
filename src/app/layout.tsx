@@ -17,6 +17,9 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: [{ url: "/favicon-96.png", sizes: "96x96", type: "image/png" }],
+  },
   title: {
     default: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
     template: "%s | Organic Jaipur",
