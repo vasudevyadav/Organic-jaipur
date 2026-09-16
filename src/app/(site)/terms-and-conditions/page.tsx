@@ -25,7 +25,7 @@ export default function TermsAndConditionsPage() {
       <section className="hero-grain relative isolate min-h-[360px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[400px]">
         <img src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products at a Rajasthan farm" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.93)_0%,rgba(8,29,20,.72)_46%,rgba(8,29,20,.2)_82%)]" />
-        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-3xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
+        <AnimatedSection className="relative mx-auto flex min-h-[360px] max-w-5xl flex-col justify-center px-5 py-14 sm:min-h-[400px] sm:px-8 sm:py-16">
           <p className="flex items-center gap-3 text-[10px] font-bold tracking-[.24em] text-honey-400 uppercase">
             <span className="h-px w-8 bg-honey-400" /> Legal
           </p>
