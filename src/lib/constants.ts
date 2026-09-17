@@ -61,41 +61,80 @@ export const FAQS_PRICE = [
 
 export const FAQS_HOME = [
   {
-    question: "Do your ingredients come from your own farm?",
+    question: "Is Organic Jaipur Store actually a farm, or just an online seller?",
     answer:
-      "Yes. Our Gir cows, mustard crop and managed beehives are all on our own farm in Jaipur, Rajasthan. Seasonal produce for our pickles, mango, lemon and chilli, is grown there too, and you can ask our team for source details for the product and batch you choose.",
-  },
-  {
-    question: "Is your mustard oil really cold-pressed?",
-    answer:
-      "Yes. It's extracted using the traditional kachi ghani method on wooden presses, with no heat or chemical solvents, which keeps its natural pungency and nutrients intact.",
+      "Organic Jaipur Store is a small, direct-from-farm brand based in Jaipur, Rajasthan — our Gir cows, Desi cows, buffaloes, mustard crop and beehives are all on our own farm, and the mango, lemon and chilli for our pickles are grown there too. We're not repacking bought-in stock, so you can ask our team for source details on the batch you choose.",
   },
   {
     question: "How is your A2 ghee made?",
     answer:
-      "Our A2 ghee is hand-churned using the traditional bilona method: curd is churned to butter by hand, then slow-cooked into ghee. No cream-separator shortcuts, no additives.",
+      "Our A2 ghee is hand-churned using the traditional bilona method: curd is churned to butter by hand and then slow-cooked into ghee, right here in Jaipur. There's no cream-separator shortcut and nothing added.",
   },
   {
-    question: "Do you deliver across Jaipur and Rajasthan?",
+    question: "Is A2 bilona ghee actually better than regular ghee?",
     answer:
-      "Yes. Free doorstep delivery in Jaipur, and courier shipping across Rajasthan. Message us on WhatsApp with your location and we confirm delivery timing the same day.",
+      "A2 ghee comes from A2-protein milk and, in our case, is hand-churned by the bilona method rather than run through a cream separator, so the process is slower and more manual than most commercial ghee. We won't make medical claims about A2 versus A1 protein, but the traditional method, the milk source and the batch are real differences you're welcome to ask us about.",
+  },
+  {
+    question: "How do I know I'm buying the best A2 ghee, not just the most expensive?",
+    answer:
+      "Look at how it's actually made — bilona hand-churned versus machine-separated — where the milk comes from, and whether the seller can tell you the batch it came from, rather than going by packaging alone. We don't publish lab certificates on the product page yet, but we'll share whatever batch details we have if you message us on WhatsApp.",
+  },
+  {
+    question: "What is kachi ghani mustard oil, and how is it different from refined mustard oil?",
+    answer:
+      "Kachi ghani means the mustard seed is crushed on a wooden press at low speed with no added heat, unlike refined oil which is chemically processed and loses much of its natural pungency along the way. Our kachi ghani mustard oil is pressed the traditional way at our Jaipur farm, with no heat or chemical solvents, so the sharp mustard flavour and nutrients stay intact.",
+  },
+  {
+    question: "Is your honey raw, and how is it different from regular honey?",
+    answer:
+      "Our raw honey comes from beehives on our own farm in Jaipur and is only lightly filtered, with no added sugar or syrup. Because it's raw, it can crystallise or turn cloudy over time — that's a natural sign of minimal processing, not spoilage.",
+  },
+  {
+    question: "Can I order Rajasthani pickles online from Organic Jaipur Store?",
+    answer:
+      "Yes. Our Rajasthani pickles and chutneys, including our laal mirch chutney, are made in small batches from mango, lemon and chilli grown on our own farm, and you can order them through the website cart or over WhatsApp along with your ghee, oil or honey.",
+  },
+  {
+    question: "Do you deliver A2 ghee and other organic products near me in Jaipur?",
+    answer:
+      "Yes — within Jaipur, our own team hand-delivers to your doorstep, so your order isn't handed off to a third-party courier for local drops. We also ship across Rajasthan, including Jodhpur, Udaipur and Kota, by courier. Message us on WhatsApp with your locality and we'll confirm delivery timing the same day.",
+  },
+  {
+    question: "Is delivery free, or are there shipping charges outside Jaipur?",
+    answer:
+      "Delivery is free within our Jaipur service area. Elsewhere in Rajasthan, orders under ₹1,499 have weight-based courier shipping from ₹59 to ₹199, and orders of ₹1,499 or more ship free up to 3 kg. The exact charge for your cart is shown at checkout before you pay.",
+  },
+  {
+    question: "Can I track my order after it's placed?",
+    answer:
+      "Yes. Enter your order number and the phone number you ordered with on our Track Order page to see the latest status, from order placed to out for delivery.",
   },
   {
     question: "How do I place an order?",
     answer:
-      "Add products to your cart and check out on the website, or tap \"Order on WhatsApp\" on any product for a pre-filled message to confirm quantity and delivery directly with us.",
+      "Add products to your cart and check out on the website, or tap \"Order on WhatsApp\" on any product for a pre-filled message so we can confirm quantity and delivery with you directly.",
   },
   {
     question: "What payment methods do you accept?",
     answer:
-      "Choose Cash on Delivery or online payment through Razorpay at checkout. Online payment availability is confirmed when the payment window opens.",
+      "Cash on Delivery, or online payment through Razorpay at checkout. Online payment availability is confirmed when the payment window opens.",
   },
   {
-    question: "Can I Ask for a Batch Test Report?",
+    question: "Can I ask for a batch or lab test report?",
     answer:
-      "Message us on WhatsApp with the product name and batch number. Our team will confirm whether a matching lab report or other batch information is available. A report is not currently published on the product page.",
+      "Message us on WhatsApp with the product name and batch number, and our team will confirm whether a matching lab report or other batch information exists for it. We don't publish reports on the product page itself yet.",
   },
-  ...FAQS_PRICE,
+  {
+    question: "Why does Organic Jaipur Store's ghee or oil cost more than a supermarket brand?",
+    answer:
+      "The price reflects real sourcing from our own Jaipur farm, small-batch methods like bilona hand-churning and kachi ghani pressing, and direct handling by our small team rather than mass distribution. Compare the ingredients, net quantity and process listed on each product page before you decide.",
+  },
+  {
+    question: "Why should I buy from Organic Jaipur Store instead of a regular grocery brand?",
+    answer:
+      "Because everything on Organic Jaipur Store — the milk, the mustard, the honey and the fruit for our pickles — comes from our own farm in Jaipur rather than being bought in bulk and repacked, so we can tell you which batch a product came from and answer questions directly on WhatsApp. That's harder to get from a shelf product at a regular store.",
+  },
 ] as const;
 
 export const FAQS_GHEE = [

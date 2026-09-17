@@ -23,15 +23,15 @@ import {
   TruckIcon,
 } from "@/components/icons";
 import { BUSINESS, STATS, FAQS_HOME, SOCIAL_LINKS } from "@/lib/constants";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: {
-    absolute:
-      "Organic Jaipur Store | Best A2 Ghee, Mustard Oil, Honey & Chutney",
+    absolute: "Organic Jaipur Store: Best A2 Ghee & Cold-Pressed Oil",
   },
   description:
-    "Organic Jaipur Store — Ye Ghee Nahi, Bharosa Hai. Own-farm A2 and Buffalo Bilona ghee, cold-pressed oils, raw honey and Rajasthani lal mirch chutney, with free Jaipur delivery and Cash on Delivery.",
+    "Organic Jaipur Store — own-farm A2 ghee, cold-pressed oils, raw honey & Rajasthani pickles. Free Jaipur delivery, Cash on Delivery.",
   alternates: { canonical: "/" },
   keywords: [
     "organic jaipur store",
@@ -255,29 +255,14 @@ const testimonials = [
   },
 ];
 
-const blogs = [
-  {
-    date: "August 5, 2026",
-    title: "What Makes Bilona Ghee Different?",
-    copy: "A simple guide to curd churning, slow cooking and the flavour it creates.",
-    image: "/images/bilona-story-v2.png",
-    href: "/farm-to-home",
-  },
-  {
-    date: "August 2, 2026",
-    title: "Why Owning the Source Matters",
-    copy: "How our own cows, crops and beehives create a more accountable pantry journey.",
-    image: "/images/generated/journey-mustard-apiary.webp",
-    href: "/about",
-  },
-  {
-    date: "July 28, 2026",
-    title: "A Closer Look at Indigenous Gir Cows",
-    copy: "Care, nourishment and patience: the beginning of traditionally made ghee.",
-    image: "/images/generated/hero-farm-gir-cow.webp",
-    href: "/quality-promise",
-  },
-];
+const blogs = BLOG_POSTS.slice(0, 3).map((post) => ({
+  date: post.publishDate,
+  title: post.title,
+  copy: post.intro,
+  image: post.heroImage,
+  alt: post.heroAlt,
+  href: `/blog/${post.slug}`,
+}));
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -805,10 +790,10 @@ export default async function HomePage() {
             </h2>
           </div>
           <Link
-            href="/about"
+            href="/blog"
             className="hidden border-b border-forest-900 pb-1 text-sm font-bold sm:block"
           >
-            View Our Farm →
+            Read All Guides →
           </Link>
         </AnimatedSection>
         <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-7 md:overflow-visible md:px-0">
@@ -822,7 +807,7 @@ export default async function HomePage() {
                 >
                   <Image
                     src={blog.image}
-                    alt=""
+                    alt={blog.alt}
                     fill
                     sizes="(max-width: 767px) 92vw, 32vw"
                     className="object-cover transition duration-700 group-hover:scale-105"
@@ -854,6 +839,11 @@ export default async function HomePage() {
               Sawaal Aapke,{" "}
               <em className="font-normal text-brand-700">Jawaab Hamare.</em>
             </h2>
+            <p className="mt-4 max-w-xl leading-7 text-forest-900/70">
+              Organic Jaipur Store par A2 ghee, kachi ghani mustard oil, raw
+              honey aur Rajasthani pickles ke baare mein aapke sabse zyada
+              poochhe jaane wale sawaal.
+            </p>
             <div className="mt-9">
               <FaqAccordion />
             </div>
