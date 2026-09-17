@@ -1,6 +1,6 @@
 import { SHIPPING_POLICY_SUMMARY } from "@/lib/shipping";
 
-export const SITE_NAME = "Organic Jaipur";
+export const SITE_NAME = "Organic Jaipur Store";
 
 export const SITE_URL = "https://organicjaipur.store";
 

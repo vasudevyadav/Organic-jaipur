@@ -13,6 +13,7 @@ export default function OrganizationJsonLd() {
     "@type": ["Organization", "LocalBusiness", "Store"],
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: ["Organic Jaipur", "Organic Jaipur Store"],
     url: SITE_URL,
     logo: `${SITE_URL}/product/download.png`,
     telephone: BUSINESS.phoneDisplay,
@@ -30,6 +31,9 @@ export default function OrganizationJsonLd() {
     },
     areaServed: [
       { "@type": "City", name: "Jaipur" },
+      { "@type": "City", name: "Jodhpur" },
+      { "@type": "City", name: "Udaipur" },
+      { "@type": "City", name: "Kota" },
       { "@type": "State", name: "Rajasthan" },
     ],
     contactPoint: {
