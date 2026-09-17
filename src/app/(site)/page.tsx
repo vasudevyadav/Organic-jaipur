@@ -27,13 +27,18 @@ import { formatPrice, safeImageUrl } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: {
-    absolute: "A2 & Buffalo Ghee, Mustard Oil, Honey & Chutney | Organic Jaipur",
+    absolute:
+      "Organic Jaipur Store | Best A2 Ghee, Mustard Oil, Honey & Chutney",
   },
   description:
-    "Ye Ghee Nahi, Bharosa Hai. Own-farm A2 and Buffalo Bilona ghee, cold-pressed oils, raw honey and Rajasthani lal mirch chutney, with free Jaipur delivery and Cash on Delivery.",
+    "Organic Jaipur Store — Ye Ghee Nahi, Bharosa Hai. Own-farm A2 and Buffalo Bilona ghee, cold-pressed oils, raw honey and Rajasthani lal mirch chutney, with free Jaipur delivery and Cash on Delivery.",
   alternates: { canonical: "/" },
   keywords: [
-    "organic Jaipur",
+    "organic jaipur store",
+    "organic jaipur",
+    "organic products near me",
+    "best a2 ghee",
+    "a2 ghee near me",
     "organic Rajasthan",
     "A2 ghee Jaipur",
     "bilona ghee Jaipur",
@@ -63,6 +68,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: "Jaipur Aur Rajasthan Ki Rasoi Ke Liye",
     title: (
       <>
+        <span className="sr-only">Organic Jaipur Store: </span>
         Ye Ghee Nahi,{" "}
         <em className="font-normal text-honey-400">Bharosa Hai.</em>
       </>
@@ -78,6 +84,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: "Raw Wild Forest Honey",
     title: (
       <>
+        <span className="sr-only">Organic Jaipur Store: </span>
         Mithaas Wahi,{" "}
         <em className="font-normal text-honey-400">Jo Kudrat Ne Banayi.</em>
       </>
@@ -96,6 +103,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: "Kachi Ghani Mustard Oil",
     title: (
       <>
+        <span className="sr-only">Organic Jaipur Store: </span>
         Rajasthan Ka Swaad,{" "}
         <em className="font-normal text-honey-400">Har Boond Mein.</em>
       </>
@@ -117,6 +125,7 @@ const heroSlides: HeroSlide[] = [
     eyebrow: "Rajasthani Pickles and Chutneys",
     title: (
       <>
+        <span className="sr-only">Organic Jaipur Store: </span>
         Har Niwale Mein,{" "}
         <em className="font-normal text-honey-400">Ghar Ka Swaad.</em>
       </>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import Providers from "@/components/Providers";
 import OrganizationJsonLd from "@/components/OrganizationJsonLd";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,13 +21,17 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon-96.png", sizes: "96x96", type: "image/png" }],
   },
   title: {
-    default: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
-    template: "%s | Organic Jaipur",
+    default: `${SITE_NAME} | Best A2 Ghee, Cold-Pressed Oil, Honey & Pickles`,
+    template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles. Free delivery in Jaipur, Cash on Delivery, shipped across Rajasthan.",
+    "Organic Jaipur Store: own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles. Free delivery near you in Jaipur, Cash on Delivery, shipped across Rajasthan.",
   keywords: [
-    "organic Jaipur",
+    "organic jaipur store",
+    "organic jaipur",
+    "organic products near me",
+    "best a2 ghee",
+    "a2 ghee near me",
     "organic Rajasthan",
     "A2 ghee Jaipur",
     "A2 ghee Rajasthan",
@@ -47,16 +51,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "/",
-    siteName: "Organic Jaipur",
-    title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Best A2 Ghee, Cold-Pressed Oil, Honey & Pickles`,
     description:
-      "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
+      "Organic Jaipur Store: own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "A2 Ghee, Cold-Pressed Oil, Honey & Pickles | Organic Jaipur",
+    title: `${SITE_NAME} | Best A2 Ghee, Cold-Pressed Oil, Honey & Pickles`,
     description:
-      "Own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
+      "Organic Jaipur Store: own-farm A2 ghee, cold-pressed oils, raw honey and Rajasthani pickles, grown and made in Jaipur, Rajasthan.",
   },
   robots: { index: true, follow: true },
 };
