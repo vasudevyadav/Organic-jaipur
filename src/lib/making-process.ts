@@ -1,3 +1,5 @@
+import { CHUTNEY_PROCESS } from "./chutney";
+
 export const MAKING_PROCESSES = [
   {
     slug: "bilona-ghee",
@@ -70,9 +72,9 @@ export const MAKING_PROCESSES = [
   },
   {
     slug: "traditional-pickles",
-    label: "Pickles & Chutney",
+    label: "Traditional Pickles",
     category: "PICKLES",
-    eyebrow: "Traditional Pickles & Chutney",
+    eyebrow: "Traditional Pickles",
     title: "Ingredients, Spice and Time in Balance",
     intro: "Farm-grown produce, measured spice and natural maturation, not instant flavouring.",
     banner: "/images/generated/process-pickle-hero-v2.png",
@@ -90,6 +92,19 @@ export const MAKING_PROCESSES = [
       { title: "The Batch Matures Naturally", detail: "The mixed pickle is rested so salt, spice and oil can penetrate while its full flavour develops over time.", note: "Maturation is observed rather than hurried." },
       { title: "Final Review and Sealing", detail: "Taste, aroma, texture and jar hygiene are checked before the matured pickle is filled and securely sealed.", note: "Only approved jars move to customer orders." },
     ],
+  },
+  {
+    slug: "laal-mirch-chutney",
+    label: "Laal Mirch Chutney",
+    category: "PICKLES",
+    eyebrow: "Silbatte Par Bani Chutney",
+    title: "Local Lal Mirch Se, Aapke Order Par",
+    intro: CHUTNEY_PROCESS.intro,
+    banner: "/product/ChatGPT Image Aug 7, 2026, 11_27_20 AM (10).png",
+    strip: "",
+    stepImages: [],
+    accent: "Local Farmers · Dhoop · Silbatta · Packing Aur Delivery",
+    steps: CHUTNEY_PROCESS.steps,
   },
 ] as const;
 

@@ -125,7 +125,7 @@ export default function OrganicProductsJaipurPage() {
               <tr><th className="p-4 font-bold text-forest-900">Bilona ghee</th><td className="p-4">Curd churned to butter, then slow-cooked</td><td className="p-4">Daily meals, tadka and sweets</td><td className="p-4">Cow type, pack size and aroma preference</td></tr>
               <tr><th className="p-4 font-bold text-forest-900">Cold-pressed oil</th><td className="p-4">Pressed at low temperature without refining</td><td className="p-4">Everyday cooking and tadka</td><td className="p-4">Seed type and preferred pungency</td></tr>
               <tr><th className="p-4 font-bold text-forest-900">Raw honey</th><td className="p-4">Lightly filtered without heating</td><td className="p-4">Direct use, drinks and breakfast</td><td className="p-4">Natural crystallisation and storage</td></tr>
-              <tr><th className="p-4 font-bold text-forest-900">Lal mirch chutney</th><td className="p-4">Prepared in small batches with spices</td><td className="p-4">Rajasthani meals and snacks</td><td className="p-4">Heat level, ingredients and storage</td></tr>
+              <tr><th className="p-4 font-bold text-forest-900">Lal mirch chutney</th><td className="p-4">Made to order on a silbatta with cumin, garlic, curd and a little ghee (contains milk)</td><td className="p-4">Rajasthani meals and snacks</td><td className="p-4">Heat level, ingredients and storage</td></tr>
             </tbody>
           </table>
         </div>

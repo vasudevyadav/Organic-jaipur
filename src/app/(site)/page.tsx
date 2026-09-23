@@ -130,11 +130,11 @@ const heroSlides: HeroSlide[] = [
         <em className="font-normal text-honey-400">Ghar Ka Swaad.</em>
       </>
     ),
-    copy: "Choose green chilli pickle or bold laal mirch-garlic chutney. Small-batch flavour that completes dal, paratha and everyday meals.",
+    copy: "Choose green chilli pickle or made-to-order laal mirch chutney with cumin, garlic, curd and a little ghee (contains milk). Small-batch flavour that completes dal, paratha and everyday meals.",
     primaryCta: { label: "Shop Pickles", href: "/products?category=PICKLES" },
     secondaryCta: {
       label: "See How It’s Made",
-      href: "/making-process/traditional-pickles",
+      href: "/making-process/laal-mirch-chutney",
     },
   },
 ];
@@ -166,7 +166,7 @@ const journeySteps = [
   },
   {
     title: "Khet Se, Sambhaal Ke",
-    copy: "Sarson hamare kheton se lakdi ki ghani tak jaati hai, aur lal mirch chutney apne farm ki mirch aur masalon se chhote batches mein banti hai.",
+    copy: "Sarson hamare kheton se lakdi ki ghani tak jaati hai, aur lal mirch chutney local farmers ki dhoop mein sukhai mirch ko order par jeera, lahsun, dahi aur halke ghee ke saath silbatte par peeskar banti hai. Phir pack karke aap tak pahunchate hain.",
     image: "/images/founder/founder-mustard-ghani-press.png",
     alt: "Organic Jaipur founder pressing mustard seeds in a traditional wooden ghani",
   },
