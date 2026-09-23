@@ -58,7 +58,7 @@ const CATEGORY_INTROS: Record<string, { title: string; copy: string }> = {
   },
   PICKLES: {
     title: "Achar Aur Chutney Ka Chatpata Swaad",
-    copy: "Choose from pickles and chutneys with different chilli, spice and oil combinations. Check each product for its ingredients and storage instructions, and use a clean, dry spoon.",
+    copy: "Choose green chilli pickle or laal mirch chutney made to order from sun-dried local-farmer chillies, ground on a silbatta with cumin, garlic, curd and a little ghee (contains milk). Check each product for its ingredients and storage instructions.",
   },
 };
 

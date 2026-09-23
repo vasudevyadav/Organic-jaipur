@@ -1,3 +1,4 @@
+import { CHUTNEY_DETAILS } from "../src/lib/chutney";
 import { PrismaClient, Category } from "@prisma/client";
 import { getDatabaseUrl } from "../src/lib/database-url";
 
@@ -222,10 +223,7 @@ const products: SeedProduct[] = [
     price: 269,
     originalPrice: 329,
     unit: "500 g",
-    description: "Stone-ground red chilli chutney with garlic, made the traditional village way. Bold, spicy, rich in flavour.",
-    ingredients: "Red chilli, garlic, mustard oil, traditional spices, salt. No artificial preservatives.",
-    benefits: "Stone-ground for authentic texture. Bold garlic-chilli flavour, traditional recipe. No preservatives.",
-    storageInfo: "Store in a cool, dry place. Refrigerate after opening and use a dry spoon for best taste.",
+    ...CHUTNEY_DETAILS,
     imageUrl: productImage("ChatGPT Image Aug 7, 2026, 11_27_20 AM (10).png"),
   },
 ];

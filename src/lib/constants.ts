@@ -93,7 +93,7 @@ export const FAQS_HOME = [
   {
     question: "Can I order Rajasthani pickles online from Organic Jaipur Store?",
     answer:
-      "Yes. Our Rajasthani pickles and chutneys, including our laal mirch chutney, are made in small batches from mango, lemon and chilli grown on our own farm, and you can order them through the website cart or over WhatsApp along with your ghee, oil or honey.",
+      "Yes. Our laal mirch chutney uses sun-dried red chillies from local farmers, ground on a silbatta after your order with cumin, garlic, curd and a little ghee (contains milk), then packed and delivered. You can order our pickles and chutney through the website cart or over WhatsApp along with your ghee, oil or honey.",
   },
   {
     question: "Do you deliver A2 ghee and other organic products near me in Jaipur?",

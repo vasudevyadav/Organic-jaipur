@@ -4,6 +4,7 @@ import { useId, useRef, useState } from "react";
 import { useHydrated } from "@/lib/useHydrated";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { CHUTNEY_PROCESS, isLaalMirchChutney } from "@/lib/chutney";
 import { BUSINESS } from "@/lib/constants";
 import { safeImageUrl } from "@/lib/utils";
 
@@ -125,8 +126,8 @@ const PROCESS: Record<
 
 const TESTS = [
   {
-    title: "Farm ingredient check",
-    text: "Ingredients from our farm are inspected for appearance, aroma, cleanliness and batch traceability.",
+    title: "Ingredient check",
+    text: "Ingredients are inspected for appearance, aroma, cleanliness and batch traceability.",
   },
   {
     title: "Process control",
@@ -168,7 +169,10 @@ export default function ProductQualityTabs({
   const instanceId = useId();
   const hydrated = useHydrated();
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const baseProcess = PROCESS[category];
+  const isChutney = category === "PICKLES" && isLaalMirchChutney(productName);
+  const baseProcess = isChutney
+    ? { intro: CHUTNEY_PROCESS.intro, steps: CHUTNEY_PROCESS.steps.map((step) => ({ title: step.title, text: `${step.detail} ${step.note}` })) }
+    : PROCESS[category];
   const milkSource = /buffalo/i.test(productName)
     ? "buffalo milk"
     : /gir/i.test(productName)
@@ -293,7 +297,7 @@ export default function ProductQualityTabs({
                   <p className="mt-4 text-sm leading-7 text-forest-900/55">
                     {process.intro}
                   </p>
-                  <p className="mt-2 text-xs text-forest-900/50">Process images are illustrations. Ask our team for information about your product and batch.</p>
+                  {!isChutney && <p className="mt-2 text-xs text-forest-900/50">Process images are illustrations. Ask our team for information about your product and batch.</p>}
                 </div>
 
                 <div className="relative mx-auto mt-10 max-w-4xl before:absolute before:bottom-20 before:left-4 before:top-20 before:w-px before:bg-linear-to-b before:from-honey-400 before:via-brand-300 before:to-forest-900/10 sm:before:left-1/2 sm:before:-translate-x-px">
@@ -302,7 +306,7 @@ export default function ProductQualityTabs({
                       key={step.title}
                       className={`relative mb-10 grid grid-cols-[32px_minmax(0,1fr)] items-center gap-4 last:mb-0 sm:grid-cols-[1fr_72px_1fr] sm:gap-7 ${index % 2 === 0 ? "" : "sm:[&_.process-copy]:col-start-3 sm:[&_.process-copy]:row-start-1 sm:[&_.process-image]:col-start-1 sm:[&_.process-image]:row-start-1"}`}
                     >
-                      <div className="process-copy col-start-2 row-start-2 min-w-0 rounded-2xl border border-forest-900/8 bg-[#faf7ee] p-4 shadow-[0_8px_24px_rgba(15,40,28,.05)] sm:col-start-1 sm:row-start-1 sm:p-5">
+                      <div className="process-copy col-start-2 row-start-1 min-w-0 rounded-2xl border border-forest-900/8 bg-[#faf7ee] p-4 shadow-[0_8px_24px_rgba(15,40,28,.05)] sm:col-start-1 sm:row-start-1 sm:p-5">
                         <p className="text-[9px] font-extrabold uppercase tracking-[.18em] text-terracotta-500">
                           Step {String(index + 1).padStart(2, "0")}
                         </p>
@@ -320,7 +324,7 @@ export default function ProductQualityTabs({
                         </span>
                       </div>
 
-                      <div className="process-image col-start-2 row-start-1 h-[180px] w-full overflow-hidden rounded-2xl border-4 border-white bg-[#eee7d8] shadow-[0_12px_30px_rgba(15,40,28,.14)] sm:col-start-3 sm:h-56 sm:w-full">
+                      {!isChutney && <div className="process-image col-start-2 row-start-1 h-[180px] w-full overflow-hidden rounded-2xl border-4 border-white bg-[#eee7d8] shadow-[0_12px_30px_rgba(15,40,28,.14)] sm:col-start-3 sm:h-56 sm:w-full">
                         <div
                           role="img"
                           aria-label={`Illustration of ${step.title.toLowerCase()}`}
@@ -331,7 +335,7 @@ export default function ProductQualityTabs({
                             backgroundPosition: `${(index / Math.max(process.steps.length - 1, 1)) * 100}% center`,
                           }}
                         />
-                      </div>
+                      </div>}
                     </div>
                   ))}
                 </div>

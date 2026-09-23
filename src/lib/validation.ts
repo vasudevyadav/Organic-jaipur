@@ -6,6 +6,7 @@ export const CATEGORY_VALUES = [
   "GHEE",
   "MUSTARD_OIL",
   "HONEY",
+  "PICKLES",
 ] as const;
 
 export const productSchema = z.object({

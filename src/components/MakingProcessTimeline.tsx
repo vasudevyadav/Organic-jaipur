@@ -12,14 +12,14 @@ export default function MakingProcessTimeline({ steps, images }: { steps: readon
 
   return (
     <div ref={timelineRef} className="relative mt-16">
-      <p className="mb-8 text-center text-sm text-forest-900/60">Process illustrations explain the method; ask our team for product and batch details.</p>
+      {images.length > 0 && <p className="mb-8 text-center text-sm text-forest-900/60">Process illustrations explain the method; ask our team for product and batch details.</p>}
       <div className="absolute bottom-24 left-5 top-24 w-[3px] rounded-full bg-forest-900/10 lg:left-1/2 lg:-translate-x-1/2">
         <motion.div style={{ scaleY: progress, transformOrigin: "top" }} className="h-full w-full rounded-full bg-linear-to-b from-honey-400 via-brand-500 to-forest-900" />
       </div>
 
       <div className="space-y-20 lg:space-y-28">
         {steps.map((step, index) => {
-          const image = (
+          const image = images[index] ? (
             <motion.div
               initial={false}
               whileInView={{ opacity: 1, x: 0 }}
@@ -29,7 +29,7 @@ export default function MakingProcessTimeline({ steps, images }: { steps: readon
             >
               <div role="img" aria-label={`Illustration of ${step.title.toLowerCase()}`} className="h-full w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${images[index]})` }} />
             </motion.div>
-          );
+          ) : null;
 
           const copy = (
             <motion.div

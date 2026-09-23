@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return process
     ? {
         title: `${process.label} Making Process`,
-        description: `${process.intro} Made on our own farm in Jaipur, Rajasthan.`,
+        description: process.intro,
         alternates: { canonical: `/making-process/${process.slug}` },
         openGraph: {
           type: "article",
