@@ -1,5 +1,11 @@
 import { z } from "zod";
 
+// Indian mobile numbers: exactly 10 digits, starting with 6-9. Strips spaces,
+// dashes, +91/91 prefixes before checking so common paste formats still pass.
+export const INDIAN_MOBILE_REGEX = /^[6-9]\d{9}$/;
+const indianMobile = (message = "Enter a valid 10-digit mobile number") =>
+  z.string().transform((value) => value.replace(/[\s-]/g, "").replace(/^(\+91|91)/, "")).pipe(z.string().regex(INDIAN_MOBILE_REGEX, message));
+
 export const CATEGORY_VALUES = [
   "VEGETABLES",
   "FRUITS",
@@ -38,7 +44,7 @@ export const registerSchema = z.object({
   name: z.string().min(2).max(120),
   email: z.string().email(),
   password: z.string().min(8).max(72),
-  phone: z.string().max(20).optional().or(z.literal("")),
+  phone: indianMobile().optional().or(z.literal("")),
 });
 
 export const loginSchema = z.object({
@@ -62,7 +68,7 @@ export const addressSchema = z.object({
   city: z.string().min(1).max(80),
   state: z.string().min(1).max(80),
   pincode: z.string().min(4).max(10),
-  phone: z.string().min(6).max(20),
+  phone: indianMobile(),
   isDefault: z.coerce.boolean().default(false),
 });
 
@@ -74,7 +80,7 @@ export const checkoutItemSchema = z.object({
 export const checkoutSchema = z.object({
   items: z.array(checkoutItemSchema).min(1),
   customerName: z.string().min(2).max(120),
-  customerPhone: z.string().min(6).max(20),
+  customerPhone: indianMobile(),
   customerEmail: z.string().email().optional().or(z.literal("")),
   addressLine1: z.string().min(2).max(200),
   addressLine2: z.string().max(200).optional().or(z.literal("")),
@@ -88,7 +94,7 @@ export const checkoutSchema = z.object({
 
 export const trackOrderSchema = z.object({
   orderNumber: z.string().min(1),
-  customerPhone: z.string().min(6).max(20),
+  customerPhone: indianMobile(),
 });
 
 export const reviewSchema = z.object({
