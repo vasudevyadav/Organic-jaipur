@@ -208,6 +208,10 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    if (!/^[6-9]\d{9}$/.test(form.customerPhone)) {
+      setError("Enter a valid 10-digit mobile number.");
+      return;
+    }
     setSubmitting(true);
     setError("");
 
@@ -377,7 +381,17 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             <div className="flex items-center gap-4"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-900 text-xs font-bold text-honey-400">{addresses.length > 0 ? "02" : "01"}</span><div><h2 className="font-display text-xl text-forest-900">Contact &amp; delivery</h2><p className="text-xs text-forest-900/45">Where should we deliver your order?</p></div></div>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <Field label="Full Name" value={form.customerName} onChange={(v) => setForm((f) => ({ ...f, customerName: v }))} required />
-              <Field label="Phone" type="tel" value={form.customerPhone} onChange={(v) => setForm((f) => ({ ...f, customerPhone: v }))} required />
+              <Field
+                label="Phone"
+                type="tel"
+                value={form.customerPhone}
+                onChange={(v) => setForm((f) => ({ ...f, customerPhone: v.replace(/\D/g, "").slice(0, 10) }))}
+                required
+                maxLength={10}
+                inputMode="numeric"
+                pattern="[6-9][0-9]{9}"
+                hint={form.customerPhone.length > 0 && !/^[6-9]\d{9}$/.test(form.customerPhone) ? "Enter a valid 10-digit mobile number" : undefined}
+              />
               <Field label="Email (optional)" type="email" value={form.customerEmail} onChange={(v) => setForm((f) => ({ ...f, customerEmail: v }))} className="sm:col-span-2" />
               <Field label="Address Line 1" value={form.addressLine1} onChange={(v) => setForm((f) => ({ ...f, addressLine1: v }))} required className="sm:col-span-2" />
               <Field label="Address Line 2 (optional)" value={form.addressLine2} onChange={(v) => setForm((f) => ({ ...f, addressLine2: v }))} className="sm:col-span-2" />
@@ -579,6 +593,10 @@ function Field({
   type = "text",
   required,
   className = "",
+  maxLength,
+  inputMode,
+  pattern,
+  hint,
 }: {
   label: string;
   value: string;
@@ -586,6 +604,10 @@ function Field({
   type?: string;
   required?: boolean;
   className?: string;
+  maxLength?: number;
+  inputMode?: "numeric" | "tel" | "text" | "email";
+  pattern?: string;
+  hint?: string;
 }) {
   return (
     <div className={className}>
@@ -594,9 +616,13 @@ function Field({
         type={type}
         required={required}
         value={value}
+        maxLength={maxLength}
+        inputMode={inputMode}
+        pattern={pattern}
         onChange={(e) => onChange(e.target.value)}
         className="mt-2 w-full rounded-xl border border-forest-900/12 bg-[#fcfaf5] px-4 py-3 text-sm outline-none transition focus:border-honey-500 focus:bg-white focus:ring-4 focus:ring-honey-400/10"
       />
+      {hint && <p className="mt-1 text-[10px] text-forest-900/40">{hint}</p>}
     </div>
   );
 }
