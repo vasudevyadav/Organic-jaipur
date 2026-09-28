@@ -8,7 +8,7 @@ import { useCart } from "@/lib/cart";
 import { useHydrated } from "@/lib/useHydrated";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 import { ONLINE_PAYMENT_DISCOUNT_PERCENT } from "@/lib/constants";
-import { calculateShipping } from "@/lib/shipping";
+import { calculateShipping, normalizeLocation } from "@/lib/shipping";
 
 type RazorpayResponse = {
   razorpay_payment_id: string;
@@ -136,8 +136,10 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
 
   const shipping = calculateShipping({ city: form.city, state: form.state, orderValue: subtotal, totalWeight });
   const shippingFee = shipping.shippingCharge;
+  const codAvailable = normalizeLocation(form.city) === "jaipur";
+  const effectivePaymentMethod = codAvailable ? paymentMethod : "RAZORPAY";
   const onlinePaymentDiscount =
-    paymentMethod === "RAZORPAY" && (!couponCode || couponOffer?.canStack)
+    effectivePaymentMethod === "RAZORPAY" && (!couponCode || couponOffer?.canStack)
       ? ((subtotal - discount) * ONLINE_PAYMENT_DISCOUNT_PERCENT) / 100
       : 0;
   const total = Math.max(subtotal - discount - onlinePaymentDiscount + shippingFee, 0);
@@ -216,7 +218,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
         items: items.map((i) => ({ productId: i.productId, quantity: i.quantity })),
         ...form,
         couponCode: couponCode || undefined,
-        paymentMethod,
+        paymentMethod: effectivePaymentMethod,
       }),
     });
 
@@ -235,7 +237,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
       return;
     }
 
-    if (paymentMethod === "COD") {
+    if (effectivePaymentMethod === "COD") {
       setOrderCompleted(true);
       sessionStorage.removeItem("oj_coupon");
       clearCart();
@@ -399,7 +401,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             <div className="flex items-center gap-4"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-900 text-xs font-bold text-honey-400">{addresses.length > 0 ? "03" : "02"}</span><div><h2 className="font-display text-xl text-forest-900">Payment</h2><p className="text-xs text-forest-900/45">Simple and secure payment</p></div></div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <PaymentOption
-                selected={paymentMethod === "RAZORPAY"}
+                selected={effectivePaymentMethod === "RAZORPAY"}
                 title="Pay Online"
                 description="UPI, cards, netbanking & wallets"
                 icon="₹"
@@ -407,11 +409,12 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
                 onClick={() => setPaymentMethod("RAZORPAY")}
               />
               <PaymentOption
-                selected={paymentMethod === "COD"}
+                selected={effectivePaymentMethod === "COD"}
                 title="Cash on Delivery"
-                description="Pay when your order reaches you"
+                description={codAvailable ? "Pay when your order reaches you" : "Available only within Jaipur"}
                 icon="⌂"
-                onClick={() => setPaymentMethod("COD")}
+                disabled={!codAvailable}
+                onClick={() => codAvailable && setPaymentMethod("COD")}
               />
             </div>
           </section>
@@ -512,7 +515,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             disabled={submitting}
             className="mt-6 w-full rounded-full bg-honey-400 px-7 py-4 text-sm font-bold text-forest-900 shadow-[0_12px_30px_rgba(240,184,77,.3)] transition hover:-translate-y-0.5 hover:bg-honey-500 disabled:opacity-60"
           >
-            {submitting ? (paymentMethod === "RAZORPAY" ? "Opening Secure Payment..." : "Placing Order...") : (paymentMethod === "RAZORPAY" ? `Pay ${formatPrice(total)} Securely` : "Place Order (Cash on Delivery)")}
+            {submitting ? (effectivePaymentMethod === "RAZORPAY" ? "Opening Secure Payment..." : "Placing Order...") : (effectivePaymentMethod === "RAZORPAY" ? `Pay ${formatPrice(total)} Securely` : "Place Order (Cash on Delivery)")}
           </button>
           <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[9px] font-bold uppercase tracking-wide text-forest-900/45"><span>Secure order</span><span>Pure products</span><span>Real support</span></div>
           </div>
@@ -529,6 +532,7 @@ function PaymentOption({
   description,
   icon,
   badge,
+  disabled,
   onClick,
 }: {
   selected: boolean;
@@ -536,6 +540,7 @@ function PaymentOption({
   description: string;
   icon: string;
   badge?: string;
+  disabled?: boolean;
   onClick: () => void;
 }) {
   return (
@@ -543,9 +548,13 @@ function PaymentOption({
       type="button"
       role="radio"
       aria-checked={selected}
+      aria-disabled={disabled}
+      disabled={disabled}
       onClick={onClick}
       className={`flex items-center gap-3 rounded-2xl border-2 p-4 text-left transition ${
-        selected ? "border-brand-500 bg-brand-50/60" : "border-forest-900/10 hover:border-brand-300"
+        disabled
+          ? "cursor-not-allowed border-forest-900/8 opacity-50"
+          : selected ? "border-brand-500 bg-brand-50/60" : "border-forest-900/10 hover:border-brand-300"
       }`}
     >
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-base shadow-sm">{icon}</span>
