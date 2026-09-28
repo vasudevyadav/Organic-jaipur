@@ -3,11 +3,12 @@ import type { Order, OrderItem } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { checkoutSchema } from "@/lib/validation";
 import { generateOrderNumber } from "@/lib/utils";
-import { calculateShipping } from "@/lib/shipping";
+import { calculateShipping, normalizeLocation } from "@/lib/shipping";
 import { getCurrentUser } from "@/lib/auth-customer";
 import { calculateOrderDiscount, money } from "@/lib/discounts";
 import { MANUAL_APPROVAL_CUSTOMER_MESSAGE, MAX_ORDER_DISCOUNT } from "@/lib/constants";
 import { notifyAdminOfOrder } from "@/lib/admin-email";
+import { sendOrderConfirmationEmail } from "@/lib/customer-email";
 
 class CheckoutError extends Error {}
 
@@ -17,6 +18,10 @@ export async function POST(request: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
 
   const data = parsed.data;
+  if (data.paymentMethod === "COD" && normalizeLocation(data.city) !== "jaipur") {
+    return NextResponse.json({ error: "Cash on Delivery is only available within Jaipur. Please choose online payment for delivery outside Jaipur." }, { status: 400 });
+  }
+
   const user = await getCurrentUser();
   const customerId = user?.id ?? data.customerEmail?.trim().toLowerCase() ?? data.customerPhone.replace(/\D/g, "");
   let order: Order & { items: OrderItem[] };
@@ -81,7 +86,10 @@ export async function POST(request: NextRequest) {
   }
 
   after(async () => {
-    await notifyAdminOfOrder(order).catch((error) => console.error("Order notification failed", error));
+    await Promise.allSettled([
+      notifyAdminOfOrder(order).catch((error) => console.error("Order notification failed", error)),
+      sendOrderConfirmationEmail(order).catch((error) => console.error("Order confirmation email failed", error)),
+    ]);
   });
 
   if (order.status === "MANUAL_APPROVAL_REQUIRED") {
