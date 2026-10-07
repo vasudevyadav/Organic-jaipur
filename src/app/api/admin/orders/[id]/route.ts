@@ -59,6 +59,16 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   if (!body || typeof body.status !== "string" || !ORDER_STATUSES.includes(body.status)) return NextResponse.json({ error: `status must be one of: ${ORDER_STATUSES.join(", ")}` }, { status: 400 });
   if (existing.status === "MANUAL_APPROVAL_REQUIRED") return NextResponse.json({ error: "Use Approve or Reject for a held order." }, { status: 409 });
+  if (
+    existing.paymentMethod === "RAZORPAY" &&
+    existing.paymentStatus !== "PAID" &&
+    !["PAYMENT_PENDING", "CANCELLED", "REJECTED"].includes(body.status)
+  ) {
+    return NextResponse.json(
+      { error: "An unpaid Razorpay order cannot be confirmed, packed, dispatched, delivered, or refunded." },
+      { status: 409 },
+    );
+  }
   const order = await prisma.order.update({ where: { id }, data: { status: body.status }, include: { items: true } });
   return NextResponse.json({ order });
 }

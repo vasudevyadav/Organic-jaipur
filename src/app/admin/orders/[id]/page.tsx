@@ -27,7 +27,19 @@ export default async function AdminOrderDetailPage({ params }: Props) {
       />
 
       <div className="mt-6 rounded-2xl border border-brand-100 bg-white p-6 sm:p-8">
-        <OrderStatusForm orderId={order.id} status={order.status} approvalReason={order.approvalReason} />
+        {order.paymentMethod === "RAZORPAY" && order.paymentStatus !== "PAID" && (
+          <div className="mb-5 rounded-xl border border-honey-500/30 bg-honey-400/15 px-4 py-3 text-sm leading-6 text-forest-900">
+            <strong>Payment not received.</strong> This is an incomplete Razorpay checkout attempt,
+            not a confirmed order. Do not pack or dispatch it until the payment status is Paid.
+          </div>
+        )}
+        <OrderStatusForm
+          orderId={order.id}
+          status={order.status}
+          approvalReason={order.approvalReason}
+          paymentMethod={order.paymentMethod}
+          paymentStatus={order.paymentStatus}
+        />
       </div>
 
       <div className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -51,6 +63,10 @@ export default async function AdminOrderDetailPage({ params }: Props) {
             <div>
               <dt className="inline font-medium text-foreground/80">Payment: </dt>
               <dd className="inline">{order.paymentMethod}</dd>
+            </div>
+            <div>
+              <dt className="inline font-medium text-foreground/80">Payment status: </dt>
+              <dd className="inline font-semibold">{order.paymentStatus}</dd>
             </div>
           </dl>
         </div>

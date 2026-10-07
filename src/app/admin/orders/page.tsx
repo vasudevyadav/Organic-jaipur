@@ -40,7 +40,9 @@ export default async function AdminOrdersPage({ searchParams }: Props) {
       : undefined;
 
   const orders = await prisma.order.findMany({
-    where: activeStatus ? { status: activeStatus as OrderStatus } : {},
+    where: activeStatus
+      ? { status: activeStatus as OrderStatus }
+      : { status: { not: "PAYMENT_PENDING" } },
     orderBy: { createdAt: "desc" },
     include: { items: true },
   });
@@ -74,6 +76,15 @@ export default async function AdminOrdersPage({ searchParams }: Props) {
           </Link>
         ))}
       </div>
+
+      {!activeStatus && (
+        <p className="mt-3 text-xs text-foreground/55">
+          Unpaid Razorpay attempts are hidden from this list.{" "}
+          <Link href="/admin/orders?status=PAYMENT_PENDING" className="font-semibold text-brand-700 underline underline-offset-4">
+            View payment-pending attempts
+          </Link>
+        </p>
+      )}
 
       <div className="mt-6 overflow-x-auto rounded-2xl border border-brand-100 bg-white">
         <table className="w-full min-w-[720px] text-left text-sm">

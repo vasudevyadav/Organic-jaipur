@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import type { Address } from "@prisma/client";
@@ -277,6 +278,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             body: JSON.stringify({
               orderNumber: data.order.orderNumber,
               razorpayPaymentId: response.razorpay_payment_id,
+              razorpayOrderId: response.razorpay_order_id,
               razorpaySignature: response.razorpay_signature,
             }),
           });
@@ -441,7 +443,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             {items.map((item) => (
               <div key={item.productId} className="border-b border-forest-900/8 pb-4 last:border-0 last:pb-0">
                 <div className="flex items-center gap-3">
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#f3eee1]"><img src={safeImageUrl(item.imageUrl)} alt={item.name} className="h-full w-full object-cover" /></div>
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[#f3eee1]"><Image src={safeImageUrl(item.imageUrl)} alt={item.name} fill sizes="64px" className="object-cover" /></div>
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-2 font-display text-sm leading-tight text-forest-900">{item.name}</p>
                     <p className="mt-1 text-[10px] font-semibold text-forest-900/40">{item.unit} · {formatPrice(item.price)} each</p>

@@ -8,10 +8,14 @@ export default function OrderStatusForm({
   orderId,
   status,
   approvalReason,
+  paymentMethod,
+  paymentStatus,
 }: {
   orderId: string;
   status: OrderStatusValue;
   approvalReason?: string | null;
+  paymentMethod: "COD" | "RAZORPAY";
+  paymentStatus: "PENDING" | "PAID" | "FAILED" | "REFUND_PENDING" | "REFUNDED";
 }) {
   const router = useRouter();
   const [value, setValue] = useState<OrderStatusValue>(status);
@@ -86,11 +90,16 @@ export default function OrderStatusForm({
       <button
         type="button"
         onClick={handleSave}
-        disabled={saving}
+        disabled={saving || (paymentMethod === "RAZORPAY" && paymentStatus !== "PAID" && !["PAYMENT_PENDING", "CANCELLED", "REJECTED"].includes(value))}
         className="rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-cream shadow-sm hover:bg-brand-700 disabled:opacity-60"
       >
         {saving ? "Saving..." : "Save"}
       </button>
+      {paymentMethod === "RAZORPAY" && paymentStatus !== "PAID" && (
+        <p className="w-full text-xs font-semibold text-honey-600">
+          Unpaid online orders can only remain Payment Pending or be cancelled/rejected.
+        </p>
+      )}
       {error && <p className="w-full text-sm text-terracotta-600">{error}</p>}
     </div>
   );
