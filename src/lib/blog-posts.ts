@@ -14,6 +14,7 @@ export type BlogPost = {
   title: string;
   metaDescription: string;
   targetKeyword: string;
+  secondaryKeywords: string[];
   eyebrow: string;
   intro: string;
   heroImage: string;
@@ -30,6 +31,12 @@ export const BLOG_POSTS: BlogPost[] = [
     title: `A2 Ghee vs Regular Ghee: Which One Should You Choose?`,
     metaDescription: `A2 ghee vs regular ghee: what the terms mean, how our bilona hand-churned ghee is made, a full comparison table, and how to choose what's right for you.`,
     targetKeyword: `A2 ghee vs regular ghee`,
+    secondaryKeywords: [
+      `A2 Gir cow ghee Jaipur`,
+      `pure A2 ghee Rajasthan`,
+      `A2 ghee vs regular ghee India`,
+      `best A2 ghee in India`,
+    ],
     eyebrow: `A2 Ghee vs Regular Ghee, Explained`,
     intro: `A2 ghee is made from the milk of cow breeds that naturally produce mostly A2 beta-casein protein, such as Gir and other desi cows, while "regular" ghee is usually made from mixed or unspecified milk sources without that distinction. In practice, though, the bigger everyday difference is often the process behind the jar - which is exactly where our own hand-churned, bilona-made ghee sets itself apart from most regular commercial ghee.`,
     heroImage: `/images/generated/banner-ghee-farm-v4.png`,
@@ -70,10 +77,16 @@ export const BLOG_POSTS: BlogPost[] = [
     title: `Bilona Ghee Process Explained: How Our Farm Ghee Is Made Step by Step`,
     metaDescription: `Learn the real Bilona ghee process step by step: milk selection, curd culturing, hand-churning with a wooden bilona, and slow-cooking into ghee.`,
     targetKeyword: `Bilona ghee process explained`,
+    secondaryKeywords: [
+      `bilona ghee Jaipur`,
+      `A2 bilona ghee Rajasthan`,
+      `traditional bilona ghee process India`,
+      `how bilona ghee is made`,
+    ],
     eyebrow: `From Curd to Ghee, By Hand`,
     intro: `The Bilona ghee process turns milk into ghee through four traditional stages: selecting Gir cow, Desi cow or buffalo milk, culturing it into curd overnight, hand-churning that curd with a wooden bilona to separate butter, and slow-cooking the butter into clear, golden ghee. Unlike a machine cream-separator method, which pulls cream directly from milk, every stage here is done manually and takes real time — no shortcuts, nothing added.`,
-    heroImage: `/images/founder/founder-bilona-churning.png`,
-    heroAlt: `Hand-churning curd with a traditional wooden bilona at Organic Jaipur Store`,
+    heroImage: `/images/generated/process-bilona-hero-v2.png`,
+    heroAlt: `Traditional bilona ghee process with curd churning and slow cooking in Rajasthan`,
     category: `GHEE` as CategoryValue,
     publishDate: `September 15, 2026`,
     sections: [
@@ -111,10 +124,16 @@ export const BLOG_POSTS: BlogPost[] = [
     title: `Kachi Ghani vs Refined Mustard Oil: What's the Difference?`,
     metaDescription: `Kachi ghani vs refined mustard oil: see how wood-press extraction differs from industrial refining, how to store it, and how to pick black or yellow oil.`,
     targetKeyword: `kachi ghani vs refined mustard oil`,
+    secondaryKeywords: [
+      `cold pressed mustard oil Jaipur`,
+      `kachi ghani mustard oil Rajasthan`,
+      `best kachi ghani mustard oil India`,
+      `wood pressed mustard oil online`,
+    ],
     eyebrow: `Kachi Ghani Mustard Oil, Explained`,
     intro: `Kachi ghani mustard oil is crushed from mustard seed on a traditional wooden ghani (cold press) at low speed, with no added heat or chemical solvents, while refined mustard oil is extracted using industrial heat and solvent-based processing and then further refined. That's why kachi ghani oil keeps a sharper, stronger natural pungency that refined oil largely loses along the way.`,
-    heroImage: `/images/founder/founder-mustard-ghani-press.png`,
-    heroAlt: `Traditional wooden ghani pressing mustard oil in Rajasthan`,
+    heroImage: `/images/generated/banner-mustard-ghani-v4.png`,
+    heroAlt: `Kachi ghani mustard oil being cold-pressed beside a mustard field in Rajasthan`,
     category: `MUSTARD_OIL` as CategoryValue,
     publishDate: `September 12, 2026`,
     sections: [
@@ -149,10 +168,16 @@ export const BLOG_POSTS: BlogPost[] = [
     title: `How to Test Honey Purity at Home (And Why It's Not Reliable)`,
     metaDescription: `Learn 3 common home tests for honey purity (water, flame, crystallisation) and why experts say they can't reliably catch modern syrup adulteration.`,
     targetKeyword: `how to test honey purity at home`,
+    secondaryKeywords: [
+      `raw honey Jaipur`,
+      `Rajasthani raw honey`,
+      `raw honey India`,
+      `how to test honey purity at home India`,
+    ],
     eyebrow: `Honey Purity Tests, Explained`,
     intro: `Home tests like the water test and flame test can give you a rough, informal read on a jar of honey, but they were never designed to catch the sugar-syrup adulteration that worries most buyers today. Signs like crystallisation tell you about how the honey was processed, not whether it's pure — a real purity verdict ultimately needs laboratory testing, not a glass of water.`,
-    heroImage: `/images/founder/founder-apiary-honeycomb.png`,
-    heroAlt: `Raw honeycomb from managed beehives at Organic Jaipur Store farm`,
+    heroImage: `/images/generated/banner-honey-apiary-v4.png`,
+    heroAlt: `Raw honey being collected from managed beehives at the Organic Jaipur farm`,
     category: `HONEY` as CategoryValue,
     publishDate: `September 10, 2026`,
     sections: [
