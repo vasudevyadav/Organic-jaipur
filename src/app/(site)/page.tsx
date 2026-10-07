@@ -22,7 +22,7 @@ import {
   LeafIcon,
   TruckIcon,
 } from "@/components/icons";
-import { BUSINESS, STATS, FAQS_HOME, SOCIAL_LINKS } from "@/lib/constants";
+import { BUSINESS, STATS, FAQS_HOME, SOCIAL_LINKS, categoryLabel } from "@/lib/constants";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 import { formatPrice, safeImageUrl, productDisplayName } from "@/lib/utils";
 
@@ -219,8 +219,11 @@ const blogs = BLOG_POSTS.slice(0, 3).map((post) => ({
   copy: post.intro,
   image: post.heroImage,
   alt: post.heroAlt,
+  category: categoryLabel(post.category),
   href: `/blog/${post.slug}`,
 }));
+
+const homeFaqs = FAQS_HOME.slice(0, 10);
 
 function pickByVariety<T extends { name: string }>(
   items: T[],
@@ -366,7 +369,7 @@ export default async function HomePage() {
       </section>
 
       {/* Shop by category */}
-      <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:py-14">
+      <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-14">
         <AnimatedSection className="text-center">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
             Apni Rasoi Ke Liye
@@ -402,7 +405,7 @@ export default async function HomePage() {
       </section>
 
       {/* Best sellers */}
-      <section className="bg-[#173f30] px-5 py-10 text-cream sm:px-8 sm:py-16">
+      <section className="bg-[#173f30] px-5 py-10 text-cream sm:px-8 sm:py-14">
         <div className="mx-auto max-w-7xl">
           <AnimatedSection className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
             <div>
@@ -432,7 +435,7 @@ export default async function HomePage() {
       </section>
 
       {/* Farm to jar: zigzag journey */}
-      <section className="bg-[#fbf7ea] px-5 py-10 sm:px-8 sm:py-16">
+      <section className="bg-[#fbf7ea] px-5 py-10 sm:px-8 sm:py-14">
         <div className="mx-auto max-w-6xl">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
@@ -492,7 +495,7 @@ export default async function HomePage() {
       </section>
 
       {/* Shelf favourites */}
-      <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 lg:pb-16">
+      <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-14">
         <AnimatedSection className="flex items-end justify-between gap-5">
           <div>
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
@@ -550,7 +553,7 @@ export default async function HomePage() {
       </section>
 
       {/* The Organic Jaipur Experience */}
-      <section className="bg-[#0f281c] py-10 text-cream sm:py-16">
+      <section className="bg-[#0f281c] py-10 text-cream sm:py-14">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <AnimatedSection className="relative overflow-hidden rounded-[2rem]">
             <div className="relative aspect-[4/3] w-full md:aspect-[16/5]">
@@ -638,32 +641,37 @@ export default async function HomePage() {
       </section>
 
       {/* Product guides */}
-      <section className="mx-auto max-w-7xl px-5 pb-10 sm:px-8 sm:pb-16">
-        <AnimatedSection className="flex items-end justify-between gap-5">
+      <section className="bg-[linear-gradient(180deg,#fffdf8_0%,#f5f0e2_100%)] px-5 py-12 sm:px-8 sm:py-16">
+        <div className="mx-auto max-w-7xl">
+        <AnimatedSection className="flex items-end justify-between gap-8">
           <div>
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
               Samajhkar Chuniye
             </p>
-            <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
+            <h2 className="mt-3 max-w-3xl font-display text-4xl leading-[1.02] text-forest-900 sm:text-6xl">
               Sahi Jaankari,{" "}
               <em className="font-normal text-brand-700">Sahi Chunav.</em>
             </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-forest-900/65 sm:text-base">
+              Product, process aur source ko samajhne ke liye seedhi, practical guides—hamari
+              Jaipur farm team ke experience se.
+            </p>
           </div>
           <Link
             href="/blog"
-            className="hidden border-b border-forest-900 pb-1 text-sm font-bold sm:block"
+            className="hidden shrink-0 rounded-full border border-brand-700/20 bg-white px-6 py-3 text-sm font-bold text-brand-700 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-700 hover:shadow-md sm:inline-flex"
           >
             Read All Guides →
           </Link>
         </AnimatedSection>
-        <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-7 md:overflow-visible md:px-0">
+        <div className="-mx-5 mt-9 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0">
           {blogs.map((blog, index) => (
             <AnimatedSection key={blog.title} delay={index * 0.06} className="w-[84vw] shrink-0 snap-center md:w-auto">
-              <article className="group">
+              <article className="group flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-forest-900/8 bg-white p-3 shadow-[0_12px_40px_rgba(15,40,28,.07)] transition duration-300 hover:-translate-y-1.5 hover:border-brand-600/20 hover:shadow-[0_22px_55px_rgba(15,40,28,.13)]">
                 <Link
                   href={blog.href}
                   aria-label={`Read ${blog.title}`}
-                  className="relative block aspect-[4/3] overflow-hidden rounded-[1.4rem]"
+                  className="relative block aspect-[16/10] overflow-hidden rounded-[1.25rem] bg-[#e9e1cf]"
                 >
                   <Image
                     src={blog.image}
@@ -672,24 +680,42 @@ export default async function HomePage() {
                     sizes="(max-width: 767px) 92vw, 32vw"
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-linear-to-t from-forest-900/45 via-transparent to-transparent" />
+                  <span className="absolute bottom-4 left-4 rounded-full border border-white/30 bg-forest-900/80 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[.14em] text-honey-400 backdrop-blur">
+                    {blog.category}
+                  </span>
                 </Link>
-                <p className="mt-5 text-xs font-semibold text-forest-900/65">
-                  {blog.date}
-                </p>
-                <h3 className="mt-2 font-display text-2xl leading-tight text-forest-900">
-                  <Link href={blog.href}>{blog.title}</Link>
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-forest-900/75">
-                  {blog.copy}
-                </p>
+                <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
+                  <p className="text-[11px] font-bold uppercase tracking-[.1em] text-terracotta-600">
+                    {blog.date}
+                  </p>
+                  <h3 className="mt-2 font-display text-[1.45rem] leading-[1.18] text-forest-900">
+                    <Link href={blog.href} className="transition group-hover:text-brand-700">{blog.title}</Link>
+                  </h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-forest-900/65">
+                    {blog.copy}
+                  </p>
+                  <Link
+                    href={blog.href}
+                    className="mt-6 inline-flex items-center gap-2 border-t border-forest-900/8 pt-4 text-sm font-bold text-brand-700 transition group-hover:gap-3 group-hover:text-brand-800"
+                  >
+                    Read guide <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </article>
             </AnimatedSection>
           ))}
         </div>
+        <div className="mt-5 text-center sm:hidden">
+          <Link href="/blog" className="inline-flex rounded-full bg-forest-900 px-6 py-3 text-sm font-bold text-white">
+            Read All Guides →
+          </Link>
+        </div>
+        </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-[#fbf7e9] px-5 py-8 sm:px-8 sm:py-16">
+      <section className="bg-[#fbf7e9] px-5 py-10 sm:px-8 sm:py-14">
         <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <AnimatedSection>
             <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
@@ -704,28 +730,28 @@ export default async function HomePage() {
               honey aur Rajasthani pickles ke baare mein aapke sabse zyada
               poochhe jaane wale sawaal.
             </p>
-            <div className="mt-9">
-              <FaqAccordion />
+            <div className="mt-9 lg:max-h-[620px] lg:overflow-y-auto lg:pr-3 lg:[scrollbar-color:#d9a63f_transparent] lg:[scrollbar-width:thin]">
+              <FaqAccordion items={homeFaqs} />
             </div>
-            <FaqJsonLd items={FAQS_HOME} />
+            <FaqJsonLd items={homeFaqs} />
           </AnimatedSection>
           <AnimatedSection
             delay={0.1}
-            className="relative mx-auto min-h-[500px] w-full max-w-[560px]"
+            className="relative mx-auto min-h-[500px] w-full max-w-[560px] lg:self-center"
           >
             <Image
               src="/images/founder-with-a2-ghee-v1.png"
               alt="Organic Jaipur founder holding A2 Gir Cow Ghee"
               fill
               sizes="(max-width: 1023px) 90vw, 40vw"
-              className="relative object-contain object-bottom"
+              className="relative object-contain object-center"
             />
           </AnimatedSection>
         </div>
       </section>
 
       {/* Follow us on social media */}
-      <section className="bg-[#fffdf8] px-5 py-8 sm:px-8 sm:py-16">
+      <section className="bg-[#fffdf8] px-5 py-10 sm:px-8 sm:py-14">
         <AnimatedSection className="mx-auto max-w-5xl text-center">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
             Social Par Humse Judiye

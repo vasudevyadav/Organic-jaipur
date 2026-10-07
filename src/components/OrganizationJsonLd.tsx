@@ -2,7 +2,7 @@ import { BUSINESS, SITE_NAME, SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { serializeJsonLd } from "@/lib/json-ld";
 
 export default function OrganizationJsonLd() {
-  const sameAs = SOCIAL_LINKS.map((link) => link.href);
+  const sameAs = [BUSINESS.mapLink, ...SOCIAL_LINKS.map((link) => link.href)];
   const postalCodeMatch = BUSINESS.address.match(/\b(\d{6})\b/);
   const streetAddress = BUSINESS.address
     .replace(/,?\s*Jaipur,?\s*Rajasthan\s*\d{6}\s*$/i, "")
@@ -14,6 +14,8 @@ export default function OrganizationJsonLd() {
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
     alternateName: ["Organic Jaipur", "Organic Jaipur Store"],
+    description:
+      "Organic Jaipur Store is a Jaipur farm brand offering Bilona A2 ghee, cold-pressed oils, raw honey, and traditional Rajasthani pickles and chutneys.",
     url: SITE_URL,
     logo: `${SITE_URL}/product/download.png`,
     image: `${SITE_URL}/images/founder-with-a2-ghee-v1.png`,
@@ -50,6 +52,13 @@ export default function OrganizationJsonLd() {
       areaServed: "IN-RJ",
       availableLanguage: ["Hindi", "English"],
     },
+    knowsAbout: [
+      "Bilona A2 ghee",
+      "Cold-pressed mustard oil",
+      "Raw honey",
+      "Traditional Rajasthani pickles",
+      "Farm-to-home food production",
+    ],
     hasMerchantReturnPolicy: {
       "@type": "MerchantReturnPolicy",
       merchantReturnLink: `${SITE_URL}/return-refund-policy`,

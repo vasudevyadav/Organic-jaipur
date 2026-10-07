@@ -43,7 +43,7 @@ export default function ShippingPolicyPage() {
       </section>
 
       <section className="bg-[#fffdf8] px-5 py-16 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-6xl">
           <AnimatedSection>
             <p className="text-xs font-semibold uppercase tracking-wide text-forest-900/40">
               Last updated: 16 September 2026
@@ -180,7 +180,7 @@ export default function ShippingPolicyPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
           Common questions
         </p>

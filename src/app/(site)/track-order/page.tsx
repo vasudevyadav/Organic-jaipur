@@ -28,7 +28,7 @@ export default function TrackOrderPage() {
         </AnimatedSection>
       </section>
 
-      <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8 sm:py-16">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16">
         <AnimatedSection delay={0.1}>
           <TrackOrderForm />
         </AnimatedSection>
