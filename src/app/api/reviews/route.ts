@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   }
 
   const reviews = await prisma.review.findMany({
-    where: { productId },
+    where: { productId, verifiedPurchase: true },
     orderBy: { createdAt: "desc" },
   });
 
@@ -66,6 +66,17 @@ export async function POST(request: NextRequest) {
       verifiedPurchase,
     },
   });
+
+  if (!review.verifiedPurchase) {
+    return NextResponse.json(
+      {
+        submitted: true,
+        pendingVerification: true,
+        message: "Thank you. Your review was received and will not be published until the purchase can be verified.",
+      },
+      { status: 202 },
+    );
+  }
 
   return NextResponse.json({ review }, { status: 201 });
 }

@@ -52,7 +52,7 @@ export default function FarmToHomePage() {
       <section className="relative min-h-[560px] overflow-hidden bg-forest-900 text-white">
         <Image
           src="/images/generated/banner-shop-farm-v3.jpg"
-          alt="Organic Jaipur products at a Rajasthan farm"
+          alt="Illustration of Organic Jaipur products in a Rajasthan farm setting"
           fill
           priority
           sizes="100vw"

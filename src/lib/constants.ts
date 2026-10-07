@@ -12,9 +12,13 @@ export const BUSINESS = {
   whatsappNumber: "918955286866",
   email: "organicjaipurstore@gmail.com",
   mapEmbedSrc:
-    "https://www.google.com/maps?q=GOVINDM+RESIDENCY,+P.NO+109,+Mahapura+Rd,+Jaipur,+Rajasthan+302026&output=embed",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4041.5325175286616!2d75.6615443!3d26.855378100000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4b436eb88afb%3A0x11f7d15cf6685911!2sorganicjaipur!5e1!3m2!1sen!2sin!4v1791345927796!5m2!1sen!2sin",
   mapLink:
-    "https://maps.app.goo.gl/eAY8eK4p7EhUxJVD7",
+    "https://www.google.com/maps?cid=1294733615093537041",
+  mapDirectionsLink:
+    "https://www.google.com/maps/dir/?api=1&destination=26.8553781%2C75.6615443",
+  latitude: 26.8553781,
+  longitude: 75.6615443,
 } as const;
 
 // Replace these platform URLs with Organic Jaipur's profile URLs once available.
@@ -83,7 +87,7 @@ export const FAQS_HOME = [
   {
     question: "What is kachi ghani mustard oil, and how is it different from refined mustard oil?",
     answer:
-      "Kachi ghani means the mustard seed is crushed on a wooden press at low speed with no added heat, unlike refined oil which is chemically processed and loses much of its natural pungency along the way. Our kachi ghani mustard oil is pressed the traditional way at our Jaipur farm, with no heat or chemical solvents, so the sharp mustard flavour and nutrients stay intact.",
+      "Kachi ghani means the mustard seed is crushed on a wooden press at low speed with no added heat. Refined oil goes through additional processing that creates a more neutral flavour. Our kachi ghani mustard oil is pressed at low speed without chemical solvents, retaining the seed's characteristic sharp aroma and flavour.",
   },
   {
     question: "Is your honey raw, and how is it different from regular honey?",
@@ -160,12 +164,12 @@ export const FAQS_OILS = [
   {
     question: "What is kachi ghani cold-pressed mustard oil?",
     answer:
-      "It's mustard oil extracted on a traditional wooden press without heat or chemical solvents, keeping its natural pungency and nutrients intact. Our mustard and other oilseeds are grown on our own farm in Jaipur, Rajasthan.",
+      "It's mustard oil extracted on a traditional wooden press at low speed without chemical solvents, retaining its characteristic pungency, aroma and colour. Our mustard and other oilseeds are grown on our own farm in Jaipur, Rajasthan.",
   },
   {
     question: "Is cold-pressed oil better than refined oil?",
     answer:
-      "Cold-pressed oil retains more natural flavour and nutrients because it's extracted at low temperature with no chemical processing, unlike refined oils, which are typically processed with heat and solvents.",
+      "Cold-pressed oil retains more of the seed's characteristic flavour, aroma and colour because it is extracted at low temperature without chemical solvents. Refined oils go through additional processing to produce a more neutral and consistent result.",
   },
   {
     question: "Which mustard oil should I choose, black or yellow?",

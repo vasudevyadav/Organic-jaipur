@@ -6,7 +6,7 @@ import type { Product } from "@prisma/client";
 import ScrollCarousel from "@/components/home/ScrollCarousel";
 import QuickAddButton from "@/components/QuickAddButton";
 import WishlistButton from "@/components/WishlistButton";
-import { formatPrice, safeImageUrl } from "@/lib/utils";
+import { formatPrice, safeImageUrl, productDisplayName } from "@/lib/utils";
 
 export default function BestSellerCarousel({ items }: { items: Product[] }) {
   return (
@@ -36,8 +36,8 @@ export default function BestSellerCarousel({ items }: { items: Product[] }) {
             </Link>
             <div className="p-5">
               <Link href={`/products/${item.slug}`}>
-                <h3 className="font-display text-lg leading-tight text-forest-900">{item.name}</h3>
-                <p className="mt-1 text-xs font-semibold text-forest-900/70">{item.unit}</p>
+                <h3 className="font-display text-lg leading-tight text-forest-900">{productDisplayName(item.name, item.unit)}</h3>
+                <p className="mt-1 text-xs font-semibold text-forest-900/70">Pack: {item.unit}</p>
               </Link>
 
               <div className="mt-4 flex items-center justify-between">

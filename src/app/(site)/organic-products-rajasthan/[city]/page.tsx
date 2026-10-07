@@ -27,6 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/organic-products-rajasthan/${city.slug}` },
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    },
     keywords: [
       `organic products ${city.name}`,
       `A2 ghee ${city.name}`,
@@ -68,7 +73,7 @@ export default async function RajasthanCityPage({ params }: Props) {
       />
 
       <section className="relative min-h-[380px] overflow-hidden bg-forest-900 text-white sm:min-h-[420px]">
-        <Image src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products shipped across Rajasthan" fill priority sizes="100vw" className="absolute inset-0 h-full w-full object-cover object-center" />
+        <Image src="/images/generated/banner-shop-farm-v3.jpg" alt="Illustration of Organic Jaipur products shipped across Rajasthan" fill priority sizes="100vw" className="absolute inset-0 h-full w-full object-cover object-center" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.9)_0%,rgba(8,29,20,.58)_48%,rgba(8,29,20,.06)_82%)]" />
         <AnimatedSection className="relative mx-auto flex min-h-[380px] max-w-7xl flex-col justify-center px-5 py-16 sm:min-h-[420px] sm:px-8">
           <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[.24em] text-honey-400">

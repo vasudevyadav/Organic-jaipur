@@ -9,7 +9,7 @@ export const metadata = pageMetadata({ title: "Contact Organic Jaipur: Order, Tr
 export default function ContactPage() {
   return <main className="overflow-hidden bg-[#fbf8ef]">
     <section className="relative min-h-[520px] overflow-hidden bg-forest-900 text-white">
-      <Image src="/images/generated/banner-shop-farm-v3.jpg" alt="Organic Jaipur products at a Rajasthan farm" fill priority sizes="100vw" className="object-cover object-center" />
+      <Image src="/images/generated/banner-shop-farm-v3.jpg" alt="Illustration of Organic Jaipur products in a Rajasthan farm setting" fill priority sizes="100vw" className="object-cover object-center" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,29,20,.88)_0%,rgba(8,29,20,.55)_50%,rgba(8,29,20,.06)_82%)]" />
       <div className="relative mx-auto flex min-h-[520px] max-w-7xl items-center px-5 py-16 sm:px-8">
         <AnimatedSection className="max-w-3xl">
@@ -29,13 +29,12 @@ export default function ContactPage() {
       <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
         <AnimatedSection className="space-y-5">
           <div className="overflow-hidden rounded-[1.7rem] border border-forest-900/8 bg-white shadow-[0_20px_60px_rgba(15,40,28,.1)]">
-            <div className="p-7 sm:p-8"><p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-terracotta-500">Visit the Farm</p><h2 className="mt-3 font-display text-3xl text-forest-900">Come Say Hello</h2><p className="mt-4 text-sm leading-7 text-forest-900/58">{BUSINESS.address}</p><a href={BUSINESS.mapLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-forest-900 px-5 py-2.5 text-xs font-bold text-white">Get directions →</a></div>
-            <iframe title="Organic Jaipur location on Google Maps" src={BUSINESS.mapEmbedSrc} width="100%" height="270" style={{border:0}} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            <div className="p-7 sm:p-8"><p className="text-[10px] font-extrabold uppercase tracking-[.2em] text-terracotta-500">Visit the Farm</p><h2 className="mt-3 font-display text-3xl text-forest-900">Come Say Hello</h2><p className="mt-4 text-sm leading-7 text-forest-900/58">{BUSINESS.address}</p><a href={BUSINESS.mapDirectionsLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-forest-900 px-5 py-2.5 text-xs font-bold text-white">Get directions →</a></div>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <a href={`https://wa.me/${BUSINESS.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="group rounded-2xl bg-[#eafbf0] p-5 transition hover:-translate-y-1 hover:shadow-lg"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] font-bold text-white">W</span><p className="mt-4 text-[9px] font-extrabold uppercase tracking-[.16em] text-[#157c3b]">Fastest Response</p><h3 className="mt-1 font-display text-xl text-forest-900">WhatsApp</h3><p className="mt-1 text-xs text-forest-900/50">Fastest way to order or ask about a product</p></a>
-            <a href={`tel:+91${BUSINESS.phone}`} className="group rounded-2xl bg-[#fff4dc] p-5 transition hover:-translate-y-1 hover:shadow-lg"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-honey-400 font-bold text-forest-900">☎</span><p className="mt-4 text-[9px] font-extrabold uppercase tracking-[.16em] text-terracotta-500">Speak Directly</p><h3 className="mt-1 font-display text-xl text-forest-900">Call Us</h3><p className="mt-1 text-xs text-forest-900/50">{BUSINESS.phoneDisplay}, Mon to Sat</p></a>
+            <a href={`tel:+91${BUSINESS.phone}`} className="group rounded-2xl bg-[#fff4dc] p-5 transition hover:-translate-y-1 hover:shadow-lg"><span className="flex h-10 w-10 items-center justify-center rounded-full bg-honey-400 font-bold text-forest-900">☎</span><p className="mt-4 text-[9px] font-extrabold uppercase tracking-[.16em] text-terracotta-500">Speak Directly</p><h3 className="mt-1 font-display text-xl text-forest-900">Call Us</h3><p className="mt-1 text-xs text-forest-900/50">{BUSINESS.phoneDisplay}</p></a>
           </div>
         </AnimatedSection>
 

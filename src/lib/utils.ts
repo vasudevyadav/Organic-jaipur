@@ -71,3 +71,15 @@ export function productNameIncludesUnit(name: string, unit: string): boolean {
   const quantityPattern = escaped.replace(/^(\d+(?:\\\.\d+)?)/, "$1\\s*");
   return new RegExp(`(?:^|[^0-9.])${quantityPattern}(?=$|[^a-z0-9])`).test(normalizedName);
 }
+
+/** Keep the pack size in its dedicated field instead of repeating it in the product title. */
+export function productDisplayName(name: string, unit: string): string {
+  const match = unit.trim().match(/^(\d+(?:\.\d+)?)\s*([a-zA-Z]+)$/);
+  if (!match) return name;
+  const [, quantity, label] = match;
+  const escapedQuantity = quantity.replace(".", "\\.");
+  const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return name
+    .replace(new RegExp(`,?\\s*${escapedQuantity}\\s*${escapedLabel}\\s*$`, "i"), "")
+    .trim();
+}

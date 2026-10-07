@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { formatPrice, safeImageUrl, whatsappOrderLink, productNameIncludesUnit } from "@/lib/utils";
+import { formatPrice, safeImageUrl, whatsappOrderLink, productDisplayName } from "@/lib/utils";
 import {
   categoryLabel,
   STOREFRONT_CATEGORY_VALUES,
@@ -31,10 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Product Not Found" };
 
   const category = categoryLabel(product.category);
-  const nameIncludesUnit = productNameIncludesUnit(product.name, product.unit);
-  const title = nameIncludesUnit
-    ? `Buy ${product.name} Online`
-    : `Buy ${product.name} Online, ${product.unit}`;
+  const displayName = productDisplayName(product.name, product.unit);
+  const title = `Buy ${displayName} Online, ${product.unit}`;
   const description = `${product.description} Free Jaipur delivery, Cash on Delivery, shipped across Rajasthan.`;
 
   return {
@@ -83,7 +81,7 @@ export default async function ProductDetailPage({ params }: Props) {
       take: 3,
     }),
     prisma.review.aggregate({
-      where: { productId: product.id },
+      where: { productId: product.id, verifiedPurchase: true },
       _avg: { rating: true },
       _count: true,
     }),
@@ -187,7 +185,7 @@ export default async function ProductDetailPage({ params }: Props) {
               </span>
             </div>
             <h1 className="mt-5 font-display text-4xl leading-[.98] tracking-[-.035em] text-forest-900 sm:text-5xl lg:text-[2.5rem]">
-              {product.name}
+              {productDisplayName(product.name, product.unit)}
             </h1>
             <p className="mt-3 text-sm font-semibold text-forest-700">
               Net Quantity · {product.unit}

@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   },
   description:
     "Organic Jaipur Store — own-farm A2 ghee, cold-pressed oils, raw honey & pickles. Free Jaipur delivery, COD.",
+  authors: [{ name: "Organic Jaipur team", url: SITE_URL }],
+  creator: "Organic Jaipur team",
+  publisher: SITE_NAME,
   keywords: [
     "organic jaipur store",
     "organic jaipur",

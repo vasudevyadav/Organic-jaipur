@@ -24,7 +24,7 @@ import {
 } from "@/components/icons";
 import { BUSINESS, STATS, FAQS_HOME, SOCIAL_LINKS } from "@/lib/constants";
 import { BLOG_POSTS } from "@/lib/blog-posts";
-import { formatPrice, safeImageUrl } from "@/lib/utils";
+import { formatPrice, safeImageUrl, productDisplayName } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: {
@@ -63,7 +63,7 @@ const SHOP_CATEGORIES: CategoryType[] = [
 const heroSlides: HeroSlide[] = [
   {
     image: "/images/generated/banner-ghee-farm-v4.png",
-    alt: "Traditional wooden bilona used to make A2 Gir Cow Ghee in Jaipur",
+    alt: "Illustration of traditional wooden bilona ghee preparation in Jaipur",
     focal: "object-right sm:object-center",
     eyebrow: "Jaipur Aur Rajasthan Ki Rasoi Ke Liye",
     title: (
@@ -79,7 +79,7 @@ const heroSlides: HeroSlide[] = [
   },
   {
     image: "/images/generated/banner-honey-apiary-v4.png",
-    alt: "Raw wild forest honey available for delivery in Jaipur",
+    alt: "Illustration of raw honey and beekeeping in Jaipur",
     focal: "object-right sm:object-center",
     eyebrow: "Raw Wild Forest Honey",
     title: (
@@ -98,7 +98,7 @@ const heroSlides: HeroSlide[] = [
   },
   {
     image: "/images/generated/banner-mustard-ghani-v4.png",
-    alt: "Traditional wooden ghani pressing mustard oil in Rajasthan",
+    alt: "Illustration of a traditional wooden ghani pressing mustard oil",
     focal: "object-right sm:object-center",
     eyebrow: "Kachi Ghani Mustard Oil",
     title: (
@@ -120,7 +120,7 @@ const heroSlides: HeroSlide[] = [
   },
   {
     image: "/images/generated/banner-pickle-courtyard-v4.png",
-    alt: "Traditional Rajasthani green chilli pickle made in small batches",
+    alt: "Illustration of traditional Rajasthani green chilli pickle preparation",
     focal: "object-right sm:object-center",
     eyebrow: "Rajasthani Pickles and Chutneys",
     title: (
@@ -144,13 +144,13 @@ const journeySteps = [
     title: "Apne Farm Se Shuruwat",
     copy: "A2 milk hamari apni Gir cows se aata hai, jinhe Organic Jaipur farm par dekhbhaal ke saath paala jaata hai.",
     image: "/images/generated/journey-own-farm-v2.png",
-    alt: "Organic Jaipur founder caring for an indigenous Gir cow",
+    alt: "Illustration of a farmer caring for an indigenous Gir cow",
   },
   {
     title: "Mitti Ke Bartan Mein Jama Dahi",
     copy: "Taaza A2 milk ko raat bhar mitti ke bartanon mein dahi banne diya jaata hai—bilkul purane gharon ki tarah.",
     image: "/images/generated/journey-curd-v2.png",
-    alt: "Fresh A2 milk set into curd overnight in earthen pots",
+    alt: "Illustration of milk being set into curd in earthen pots",
   },
   {
     title: "Lakdi Ke Bilona Se Manthan",
@@ -162,7 +162,7 @@ const journeySteps = [
     title: "Dheemi Aanch Par Sunehra Ghee",
     copy: "Makkhan ko dheemi aanch par pakaya jaata hai, jab tak woh daanedaar, khushbudaar ghee na ban jaaye.",
     image: "/images/generated/journey-slow-ghee-v2.png",
-    alt: "Butter slowly simmering into golden ghee in a brass kadai",
+    alt: "Illustration of butter slowly simmering into ghee in a brass kadai",
   },
   {
     title: "Khet Se, Sambhaal Ke",
@@ -213,48 +213,6 @@ const gheeDecisionChecks = [
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "It tastes like the ghee our family used to make at home, rich, aromatic and honest.",
-    name: "Verified Organic Jaipur family",
-    location: "Jaipur",
-    product: "A2 Gir Cow Ghee",
-    rating: 5,
-    featured: true,
-  },
-  {
-    quote: "The purity is visible in every spoon of this ghee.",
-    name: "Priya S.",
-    location: "Jaipur",
-    product: "A2 Gir Cow Ghee",
-    rating: 5,
-  },
-  {
-    quote:
-      "Finally an oil that smells and tastes the way kachi ghani mustard oil should.",
-    name: "Rakesh M.",
-    location: "Udaipur",
-    product: "Black Mustard Oil",
-    rating: 5,
-  },
-  {
-    quote: "Raw, thick and clearly unheated. This is the real thing.",
-    name: "Anjali T.",
-    location: "Jodhpur",
-    product: "Raw Farm Honey",
-    rating: 4,
-  },
-  {
-    quote:
-      "Such a strong, authentic mustard punch, exactly like my grandmother's kitchen.",
-    name: "Meena K.",
-    location: "Kota",
-    product: "Kachi Ghani Mustard Oil",
-    rating: 5,
-  },
-];
-
 const blogs = BLOG_POSTS.slice(0, 3).map((post) => ({
   date: post.publishDate,
   title: post.title,
@@ -263,15 +221,6 @@ const blogs = BLOG_POSTS.slice(0, 3).map((post) => ({
   alt: post.heroAlt,
   href: `/blog/${post.slug}`,
 }));
-
-function StarRow({ rating }: { rating: number }) {
-  return (
-    <div className="text-sm text-honey-500" aria-hidden>
-      {"★".repeat(rating)}
-      <span className="text-current opacity-25">{"★".repeat(5 - rating)}</span>
-    </div>
-  );
-}
 
 function pickByVariety<T extends { name: string }>(
   items: T[],
@@ -308,14 +257,6 @@ function pickDiverseByCategory<T extends { category: string }>(
     }
   }
   return [...picked, ...leftovers].slice(0, take);
-}
-
-function Avatar({ name }: { name: string }) {
-  return (
-    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-100 font-display text-sm font-bold text-brand-800">
-      {name.trim().charAt(0).toUpperCase()}
-    </span>
-  );
 }
 
 export default async function HomePage() {
@@ -581,10 +522,10 @@ export default async function HomePage() {
                 </Link>
                 <Link href={`/products/${item.slug}`}>
                   <h3 className="mt-4 font-display text-lg text-forest-900">
-                    {item.name}
+                    {productDisplayName(item.name, item.unit)}
                   </h3>
                   <p className="mt-1 text-sm text-forest-900/70">
-                    {item.unit} · {formatPrice(item.price)}
+                    Pack: {item.unit} · {formatPrice(item.price)}
                   </p>
                 </Link>
                 <div className="mt-3">
@@ -662,7 +603,7 @@ export default async function HomePage() {
           >
             <Image
               src="/images/generated/hero-bilona.webp"
-              alt="Traditional bilona ghee preparation at Organic Jaipur"
+              alt="Illustration of traditional bilona ghee preparation"
               fill
               sizes="(max-width: 1280px) 100vw, 1280px"
               className="object-cover"
@@ -693,87 +634,6 @@ export default async function HomePage() {
               See Our Farm →
             </Link>
           </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="bg-[#fbf7e9] px-5 py-10 sm:px-8 sm:py-16">
-        <div className="mx-auto max-w-7xl">
-          <AnimatedSection className="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
-            <div>
-              <p className="text-xs font-bold tracking-[.2em] text-terracotta-600 uppercase">
-                Rajasthan Bhar Ka Bharosa
-              </p>
-              <h2 className="mt-3 font-display text-4xl text-forest-900 sm:text-6xl">
-                Unke Shabd,{" "}
-                <em className="font-normal text-brand-700">Hamara Bharosa.</em>
-              </h2>
-            </div>
-            <div className="flex items-center gap-4 rounded-[1.4rem] border border-forest-900/8 bg-white px-6 py-4 shadow-sm">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border-4 border-honey-400 font-display text-lg font-bold text-forest-900">
-                4.9
-              </div>
-              <div className="text-left">
-                <StarRow rating={5} />
-                <p className="mt-1 text-xs font-semibold text-forest-900/70">
-                  Customer Feedback
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1.4fr]">
-            {testimonials
-              .filter((t) => t.featured)
-              .map((t) => (
-                <AnimatedSection
-                  key={t.name}
-                  className="flex h-full flex-col justify-center rounded-[1.75rem] bg-forest-900 p-9 text-cream"
-                >
-                  <span className="font-display text-5xl leading-none text-honey-400">
-                    &ldquo;
-                  </span>
-                  <StarRow rating={t.rating} />
-                  <blockquote className="mt-4 font-display text-2xl leading-snug">
-                    {t.quote}
-                  </blockquote>
-                  <p className="mt-6 text-xs font-bold tracking-[.15em] text-honey-400 uppercase">
-                    {t.name} · {t.location}
-                  </p>
-                </AnimatedSection>
-              ))}
-
-            <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0">
-              {testimonials
-                .filter((t) => !t.featured)
-                .map((t, index) => (
-                  <AnimatedSection
-                    key={t.name}
-                    delay={index * 0.06}
-                    className="flex h-full w-[82vw] shrink-0 snap-center flex-col rounded-[1.5rem] border border-forest-900/8 bg-white p-6 shadow-sm md:w-auto"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Avatar name={t.name} />
-                      <div>
-                        <p className="text-sm font-bold text-forest-900">
-                          {t.name}
-                        </p>
-                        <p className="text-xs text-forest-900/70">
-                          {t.location} · {t.product}
-                        </p>
-                      </div>
-                    </div>
-                    <StarRow rating={t.rating} />
-                    <blockquote className="mt-3 flex-1 text-sm leading-6 text-forest-900/75">
-                      &ldquo;{t.quote}&rdquo;
-                    </blockquote>
-                    <span className="mt-4 w-fit rounded-full bg-brand-50 px-3 py-1 text-[10px] font-bold text-brand-700">
-                      {t.product}
-                    </span>
-                  </AnimatedSection>
-                ))}
-            </div>
-          </div>
         </div>
       </section>
 
