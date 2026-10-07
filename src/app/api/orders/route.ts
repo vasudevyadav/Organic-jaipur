@@ -49,9 +49,16 @@ export async function POST(request: NextRequest) {
         if (coupon.expiresAt && coupon.expiresAt <= new Date()) throw new CheckoutError("This coupon has expired.");
         if (coupon.minOrderValue != null && subtotal < coupon.minOrderValue) throw new CheckoutError(`This coupon requires a minimum order of ₹${coupon.minOrderValue}.`);
         if (!Number.isFinite(coupon.value) || coupon.value < 0 || (coupon.type === "PERCENT" && coupon.value > 100)) throw new CheckoutError("This coupon has an invalid discount.");
+        const customerOrderWhere = user
+          ? { userId: user.id }
+          : data.customerEmail
+            ? { customerEmail: data.customerEmail }
+            : { customerPhone: data.customerPhone };
         const [totalUses, priorOrders] = await Promise.all([
           tx.couponUsage.count({ where: { couponId: coupon.id } }),
-          coupon.firstOrderOnly ? tx.order.count({ where: user ? { userId: user.id } : data.customerEmail ? { customerEmail: data.customerEmail } : { customerPhone: data.customerPhone } }) : Promise.resolve(0),
+          coupon.firstOrderOnly
+            ? tx.order.count({ where: { ...customerOrderWhere, status: { not: "PAYMENT_PENDING" } } })
+            : Promise.resolve(0),
         ]);
         if (coupon.usageLimit != null && totalUses >= coupon.usageLimit) throw new CheckoutError("This coupon has reached its usage limit.");
         if (coupon.firstOrderOnly && priorOrders > 0) throw new CheckoutError("This coupon is only available on a first order.");
@@ -76,7 +83,9 @@ export async function POST(request: NextRequest) {
           state: data.state, pincode: data.pincode, notes: data.notes || null, items: { create: orderItems },
         }, include: { items: true },
       });
-      if (coupon) await tx.couponUsage.create({ data: { couponId: coupon.id, orderId: created.id, customerId } });
+      if (coupon && data.paymentMethod === "COD") {
+        await tx.couponUsage.create({ data: { couponId: coupon.id, orderId: created.id, customerId } });
+      }
       return created;
     }, { isolationLevel: "Serializable" });
   } catch (error) {
@@ -85,14 +94,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Could not create order. Please try again." }, { status: 500 });
   }
 
-  after(async () => {
-    await Promise.allSettled([
-      notifyAdminOfOrder(order).catch((error) => console.error("Order notification failed", error)),
-      sendOrderConfirmationEmail(order).catch((error) => console.error("Order confirmation email failed", error)),
-    ]);
-  });
-
   if (order.status === "MANUAL_APPROVAL_REQUIRED") {
+    after(async () => {
+      await Promise.allSettled([
+        notifyAdminOfOrder(order).catch((error) => console.error("Order notification failed", error)),
+        sendOrderConfirmationEmail(order).catch((error) => console.error("Order confirmation email failed", error)),
+      ]);
+    });
     return NextResponse.json({ order, requiresManualApproval: true, message: MANUAL_APPROVAL_CUSTOMER_MESSAGE }, { status: 201 });
   }
 
@@ -101,18 +109,37 @@ export async function POST(request: NextRequest) {
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
     if (!keyId || !keySecret) return NextResponse.json({ order, error: "Online payments are temporarily unavailable." }, { status: 503 });
     try {
+      const expectedAmount = Math.round(order.total * 100);
       const response = await fetch("https://api.razorpay.com/v1/orders", {
         method: "POST", headers: { Authorization: `Basic ${Buffer.from(`${keyId}:${keySecret}`).toString("base64")}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: Math.round(order.total * 100), currency: "INR", receipt: order.orderNumber, notes: { local_order_id: order.id } }), cache: "no-store",
+        body: JSON.stringify({ amount: expectedAmount, currency: "INR", receipt: order.orderNumber, partial_payment: false, notes: { local_order_id: order.id } }), cache: "no-store",
       });
       const paymentOrder = await response.json().catch(() => null);
-      if (!response.ok || !paymentOrder?.id || typeof paymentOrder.amount !== "number") throw new Error("Razorpay order failed");
+      if (
+        !response.ok ||
+        !paymentOrder?.id ||
+        paymentOrder.amount !== expectedAmount ||
+        paymentOrder.currency !== "INR" ||
+        paymentOrder.receipt !== order.orderNumber
+      ) {
+        throw new Error("Razorpay returned invalid order details");
+      }
       order = await prisma.order.update({ where: { id: order.id }, data: { razorpayOrderId: paymentOrder.id }, include: { items: true } });
       return NextResponse.json({ order, payment: { keyId, razorpayOrderId: paymentOrder.id, amount: paymentOrder.amount, currency: "INR" } }, { status: 201 });
     } catch (error) {
       console.error("Payment initialization failed", error);
+      await prisma.order.delete({ where: { id: order.id } }).catch((cleanupError) => {
+        console.error("Failed to clean up uninitialized payment order", cleanupError);
+      });
       return NextResponse.json({ order, error: "Could not start the secure payment. Please try again." }, { status: 502 });
     }
   }
+
+  after(async () => {
+    await Promise.allSettled([
+      notifyAdminOfOrder(order).catch((error) => console.error("Order notification failed", error)),
+      sendOrderConfirmationEmail(order).catch((error) => console.error("Order confirmation email failed", error)),
+    ]);
+  });
   return NextResponse.json({ order }, { status: 201 });
 }
