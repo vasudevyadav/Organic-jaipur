@@ -2,14 +2,12 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 import { SITE_URL, CATEGORIES, STOREFRONT_CATEGORY_VALUES } from "@/lib/constants";
 import { MAKING_PROCESSES } from "@/lib/making-process";
-import { JAIPUR_LOCALITIES } from "@/lib/jaipur-localities";
-import { RAJASTHAN_CITIES } from "@/lib/rajasthan-cities";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 // Refresh database-backed product URLs without requiring a deployment.
 export const revalidate = 3600;
 
-const CONTENT_LAST_MODIFIED = new Date("2026-08-26T00:00:00+05:30");
+const CONTENT_LAST_MODIFIED = new Date("2026-10-07T00:00:00+05:30");
 
 const STATIC_ROUTES: Array<{
   path: string;
@@ -66,20 +64,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  const localityEntries: MetadataRoute.Sitemap = JAIPUR_LOCALITIES.map((locality) => ({
-    url: `${SITE_URL}/organic-products-jaipur/${locality.slug}`,
-    lastModified: CONTENT_LAST_MODIFIED,
-    changeFrequency: "monthly",
-    priority: 0.75,
-  }));
-
-  const rajasthanCityEntries: MetadataRoute.Sitemap = RAJASTHAN_CITIES.map((city) => ({
-    url: `${SITE_URL}/organic-products-rajasthan/${city.slug}`,
-    lastModified: CONTENT_LAST_MODIFIED,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
-
   const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.publishDate),
@@ -96,8 +80,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     })),
     ...makingProcessEntries,
-    ...localityEntries,
-    ...rajasthanCityEntries,
     ...blogEntries,
   ];
 }

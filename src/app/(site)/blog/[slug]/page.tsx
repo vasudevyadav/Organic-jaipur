@@ -145,7 +145,7 @@ export default async function BlogPostPage({ params }: Props) {
             {post.intro}
           </p>
           <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-white/45">
-            {post.publishDate} · {categoryLabel(post.category)}
+            By Organic Jaipur team · {post.publishDate} · {categoryLabel(post.category)}
           </p>
         </AnimatedSection>
       </section>

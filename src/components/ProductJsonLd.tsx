@@ -1,13 +1,16 @@
 import { SITE_URL } from "@/lib/constants";
 import { serializeJsonLd } from "@/lib/json-ld";
+import { productDisplayName } from "@/lib/utils";
 
 type Product = {
+  id: string;
   name: string;
   slug: string;
   description: string;
   imageUrl: string;
   price: number;
   inStock: boolean;
+  unit: string;
 };
 
 type Props = {
@@ -24,12 +27,15 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
   const json = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.name,
+    "@id": `${SITE_URL}/products/${product.slug}#product`,
+    sku: product.id,
+    name: productDisplayName(product.name, product.unit),
     description: product.description,
     image: absoluteImage,
     url: `${SITE_URL}/products/${product.slug}`,
     brand: { "@type": "Brand", name: "Organic Jaipur" },
     category: "Organic food",
+    size: product.unit,
     offers: {
       "@type": "Offer",
       priceCurrency: "INR",
@@ -38,6 +44,7 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
       url: `${SITE_URL}/products/${product.slug}`,
+      itemCondition: "https://schema.org/NewCondition",
       seller: { "@id": `${SITE_URL}/#organization` },
     },
     ...(reviewCount > 0

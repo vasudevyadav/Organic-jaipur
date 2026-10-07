@@ -16,11 +16,18 @@ export default function OrganizationJsonLd() {
     alternateName: ["Organic Jaipur", "Organic Jaipur Store"],
     url: SITE_URL,
     logo: `${SITE_URL}/product/download.png`,
+    image: `${SITE_URL}/images/founder-with-a2-ghee-v1.png`,
     telephone: BUSINESS.phoneDisplay,
     email: BUSINESS.email,
+    priceRange: "₹₹",
     currenciesAccepted: "INR",
     paymentAccepted: "Cash on Delivery, Online payment through Razorpay",
     hasMap: BUSINESS.mapLink,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: BUSINESS.latitude,
+      longitude: BUSINESS.longitude,
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress,
@@ -42,6 +49,10 @@ export default function OrganizationJsonLd() {
       contactType: "customer service",
       areaServed: "IN-RJ",
       availableLanguage: ["Hindi", "English"],
+    },
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      merchantReturnLink: `${SITE_URL}/return-refund-policy`,
     },
     ...(sameAs.length > 0 ? { sameAs } : {}),
   };

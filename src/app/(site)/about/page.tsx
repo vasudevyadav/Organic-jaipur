@@ -50,7 +50,7 @@ export default function AboutPage() {
       <section className="relative min-h-[610px] bg-forest-900 text-white">
         <Image
           src="/images/generated/about-farm-banner-v3.png"
-          alt="Organic Jaipur farm in Jaipur, Rajasthan"
+          alt="Illustration representing the Organic Jaipur farm in Rajasthan"
           fill
           priority
           sizes="100vw"

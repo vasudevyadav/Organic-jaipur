@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "@prisma/client";
-import { formatPrice, safeImageUrl, productNameIncludesUnit } from "@/lib/utils";
+import { formatPrice, safeImageUrl, productDisplayName } from "@/lib/utils";
 import { categoryLabel } from "@/lib/constants";
 import QuickAddButton from "@/components/QuickAddButton";
 
@@ -17,11 +18,13 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="relative overflow-hidden bg-[#eee9db]">
         <Link href={`/products/${product.slug}`} className="block">
           <div className="relative aspect-square overflow-hidden">
-            <img
+            <Image
               src={safeImageUrl(product.imageUrl)}
               alt={product.name}
+              fill
+              sizes="(max-width: 639px) 100vw, (max-width: 1535px) 50vw, 33vw"
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
 
             <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-forest-900/35 to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-70" />
@@ -60,11 +63,9 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
         <Link href={`/products/${product.slug}`} className="block">
           <h3 className="mt-2 font-display text-[1.5rem] leading-[1.12] text-forest-900 transition-colors group-hover:text-terracotta-500">
-            {product.name}
+            {productDisplayName(product.name, product.unit)}
           </h3>
-          {!productNameIncludesUnit(product.name, product.unit) && (
-            <p className="mt-2 text-xs font-semibold text-foreground/40">{product.unit}</p>
-          )}
+          <p className="mt-2 text-xs font-semibold text-foreground/40">Pack: {product.unit}</p>
         </Link>
         <div className="mt-auto flex items-end justify-between gap-3 pt-2">
           <span className="flex items-center gap-2">

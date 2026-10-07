@@ -133,7 +133,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       <section className="hero-grain relative isolate min-h-[420px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[480px]">
         <Image
           src="/images/generated/banner-shop-farm-v3.jpg"
-          alt="Organic Jaipur ghee, oil, honey and lal mirch chutney at a Rajasthan farm"
+          alt="Illustration of Organic Jaipur ghee, oil, honey and chutney"
           fill
           priority
           sizes="100vw"

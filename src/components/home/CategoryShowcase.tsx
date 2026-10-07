@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@prisma/client";
-import { formatPrice, safeImageUrl } from "@/lib/utils";
+import { formatPrice, safeImageUrl, productDisplayName } from "@/lib/utils";
 import QuickAddButton from "@/components/QuickAddButton";
 
 export type ShowcaseTab = {
@@ -76,8 +76,8 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
               </Link>
               <div className="p-4">
                 <Link href={`/products/${item.slug}`}>
-                  <h3 className="font-display text-base leading-tight text-forest-900">{item.name}</h3>
-                  <p className="mt-1 text-xs text-forest-900/70">{item.unit}</p>
+                  <h3 className="font-display text-base leading-tight text-forest-900">{productDisplayName(item.name, item.unit)}</h3>
+                  <p className="mt-1 text-xs text-forest-900/70">Pack: {item.unit}</p>
                 </Link>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-base font-bold text-forest-900">{formatPrice(item.price)}</span>

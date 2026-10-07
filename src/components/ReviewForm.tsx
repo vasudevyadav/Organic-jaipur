@@ -16,11 +16,13 @@ export default function ReviewForm({
   const [contact, setContact] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setSubmitting(true);
     setError("");
+    setSuccess("");
 
     const res = await fetch("/api/reviews", {
       method: "POST",
@@ -36,7 +38,11 @@ export default function ReviewForm({
       return;
     }
 
-    onSubmitted(data.review);
+    if (data.review) {
+      onSubmitted(data.review);
+    } else {
+      setSuccess(data?.message ?? "Thank you. Your review was received for verification.");
+    }
     setCustomerName("");
     setComment("");
     setContact("");
@@ -100,6 +106,7 @@ export default function ReviewForm({
       </div>
 
       {error && <p className="mt-3 text-sm text-terracotta-600">{error}</p>}
+      {success && <p className="mt-3 text-sm font-medium text-brand-700">{success}</p>}
 
       <button
         type="submit"
