@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { useHydrated } from "@/lib/useHydrated";
 import { formatPrice } from "@/lib/utils";
-import { FREE_SHIPPING_THRESHOLD } from "@/lib/shipping";
 import CartItemRow from "@/components/CartItemRow";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -167,11 +166,9 @@ export default function CartPage() {
                 <span>Delivery</span>
                 <span>Calculated at checkout</span>
               </div>
-              {subtotal < FREE_SHIPPING_THRESHOLD && (
-                <p className="rounded-xl bg-honey-400/15 px-3 py-2 text-xs font-bold text-forest-900">
-                  ₹{FREE_SHIPPING_THRESHOLD - subtotal} aur add karein aur Rajasthan mein FREE DELIVERY paayein (up to 3kg)
-                </p>
-              )}
+              <p className="rounded-xl bg-honey-400/15 px-3 py-2 text-xs font-bold text-forest-900">
+                Jaipur free · Rest of Rajasthan ₹100 · Outside Rajasthan ₹150
+              </p>
               <div className="flex justify-between border-t border-forest-900/10 pt-2.5 text-base font-bold text-forest-900">
                 <span>Items total</span>
                 <span>{formatPrice(total)}</span>

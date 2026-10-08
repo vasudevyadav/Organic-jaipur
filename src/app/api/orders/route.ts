@@ -3,7 +3,7 @@ import type { Order, OrderItem } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { checkoutSchema } from "@/lib/validation";
 import { generateOrderNumber } from "@/lib/utils";
-import { calculateShipping, normalizeLocation } from "@/lib/shipping";
+import { calculateShipping } from "@/lib/shipping";
 import { getCurrentUser } from "@/lib/auth-customer";
 import { calculateOrderDiscount, money } from "@/lib/discounts";
 import { MANUAL_APPROVAL_CUSTOMER_MESSAGE, MAX_ORDER_DISCOUNT } from "@/lib/constants";
@@ -18,9 +18,6 @@ export async function POST(request: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
 
   const data = parsed.data;
-  if (data.paymentMethod === "COD" && normalizeLocation(data.city) !== "jaipur") {
-    return NextResponse.json({ error: "Cash on Delivery is only available within Jaipur. Please choose online payment for delivery outside Jaipur." }, { status: 400 });
-  }
 
   const user = await getCurrentUser();
   const customerId = user?.id ?? data.customerEmail?.trim().toLowerCase() ?? data.customerPhone.replace(/\D/g, "");

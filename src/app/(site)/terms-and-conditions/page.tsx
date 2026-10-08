@@ -122,7 +122,8 @@ export default function TermsAndConditionsPage() {
                 </h2>
                 <p>
                   We offer free delivery within our Jaipur service area and courier
-                  shipping across Rajasthan. Coverage and any shipping charge are
+                  shipping across India. Cash on Delivery is available at checkout.
+                  Coverage and any shipping charge are
                   confirmed for your order. Please see our{" "}
                   <Link
                     href="/shipping-policy"

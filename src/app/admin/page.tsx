@@ -31,6 +31,7 @@ function statusBadgeClass(status: OrderStatusValue): string {
 }
 
 export default async function AdminDashboardPage() {
+  const realOrderFilter = { status: { not: "PAYMENT_PENDING" as const } };
   const [
     productCount,
     orderCount,
@@ -42,12 +43,20 @@ export default async function AdminDashboardPage() {
     recentMessages,
   ] = await Promise.all([
     prisma.product.count(),
-    prisma.order.count(),
+    prisma.order.count({ where: realOrderFilter }),
     prisma.order.count({ where: { status: "PENDING" } }),
-    prisma.order.aggregate({ _sum: { total: true }, where: { status: { not: "CANCELLED" } } }),
+    prisma.order.aggregate({
+      _sum: { total: true },
+      where: { status: { notIn: ["PAYMENT_PENDING", "CANCELLED", "REJECTED"] } },
+    }),
     prisma.review.aggregate({ _avg: { rating: true }, _count: true }),
     prisma.contactSubmission.count(),
-    prisma.order.findMany({ orderBy: { createdAt: "desc" }, take: 5, include: { items: true } }),
+    prisma.order.findMany({
+      where: realOrderFilter,
+      orderBy: { createdAt: "desc" },
+      take: 5,
+      include: { items: true },
+    }),
     prisma.contactSubmission.findMany({ orderBy: { createdAt: "desc" }, take: 5 }),
   ]);
 

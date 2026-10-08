@@ -1,22 +1,11 @@
-export const FREE_SHIPPING_THRESHOLD = 1499;
-export const JAIPUR_FREE_DELIVERY = true;
-
-export const WEIGHT_SLABS = [
-  { maxWeightGrams: 500, charge: 59 },
-  { maxWeightGrams: 1000, charge: 79 },
-  { maxWeightGrams: 2000, charge: 99 },
-  { maxWeightGrams: 3000, charge: 129 },
-  { maxWeightGrams: 5000, charge: 159 },
-  { maxWeightGrams: Number.POSITIVE_INFINITY, charge: 199 },
-] as const;
+export const RAJASTHAN_SHIPPING_CHARGE = 100;
+export const INDIA_SHIPPING_CHARGE = 150;
 
 export type ShippingReason =
   | "Empty Cart"
   | "Jaipur Free Delivery"
-  | "Rajasthan Free Delivery"
-  | "Rajasthan Weight Based Shipping"
-  | "Rajasthan Partial Shipping"
-  | "Default Shipping";
+  | "Rajasthan Flat Shipping"
+  | "India Flat Shipping";
 
 export type ShippingResult = {
   shippingCharge: number;
@@ -37,47 +26,24 @@ export function normalizeLocation(value?: string | null): string {
   return (value ?? "").trim().replace(/\s+/g, " ").toLocaleLowerCase("en-IN");
 }
 
-export function getWeightBasedShipping(totalWeight: number): number {
-  const weight = Number.isFinite(totalWeight) ? Math.max(0, totalWeight) : 0;
-  return WEIGHT_SLABS.find((slab) => weight <= slab.maxWeightGrams)!.charge;
-}
-
-// Kept separate so non-Rajasthan delivery can evolve without changing Rajasthan rules.
-export function calculateDefaultShipping(input: ShippingInput): number {
-  void input;
-  return 0;
-}
-
 export function calculateShipping(input: ShippingInput): ShippingResult {
   const orderValue = Number.isFinite(input.orderValue) ? Math.max(0, input.orderValue) : 0;
-  const totalWeight = Number.isFinite(input.totalWeight) ? Math.max(0, input.totalWeight) : 0;
-  const amountToFreeShipping = Math.max(FREE_SHIPPING_THRESHOLD - orderValue, 0);
 
   if (orderValue === 0) {
-    return { shippingCharge: 0, isFreeShipping: true, reason: "Empty Cart", message: "Free Delivery", amountToFreeShipping };
+    return { shippingCharge: 0, isFreeShipping: true, reason: "Empty Cart", message: "Delivery calculated at checkout", amountToFreeShipping: 0 };
   }
 
   const city = normalizeLocation(input.city);
   const state = normalizeLocation(input.state);
-  if (JAIPUR_FREE_DELIVERY && city === "jaipur") {
-    return { shippingCharge: 0, isFreeShipping: true, reason: "Jaipur Free Delivery", message: "Free Delivery", amountToFreeShipping };
+  if (city === "jaipur" && state === "rajasthan") {
+    return { shippingCharge: 0, isFreeShipping: true, reason: "Jaipur Free Delivery", message: "Free delivery in Jaipur", amountToFreeShipping: 0 };
   }
 
   if (state === "rajasthan") {
-    const weightCharge = getWeightBasedShipping(totalWeight);
-    if (orderValue >= FREE_SHIPPING_THRESHOLD && totalWeight <= 3000) {
-      return { shippingCharge: 0, isFreeShipping: true, reason: "Rajasthan Free Delivery", message: "Free Delivery", amountToFreeShipping: 0 };
-    }
-    if (orderValue >= FREE_SHIPPING_THRESHOLD) {
-      const shippingCharge = weightCharge / 2;
-      return { shippingCharge, isFreeShipping: false, reason: "Rajasthan Partial Shipping", message: "50% Shipping Applied", amountToFreeShipping: 0 };
-    }
-    return { shippingCharge: weightCharge, isFreeShipping: false, reason: "Rajasthan Weight Based Shipping", message: `Shipping ₹${weightCharge}`, amountToFreeShipping };
+    return { shippingCharge: RAJASTHAN_SHIPPING_CHARGE, isFreeShipping: false, reason: "Rajasthan Flat Shipping", message: `Rajasthan delivery ₹${RAJASTHAN_SHIPPING_CHARGE}`, amountToFreeShipping: 0 };
   }
 
-  const shippingCharge = calculateDefaultShipping(input);
-  return { shippingCharge, isFreeShipping: shippingCharge === 0, reason: "Default Shipping", message: shippingCharge === 0 ? "Free Delivery" : `Shipping ₹${shippingCharge}`, amountToFreeShipping };
+  return { shippingCharge: INDIA_SHIPPING_CHARGE, isFreeShipping: false, reason: "India Flat Shipping", message: `All India delivery ₹${INDIA_SHIPPING_CHARGE}`, amountToFreeShipping: 0 };
 }
 
-// Shared customer-facing copy follows the same thresholds as checkout.
-export const SHIPPING_POLICY_SUMMARY = `Delivery is free within our Jaipur service area. Elsewhere in Rajasthan, orders below ₹${FREE_SHIPPING_THRESHOLD.toLocaleString("en-IN")} have weight-based shipping from ₹${WEIGHT_SLABS[0].charge} to ₹${WEIGHT_SLABS[WEIGHT_SLABS.length - 1].charge}. Orders of ₹${FREE_SHIPPING_THRESHOLD.toLocaleString("en-IN")} or more ship free up to 3 kg; heavier orders receive 50% off the weight-based shipping charge. The applicable charge is shown at checkout before you place the order.`;
+export const SHIPPING_POLICY_SUMMARY = `Delivery is free within Jaipur. A flat ₹${RAJASTHAN_SHIPPING_CHARGE} delivery charge applies elsewhere in Rajasthan, and a flat ₹${INDIA_SHIPPING_CHARGE} delivery charge applies outside Rajasthan across India. Cash on Delivery and online payment are available at checkout.`;

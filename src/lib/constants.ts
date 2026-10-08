@@ -107,7 +107,7 @@ export const FAQS_HOME = [
   {
     question: "Is delivery free, or are there shipping charges outside Jaipur?",
     answer:
-      "Delivery is free within our Jaipur service area. Elsewhere in Rajasthan, orders under ₹1,499 have weight-based courier shipping from ₹59 to ₹199, and orders of ₹1,499 or more ship free up to 3 kg. The exact charge for your cart is shown at checkout before you pay.",
+      "Delivery is free within Jaipur. Delivery elsewhere in Rajasthan costs ₹100, and delivery outside Rajasthan across India costs ₹150. Cash on Delivery and online payment are available at checkout.",
   },
   {
     question: "Can I track my order after it's placed?",
@@ -375,7 +375,7 @@ export const FAQS_TRACK_ORDER = [
 export const FAQS_SHIPPING = [
   {
     question: "Which areas do you deliver to?",
-    answer: "Free doorstep delivery within Jaipur, Rajasthan, and courier shipping across Rajasthan, including Jodhpur, Udaipur, Kota, Ajmer and Bikaner. Message us on WhatsApp with your address and we'll confirm delivery timing and any shipping charges.",
+    answer: "We deliver across India. Jaipur delivery is free, delivery elsewhere in Rajasthan costs ₹100, and delivery outside Rajasthan costs ₹150. Cash on Delivery and online payment are available.",
   },
   {
     question: "Is delivery free?",
@@ -487,7 +487,7 @@ export const TRUST_BADGES = [
   },
   {
     title: "Free Jaipur Delivery",
-    description: "Cash on Delivery in Jaipur and courier shipping across Rajasthan.",
+    description: "Free Jaipur delivery and Cash on Delivery across India.",
     icon: "truck",
   },
 ] as const;
