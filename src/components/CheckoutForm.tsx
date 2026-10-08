@@ -9,7 +9,7 @@ import { useCart } from "@/lib/cart";
 import { useHydrated } from "@/lib/useHydrated";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 import { ONLINE_PAYMENT_DISCOUNT_PERCENT } from "@/lib/constants";
-import { calculateShipping, normalizeLocation } from "@/lib/shipping";
+import { calculateShipping } from "@/lib/shipping";
 
 type RazorpayResponse = {
   razorpay_payment_id: string;
@@ -137,8 +137,7 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
 
   const shipping = calculateShipping({ city: form.city, state: form.state, orderValue: subtotal, totalWeight });
   const shippingFee = shipping.shippingCharge;
-  const codAvailable = normalizeLocation(form.city) === "jaipur";
-  const effectivePaymentMethod = codAvailable ? paymentMethod : "RAZORPAY";
+  const effectivePaymentMethod = paymentMethod;
   const onlinePaymentDiscount =
     effectivePaymentMethod === "RAZORPAY" && (!couponCode || couponOffer?.canStack)
       ? ((subtotal - discount) * ONLINE_PAYMENT_DISCOUNT_PERCENT) / 100
@@ -427,10 +426,9 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
               <PaymentOption
                 selected={effectivePaymentMethod === "COD"}
                 title="Cash on Delivery"
-                description={codAvailable ? "Pay when your order reaches you" : "Available only within Jaipur"}
+                description="Available across India — pay on delivery"
                 icon="⌂"
-                disabled={!codAvailable}
-                onClick={() => codAvailable && setPaymentMethod("COD")}
+                onClick={() => setPaymentMethod("COD")}
               />
             </div>
           </section>
@@ -514,9 +512,6 @@ export default function CheckoutForm({ user, addresses }: CheckoutFormProps) {
             </div>
             <p className="rounded-xl bg-honey-400/15 px-3 py-2 text-xs font-bold text-forest-900">
               {shipping.message}
-              {shipping.amountToFreeShipping > 0 && shipping.reason === "Rajasthan Weight Based Shipping"
-                ? ` · ₹${shipping.amountToFreeShipping} aur add karein aur FREE DELIVERY paayein`
-                : ""}
             </p>
             <div className="flex items-end justify-between border-t border-forest-900/10 pt-4 font-bold text-forest-900">
               <span>Total</span>

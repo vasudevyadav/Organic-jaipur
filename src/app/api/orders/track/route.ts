@@ -13,7 +13,11 @@ export async function POST(request: NextRequest) {
   const { orderNumber, customerPhone } = parsed.data;
 
   const order = await prisma.order.findFirst({
-    where: { orderNumber, customerPhone },
+    where: {
+      orderNumber,
+      customerPhone,
+      status: { not: "PAYMENT_PENDING" },
+    },
     select: {
       orderNumber: true,
       status: true,

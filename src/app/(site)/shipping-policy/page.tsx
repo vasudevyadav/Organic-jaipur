@@ -10,7 +10,7 @@ import { BUSINESS, FAQS_SHIPPING } from "@/lib/constants";
 export const metadata = pageMetadata({
   title: "Shipping & Delivery Policy",
   description:
-    "Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee, cold-pressed oil, honey, and pickles.",
+    "Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep delivery within Jaipur and courier delivery with Cash on Delivery across India.",
   alternates: { canonical: "/shipping-policy" },
 });
 
@@ -36,7 +36,7 @@ export default function ShippingPolicyPage() {
           <p className="mt-2 font-display text-base italic text-honey-400/70">Vaada Nibhaate Hain, Har Baar</p>
           <p className="mt-4 max-w-xl text-sm leading-6 text-white/60 sm:text-base">
             Delivery areas, timelines, and charges for Organic Jaipur orders: free doorstep
-            delivery within Jaipur, plus courier shipping across Rajasthan, for A2 ghee,
+            delivery within Jaipur, plus courier shipping with Cash on Delivery across India, for A2 ghee,
             cold-pressed oil, honey, and pickles.
           </p>
         </AnimatedSection>
@@ -62,10 +62,9 @@ export default function ShippingPolicyPage() {
                   1. Delivery Area
                 </h2>
                 <p>
-                  We offer free doorstep delivery within Jaipur, Rajasthan, and also ship across
-                  Rajasthan, including Jodhpur, Udaipur, Kota, Ajmer, Bikaner and other cities, via
-                  courier. If your address falls outside the areas we currently service, we&apos;ll let
-                  you know at the time of order confirmation so you&apos;re not left waiting.
+                  We offer free doorstep delivery within Jaipur and courier delivery across India.
+                  Cash on Delivery and online payment are available for eligible delivery addresses.
+                  If a courier cannot service a PIN code, we&apos;ll contact you during order confirmation.
                 </p>
               </section>
 
