@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 type CategoryCardProps = {
   href: string;
@@ -14,10 +15,11 @@ export default function CategoryCard({ href, image, name, description }: Categor
       className="group relative flex flex-col overflow-hidden rounded-[1.7rem] border border-forest-900/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-forest-900/10"
     >
       <div className="relative aspect-4/3 overflow-hidden bg-brand-50">
-        <img
+        <Image
           src={image}
           alt={name}
-          loading="lazy"
+          fill
+          sizes="(max-width: 767px) 100vw, 50vw"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-linear-to-t from-forest-900/70 via-forest-900/0 to-transparent" />

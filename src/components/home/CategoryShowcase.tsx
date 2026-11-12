@@ -77,7 +77,7 @@ export default function CategoryShowcase({ tabs }: { tabs: ShowcaseTab[] }) {
               <div className="p-4">
                 <Link href={`/products/${item.slug}`}>
                   <h3 className="font-display text-base leading-tight text-forest-900">{productDisplayName(item.name, item.unit)}</h3>
-                  <p className="mt-1 text-xs text-forest-900/70">Pack: {item.unit}</p>
+                  <p className="mt-1 text-xs text-forest-900/70">Size: {item.unit}</p>
                 </Link>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-base font-bold text-forest-900">{formatPrice(item.price)}</span>

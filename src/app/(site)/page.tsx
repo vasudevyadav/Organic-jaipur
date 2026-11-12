@@ -528,7 +528,7 @@ export default async function HomePage() {
                     {productDisplayName(item.name, item.unit)}
                   </h3>
                   <p className="mt-1 text-sm text-forest-900/70">
-                    Pack: {item.unit} · {formatPrice(item.price)}
+                    Size: {item.unit} · {formatPrice(item.price)}
                   </p>
                 </Link>
                 <div className="mt-3">

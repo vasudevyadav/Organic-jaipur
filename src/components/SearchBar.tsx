@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { Product } from "@prisma/client";
@@ -92,7 +93,7 @@ export default function SearchBar() {
                   onClick={() => setOpen(false)}
                   className="flex items-center gap-3 border-b border-brand-50 px-3 py-2 last:border-0 hover:bg-brand-50/60"
                 >
-                  <img src={safeImageUrl(p.imageUrl)} alt={p.name} className="h-9 w-9 rounded-lg object-cover" />
+                  <Image src={safeImageUrl(p.imageUrl)} alt={p.name} width={36} height={36} className="h-9 w-9 rounded-lg object-cover" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-foreground/90">{p.name}</p>
                     <p className="text-xs text-foreground/50">{categoryLabel(p.category)}</p>

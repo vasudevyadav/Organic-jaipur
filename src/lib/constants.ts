@@ -16,12 +16,11 @@ export const BUSINESS = {
   mapLink:
     "https://www.google.com/maps?cid=1294733615093537041",
   mapDirectionsLink:
-    "https://www.google.com/maps/dir/?api=1&destination=26.8553781%2C75.6615443",
-  latitude: 26.8553781,
-  longitude: 75.6615443,
+    "https://www.google.com/maps/dir/?api=1&destination=26.8553519%2C75.6613163",
+  latitude: 26.8553519,
+  longitude: 75.6613163,
 } as const;
 
-// Replace these platform URLs with Organic Jaipur's profile URLs once available.
 export const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/organic_jaipur/", icon: "instagram" },
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61578630741169", icon: "facebook" },
@@ -67,7 +66,7 @@ export const FAQS_HOME = [
   {
     question: "Is Organic Jaipur Store actually a farm, or just an online seller?",
     answer:
-      "Organic Jaipur Store is a small, direct-from-farm brand based in Jaipur, Rajasthan — our Gir cows, Desi cows, buffaloes, mustard crop and beehives are all on our own farm, and the mango, lemon and chilli for our pickles are grown there too. We're not repacking bought-in stock, so you can ask our team for source details on the batch you choose.",
+      "Organic Jaipur Store is a small, direct-from-farm brand based in Jaipur, Rajasthan. Our Gir cows, Desi cows, buffaloes, mustard crop and beehives are managed on our farm. Pickle recipes use the source stated on their product page; our laal mirch chutney uses red chillies bought from local farmers. Ask our team for source details on the batch you choose.",
   },
   {
     question: "How is your A2 ghee made?",
@@ -202,7 +201,7 @@ export const FAQS_PICKLES = [
   {
     question: "Are your pickles made the traditional Rajasthani way?",
     answer:
-      "Yes. Farm-grown mango, lemon and chilli, mixed with traditional spices and oil, then matured naturally in small batches, the same way they've always been made in Rajasthani households.",
+      "Recipes differ. Our farm-grown produce is used where stated on the selected pickle page, while our laal mirch chutney uses sun-dried red chillies bought from local farmers. Check each product's ingredient and sourcing details before ordering.",
   },
   {
     question: "Do your pickles contain preservatives?",

@@ -65,7 +65,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <h3 className="mt-2 font-display text-[1.5rem] leading-[1.12] text-forest-900 transition-colors group-hover:text-terracotta-500">
             {productDisplayName(product.name, product.unit)}
           </h3>
-          <p className="mt-2 text-xs font-semibold text-foreground/40">Pack: {product.unit}</p>
+          <p className="mt-2 text-xs font-semibold text-foreground/40">Size: {product.unit}</p>
         </Link>
         <div className="mt-auto flex items-end justify-between gap-3 pt-2">
           <span className="flex items-center gap-2">

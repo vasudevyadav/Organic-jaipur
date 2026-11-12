@@ -28,8 +28,12 @@ type Props = {
 };
 
 export async function generateMetadata({ searchParams }: Props) {
-  const { category } = await searchParams;
+  const params = await searchParams;
+  const { category } = params;
   const activeCategory = CATEGORIES.find((item) => item.value === category);
+  const hasNonCanonicalFilters = Boolean(
+    params.sort || params.inStock || params.minPrice || params.maxPrice || (category && !activeCategory),
+  );
   const title = activeCategory
     ? `Buy ${activeCategory.label} Online in Jaipur & Rajasthan`
     : "Shop Ghee, Oils, Honey, Pickles & Chutneys Online";
@@ -40,6 +44,9 @@ export async function generateMetadata({ searchParams }: Props) {
     title,
     description,
     alternates: { canonical: activeCategory ? `/products?category=${activeCategory.value}` : "/products" },
+    robots: hasNonCanonicalFilters
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
   });
 }
 

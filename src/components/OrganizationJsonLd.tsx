@@ -12,7 +12,7 @@ export default function OrganizationJsonLd() {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness", "Store"],
     "@id": `${SITE_URL}/#organization`,
-    name: SITE_NAME,
+    name: BUSINESS.name,
     alternateName: ["Organic Jaipur", "Organic Jaipur Store"],
     description:
       "Organic Jaipur Store is a Jaipur farm brand offering Bilona A2 ghee, cold-pressed oils, raw honey, and traditional Rajasthani pickles and chutneys.",

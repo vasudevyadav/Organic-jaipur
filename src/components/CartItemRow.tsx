@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/lib/cart";
 import { formatPrice, safeImageUrl } from "@/lib/utils";
 
@@ -10,9 +11,12 @@ export default function CartItemRow({ item }: { item: ReturnType<typeof useCart>
   return (
     <article className="group grid grid-cols-[82px_minmax(0,1fr)] gap-4 border-b border-forest-900/8 py-5 first:pt-0 last:border-0 last:pb-0 sm:grid-cols-[96px_minmax(0,1fr)_auto] sm:items-center sm:gap-5">
       <Link href={`/products/${item.slug}`} className="relative shrink-0 overflow-hidden rounded-2xl bg-[#f2eddf]">
-        <img
+        <Image
           src={safeImageUrl(item.imageUrl)}
           alt={item.name}
+          width={96}
+          height={96}
+          sizes="(max-width: 639px) 82px, 96px"
           className="h-[82px] w-[82px] object-cover transition duration-500 group-hover:scale-105 sm:h-24 sm:w-24"
         />
       </Link>
