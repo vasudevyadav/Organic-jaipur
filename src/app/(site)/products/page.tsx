@@ -12,10 +12,13 @@ import {
   STOREFRONT_CATEGORY_VALUES,
   FAQS_BY_CATEGORY,
   FAQS_PRODUCTS_ALL,
+  SITE_URL,
 } from "@/lib/constants";
 import FaqAccordion from "@/components/FaqAccordion";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { serializeJsonLd } from "@/lib/json-ld";
+import { productDisplayName } from "@/lib/utils";
 
 type Props = {
   searchParams: Promise<{
@@ -120,9 +123,26 @@ export default async function ProductsPage({ searchParams }: Props) {
   const faqItems = activeCategory
     ? (FAQS_BY_CATEGORY[activeCategory] ?? FAQS_PRODUCTS_ALL)
     : FAQS_PRODUCTS_ALL;
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/products${activeCategory ? `?category=${activeCategory}` : ""}#product-list`,
+    name: activeLabel ? `${activeLabel} available from Organic Jaipur` : "Organic Jaipur product range",
+    numberOfItems: products.length,
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: productDisplayName(product.name, product.unit),
+      url: `${SITE_URL}/products/${product.slug}`,
+    })),
+  };
 
   return (
     <main className="overflow-x-clip">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(itemListJsonLd) }}
+      />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", href: "/" },
