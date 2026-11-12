@@ -29,10 +29,16 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
     "@type": "Product",
     "@id": `${SITE_URL}/products/${product.slug}#product`,
     sku: product.id,
-    name: productDisplayName(product.name, product.unit),
+    name: `${productDisplayName(product.name, product.unit)} - ${product.unit}`,
     description: product.description,
     image: absoluteImage,
     url: `${SITE_URL}/products/${product.slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/products/${product.slug}#webpage`,
+      url: `${SITE_URL}/products/${product.slug}`,
+      name: `${productDisplayName(product.name, product.unit)} - ${product.unit}`,
+    },
     brand: { "@type": "Brand", name: "Organic Jaipur" },
     category: "Organic food",
     size: product.unit,
@@ -46,6 +52,13 @@ export default function ProductJsonLd({ product, averageRating, reviewCount }: P
       url: `${SITE_URL}/products/${product.slug}`,
       itemCondition: "https://schema.org/NewCondition",
       seller: { "@id": `${SITE_URL}/#organization` },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "IN",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 1,
+        merchantReturnLink: `${SITE_URL}/return-refund-policy`,
+      },
     },
     ...(reviewCount > 0
       ? {
