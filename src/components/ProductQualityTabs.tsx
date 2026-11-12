@@ -208,7 +208,6 @@ export default function ProductQualityTabs({
           <Image
             src={safeImageUrl(imageUrl)}
             alt=""
-            unoptimized
             fill
             sizes="40vw"
             className="object-cover"

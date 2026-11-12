@@ -22,6 +22,7 @@ import ProductQualityTabs from "@/components/ProductQualityTabs";
 import ProductJsonLd from "@/components/ProductJsonLd";
 import FaqJsonLd from "@/components/FaqJsonLd";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { productSeo } from "@/lib/product-seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -31,15 +32,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Product Not Found" };
 
   const category = categoryLabel(product.category);
-  const displayName = productDisplayName(product.name, product.unit);
-  const title = `Buy ${displayName} Online, ${product.unit}`;
-  const description = `${product.description} Free Jaipur delivery, Cash on Delivery, shipped across Rajasthan.`;
+  const seo = productSeo(product.name, product.unit);
+  const title = seo.title;
+  const description = seo.description;
 
   return {
     title,
     description,
     alternates: { canonical: `/products/${product.slug}` },
     keywords: [
+      seo.searchPhrase,
       product.name,
       `${product.name} Jaipur`,
       `${product.name} Rajasthan`,
@@ -89,6 +91,12 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const averageRating = reviewStats._avg.rating ?? 0;
   const reviewCount = reviewStats._count;
+  const seo = productSeo(product.name, product.unit);
+  const productFaqs = [...seo.faqs, ...(FAQS_BY_CATEGORY[product.category] ?? []).slice(0, 2)];
+  const productFamily = product.name.split(",")[0].trim();
+  const availableSizes = [product, ...relatedProducts].filter(
+    (item) => item.name.split(",")[0].trim() === productFamily,
+  );
   const hasDiscount = Boolean(
     product.originalPrice && product.originalPrice > product.price,
   );
@@ -134,8 +142,7 @@ export default async function ProductDetailPage({ params }: Props) {
             <div className="relative h-full min-h-[560px] overflow-hidden rounded-[2rem] border border-forest-900/8 bg-[#eee8d8] shadow-[0_18px_50px_rgba(15,40,28,.12)] lg:min-h-0">
               <Image
                 src={safeImageUrl(product.imageUrl)}
-                alt={product.name}
-                unoptimized
+                alt={seo.imageAlt}
                 fill
                 sizes="(max-width: 1023px) 92vw, 44vw"
                 className="object-cover transition-transform duration-700 hover:scale-[1.02]"
@@ -282,6 +289,36 @@ export default async function ProductDetailPage({ params }: Props) {
       </div>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <section aria-labelledby="product-specifications" className="grid gap-6 rounded-[2rem] border border-forest-900/10 bg-white p-6 shadow-sm sm:p-8 lg:grid-cols-[1.15fr_.85fr]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[.2em] text-terracotta-500">Transparent product information</p>
+            <h2 id="product-specifications" className="mt-3 font-display text-3xl text-forest-900 sm:text-4xl">Product specifications</h2>
+            <dl className="mt-6 divide-y divide-forest-900/10 text-sm">
+              <div className="grid gap-1 py-3 sm:grid-cols-[10rem_1fr]"><dt className="font-bold text-forest-900">Product</dt><dd className="text-forest-900/70">{productDisplayName(product.name, product.unit)}</dd></div>
+              <div className="grid gap-1 py-3 sm:grid-cols-[10rem_1fr]"><dt className="font-bold text-forest-900">Net quantity</dt><dd className="text-forest-900/70">{product.unit}</dd></div>
+              <div className="grid gap-1 py-3 sm:grid-cols-[10rem_1fr]"><dt className="font-bold text-forest-900">Current price</dt><dd className="text-forest-900/70">{formatPrice(product.price)}, inclusive of taxes</dd></div>
+              <div className="grid gap-1 py-3 sm:grid-cols-[10rem_1fr]"><dt className="font-bold text-forest-900">Ingredients</dt><dd className="text-forest-900/70">{product.ingredients ?? "See the product pack or ask our team before ordering."}</dd></div>
+              <div className="grid gap-1 py-3 sm:grid-cols-[10rem_1fr]"><dt className="font-bold text-forest-900">Storage</dt><dd className="text-forest-900/70">{product.storageInfo ?? "Follow the storage directions printed on the product pack."}</dd></div>
+              <div className="grid gap-1 py-3 sm:grid-cols-[10rem_1fr]"><dt className="font-bold text-forest-900">Availability</dt><dd className="text-forest-900/70">{product.inStock ? "In stock" : "Currently unavailable"}</dd></div>
+            </dl>
+          </div>
+          <aside className="rounded-[1.5rem] bg-[#f8f3e7] p-6">
+            <h2 className="font-display text-2xl text-forest-900">Available sizes</h2>
+            <ul className="mt-4 space-y-3">
+              {availableSizes.map((item) => (
+                <li key={item.id}>
+                  <Link href={`/products/${item.slug}`} className="flex items-center justify-between rounded-xl border border-forest-900/10 bg-white px-4 py-3 text-sm font-bold text-forest-900 transition hover:border-brand-700">
+                    <span>{item.unit}</span><span>{formatPrice(item.price)} →</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 border-t border-forest-900/10 pt-5 text-sm leading-6 text-forest-900/70">
+              <p className="font-bold text-forest-900">Learn before you buy</p>
+              <p className="mt-2"><Link href={seo.processHref} className="underline decoration-honey-500 underline-offset-4">See how this product is made</Link>, read our <Link href="/quality-promise" className="underline decoration-honey-500 underline-offset-4">quality and batch information</Link>, or check <Link href="/shipping-policy" className="underline decoration-honey-500 underline-offset-4">Jaipur and Rajasthan delivery</Link>.</p>
+            </div>
+          </aside>
+        </section>
         <ProductQualityTabs
           productName={product.name}
           category={product.category}
@@ -289,7 +326,7 @@ export default async function ProductDetailPage({ params }: Props) {
         />
       </div>
 
-      {FAQS_BY_CATEGORY[product.category] && (
+      {productFaqs.length > 0 && (
         <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-12">
           <p className="text-xs font-bold tracking-[.2em] text-terracotta-500 uppercase">
             Common Questions
@@ -298,9 +335,9 @@ export default async function ProductDetailPage({ params }: Props) {
             Sawaal Aapke, <em className="font-normal text-brand-700">Jawaab Hamare.</em>
           </h2>
           <div className="mt-8 max-w-3xl">
-            <FaqAccordion items={FAQS_BY_CATEGORY[product.category]} />
+            <FaqAccordion items={productFaqs} />
           </div>
-          <FaqJsonLd items={FAQS_BY_CATEGORY[product.category]} />
+          <FaqJsonLd items={productFaqs} />
         </section>
       )}
 

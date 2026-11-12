@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
-import { SITE_URL, CATEGORIES, STOREFRONT_CATEGORY_VALUES } from "@/lib/constants";
+import { SITE_URL, STOREFRONT_CATEGORY_VALUES } from "@/lib/constants";
 import { MAKING_PROCESSES } from "@/lib/making-process";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
@@ -30,13 +30,13 @@ const STATIC_ROUTES: Array<{
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let products: Array<{ slug: string; updatedAt: Date }> = [];
+  let products: Array<{ slug: string; updatedAt: Date; imageUrl: string }> = [];
 
   try {
     products = await prisma.product.findMany({
       // Temporarily unavailable products still have useful, indexable pages.
       where: { category: { in: STOREFRONT_CATEGORY_VALUES } },
-      select: { slug: true, updatedAt: true },
+      select: { slug: true, updatedAt: true, imageUrl: true },
     });
   } catch (error) {
     // Keep all static, Jaipur and Rajasthan URLs discoverable even during a
@@ -56,6 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: product.updatedAt,
     changeFrequency: "weekly",
     priority: 0.8,
+    images: [encodeURI(product.imageUrl.startsWith("http") ? product.imageUrl : `${SITE_URL}${product.imageUrl}`)],
   }));
 
   const makingProcessEntries: MetadataRoute.Sitemap = MAKING_PROCESSES.map((process) => ({
@@ -74,11 +75,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...productEntries,
-    ...CATEGORIES.map((category) => ({
-      url: `${SITE_URL}/products?category=${category.value}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
     ...makingProcessEntries,
     ...blogEntries,
   ];

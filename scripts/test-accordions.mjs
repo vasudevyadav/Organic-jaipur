@@ -23,8 +23,8 @@ async function checkFaq(page, route) {
     elements.flatMap(element => { const value = JSON.parse(element.textContent); return Array.isArray(value) ? value : [value]; })
   );
   const faqSchema = schemas.filter(schema => schema['@type'] === 'FAQPage');
-  assert.equal(faqSchema.length, 1, `${route}: one FAQ schema`);
-  assert.deepEqual(faqSchema[0].mainEntity.map(item => ({ question: item.name, answer: item.acceptedAnswer.text })), visibleContent, `${route}: schema matches HTML`);
+  assert.equal(faqSchema.length, 0, `${route}: no ineligible FAQ rich-result schema`);
+  assert.ok(visibleContent.every(item => item.question && item.answer), `${route}: visible FAQ content is complete`);
   const first = entries.nth(0);
   const second = entries.nth(1);
   await second.locator('summary').click();
@@ -36,7 +36,7 @@ async function checkFaq(page, route) {
   await expect(second).not.toHaveAttribute('open');
   await page.keyboard.press('Space');
   await expect(first).not.toHaveAttribute('open');
-  console.log(`PASS FAQ click, keyboard and matching schema: ${route}`);
+  console.log(`PASS FAQ click, keyboard, visible answers and schema eligibility: ${route}`);
 }
 try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });

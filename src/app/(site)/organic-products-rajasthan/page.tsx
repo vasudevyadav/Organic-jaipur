@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import FaqAccordion from "@/components/FaqAccordion";
@@ -49,9 +50,12 @@ export default function OrganicProductsRajasthanPage() {
       />
 
       <section className="hero-grain relative isolate min-h-[380px] overflow-hidden bg-[#0f281c] text-cream sm:min-h-[440px]">
-        <img
+        <Image
           src="/images/generated/banner-shop-farm-v3.jpg"
           alt="Organic Jaipur products shipped across Rajasthan"
+          fill
+          priority
+          sizes="100vw"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[66%_center]"
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,29,20,.94)_0%,rgba(8,29,20,.78)_42%,rgba(8,29,20,.18)_82%)]" />

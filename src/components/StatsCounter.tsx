@@ -1,4 +1,5 @@
 import AnimatedSection from "@/components/AnimatedSection";
+import Image from "next/image";
 import { STATS } from "@/lib/constants";
 
 export default function StatsCounter() {
@@ -6,9 +7,11 @@ export default function StatsCounter() {
     <section className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
       <div className="grid overflow-hidden rounded-3xl border border-brand-100 md:grid-cols-2">
         <div className="relative min-h-[280px] bg-brand-100">
-          <img
+          <Image
             src="/images/farm-photo.jpg"
             alt="Organic Jaipur farm"
+            fill
+            sizes="(max-width: 767px) 100vw, 50vw"
             className="h-full w-full object-cover"
           />
         </div>

@@ -1,13 +1,10 @@
-"use client";
-
-import { useId } from "react";
 import { FAQS_HOME } from "@/lib/constants";
 
 type Faq = { question: string; answer: string };
 type Props = { items?: readonly Faq[] };
 
 export default function FaqAccordion({ items = FAQS_HOME }: Props) {
-  const groupName = useId();
+  const groupName = `faq-${items[0]?.question.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40) ?? "items"}`;
 
   return (
     <div className="space-y-3.5">
